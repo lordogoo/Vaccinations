@@ -25,7 +25,7 @@
 
 		
 				
-		<!-- Begin OpenMRS modules -->
+		<!-- Begin OpenMRS modules
 				
 		<dependency>
 		
@@ -33,7 +33,7 @@
 									
 			<artifactId>webservices.rest-api</artifactId>
 															
-		</dependency>
+		</dependency> -->
 				
 		<!-- End OpenMRS modules -->
 		

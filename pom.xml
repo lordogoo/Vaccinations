@@ -52,7 +52,7 @@
 			-->
 			
 						
-			<!-- Begin OpenMRS modules -->
+			<!-- Begin OpenMRS modules 
 			
 						
 			<dependency>
@@ -65,7 +65,7 @@
 												
 				<scope>provided</scope>
 				
-			</dependency>
+			</dependency>-->
 						
 			<!-- End OpenMRS modules -->
 			
