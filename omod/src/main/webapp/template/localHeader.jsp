@@ -10,7 +10,7 @@
 		href="${pageContext.request.contextPath}/module/vaccinations/manage.form"><spring:message
 				code="vaccinations.manage" /></a>
 	</li>
-	
+
 	<!-- Add further links here -->
 </ul>
 <h2>
