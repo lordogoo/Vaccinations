@@ -29,42 +29,42 @@ public class VaccinationsModuleActivator implements ModuleActivator {
 	 * @see ModuleActivator#willRefreshContext()
 	 */
 	public void willRefreshContext() {
-		log.info("Refreshing Vaccinations Module Module");
+		log.info("Refreshing Vaccinations Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#contextRefreshed()
 	 */
 	public void contextRefreshed() {
-		log.info("Vaccinations Module Module refreshed");
+		log.info("Vaccinations Module refreshed");
 	}
 	
 	/**
 	 * @see ModuleActivator#willStart()
 	 */
 	public void willStart() {
-		log.info("Starting Vaccinations Module Module");
+		log.info("Starting Vaccinations Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#started()
 	 */
 	public void started() {
-		log.info("Vaccinations Module Module started");
+		log.info("Vaccinations Module started");
 	}
 	
 	/**
 	 * @see ModuleActivator#willStop()
 	 */
 	public void willStop() {
-		log.info("Stopping Vaccinations Module Module");
+		log.info("Stopping Vaccinations Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#stopped()
 	 */
 	public void stopped() {
-		log.info("Vaccinations Module Module stopped");
+		log.info("Vaccinations Module stopped");
 	}
 		
 }

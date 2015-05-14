@@ -6,7 +6,7 @@
 	<artifactId>vaccinations</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	<name>Vaccinations Module Module</name>
+	<name>Vaccinations Module</name>
 	<description>Used to manage patient vaccinations information.</description>
 	<url>https://wiki.openmrs.org/display/docs/Vaccinations+Module+Module+Module</url>
 	
@@ -65,7 +65,7 @@
 												
 				<scope>provided</scope>
 				
-			</dependency>-->
+			</dependency>	-->
 						
 			<!-- End OpenMRS modules -->
 			

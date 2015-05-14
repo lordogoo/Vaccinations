@@ -10,7 +10,7 @@
 
 	<artifactId>vaccinations-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Vaccinations Module Module API</name>
+	<name>Vaccinations Module API</name>
 	<description>API project for VaccinationsModule</description>
 
 	<dependencies>
