@@ -9,13 +9,17 @@
         for a list of supported elements and attributes
     -->
     <changeSet id="vaccinations-20150515" author="Serghei Luchianov">
-		<createTable tableName="vaccine">
+    	<preConditions onFail="MARK_RAN">
+				<not><tableExists tableName="vaccines"/></not>
+		</preConditions>
+		<createTable tableName="vaccines">
 			<column name="vaccine_id" autoIncrement="true" type="int">
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
 
 			<column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
 			<column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+			<column name="indication_name" type="varchar(255)" defaultValue="" />
 			<column name="dose" type="DOUBLE" />
 			<column name="dosing_unit" type="varchar(255)" />
 			<column name="route" type="varchar(255)" />
