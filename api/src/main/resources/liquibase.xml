@@ -25,4 +25,23 @@
 			<column name="route" type="varchar(255)" />
 		</createTable>
 	</changeSet>
+    <changeSet id="vaccinations-20150516" author="Serghei Luchianov">
+	    <preConditions onFail="MARK_RAN">
+			<and>
+				<not><tableExists tableName="vaccinations"/></not>
+				<tableExists tableName="vaccines"/>
+			</and>
+		</preConditions>
+		<createTable tableName="vaccinations">
+			<column name="vaccination_id" autoIncrement="true" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="vaccine_id" type="int"/>
+		</createTable>
+		
+		<addForeignKeyConstraint constraintName="vaccination_to_vaccine_fk"
+	                             baseTableName="vaccinations" baseColumnNames="vaccine_id"
+		                         referencedTableName="vaccines" referencedColumnNames="vaccine_id"
+		                         deferrable="false" initiallyDeferred="false" />
+	</changeSet>
 </databaseChangeLog>
