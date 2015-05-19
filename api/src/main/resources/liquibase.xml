@@ -37,11 +37,56 @@
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
 			<column name="vaccine_id" type="int"/>
+			
+			<column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+			<column name="scheduled_date" type="DATETIME" />
+			
+			<column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+			<column name="indication_name" type="varchar(255)" defaultValue="" />
+			<column name="dose" type="DOUBLE" />
+			<column name="dosing_unit" type="varchar(255)" />
+			<column name="route" type="varchar(255)" />
+			
+			<column name="administered" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+			<column name="administration_date" type="DATETIME" />
+			<column name="body_site_administered" type="varchar(255)" />
+			
+			<column name="dose_number" type="int"/>
+			<column name="lot_number" type="varchar(50)" />
+			<column name="manufacturer" type="varchar(255)" />
+			<column name="manufacture_date" type="DATETIME" />
+			<column name="expiry_date" type="DATETIME" />
+			
+			<column name="adverse_reaction" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+			<column name="adverse_reaction_id" type="int"/>
 		</createTable>
 		
 		<addForeignKeyConstraint constraintName="vaccination_to_vaccine_fk"
 	                             baseTableName="vaccinations" baseColumnNames="vaccine_id"
 		                         referencedTableName="vaccines" referencedColumnNames="vaccine_id"
+		                         deferrable="false" initiallyDeferred="false" />
+	</changeSet>
+    <changeSet id="vaccinations-20150518" author="Serghei Luchianov">
+	    <preConditions onFail="MARK_RAN">
+			<and>
+				<not><tableExists tableName="adverse_reactions"/></not>
+				<tableExists tableName="vaccinations"/>
+			</and>
+		</preConditions>
+		<createTable tableName="adverse_reactions">
+			<column name="adverse_reaction_id" autoIncrement="true" type="int">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="vaccination_id" type="int"/>
+			
+			<column name="logged_date" type="DATETIME" />
+			<column name="adverse_event" type="varchar(255)" />
+			<column name="grade" type="varchar(255)" />
+		</createTable>
+		
+		<addForeignKeyConstraint constraintName="adverse_reaction_to_vaccination_fk"
+	                             baseTableName="adverse_reactions" baseColumnNames="vaccination_id"
+		                         referencedTableName="vaccinations" referencedColumnNames="vaccination_id"
 		                         deferrable="false" initiallyDeferred="false" />
 	</changeSet>
 </databaseChangeLog>
