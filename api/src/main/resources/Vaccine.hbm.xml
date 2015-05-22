@@ -6,9 +6,9 @@
 <hibernate-mapping package="org.openmrs.module.vaccinations">
 
 
-	<class name="Vaccination"
-		table="vac_vaccinations">
-		<id name="id" type="int" column="vaccination_id" unsaved-value="0">
+	<class name="Vaccine"
+		table="vac_vaccines">
+		<id name="id" type="int" column="vaccine_id" unsaved-value="0">
 			<generator class="native" />
 		</id>
 		<discriminator column="id" insert="false" />
@@ -18,9 +18,6 @@
 		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" not-null="true" length="255" />
 		<property name="route" type="java.lang.String" column="route" not-null="true" length="255" />
 		
-		<!-- Linking back to the original vaccine -->
-		<many-to-one name="vaccine" class="Vaccine" column="vaccine_id" />
-		<many-to-one name="adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
 			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
