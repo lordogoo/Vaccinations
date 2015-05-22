@@ -17,6 +17,8 @@
 		<property name="dose" type="double" column="dose" />
 		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" not-null="true" length="255" />
 		<property name="route" type="java.lang.String" column="route" not-null="true" length="255" />
+		<property name="scheduled" column="scheduled" type="boolean"/>
+		<property name="adverse_reaction_observed" column="adverse_reaction_observed" type="boolean"/>
 		
 		<!-- Linking back to the original vaccine -->
 		<many-to-one name="vaccine" class="Vaccine" column="vaccine_id" />

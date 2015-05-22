@@ -22,15 +22,63 @@ import org.openmrs.BaseOpenmrsMetadata;
  */
 public class Vaccine extends BaseOpenmrsObject implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+	//private static final long serialVersionUID = 1L;
+
 	private Integer id;
-	private Boolean scheduled;
 	private String name;
 	private String indication_name;
 	private double dose;
 	private String dosing_unit;
 	private String route;
+	private Boolean scheduled;
+
+	public Boolean getScheduled() {
+		return scheduled;
+	}
+
+	public void setScheduled(Boolean scheduled) {
+		this.scheduled = scheduled;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getIndication_name() {
+		return indication_name;
+	}
+
+	public void setIndication_name(String indication_name) {
+		this.indication_name = indication_name;
+	}
+
+	public double getDose() {
+		return dose;
+	}
+
+	public void setDose(double dose) {
+		this.dose = dose;
+	}
+
+	public String getDosing_unit() {
+		return dosing_unit;
+	}
+
+	public void setDosing_unit(String dosing_unit) {
+		this.dosing_unit = dosing_unit;
+	}
+
+	public String getRoute() {
+		return route;
+	}
+
+	public void setRoute(String route) {
+		this.route = route;
+	}
 	
 	@Override
 	public Integer getId() {

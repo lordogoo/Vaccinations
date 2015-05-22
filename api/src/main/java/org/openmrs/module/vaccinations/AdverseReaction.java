@@ -14,6 +14,8 @@
 package org.openmrs.module.vaccinations;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
 
@@ -22,12 +24,37 @@ import org.openmrs.BaseOpenmrsMetadata;
  */
 public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
-	
-	
-	
+	//private static final long serialVersionUID = 1L;
+
+    private Integer id;
+    private Date date;
+    private String adverse_event;
+    private String grade;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getAdverse_event() {
+        return adverse_event;
+    }
+
+    public void setAdverse_event(String adverse_event) {
+        this.adverse_event = adverse_event;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
 	@Override
 	public Integer getId() {
 		return id;

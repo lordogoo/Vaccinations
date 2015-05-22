@@ -5,15 +5,29 @@
 
 <hibernate-mapping package="org.openmrs.module.vaccinations">
 
-<!--
-	<class name="Vaccination"
-		table="${project.parent.artifactId}_Vaccination">
+
+	<class name="AdverseReaction"
+		table="vac_adverse_reactions">
 		<id name="id" type="int" column="id" unsaved-value="0">
 			<generator class="native" />
 		</id>
 		<discriminator column="id" insert="false" />
-		<property name="uuid" type="java.lang.String" column="uuid"
-			length="38" unique="true" />
+
+
+        <property name="date" type="java.util.Date" column="logged_date" not-null="true" length="19" />
+        <property name="adverse_event" type="java.lang.String" column="adverse_event" not-null="true" length="255" />
+        <property name="grade" type="java.lang.String" column="grade" not-null="true" length="255" />
+
+		<!-- bi-directional many-to-one association to User -->
+		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
+		<property name="dateCreated" type="java.util.Date" column="date_created" not-null="true" length="19" />
+		<many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />
+		<property name="dateChanged" type="java.util.Date" column="date_changed" length="19" />
+		<many-to-one name="retiredBy" class="org.openmrs.User" column="retired_by" />
+		<property name="dateRetired" type="java.util.Date" column="date_retired" length="19" />
+		<property name="retireReason" type="java.lang.String" column="retire_reason" length="255" />
+		<property name="retired" type="boolean" column="retired" length="1" not-null="true" />
+		<property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" />
 	</class>
 -->
 
