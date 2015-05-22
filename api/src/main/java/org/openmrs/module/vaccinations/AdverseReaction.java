@@ -30,6 +30,7 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
     private Date date;
     private String adverse_event;
     private String grade;
+    private int vaccination_id;
 
     public Date getDate() {
         return date;
@@ -64,5 +65,12 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+    public int getVaccination_id() {
+        return vaccination_id;
+    }
+
+    public void setVaccination_id(int vaccination_id) {
+        this.vaccination_id = vaccination_id;
+    }
 }

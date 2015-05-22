@@ -13,12 +13,17 @@
 		</id>
 		<discriminator column="id" insert="false" />
 
-
         <property name="date" type="java.util.Date" column="logged_date" not-null="true" length="19" />
         <property name="adverse_event" type="java.lang.String" column="adverse_event" not-null="true" length="255" />
         <property name="grade" type="java.lang.String" column="grade" not-null="true" length="255" />
 
-		<!-- bi-directional many-to-one association to User -->
+        <!-- Linking to the adverse reaction -->
+        <property name="vaccination_id" type="int" column="vaccination_id" />
+        <!--
+        <one-to-one name="vaccination" class="Vaccination" column="vaccination_id" />
+        -->
+
+        <!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
 		<property name="dateCreated" type="java.util.Date" column="date_created" not-null="true" length="19" />
 		<many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />

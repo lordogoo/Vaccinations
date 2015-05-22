@@ -22,7 +22,8 @@
 		
 		<!-- Linking back to the original vaccine -->
 		<many-to-one name="vaccine" class="Vaccine" column="vaccine_id" />
-		<many-to-one name="adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
+		<!-- Linking to the adverse reaction -->
+		<one-to-one name="adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
 			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
