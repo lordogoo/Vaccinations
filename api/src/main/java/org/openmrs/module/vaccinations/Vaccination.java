@@ -16,6 +16,7 @@ package org.openmrs.module.vaccinations;
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
+import java.util.Date;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -25,6 +26,25 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	private Vaccine vaccine;
+	private Boolean scheduled;
+	private Date scheduled_date;
+	private String name;
+	private String indication_name;
+	private double dose;
+	private String dosing_unit;
+	private String route;
+	private Boolean administered;
+	private Date administered_date;
+	private String body_site_administered;
+	private int dose_number;
+	private String lot_number;
+	private String manufacturer;
+	private Date manufacture_date;
+	private Date expiry_date;
+	private Boolean adverse_reaction_observed;
+	private AdverseReaction adverse_reaction;
+	
 	
 	@Override
 	public Integer getId() {
