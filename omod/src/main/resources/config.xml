@@ -40,6 +40,8 @@
 	<mappingFiles>
 				
 		Vaccination.hbm.xml
+		Vaccine.hbm.xml
+		AdverseReaction.hbm.xml
 				
 	</mappingFiles>
 
