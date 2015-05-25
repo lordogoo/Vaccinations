@@ -32,6 +32,7 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private String route;
 	private Boolean scheduled;
 
+
 	public Boolean getScheduled() {
 		return scheduled;
 	}

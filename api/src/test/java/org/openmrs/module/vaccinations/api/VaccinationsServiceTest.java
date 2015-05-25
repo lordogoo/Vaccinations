@@ -27,4 +27,6 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
 	public void shouldSetupContext() {
 		assertNotNull(Context.getService(VaccinationsService.class));
 	}
+
+
 }
