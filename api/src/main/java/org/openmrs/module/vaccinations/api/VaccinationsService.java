@@ -43,4 +43,8 @@ public interface VaccinationsService extends OpenmrsService {
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public List<Vaccine> listVaccines() throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
 }
