@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width">
 </head>
 <body>
-<div id="appcontainer">
+<div id="appcontainer" ng-app="vaccinations">
 
     <div class="container" ng-controller="MainController">
 
