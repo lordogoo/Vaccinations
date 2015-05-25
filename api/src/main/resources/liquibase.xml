@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
@@ -51,26 +51,26 @@
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
 			<column name="vaccine_id" type="int"/>
-			
+
 			<column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
 			<column name="scheduled_date" type="DATETIME" />
-			
+
 			<column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
 			<column name="indication_name" type="varchar(255)" defaultValue="" />
 			<column name="dose" type="DOUBLE" />
 			<column name="dosing_unit" type="varchar(255)" />
 			<column name="route" type="varchar(255)" />
-			
+
 			<column name="administered" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
 			<column name="administration_date" type="DATETIME" />
 			<column name="body_site_administered" type="varchar(255)" />
-			
+
 			<column name="dose_number" type="int"/>
 			<column name="lot_number" type="varchar(50)" />
 			<column name="manufacturer" type="varchar(255)" />
 			<column name="manufacture_date" type="DATETIME" />
 			<column name="expiry_date" type="DATETIME" />
-			
+
 			<column name="adverse_reaction" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
 			<column name="adverse_reaction_id" type="int"/>
 
@@ -85,7 +85,7 @@
 			<column name="retire_reason" type="varchar(255)"/>
 			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
 		</createTable>
-		
+
 		<addForeignKeyConstraint constraintName="vaccination_to_vaccine_fk"
 	                             baseTableName="vac_vaccinations" baseColumnNames="vaccine_id"
 		                         referencedTableName="vac_vaccines" referencedColumnNames="vaccine_id"
@@ -105,7 +105,7 @@
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
 			<column name="vaccination_id" type="int"/>
-			
+
 			<column name="logged_date" type="DATETIME" />
 			<column name="adverse_event" type="varchar(255)" />
 			<column name="grade" type="varchar(255)" />
@@ -121,10 +121,605 @@
 			<column name="retire_reason" type="varchar(255)"/>
 			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
 		</createTable>
-		
+
 		<addForeignKeyConstraint constraintName="adverse_reaction_to_vaccination_fk"
 	                             baseTableName="vac_adverse_reactions" baseColumnNames="vaccination_id"
 		                         referencedTableName="vac_vaccinations" referencedColumnNames="vaccination_id"
 		                         deferrable="false" initiallyDeferred="false" />
 	</changeSet>
+
+	<changeset id="vaccinations-20150524" author="Jon Cairo">
+		<preConditions>
+			<not>
+				<tableExists tableName="vac_vaccines"/>
+			</not>
+		</preConditions>
+		<comment> This code populates the vaccines table vaccines. </comment>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Bacillus Calmette-Guerin (BCG)',
+			'birth to 1yo',
+			1,
+			.05,
+			'ml',
+			'intra-dermal left forearm',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Bacillus Calmette-Guerin (BCG)',
+			'older than 1yo',
+			2,
+			.1,
+			'ml',
+			'intra-dermal left forearm',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Bacillus Calmette-Guerin (BCG)',
+			null,
+			null,
+			null,
+			'ml',
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Oral Polio Vaccine (OPV)',
+			'birth to 2 weeks',
+			1,
+			2,
+			'drops',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Oral Polio Vaccine (OPV)',
+			'6 weeks',
+			2,
+			2,
+			'drops',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Oral Polio Vaccine (OPV)',
+			'10 weeks',
+			3,
+			2,
+			'drops',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Oral Polio Vaccine (OPV)',
+			'14 weeks',
+			4,
+			2,
+			'drops',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pentavalent Vaccine',
+			'6 weeks',
+			1,
+			.5,
+			'ml',
+			'IM left outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pentavalent Vaccine',
+			'10 weeks',
+			2,
+			.5,
+			'ml',
+			'IM left outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pentavalent Vaccine',
+			'14 weeks',
+			3,
+			.5,
+			'ml',
+			'IM left outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pneumococcal conjugate vaccine (PCV)',
+			'6 weeks',
+			1,
+			.5,
+			'ml',
+			'IM right outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pneumococcal conjugate vaccine (PCV)',
+			'10 weeks',
+			2,
+			.5,
+			'ml',
+			'IM right outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Pneumococcal conjugate vaccine (PCV)',
+			'14 weeks',
+			3,
+			.5,
+			'ml',
+			'IM right outer thigh',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Measles',
+			'9 months',
+			1,
+			.5,
+			'ml',
+			'SC right upper arm',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			1,
+			'Yellow Fever',
+			'9 months',
+			1,
+			.5,
+			'ml',
+			'IM left upper deltoid',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+	</changeset>
+
 </databaseChangeLog>
