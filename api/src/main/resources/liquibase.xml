@@ -720,6 +720,553 @@
 			uuid()
 			);
 		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Diphtheria-Pertussis-Tetanus (DPT)',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Hepatitis A (HA)',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Hepatitis B (HA)',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Haemophilus influenza type b (Hib)',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Rotavirus',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Rabies',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Chickenpox',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Cholera',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Typhoid',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Influenza',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Mumps',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Rubella',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Meningococcal',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Tetanus toxoid',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
 	</changeset>
 
 </databaseChangeLog>
