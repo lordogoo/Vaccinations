@@ -4,10 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping package="org.openmrs.module.vaccinations">
-
-
-	<class name="Vaccination"
-		table="vac_vaccinations">
+	<class name="Vaccination" table="vac_vaccinations">
 		<id name="id" type="int" column="vaccination_id" unsaved-value="0">
 			<generator class="native" />
 		</id>
@@ -20,10 +17,14 @@
 		<property name="scheduled" column="scheduled" type="boolean"/>
 		<property name="adverse_reaction_observed" column="adverse_reaction_observed" type="boolean"/>
 		
-		<!-- Linking back to the original vaccine -->
-		<many-to-one name="vaccine" class="Vaccine" column="vaccine_id" />
-		<!-- Linking to the adverse reaction -->
-		<one-to-one name="adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
+		<!--
+            Linking back to the original vaccine
+            Linking to the adverse reaction
+        -->
+
+		<many-to-one name="Vaccine" class="Vaccine" column="vaccine_id" />
+		<many-to-one name="Adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
+
 			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
@@ -36,6 +37,4 @@
 		<property name="retired" type="boolean" column="retired" length="1" not-null="true" />
 		<property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" />
 	</class>
-
-
 </hibernate-mapping>

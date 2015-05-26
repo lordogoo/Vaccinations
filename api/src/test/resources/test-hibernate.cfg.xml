@@ -19,10 +19,10 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Uncomment for hibernate debugging
-		-->
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="use_sql_comments">true</property>
+		-->
 
 		<mapping resource="Vaccine.hbm.xml" />
 		<mapping resource="Vaccination.hbm.xml" />

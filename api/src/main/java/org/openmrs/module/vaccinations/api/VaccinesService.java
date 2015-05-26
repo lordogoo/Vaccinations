@@ -34,13 +34,10 @@ import java.util.List;
  * @see org.openmrs.api.context.Context
  */
 @Transactional
-public interface VaccinationsService extends OpenmrsService {
+public interface VaccinesService extends OpenmrsService {
 
-	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-	public List<Vaccination> listVacciantionsByPatientId(Integer patientId) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
-	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
+	public List<Vaccine> listVaccines() throws APIException;
 }

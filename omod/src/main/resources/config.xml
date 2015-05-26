@@ -38,12 +38,9 @@
 	
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
-        <!--
-        Vaccine.hbm.xml
         Vaccination.hbm.xml
+        Vaccine.hbm.xml
         AdverseReaction.hbm.xml
-         -->
-				
 	</mappingFiles>
 
 	<!-- Internationalization -->

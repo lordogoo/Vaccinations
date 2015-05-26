@@ -6,8 +6,7 @@
 <hibernate-mapping package="org.openmrs.module.vaccinations">
 
 
-	<class name="AdverseReaction"
-		table="vac_adverse_reactions">
+	<class name="AdverseReaction" table="vac_adverse_reactions">
 		<id name="id" type="int" column="id" unsaved-value="0">
 			<generator class="native" />
 		</id>
@@ -34,6 +33,4 @@
 		<property name="retired" type="boolean" column="retired" length="1" not-null="true" />
 		<property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" />
 	</class>
--->
-
 </hibernate-mapping>

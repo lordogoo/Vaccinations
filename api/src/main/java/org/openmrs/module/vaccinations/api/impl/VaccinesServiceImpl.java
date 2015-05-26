@@ -13,47 +13,43 @@
  */
 package org.openmrs.module.vaccinations.api.impl;
 
-import org.openmrs.api.APIException;
-import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.APIException;
+import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.vaccinations.Vaccination;
-import org.openmrs.module.vaccinations.api.VaccinationsService;
-import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
+import org.openmrs.module.vaccinations.Vaccine;
+import org.openmrs.module.vaccinations.api.VaccinesService;
+import org.openmrs.module.vaccinations.api.db.VaccinesDAO;
 
 import java.util.List;
 
 /**
- * It is a default implementation of {@link VaccinationsService}.
+ * It is a default implementation of {@link VaccinesService}.
  */
-public class VaccinationsServiceImpl extends BaseOpenmrsService implements VaccinationsService {
+public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesService {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private VaccinationsDAO dao;
+	private VaccinesDAO dao;
 	
 	/**
      * @param dao the dao to set
      */
-    public void setDao(VaccinationsDAO dao) {
+    public void setDao(VaccinesDAO dao) {
 	    this.dao = dao;
     }
     
     /**
      * @return the dao
      */
-    public VaccinationsDAO getDao() {
+    public VaccinesDAO getDao() {
 	    return dao;
     }
 
     @Override
-    public List<Vaccination> listVacciantionsByPatientId(Integer patientId) throws APIException {
+    public List<Vaccine> listVaccines() throws APIException {
         return null;
     }
 
-
-    @Override
-    public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException {
-        return null;
-    }
 }

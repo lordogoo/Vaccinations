@@ -13,15 +13,8 @@
  */
 package org.openmrs.module.vaccinations.api;
 
-import org.openmrs.annotation.Authorized;
-import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.vaccinations.Vaccination;
-import org.openmrs.module.vaccinations.Vaccine;
-import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -34,13 +27,6 @@ import java.util.List;
  * @see org.openmrs.api.context.Context
  */
 @Transactional
-public interface VaccinationsService extends OpenmrsService {
+public interface AdverseReactionsService extends OpenmrsService {
 
-	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-	public List<Vaccination> listVacciantionsByPatientId(Integer patientId) throws APIException;
-
-	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
-	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
 }

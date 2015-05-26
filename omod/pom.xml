@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>vaccinations</artifactId>
-		<version>1.0</version>
+		<version>1.01</version>
 	</parent>
 
 	<artifactId>vaccinations-omod</artifactId>
@@ -22,7 +22,12 @@
 			<artifactId>library-name</artifactId> 
 		</dependency> 
 		-->
-		
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+
 		<!-- Begin OpenMRS modules -->
 		
 		<dependency>
