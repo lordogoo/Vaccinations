@@ -22,22 +22,9 @@
 			<artifactId>library-name</artifactId>
 		</dependency> 
 		-->
-		<dependency>
-			<groupId>javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
-		</dependency>
 
 
-		<!-- Begin OpenMRS modules
-				
-		<dependency>
-		
-			<groupId>org.openmrs.module</groupId>
-									
-			<artifactId>webservices.rest-api</artifactId>
-															
-		</dependency> -->
+		<!-- Begin OpenMRS modules -->
 				
 		<!-- End OpenMRS modules -->
 		

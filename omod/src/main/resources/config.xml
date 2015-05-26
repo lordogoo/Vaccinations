@@ -16,14 +16,12 @@
 	<!-- / Module Properties -->
 
 	
-	<!-- Required Modules
+	<!-- Required Modules -->
 	<require_modules>
-																											
-		<require_module version="2.7-SNAPSHOT.57701c">
+		<require_module version="2.0">
 			org.openmrs.module.webservices.rest
 		</require_module>
-			
-	</require_modules> -->
+	</require_modules>
 	<!-- / Required Modules -->
 	
 	<!-- Module Activator -->
@@ -59,5 +57,14 @@
 	</messages>
 	<!-- /Internationalization -->
 
+    <!-- Module Privileges -->
+    <privilege>
+        <name>Manage Vaccines</name>
+        <description>Allows user to manage vaccines in the administrator tab.</description>
+    </privilege>
+    <privilege>
+        <name>Manage Vaccinations</name>
+        <description>Allows user to access and manage patient vaccinations.</description>
+    </privilege>
 </module>
 
