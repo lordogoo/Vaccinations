@@ -128,7 +128,7 @@
 		                         deferrable="false" initiallyDeferred="false" />
 	</changeSet>
 
-	<changeset id="vaccinations-20150524" author="Jon Cairo">
+	<changeSet id="vaccinations-20150524" author="Jon Cairo">
 		<preConditions>
 			<not>
 				<tableExists tableName="vac_vaccines"/>
@@ -2008,6 +2008,6 @@
 			);
 		</sql>
 
-	</changeset>
+	</changeSet>
 
 </databaseChangeLog>
