@@ -1267,6 +1267,747 @@
 			);
 		</sql>
 
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'6 months',
+			1,
+			100000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'12 months (1 year)',
+			2,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'18 months (1 1/2 years)',
+			3,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'24 months (2 years)',
+			4,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'30 months (2 1/2 years)',
+			5,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'36 months (3 years)',
+			6,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'42 months (3 1/2 years)',
+			7,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'48 months (4 years)',
+			8,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'54 months (4 1/2 years)',
+			9,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Vitamin A',
+			'60 months (5 years)',
+			10,
+			200000,
+			'IU',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Mebendazole',
+			'12 months (1 year)',
+			1,
+			500,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Mebendazole',
+			'18 months (1 1/2 years)',
+			2,
+			500,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'24 months (2 years)',
+			3,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'30 months (2 1/2 years)',
+			4,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'36 months (3 years)',
+			5,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'42 months (3 1/2 years)',
+			6,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'48 months (4 years)',
+			7,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'54 months (4 1/2 years)',
+			8,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
+		<sql>
+			INSERT INTO 'openmrs'.'vac_vaccines' (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			'dose_number',
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`
+			)
+			VALUES (
+			0,
+			'Deworming - Albendazole',
+			'60 months (5 years)',
+			9,
+			400,
+			'mg',
+			'PO',
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid()
+			);
+		</sql>
+
 	</changeset>
 
 </databaseChangeLog>
