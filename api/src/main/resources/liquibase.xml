@@ -128,20 +128,23 @@
 		                         deferrable="false" initiallyDeferred="false" />
 	</changeSet>
 
+	<changeSet id="vaccinations-20150525" author="Serghei Luchianov">
+		<addColumn tableName="vac_vaccines">
+			<column name="dose_number" type="int"/>
+		</addColumn>
+	</changeSet>
+
 	<changeSet id="vaccinations-20150524" author="Jon Cairo">
 		<preConditions>
-			<not>
-				<tableExists tableName="vac_vaccines"/>
-			</not>
+			<tableExists tableName="vac_vaccines"/>
 		</preConditions>
 		<comment> This code populates the vaccines table vaccines. </comment>
-
 		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -173,14 +176,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -212,14 +215,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -251,14 +254,11 @@
 			null,
 			uuid()
 			);
-		</sql>
-
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -290,14 +290,11 @@
 			null,
 			uuid()
 			);
-		</sql>
-
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -329,14 +326,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -368,14 +365,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -407,14 +404,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -446,14 +443,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -485,14 +482,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -524,14 +521,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -563,14 +560,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -602,14 +599,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -641,14 +638,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -680,14 +677,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -719,14 +716,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -758,14 +755,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -797,14 +794,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -836,14 +833,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -875,14 +872,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -914,14 +911,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -953,14 +950,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -992,14 +989,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1031,14 +1028,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1070,14 +1067,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1109,14 +1106,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1148,14 +1145,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1187,14 +1184,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1226,14 +1223,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1265,14 +1262,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1304,14 +1301,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1343,14 +1340,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1382,14 +1379,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1421,14 +1418,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1460,14 +1457,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1499,14 +1496,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1538,14 +1535,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1577,14 +1574,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1616,14 +1613,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1655,14 +1652,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1694,14 +1691,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1733,14 +1730,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1772,14 +1769,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1811,14 +1808,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1850,14 +1847,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1889,14 +1886,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1928,14 +1925,14 @@
 			null,
 			uuid()
 			);
-		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
+
+
+			INSERT INTO `openmrs`.`vac_vaccines` (
 			`scheduled`,
 			`name`,
 			`indication_name`,
-			'dose_number',
+			`dose_number`,
 			`dose`,
 			`dosing_unit`,
 			`route`,
@@ -1969,45 +1966,5 @@
 			);
 		</sql>
 
-		<sql>
-			INSERT INTO 'openmrs'.'vac_vaccines' (
-			`scheduled`,
-			`name`,
-			`indication_name`,
-			'dose_number',
-			`dose`,
-			`dosing_unit`,
-			`route`,
-			`creator`,
-			`date_created`,
-			`changed_by`,
-			`date_changed`,
-			`retired`,
-			`retired_by`,
-			`date_retired`,
-			`retire_reason`,
-			`uuid`
-			)
-			VALUES (
-			0,
-			'Deworming - Albendazole',
-			'60 months (5 years)',
-			9,
-			400,
-			'mg',
-			'PO',
-			1,
-			NOW(),
-			null,
-			null,
-			0,
-			null,
-			null,
-			null,
-			uuid()
-			);
-		</sql>
-
 	</changeSet>
-
 </databaseChangeLog>
