@@ -15,8 +15,13 @@ package org.openmrs.module.vaccinations.api.db.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.module.vaccinations.Vaccination;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
+
+import java.util.List;
 
 /**
  * It is a default implementation of  {@link VaccinationsDAO}.
@@ -39,4 +44,13 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+	@Override
+	public List<Vaccination> getVaccinationsByPatientId(int patientId) {
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccination.class);
+		crit.add(Restrictions.eq("retired", false));
+		crit.add(Restrictions.eq("patient_id", patientId));
+
+		return (List<Vaccination>)crit.list();
+	}
 }

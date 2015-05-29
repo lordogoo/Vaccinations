@@ -1967,4 +1967,18 @@
 		</sql>
 
 	</changeSet>
+
+
+	<changeSet id="vaccinations-20150529" author="Serghei Luchianov">
+		<addColumn tableName="vac_vaccines">
+			<column name="patient_id" type="int"/>
+		</addColumn>
+	</changeSet>
+
+	<changeSet id="vaccinations-20150529-1" author="Serghei Luchianov">
+		<dropColumn tableName="vac_vaccines" columnName="patient_id"/>
+		<addColumn tableName="vac_vaccinations">
+			<column name="patient_id" type="int"/>
+		</addColumn>
+	</changeSet>
 </databaseChangeLog>

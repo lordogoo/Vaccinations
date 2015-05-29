@@ -13,23 +13,21 @@
  */
 package org.openmrs.module.vaccinations;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.User;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * It is a model class. It should extend {@link BaseOpenmrsObject}.
  */
-public class Vaccine extends BaseOpenmrsObject implements Serializable {
+public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
-	public Vaccine() {
-	}
 
-	public Vaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled) {
+	public SimpleVaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled) {
 		this.id = id;
 		this.name = name;
 		this.indication_name = indication_name;
@@ -49,14 +47,6 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private String route;
 	private boolean scheduled;
 
-	private User creator;
-	private Date dateCreated;
-	private User changedBy;
-	private Date dateChanged;
-	private boolean retired;
-	private Date dateRetired;
-	private User retiredBy;
-	private String retireReason;
 
 	public boolean getScheduled() {
 		return scheduled;
@@ -123,70 +113,4 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public User getCreator() {
-		return creator;
-	}
-
-	public void setCreator(User creator) {
-		this.creator = creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public User getChangedBy() {
-		return changedBy;
-	}
-
-	public void setChangedBy(User changedBy) {
-		this.changedBy = changedBy;
-	}
-
-	public Date getDateChanged() {
-		return dateChanged;
-	}
-
-	public void setDateChanged(Date dateChanged) {
-		this.dateChanged = dateChanged;
-	}
-
-	public boolean getRetired() {
-		return retired;
-	}
-
-	public void setRetired(boolean retired) {
-		this.retired = retired;
-	}
-
-	public Date getDateRetired() {
-		return dateRetired;
-	}
-
-	public void setDateRetired(Date dateRetired) {
-		this.dateRetired = dateRetired;
-	}
-
-	public User getRetiredBy() {
-		return retiredBy;
-	}
-
-	public void setRetiredBy(User retiredBy) {
-		this.retiredBy = retiredBy;
-	}
-
-	public String getRetireReason() {
-		return retireReason;
-	}
-
-	public void setRetireReason(String retireReason) {
-		this.retireReason = retireReason;
-	}
-
-
 }

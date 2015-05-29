@@ -50,7 +50,7 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
 	public List<Vaccine> getAllVaccines(Boolean includeRetired) {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
 		if (!includeRetired){
-			crit.add(Restrictions.eq("voided", false));
+			crit.add(Restrictions.eq("retired", false));
 		}
 		return (List<Vaccine>)crit.list();
 	}

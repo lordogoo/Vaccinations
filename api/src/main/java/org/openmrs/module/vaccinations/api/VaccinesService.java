@@ -16,7 +16,7 @@ package org.openmrs.module.vaccinations.api;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.vaccinations.Vaccination;
+import org.openmrs.module.vaccinations.SimpleVaccine;
 import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,10 +39,19 @@ public interface VaccinesService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public List<SimpleVaccine> getAllVaccinesSimple(Boolean includeRetired) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public List<Vaccine> getAllVaccines(Boolean includeRetired) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public Vaccine getVaccineByUuid(String Uuid) throws APIException;
+
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public SimpleVaccine vaccineToSimpleVaccine(Vaccine vaccine) throws APIException;
 
 }

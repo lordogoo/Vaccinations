@@ -17,6 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.Vaccine;
+import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,7 @@ public class  VaccinationsModuleManageController {
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 
-		model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
+		//model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
+		model.put("vaccinations", Context.getService(VaccinationsService.class).listVaccinationsByPatientId(1));
 	}
 }

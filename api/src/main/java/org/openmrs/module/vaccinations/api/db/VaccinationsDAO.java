@@ -14,12 +14,15 @@
 package org.openmrs.module.vaccinations.api.db;
 
 import org.openmrs.module.vaccinations.api.VaccinationsService;
+import org.openmrs.module.vaccinations.Vaccination;
+
+import java.util.List;
 
 /**
  *  Database methods for {@link VaccinationsService}.
  */
 public interface VaccinationsDAO {
-	
+	public List<Vaccination> getVaccinationsByPatientId(int patientId);
 	/*
 	 * Add DAO methods here
 	 */

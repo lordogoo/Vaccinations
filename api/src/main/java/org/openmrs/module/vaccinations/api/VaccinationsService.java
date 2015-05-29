@@ -16,6 +16,7 @@ package org.openmrs.module.vaccinations.api;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.vaccinations.SimpleVaccination;
 import org.openmrs.module.vaccinations.Vaccination;
 import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.util.PrivilegeConstants;
@@ -38,9 +39,19 @@ public interface VaccinationsService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-	public List<Vaccination> listVacciantionsByPatientId(Integer patientId) throws APIException;
+	public List<Vaccination> listVaccinationsByPatientId(Integer patientId) throws APIException;
+
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+	public List<SimpleVaccination> listSimpleVaccinationsByPatientId(Integer patientId) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+	public SimpleVaccination vaccinationToSimpleVaccination(Vaccination vaccination) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
 	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
+
 }

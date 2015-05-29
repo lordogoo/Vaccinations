@@ -14,13 +14,18 @@
 package org.openmrs.module.vaccinations.api.impl;
 
 import org.openmrs.api.APIException;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.vaccinations.SimpleVaccination;
+import org.openmrs.module.vaccinations.SimpleVaccine;
 import org.openmrs.module.vaccinations.Vaccination;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
+import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,8 +52,29 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
     }
 
     @Override
-    public List<Vaccination> listVacciantionsByPatientId(Integer patientId) throws APIException {
-        return null;
+    public List<Vaccination> listVaccinationsByPatientId(Integer patientId) throws APIException {
+        return dao.getVaccinationsByPatientId(patientId);
+    }
+
+    @Override
+    public List<SimpleVaccination> listSimpleVaccinationsByPatientId(Integer patientId) throws APIException {
+        List<Vaccination> vaccinations = dao.getVaccinationsByPatientId(patientId);
+        ArrayList<SimpleVaccination> simpleVaccinations = new ArrayList<SimpleVaccination>();
+        for(Vaccination vaccination : vaccinations){
+            simpleVaccinations.add(vaccinationToSimpleVaccination(vaccination));
+        }
+        return simpleVaccinations;
+    }
+
+    @Override
+    public SimpleVaccination vaccinationToSimpleVaccination(Vaccination vaccination) throws APIException {
+
+        SimpleVaccination simpleVaccination = new SimpleVaccination(vaccination.getId(),vaccination.getScheduled_date(),vaccination.getName(),vaccination.getIndication_name(),
+                vaccination.getDose(),vaccination.getDosing_unit(),vaccination.getRoute(),vaccination.getScheduled(),
+                Context.getService(VaccinesService.class).vaccineToSimpleVaccine(vaccination.getVaccine()),
+                vaccination.getAdministered(), vaccination.getAdministration_date(),vaccination.getBody_site_administered(),vaccination.getDose_number(),vaccination.getLot_number(),
+                vaccination.getManufacturer(),vaccination.getManufacture_date(),vaccination.getExpiry_date(),vaccination.getAdverse_reaction_observed(),vaccination.getPatient_id());
+        return simpleVaccination;
     }
 
 
