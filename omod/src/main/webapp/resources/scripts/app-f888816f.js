@@ -194,6 +194,8 @@ angular.module('vaccinations')
     var promise = $http.get('/openmrs/ws/rest/v2/vaccinationsmodule/vaccines').success( function(data) {
         debugger
         self.vaccines = data.non_scheduled_vaccines;
+    }).error( function(data, status, headers, config) {
+        debugger;
     });
 
     var exports = {
