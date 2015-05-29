@@ -191,7 +191,7 @@ angular.module('vaccinations')
 angular.module('vaccinations')
 .service('vaccinesManager', ['$http', function($http) {
     var self = this;
-    var promise = $http.get('/rest/v2/vaccinationsmodule/vaccines').success( function(data) {
+    var promise = $http.get('/openmrs/ws/rest/v2/vaccinationsmodule/vaccines').success( function(data) {
         debugger
         self.vaccines = data.non_scheduled_vaccines;
     });
