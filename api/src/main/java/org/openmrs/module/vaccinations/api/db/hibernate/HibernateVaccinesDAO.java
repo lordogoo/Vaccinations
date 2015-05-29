@@ -13,10 +13,16 @@
  */
 package org.openmrs.module.vaccinations.api.db.hibernate;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.api.db.VaccinesDAO;
+
+import java.util.List;
 
 /**
  * It is a default implementation of  {@link VaccinesDAO}.
@@ -39,4 +45,13 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+	@Override
+	public List<Vaccine> getAllVaccines(Boolean includeRetired) {
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
+		if (!includeRetired){
+			crit.add(Restrictions.eq("voided", false));
+		}
+		return (List<Vaccine>)crit.list();
+	}
 }

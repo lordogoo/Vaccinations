@@ -16,10 +16,16 @@ package org.openmrs.module.vaccinations.web.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.vaccinations.Vaccine;
+import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The main controller.
@@ -32,5 +38,7 @@ public class  VaccinationsModuleManageController {
 	@RequestMapping(value = "/module/vaccinations/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
+
+		model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
 	}
 }

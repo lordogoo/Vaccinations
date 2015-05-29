@@ -48,8 +48,13 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
     }
 
     @Override
-    public List<Vaccine> listVaccines() throws APIException {
-        return null;
+    public List<Vaccine> getAllVaccines(Boolean includeRetired) throws APIException {
+        return dao.getAllVaccines(includeRetired);
+    }
+
+    @Override
+    public Vaccine getVaccineByUuid(String Uuid) throws APIException {
+        return new Vaccine();
     }
 
 }

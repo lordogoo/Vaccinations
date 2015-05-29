@@ -30,60 +30,75 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
     public Vaccination() {
     }
 
-    public Vaccination(Integer id, Date scheduled_date, String name, String indication_name, double dose, String dosing_unit, String route, Boolean scheduled, Vaccine vaccine, AdverseReaction adverse_reaction, Boolean administered, Date administered_date, String body_site_administered, int dose_number, String lot_number, String manufacturer, Date manufacture_date, Date expiry_date, Boolean adverse_reaction_observed, User creator, Date dateCreated, User changedBy, Date dateChanged, Boolean retired, Date dateRetired, User retiredBy, String retireReason) {
-        this.id = id;
-        this.scheduled_date = scheduled_date;
-        this.name = name;
-        this.indication_name = indication_name;
-        this.dose = dose;
-        this.dosing_unit = dosing_unit;
-        this.route = route;
-        this.scheduled = scheduled;
-        this.vaccine = vaccine;
-        this.adverse_reaction = adverse_reaction;
-        this.administered = administered;
-        this.administered_date = administered_date;
-        this.body_site_administered = body_site_administered;
-        this.dose_number = dose_number;
-        this.lot_number = lot_number;
-        this.manufacturer = manufacturer;
-        this.manufacture_date = manufacture_date;
-        this.expiry_date = expiry_date;
-        this.adverse_reaction_observed = adverse_reaction_observed;
-        this.creator = creator;
-        this.dateCreated = dateCreated;
-        this.changedBy = changedBy;
-        this.dateChanged = dateChanged;
-        this.retired = retired;
-        this.dateRetired = dateRetired;
-        this.retiredBy = retiredBy;
-        this.retireReason = retireReason;
-    }
+	public Vaccination(Integer id, Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, Vaccine vaccine, AdverseReaction adverse_reaction, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, String lot_number, String manufacturer, Date manufacture_date, Date expiry_date, boolean adverse_reaction_observed, User creator, Date dateCreated, User changedBy, Date dateChanged, boolean retired, Date dateRetired, User retiredBy, String retireReason) {
+		this.id = id;
+		this.scheduled_date = scheduled_date;
+		this.name = name;
+		this.indication_name = indication_name;
+		this.dose = dose;
+		this.dosing_unit = dosing_unit;
+		this.route = route;
+		this.scheduled = scheduled;
+		this.vaccine = vaccine;
+		this.adverse_reaction = adverse_reaction;
+		this.administered = administered;
+		this.administration_date = administration_date;
+		this.body_site_administered = body_site_administered;
+		this.dose_number = dose_number;
+		this.lot_number = lot_number;
+		this.manufacturer = manufacturer;
+		this.manufacture_date = manufacture_date;
+		this.expiry_date = expiry_date;
+		this.adverse_reaction_observed = adverse_reaction_observed;
+		this.creator = creator;
+		this.dateCreated = dateCreated;
+		this.changedBy = changedBy;
+		this.dateChanged = dateChanged;
+		this.retired = retired;
+		this.dateRetired = dateRetired;
+		this.retiredBy = retiredBy;
+		this.retireReason = retireReason;
+	}
 
-    private Integer id;
+	private Integer id;
     private Date scheduled_date;
 	private String name;
 	private String indication_name;
-	private double dose;
+	private Double dose;
 	private String dosing_unit;
 	private String route;
-    private Boolean scheduled;
+    private boolean scheduled;
 
     private Vaccine vaccine;
     private AdverseReaction adverse_reaction;
 
-	private Boolean administered;
-	private Date administered_date;
+	private boolean administered;
+	private Date administration_date;
 	private String body_site_administered;
-    private int dose_number;
+    private Integer dose_number;
 	private String lot_number;
 	private String manufacturer;
 	private Date manufacture_date;
 	private Date expiry_date;
-	private Boolean adverse_reaction_observed;
+	private boolean adverse_reaction_observed;
 
+	public boolean isScheduled() {
+		return scheduled;
+	}
 
-    public User getCreator() {
+	public boolean isAdministered() {
+		return administered;
+	}
+
+	public boolean isAdverse_reaction_observed() {
+		return adverse_reaction_observed;
+	}
+
+	public boolean isRetired() {
+		return retired;
+	}
+
+	public User getCreator() {
         return creator;
     }
 
@@ -115,11 +130,11 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
         this.dateChanged = dateChanged;
     }
 
-    public Boolean getRetired() {
+    public boolean getRetired() {
         return retired;
     }
 
-    public void setRetired(Boolean retired) {
+    public void setRetired(boolean retired) {
         this.retired = retired;
     }
 
@@ -151,7 +166,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
     private Date dateCreated;
     private User changedBy;
     private Date dateChanged;
-    private Boolean retired;
+    private boolean retired;
     private Date dateRetired;
     private User retiredBy;
     private String retireReason;
@@ -173,11 +188,11 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	}
 
 
-	public Boolean getScheduled() {
+	public boolean getScheduled() {
 		return scheduled;
 	}
 
-	public void setScheduled(Boolean scheduled) {
+	public void setScheduled(boolean scheduled) {
 		this.scheduled = scheduled;
 	}
 
@@ -205,11 +220,11 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.indication_name = indication_name;
 	}
 
-	public double getDose() {
+	public Double getDose() {
 		return dose;
 	}
 
-	public void setDose(double dose) {
+	public void setDose(Double dose) {
 		this.dose = dose;
 	}
 
@@ -229,20 +244,20 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.route = route;
 	}
 
-	public Boolean getAdministered() {
+	public boolean getAdministered() {
 		return administered;
 	}
 
-	public void setAdministered(Boolean administered) {
+	public void setAdministered(boolean administered) {
 		this.administered = administered;
 	}
 
-	public Date getAdministered_date() {
-		return administered_date;
+	public Date getAdministration_date() {
+		return administration_date;
 	}
 
-	public void setAdministered_date(Date administered_date) {
-		this.administered_date = administered_date;
+	public void setAdministration_date(Date administration_date) {
+		this.administration_date = administration_date;
 	}
 
 	public String getBody_site_administered() {
@@ -253,11 +268,11 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.body_site_administered = body_site_administered;
 	}
 
-	public int getDose_number() {
+	public Integer getDose_number() {
 		return dose_number;
 	}
 
-	public void setDose_number(int dose_number) {
+	public void setDose_number(Integer dose_number) {
 		this.dose_number = dose_number;
 	}
 
@@ -293,11 +308,11 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.expiry_date = expiry_date;
 	}
 
-	public Boolean getAdverse_reaction_observed() {
+	public boolean getAdverse_reaction_observed() {
 		return adverse_reaction_observed;
 	}
 
-	public void setAdverse_reaction_observed(Boolean adverse_reaction_observed) {
+	public void setAdverse_reaction_observed(boolean adverse_reaction_observed) {
 		this.adverse_reaction_observed = adverse_reaction_observed;
 	}
 

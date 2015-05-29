@@ -10,18 +10,25 @@
 		</id>
 		<discriminator column="id" insert="false" />
 		<property name="name" type="java.lang.String" column="name" not-null="true" length="255" />
-		<property name="indication_name" type="java.lang.String" column="indication_name" not-null="true" length="255" />
-		<property name="dose" type="double" column="dose" />
-		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" not-null="true" length="255" />
-		<property name="route" type="java.lang.String" column="route" not-null="true" length="255" />
-		<property name="scheduled" column="scheduled" type="boolean"/>
-		<property name="adverse_reaction_observed" column="adverse_reaction_observed" type="boolean"/>
-		
-		<!--
-            Linking back to the original vaccine
-            Linking to the adverse reaction
-        -->
+		<property name="indication_name" type="java.lang.String" column="indication_name" length="255" />
+		<property name="dose" type="java.lang.Double" column="dose" />
+		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" length="255" />
+		<property name="route" type="java.lang.String" column="route" length="255" />
+		<property name="scheduled" type="boolean" column="scheduled" length="1" not-null="true"/>
 
+
+        <property name="administered" type="boolean" column="administered" length="1" not-null="true"/>
+        <property name="administration_date" type="java.util.Date" column="administration_date" length="19" />
+        <property name="body_site_administered" type="java.lang.String" column="body_site_administered" not-null="true" length="255" />
+        <property name="dose_number" type="int" column="dose_number" not-null="true" length="255" />
+        <property name="lot_number" type="java.lang.String" column="lot_number" not-null="true" length="255" />
+        <property name="manufacturer" type="java.lang.String" column="manufacturer" length="255" />
+        <property name="manufacture_date" type="java.util.Date" column="manufacture_date" length="19" />
+        <property name="expiry_date" type="java.util.Date" column="expiry_date" length="19" />
+
+		<property name="adverse_reaction_observed" type="boolean" column="adverse_reaction_observed" length="1" not-null="true"/>
+        <!--    Linking back to the original vaccine
+                Linking to the adverse reaction        -->
 		<many-to-one name="Vaccine" class="Vaccine" column="vaccine_id" />
 		<many-to-one name="Adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
 
