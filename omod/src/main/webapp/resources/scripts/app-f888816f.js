@@ -192,8 +192,7 @@ angular.module('vaccinations')
 .service('vaccinesManager', ['$http', function($http) {
     var self = this;
     var promise = $http.get('/openmrs/ws/rest/v2/vaccinationsmodule/vaccines').success( function(data) {
-        debugger
-        self.vaccines = data.non_scheduled_vaccines;
+        self.vaccines = data;
     }).error( function(data, status, headers, config) {
         debugger;
     });
@@ -225,7 +224,7 @@ angular.module('vaccinations')
         }
     };
 
-    var promise = $http.get('vaccinations/patients/1')
+    var promise = $http.get('/openmrs/ws/rest/v2/vaccinationsmodule/vaccinations/patients/1')
         .success(function(data, status, headers, config){
             setVaccinations(data.vaccinations);
         })
