@@ -480,7 +480,7 @@ angular.module('vaccinations')
 
     // Get list of vaccines.
     vaccinesManager.getVaccines().success( function(data) {
-        $scope.vaccines = data.non_scheduled_vaccines;
+        $scope.vaccines = data;
     });
 
     $scope.stageVaccination = function (vaccine, scheduled) {
