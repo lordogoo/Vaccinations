@@ -18,6 +18,7 @@ import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.webservices.rest.web.RestConstants;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,8 +58,8 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 	@RequestMapping(value = "/vaccinations/{vaccinationId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public String deleteVaccination(@RequestParam int vaccinationId) {
-		return "200";
+	public HttpStatus deleteVaccination(@RequestParam int vaccinationId) {
+		return HttpStatus.OK;
 	}
 
 	@RequestMapping(value = "/adverseReactions", method = RequestMethod.POST)
@@ -77,9 +78,9 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 	@RequestMapping(value = "/adverseReactions/{adverseReactionId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public String deleteAdverseReaction(@RequestParam int adverseReactionId) {
+	public HttpStatus deleteAdverseReaction(@RequestParam int adverseReactionId) {
 		Vaccination vaccination = new Vaccination();
-		return "200";
+		return HttpStatus.OK;
 	}
 }
 
