@@ -1505,7 +1505,8 @@
 			`retired_by`,
 			`date_retired`,
 			`retire_reason`,
-			`uuid`
+			`uuid`,
+			`numeric_indication`
 			)
 			VALUES (
 			0,
@@ -1524,7 +1525,7 @@
 			null,
 			null,
 			uuid(),
-			912.5
+			913
 			);
 
 
@@ -2060,6 +2061,46 @@
 			uuid(),
 			1643
 			);
+
+		    INSERT INTO `openmrs`.`vac_vaccines` (
+			`scheduled`,
+			`name`,
+			`indication_name`,
+			`dose_number`,
+			`dose`,
+			`dosing_unit`,
+			`route`,
+			`creator`,
+			`date_created`,
+			`changed_by`,
+			`date_changed`,
+			`retired`,
+			`retired_by`,
+			`date_retired`,
+			`retire_reason`,
+			`uuid`,
+			`numeric_indication`
+			)
+			VALUES (
+			0,
+			'Custom',
+			null,
+			null,
+			null,
+			null,
+			null,
+			1,
+			NOW(),
+			null,
+			null,
+			0,
+			null,
+			null,
+			null,
+			uuid(),
+			null
+			);
+
 		</sql>
 
 	</changeSet>
