@@ -41,17 +41,25 @@ public interface VaccinationsService extends OpenmrsService {
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
 	public List<Vaccination> listVaccinationsByPatientId(Integer patientId) throws APIException;
 
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.MANAGE_VACCINATIONS} )
+	public Vaccination saveOrUpdateVaccination(Vaccination vaccination) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
 	public List<SimpleVaccination> listSimpleVaccinationsByPatientId(Integer patientId) throws APIException;
 
 	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-	public SimpleVaccination vaccinationToSimpleVaccination(Vaccination vaccination) throws APIException;
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS, PrivilegeConstants.VIEW_VACCINES} )
+	public List<Vaccination> combineVaccinesAndVaccinationsByPatientId(Integer patientId) throws APIException;
 
 	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-	public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException;
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS, PrivilegeConstants.VIEW_VACCINES} )
+	public List<SimpleVaccination> combineVaccinesAndVaccinationsByPatientIdSimple(Integer patientId) throws APIException;
+
 
 }

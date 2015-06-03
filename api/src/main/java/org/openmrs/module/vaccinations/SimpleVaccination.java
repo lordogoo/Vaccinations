@@ -30,7 +30,7 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
     public SimpleVaccination() {
     }
 
-	public SimpleVaccination(Integer id, Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, SimpleVaccine simpleVaccine, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, String lot_number, String manufacturer, Date manufacture_date, Date expiry_date, boolean adverse_reaction_observed, int patient_id) {
+	public SimpleVaccination(Integer id, Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, SimpleVaccine simpleVaccine, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, String lot_number, String manufacturer, Date manufacture_date, Date expiry_date, boolean adverse_reaction_observed, int patient_id, SimpleAdverseReaction adverseReaction) {
 		this.id = id;
 		this.scheduled_date = scheduled_date;
 		this.name = name;
@@ -50,6 +50,32 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 		this.expiry_date = expiry_date;
 		this.adverse_reaction_observed = adverse_reaction_observed;
 		this.patient_id = patient_id;
+		this.simpleAdverse_reaction = adverseReaction;
+	}
+
+	public SimpleVaccination(Vaccination vaccination){
+		if (!(null == vaccination)) {
+			this.id = vaccination.getId();
+			this.scheduled_date = vaccination.getScheduled_date();
+			this.name = vaccination.getName();
+			this.indication_name = vaccination.getIndication_name();
+			this.dose = vaccination.getDose();
+			this.dosing_unit = vaccination.getDosing_unit();
+			this.route = vaccination.getRoute();
+			this.scheduled = vaccination.getScheduled();
+			this.simpleVaccine = new SimpleVaccine(vaccination.getVaccine());
+			this.simpleAdverse_reaction = new SimpleAdverseReaction(vaccination.getAdverse_reaction());
+			this.administered = vaccination.getAdministered();
+			this.administration_date = vaccination.getAdministration_date();
+			this.body_site_administered = vaccination.getBody_site_administered();
+			this.dose_number = vaccination.getDose_number();
+			this.lot_number = vaccination.getLot_number();
+			this.manufacturer = vaccination.getManufacturer();
+			this.manufacture_date = vaccination.getManufacture_date();
+			this.expiry_date = vaccination.getExpiry_date();
+			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+			this.patient_id = vaccination.getPatient_id();
+		}
 	}
 
 	public SimpleVaccine getSimpleVaccine() {
@@ -70,7 +96,7 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
     private boolean scheduled;
 
     private SimpleVaccine simpleVaccine;
-    //private AdverseReaction adverse_reaction;
+    private SimpleAdverseReaction simpleAdverse_reaction;
 
 	private boolean administered;
 	private Date administration_date;
@@ -83,6 +109,14 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 	private boolean adverse_reaction_observed;
 
 	private int patient_id;
+
+	public SimpleAdverseReaction getSimpleAdverse_reaction() {
+		return simpleAdverse_reaction;
+	}
+
+	public void setSimpleAdverse_reaction(SimpleAdverseReaction simpleAdverse_reaction) {
+		this.simpleAdverse_reaction = simpleAdverse_reaction;
+	}
 
 	public int getPatient_id() {
 		return patient_id;

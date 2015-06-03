@@ -26,6 +26,7 @@ import org.springframework.ui.ModelMap;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.MainResourceController; //To potentially remove
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,13 +39,13 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return  RestConstants.VERSION_2 + "/vaccinations/";
 	}*/
 
-	@RequestMapping(value = "/vaccines", method = RequestMethod.GET)
+	@RequestMapping(value = "/vaccines/unscheduled", method = RequestMethod.GET)
 	@ResponseBody
-	public List<SimpleVaccine> getAllVaccinesSimple() {
-		return Context.getService(VaccinesService.class).getAllVaccinesSimple(false);
+	public List<SimpleVaccine> getUnscheduledVaccinesSimple() {
+		return Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
 	}
 
-	@RequestMapping(value = "/vaccinations/patients", params="patientId")
+	@RequestMapping(value = "/vaccinations/patients", params="patientId", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SimpleVaccination> getVaccinations(@RequestParam int patientId) {
 		return Context.getService(VaccinationsService.class).listSimpleVaccinationsByPatientId(patientId);
@@ -52,13 +53,21 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 	@RequestMapping(value = "/vaccinations", method = RequestMethod.POST)
 	@ResponseBody
-	public Vaccination saveVaccination(Vaccination vaccination) {
-		return vaccination;
+	public SimpleVaccination saveVaccination(Vaccination vaccination) {
+		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination));
+	}
+
+	@RequestMapping(value = "/vaccinations", method = RequestMethod.PUT)
+	@ResponseBody
+	public SimpleVaccination updateVaccination(Vaccination vaccination) {
+		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination));
 	}
 
 	@RequestMapping(value = "/vaccinations/{vaccinationId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public HttpStatus deleteVaccination(@RequestParam int vaccinationId) {
+		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
+		SimpleVaccination simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1));
 		return HttpStatus.OK;
 	}
 

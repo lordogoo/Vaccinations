@@ -30,6 +30,7 @@ public class VaccinationsModuleActivator implements ModuleActivator {
 	 */
 	public void willRefreshContext() {
 		log.info("Refreshing Vaccinations Module");
+
 	}
 	
 	/**

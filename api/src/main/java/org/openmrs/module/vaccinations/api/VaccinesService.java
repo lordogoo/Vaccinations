@@ -39,7 +39,19 @@ public interface VaccinesService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public List<SimpleVaccine> simplifyVaccines(List<Vaccine> vaccines) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public List<SimpleVaccine> getAllVaccinesSimple(Boolean includeRetired) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public List<SimpleVaccine> getScheduledVaccinesSimple(Boolean includeRetired) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public List<SimpleVaccine> getUnscheduledVaccinesSimple(Boolean includeRetired) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
@@ -47,11 +59,18 @@ public interface VaccinesService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
-	public Vaccine getVaccineByUuid(String Uuid) throws APIException;
-
+	public List<Vaccine> getScheduledVaccines(Boolean includeRetired) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
-	public SimpleVaccine vaccineToSimpleVaccine(Vaccine vaccine) throws APIException;
+	public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
+	public Vaccine getVaccineByUuid(String Uuid) throws APIException;
+
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.MANAGE_VACCINES} )
+	public Vaccine saveOrUpdateVaccine(Vaccine vaccine) throws APIException;
 
 }

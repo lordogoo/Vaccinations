@@ -16,6 +16,7 @@ package org.openmrs.module.vaccinations.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.openmrs.module.vaccinations.AdverseReaction;
 import org.openmrs.module.vaccinations.api.db.AdverseReactionsDAO;
 
 /**
@@ -39,4 +40,10 @@ public class HibernateAdverseReactionsDAO implements AdverseReactionsDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+	@Override
+	public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) {
+		sessionFactory.getCurrentSession().saveOrUpdate(adverseReaction);
+		return adverseReaction;
+	}
 }

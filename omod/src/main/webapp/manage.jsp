@@ -2,9 +2,9 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <%@ include file="template/localHeader.jsp"%>
-                                <c:forEach var="vaccination" items="${vaccinations}">
-									${vaccination.name}<br/>
-								</c:forEach>
+<c:forEach var="vaccination" items="${vaccinations}">
+    ${vaccination.name}<br/>
+</c:forEach>
 <!doctype html>
 <html class="no-js">
 <head>

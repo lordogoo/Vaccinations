@@ -28,6 +28,26 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	//private static final long serialVersionUID = 1L;
 
 
+	public Vaccination() {
+	}
+
+	public Vaccination(Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, Vaccine vaccine, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, boolean adverse_reaction_observed, int patient_id) {
+		this.scheduled_date = scheduled_date;
+		this.name = name;
+		this.indication_name = indication_name;
+		this.dose = dose;
+		this.dosing_unit = dosing_unit;
+		this.route = route;
+		this.scheduled = scheduled;
+		this.vaccine = vaccine;
+		this.administered = administered;
+		this.administration_date = administration_date;
+		this.body_site_administered = body_site_administered;
+		this.dose_number = dose_number;
+		this.adverse_reaction_observed = adverse_reaction_observed;
+		this.patient_id = patient_id;
+	}
+
 	private Integer id;
     private Date scheduled_date;
 	private String name;
@@ -77,7 +97,6 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	public void setScheduled(boolean scheduled) {
 		this.scheduled = scheduled;
 	}
-
 
 	public User getCreator() {
         return creator;

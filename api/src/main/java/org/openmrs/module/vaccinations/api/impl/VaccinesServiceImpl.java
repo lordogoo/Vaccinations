@@ -52,12 +52,17 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
 
     @Override
     public List<SimpleVaccine> getAllVaccinesSimple(Boolean includeRetired) throws APIException {
-        List<Vaccine> vaccines = dao.getAllVaccines(includeRetired);
-        ArrayList<SimpleVaccine> simpleVaccines = new ArrayList<SimpleVaccine>();
-        for(Vaccine vaccine : vaccines){
-            simpleVaccines.add(vaccineToSimpleVaccine(vaccine));
-        }
-        return simpleVaccines;
+        return simplifyVaccines(getAllVaccines(includeRetired));
+    }
+
+    @Override
+    public List<SimpleVaccine> getScheduledVaccinesSimple(Boolean includeRetired) throws APIException {
+        return simplifyVaccines(getScheduledVaccines(includeRetired));
+    }
+
+    @Override
+    public List<SimpleVaccine> getUnscheduledVaccinesSimple(Boolean includeRetired) throws APIException {
+        return simplifyVaccines(getUnscheduledVaccines(includeRetired));
     }
 
     @Override
@@ -66,14 +71,31 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
     }
 
     @Override
+    public List<Vaccine> getScheduledVaccines(Boolean includeRetired) throws APIException {
+        return dao.getAllVaccines(includeRetired);
+    }
+
+    @Override
+    public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired) throws APIException {
+        return dao.getAllVaccines(includeRetired);
+    }
+
+    @Override
+    public Vaccine saveOrUpdateVaccine(Vaccine vaccine) throws APIException {
+        return dao.saveOrUpdateVaccine(vaccine);
+    }
+
+    @Override
     public Vaccine getVaccineByUuid(String Uuid) throws APIException {
         return new Vaccine();
     }
 
     @Override
-    public SimpleVaccine vaccineToSimpleVaccine(Vaccine vaccine) throws APIException {
-        SimpleVaccine simpleVaccine = new SimpleVaccine(vaccine.getId(), vaccine.getName(), vaccine.getIndication_name(), vaccine.getDose(), vaccine.getDose_number(), vaccine.getDosing_unit(), vaccine.getRoute(), vaccine.getScheduled());
-        return simpleVaccine;
+    public List<SimpleVaccine> simplifyVaccines(List<Vaccine> vaccines) throws APIException{
+        ArrayList<SimpleVaccine> simpleVaccines = new ArrayList<SimpleVaccine>();
+        for(Vaccine vaccine : vaccines){
+            simpleVaccines.add(new SimpleVaccine(vaccine));
+        }
+        return simpleVaccines;
     }
-
 }

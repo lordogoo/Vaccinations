@@ -134,6 +134,12 @@
 		</addColumn>
 	</changeSet>
 
+	<changeSet id="vaccinations-20150603" author="Serghei Luchianov">
+		<addColumn tableName="vac_vaccines">
+			<column name="numeric_indication" type="int"/>
+		</addColumn>
+	</changeSet>
+
 	<changeSet id="vaccinations-20150524" author="Jon Cairo">
 		<preConditions>
 			<tableExists tableName="vac_vaccines"/>
@@ -1968,7 +1974,6 @@
 
 	</changeSet>
 
-
 	<changeSet id="vaccinations-20150529" author="Serghei Luchianov">
 		<addColumn tableName="vac_vaccines">
 			<column name="patient_id" type="int"/>
@@ -1981,4 +1986,5 @@
 			<column name="patient_id" type="int"/>
 		</addColumn>
 	</changeSet>
+
 </databaseChangeLog>

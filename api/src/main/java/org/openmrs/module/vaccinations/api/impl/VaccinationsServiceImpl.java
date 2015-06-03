@@ -21,6 +21,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.vaccinations.SimpleVaccination;
 import org.openmrs.module.vaccinations.SimpleVaccine;
 import org.openmrs.module.vaccinations.Vaccination;
+import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
@@ -61,22 +62,47 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         List<Vaccination> vaccinations = dao.getVaccinationsByPatientId(patientId);
         ArrayList<SimpleVaccination> simpleVaccinations = new ArrayList<SimpleVaccination>();
         for(Vaccination vaccination : vaccinations){
-            simpleVaccinations.add(vaccinationToSimpleVaccination(vaccination));
+            simpleVaccinations.add(new SimpleVaccination(vaccination));
         }
         return simpleVaccinations;
     }
 
     @Override
-    public SimpleVaccination vaccinationToSimpleVaccination(Vaccination vaccination) throws APIException {
+    public List<Vaccination> combineVaccinesAndVaccinationsByPatientId(Integer patientId) throws APIException {
+        //Retrieving all scheduled vaccines
+        VaccinesService vaccinesService = Context.getService(VaccinesService.class);
+        List<Vaccine> vaccines = vaccinesService.getScheduledVaccines(false);
 
-        SimpleVaccination simpleVaccination = new SimpleVaccination(vaccination.getId(),vaccination.getScheduled_date(),vaccination.getName(),vaccination.getIndication_name(),
-                vaccination.getDose(),vaccination.getDosing_unit(),vaccination.getRoute(),vaccination.getScheduled(),
-                Context.getService(VaccinesService.class).vaccineToSimpleVaccine(vaccination.getVaccine()),
-                vaccination.getAdministered(), vaccination.getAdministration_date(),vaccination.getBody_site_administered(),vaccination.getDose_number(),vaccination.getLot_number(),
-                vaccination.getManufacturer(),vaccination.getManufacture_date(),vaccination.getExpiry_date(),vaccination.getAdverse_reaction_observed(),vaccination.getPatient_id());
-        return simpleVaccination;
+        //Retrieving all vaccinations by patientId
+        List<Vaccination> vaccinations = listVaccinationsByPatientId(patientId);
+
+        //Combining scheduled vaccines and performed vaccinations
+        for (Vaccine vaccine : vaccines){
+            Boolean found = false;
+            for (Vaccination vaccination : vaccinations){
+                if (vaccine.getUuid() == vaccination.getVaccine().getUuid()){
+                    found = true;
+                    break;
+                }
+            }
+            if (!found){
+                Vaccination newVaccination = new Vaccination();
+            }
+
+        }
+
+        return null;
     }
 
+    @Override
+    public List<SimpleVaccination> combineVaccinesAndVaccinationsByPatientIdSimple(Integer patientId) throws APIException {
+        return null;
+    }
+
+    @Override
+    public Vaccination saveOrUpdateVaccination(Vaccination vaccination) throws APIException {
+        return dao.saveOrUpdateVaccination(vaccination);
+    }
 
     @Override
     public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException {

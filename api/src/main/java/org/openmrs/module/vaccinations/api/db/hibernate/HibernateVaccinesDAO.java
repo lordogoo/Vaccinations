@@ -54,4 +54,30 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
 		}
 		return (List<Vaccine>)crit.list();
 	}
+
+	@Override
+	public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired) {
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
+		crit.add(Restrictions.eq("scheduled", false));
+		if (!includeRetired){
+			crit.add(Restrictions.eq("retired", false));
+		}
+		return (List<Vaccine>)crit.list();
+	}
+
+	@Override
+	public List<Vaccine> getScheduledVaccines(Boolean includeRetired) {
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
+		crit.add(Restrictions.eq("scheduled", true));
+		if (!includeRetired){
+			crit.add(Restrictions.eq("retired", false));
+		}
+		return (List<Vaccine>)crit.list();
+	}
+
+	@Override
+	public Vaccine saveOrUpdateVaccine(Vaccine vaccine) {
+		sessionFactory.getCurrentSession().saveOrUpdate(vaccine);
+		return vaccine;
+	}
 }

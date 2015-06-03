@@ -30,7 +30,7 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;
-	
+
 	/**
      * @param sessionFactory the sessionFactory to set
      */
@@ -52,5 +52,16 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
 		crit.add(Restrictions.eq("patient_id", patientId));
 
 		return (List<Vaccination>)crit.list();
+	}
+
+	@Override
+	public Vaccination saveOrUpdateVaccination(Vaccination vaccination) {
+		sessionFactory.getCurrentSession().saveOrUpdate(vaccination);
+		return vaccination;
+	}
+
+	@Override
+	public Vaccination getVaccinationByVaccinationId(int vaccinationId) {
+		return (Vaccination)sessionFactory.getCurrentSession().get(Vaccination.class, vaccinationId);
 	}
 }

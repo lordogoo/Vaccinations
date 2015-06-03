@@ -22,8 +22,10 @@ import java.util.List;
  *  Database methods for {@link VaccinationsService}.
  */
 public interface VaccinationsDAO {
-	public List<Vaccination> getVaccinationsByPatientId(int patientId);
 	/*
 	 * Add DAO methods here
 	 */
+	public List<Vaccination> getVaccinationsByPatientId(int patientId);
+	public Vaccination saveOrUpdateVaccination(Vaccination vaccination);
+	public Vaccination getVaccinationByVaccinationId(int vaccinationId);
 }

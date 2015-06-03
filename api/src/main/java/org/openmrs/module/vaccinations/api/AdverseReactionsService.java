@@ -13,7 +13,12 @@
  */
 package org.openmrs.module.vaccinations.api;
 
+import org.openmrs.annotation.Authorized;
+import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.vaccinations.AdverseReaction;
+import org.openmrs.module.vaccinations.SimpleAdverseReaction;
+import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -28,5 +33,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface AdverseReactionsService extends OpenmrsService {
+    @Transactional(readOnly =  true)
+    @Authorized( {PrivilegeConstants.MANAGE_ADVERSE_REACTIONS} )
+    public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) throws APIException;
 
 }

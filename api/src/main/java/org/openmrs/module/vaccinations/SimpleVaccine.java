@@ -38,6 +38,19 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 		this.scheduled = scheduled;
 	}
 
+	public SimpleVaccine(Vaccine vaccine){
+		if (!(null == vaccine)) {
+			this.id = vaccine.getId();
+			this.name = vaccine.getName();
+			this.indication_name = vaccine.getIndication_name();
+			this.dose = vaccine.getDose();
+			this.dose_number = vaccine.getDose_number();
+			this.dosing_unit = vaccine.getDosing_unit();
+			this.route = vaccine.getRoute();
+			this.scheduled = vaccine.getScheduled();
+		}
+	}
+
 	private Integer id;
 	private String name;
 	private String indication_name;

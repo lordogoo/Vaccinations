@@ -17,6 +17,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.vaccinations.AdverseReaction;
+import org.openmrs.module.vaccinations.SimpleAdverseReaction;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 import org.openmrs.module.vaccinations.api.db.AdverseReactionsDAO;
 
@@ -43,5 +45,10 @@ public class AdverseReactionsServiceImpl extends BaseOpenmrsService implements A
 	 */
 	public AdverseReactionsDAO getDao() {
 		return dao;
+	}
+
+	@Override
+	public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) throws APIException {
+		return dao.saveOrUpdateAdverseReaction(adverseReaction);
 	}
 }
