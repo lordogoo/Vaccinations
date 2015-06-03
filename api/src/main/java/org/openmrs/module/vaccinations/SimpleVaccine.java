@@ -27,7 +27,7 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 	//private static final long serialVersionUID = 1L;
 
 
-	public SimpleVaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled) {
+	public SimpleVaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled, Integer numeric_indication) {
 		this.id = id;
 		this.name = name;
 		this.indication_name = indication_name;
@@ -36,6 +36,7 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 		this.dosing_unit = dosing_unit;
 		this.route = route;
 		this.scheduled = scheduled;
+		this.numeric_indication = numeric_indication;
 	}
 
 	public SimpleVaccine(Vaccine vaccine){
@@ -48,6 +49,7 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 			this.dosing_unit = vaccine.getDosing_unit();
 			this.route = vaccine.getRoute();
 			this.scheduled = vaccine.getScheduled();
+			this.numeric_indication = vaccine.getNumeric_indication();
 		}
 	}
 
@@ -59,7 +61,15 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 	private String dosing_unit;
 	private String route;
 	private boolean scheduled;
+	private Integer numeric_indication;
 
+	public Integer getNumeric_indication() {
+		return numeric_indication;
+	}
+
+	public void setNumeric_indication(Integer numeric_indication) {
+		this.numeric_indication = numeric_indication;
+	}
 
 	public boolean getScheduled() {
 		return scheduled;

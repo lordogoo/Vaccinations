@@ -27,6 +27,8 @@ import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,12 +61,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
     @Override
     public List<SimpleVaccination> listSimpleVaccinationsByPatientId(Integer patientId) throws APIException {
-        List<Vaccination> vaccinations = dao.getVaccinationsByPatientId(patientId);
-        ArrayList<SimpleVaccination> simpleVaccinations = new ArrayList<SimpleVaccination>();
-        for(Vaccination vaccination : vaccinations){
-            simpleVaccinations.add(new SimpleVaccination(vaccination));
-        }
-        return simpleVaccinations;
+        return simplifyVaccinations(listVaccinationsByPatientId(patientId));
     }
 
     @Override
@@ -78,6 +75,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
         //Combining scheduled vaccines and performed vaccinations
         for (Vaccine vaccine : vaccines){
+            //Check if a scheduled vaccine has already been administered
             Boolean found = false;
             for (Vaccination vaccination : vaccinations){
                 if (vaccine.getUuid() == vaccination.getVaccine().getUuid()){
@@ -85,13 +83,38 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
                     break;
                 }
             }
+
             if (!found){
+                //Get patient birthday using patient service
+                Date patientBDay = Context.getPatientService().getPatient(patientId).getBirthdate();
+
+                //Calculate scheduled date from birthday and numeric indication.
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(patientBDay);
+                cal.add(Calendar.DATE, vaccine.getNumeric_indication());
+                Date calculatedScheduledDate = cal.getTime();
+
+                //create a new vaccination using vaccine as a template
                 Vaccination newVaccination = new Vaccination();
+                newVaccination.setVaccine(vaccine);
+
+                newVaccination.setName(vaccine.getName());
+                newVaccination.setIndication_name(vaccine.getIndication_name());
+                newVaccination.setDose(vaccine.getDose());
+                newVaccination.setDosing_unit(vaccine.getDosing_unit());
+                newVaccination.setRoute(vaccine.getRoute());
+                newVaccination.setScheduled(vaccine.getScheduled());
+                newVaccination.setDose_number(vaccine.getDose_number());
+                //Assign calculated scheduled date
+                newVaccination.setScheduled_date(calculatedScheduledDate);
+
+                newVaccination.setAdministered(false);
+                newVaccination.setAdverse_reaction_observed(false);
+
+                vaccinations.add(newVaccination);
             }
-
         }
-
-        return null;
+        return vaccinations;
     }
 
     @Override
@@ -107,5 +130,14 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
     @Override
     public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException {
         return null;
+    }
+
+    @Override
+    public List<SimpleVaccination> simplifyVaccinations(List<Vaccination> vaccinations) throws APIException {
+        ArrayList<SimpleVaccination> simpleVaccinations = new ArrayList<SimpleVaccination>();
+        for(Vaccination vaccination : vaccinations){
+            simpleVaccinations.add(new SimpleVaccination(vaccination));
+        }
+        return simpleVaccinations;
     }
 }

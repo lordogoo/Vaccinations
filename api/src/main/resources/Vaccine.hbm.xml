@@ -16,6 +16,7 @@
 		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" length="255" />
 		<property name="route" type="java.lang.String" column="route" length="255" />
 		<property name="scheduled" type="boolean" column="scheduled" length="1" not-null="true"/>
+		<property name="numeric_indication" type="int" column="numeric_indication" length="255" />
 
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />

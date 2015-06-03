@@ -61,5 +61,7 @@ public interface VaccinationsService extends OpenmrsService {
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS, PrivilegeConstants.VIEW_VACCINES} )
 	public List<SimpleVaccination> combineVaccinesAndVaccinationsByPatientIdSimple(Integer patientId) throws APIException;
 
-
+	@Transactional(readOnly =  true)
+	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+	public List<SimpleVaccination> simplifyVaccinations(List<Vaccination> vaccines) throws APIException;
 }

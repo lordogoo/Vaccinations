@@ -29,7 +29,7 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	public Vaccine() {
 	}
 
-	public Vaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled) {
+	public Vaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled, Integer numeric_indication) {
 		this.id = id;
 		this.name = name;
 		this.indication_name = indication_name;
@@ -38,6 +38,7 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 		this.dosing_unit = dosing_unit;
 		this.route = route;
 		this.scheduled = scheduled;
+		this.numeric_indication = numeric_indication;
 	}
 
 	private Integer id;
@@ -48,6 +49,7 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private String dosing_unit;
 	private String route;
 	private boolean scheduled;
+	private Integer numeric_indication;
 
 	private User creator;
 	private Date dateCreated;
@@ -57,6 +59,14 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private Date dateRetired;
 	private User retiredBy;
 	private String retireReason;
+
+	public Integer getNumeric_indication() {
+		return numeric_indication;
+	}
+
+	public void setNumeric_indication(Integer numeric_indication) {
+		this.numeric_indication = numeric_indication;
+	}
 
 	public boolean getScheduled() {
 		return scheduled;
