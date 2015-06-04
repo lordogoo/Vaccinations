@@ -92,7 +92,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return simpleVaccination2;
 	}
 
-	@RequestMapping(value = "/adverseReactions/patient/{patientId}/vaccinations/{vaccinationId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/adversereactions/patient/{patientId}/vaccinations/{vaccinationId}", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleVaccination saveAdverseReaction(
 			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int patientId, @PathVariable int vaccinationId) {
@@ -101,7 +101,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
 	}
 
-	@RequestMapping(value = "/adverseReactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateAdverseReaction(
 			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId) {
@@ -109,7 +109,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
 	}
 
-	@RequestMapping(value = "/adverseReactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public HttpStatus deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId) {
 		//Lookup adverse reaction
