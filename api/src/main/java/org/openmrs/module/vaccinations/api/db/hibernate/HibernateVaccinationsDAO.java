@@ -51,7 +51,11 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
 		crit.add(Restrictions.eq("retired", false));
 		crit.add(Restrictions.eq("patient_id", patientId));
 
-		return (List<Vaccination>)crit.list();
+		List<Vaccination> vaccinationList = (List<Vaccination>)crit.list();
+		if (vaccinationList.isEmpty())
+			return null;
+
+		return vaccinationList;
 	}
 
 	@Override
@@ -63,5 +67,20 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
 	@Override
 	public Vaccination getVaccinationByVaccinationId(int vaccinationId) {
 		return (Vaccination)sessionFactory.getCurrentSession().get(Vaccination.class, vaccinationId);
+	}
+
+	@Override
+	public Vaccination getVaccinationByUuId(String uuid) {
+		if (uuid == null)
+			return null;
+
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccination.class);
+		crit.add(Restrictions.eq("uuid", uuid));
+
+		List<Vaccination> vaccinationList = (List<Vaccination>)crit.list();
+		if (vaccinationList.isEmpty())
+			return null;
+
+		return vaccinationList.get(0);
 	}
 }

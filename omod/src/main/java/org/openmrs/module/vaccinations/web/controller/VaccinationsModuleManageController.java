@@ -41,6 +41,6 @@ public class  VaccinationsModuleManageController {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 
 		//model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
-		model.put("vaccinations", Context.getService(VaccinationsService.class).listVaccinationsByPatientId(1));
+		model.put("vaccinations", Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientId(3));
 	}
 }

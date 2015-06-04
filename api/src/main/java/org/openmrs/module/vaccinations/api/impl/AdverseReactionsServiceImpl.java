@@ -51,4 +51,9 @@ public class AdverseReactionsServiceImpl extends BaseOpenmrsService implements A
 	public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) throws APIException {
 		return dao.saveOrUpdateAdverseReaction(adverseReaction);
 	}
+
+	@Override
+	public AdverseReaction getAdverseReactionByUuid(String uuid) throws APIException {
+		return dao.getAdverseReactionByUuid(uuid);
+	}
 }

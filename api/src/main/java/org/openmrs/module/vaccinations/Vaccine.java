@@ -16,8 +16,12 @@ package org.openmrs.module.vaccinations;
 import java.io.Serializable;
 import java.util.Date;
 
+import net.sf.saxon.pattern.CombinedNodeTest;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.User;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.vaccinations.api.VaccinationsService;
+import org.openmrs.module.vaccinations.api.VaccinesService;
 
 /**
  * It is a model class. It should extend {@link BaseOpenmrsObject}.
@@ -39,6 +43,35 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 		this.route = route;
 		this.scheduled = scheduled;
 		this.numeric_indication = numeric_indication;
+	}
+
+	public Vaccine (SimpleVaccine simpleVaccine){
+		if (!(null == simpleVaccine)) {
+			this.id = simpleVaccine.getId();
+			this.name = simpleVaccine.getName();
+			this.indication_name = simpleVaccine.getIndication_name();
+			this.dose = simpleVaccine.getDose();
+			this.dose_number = simpleVaccine.getDose_number();
+			this.dosing_unit = simpleVaccine.getDosing_unit();
+			this.route = simpleVaccine.getRoute();
+			this.scheduled = simpleVaccine.getScheduled();
+			this.numeric_indication = simpleVaccine.getNumeric_indication();
+		}
+
+		//Database look up
+		Vaccine oldVersion = Context.getService(VaccinesService.class).getVaccineByUuid(simpleVaccine.getUuid()); //lookup by UUID
+		//
+		if (oldVersion == null) {
+			this.creator = Context.getAuthenticatedUser();
+			this.dateCreated = new Date();
+
+		}else{
+			this.setCreator(oldVersion.getCreator());
+			this.setDateCreated(oldVersion.dateCreated);
+			this.changedBy = Context.getAuthenticatedUser();
+			this.dateChanged = new Date();
+			this.setUuid(oldVersion.getUuid());
+		}
 	}
 
 	private Integer id;

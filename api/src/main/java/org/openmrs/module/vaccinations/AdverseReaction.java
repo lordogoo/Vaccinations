@@ -19,6 +19,8 @@ import java.util.Date;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.User;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -44,6 +46,31 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
         this.dateRetired = dateRetired;
         this.retiredBy = retiredBy;
         this.retireReason = retireReason;
+    }
+
+    public AdverseReaction(SimpleAdverseReaction simpleAdverseReaction){
+        if (!(null == simpleAdverseReaction)) {
+            this.id = simpleAdverseReaction.getId();
+            this.date = simpleAdverseReaction.getDate();
+            this.adverse_event = simpleAdverseReaction.getAdverse_event();
+            this.grade = simpleAdverseReaction.getGrade();
+            this.vaccination_id = simpleAdverseReaction.getVaccination_id();
+        }
+
+        //Database look up
+        AdverseReaction oldVersion = Context.getService(AdverseReactionsService.class).getAdverseReactionByUuid(simpleAdverseReaction.getUuid()); //lookup by UUID
+        //
+        if (oldVersion == null) {
+            this.creator = Context.getAuthenticatedUser();
+            this.dateCreated = new Date();
+
+        }else{
+            this.setCreator(oldVersion.getCreator());
+            this.setDateCreated(oldVersion.dateCreated);
+            this.changedBy = Context.getAuthenticatedUser();
+            this.dateChanged = new Date();
+            this.setUuid(oldVersion.getUuid());
+        }
     }
 
     private Integer id;

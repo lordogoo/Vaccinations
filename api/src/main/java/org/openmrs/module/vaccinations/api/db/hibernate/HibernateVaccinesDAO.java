@@ -80,4 +80,19 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(vaccine);
 		return vaccine;
 	}
+
+	@Override
+	public Vaccine getVaccineByUuid(String uuid) {
+		if (uuid == null)
+			return null;
+
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
+		crit.add(Restrictions.eq("uuid", uuid));
+
+		List<Vaccine> vaccineList = (List<Vaccine>)crit.list();
+		if (vaccineList.isEmpty())
+			return null;
+
+		return vaccineList.get(0);
+	}
 }

@@ -28,4 +28,5 @@ public interface VaccinationsDAO {
 	public List<Vaccination> getVaccinationsByPatientId(int patientId);
 	public Vaccination saveOrUpdateVaccination(Vaccination vaccination);
 	public Vaccination getVaccinationByVaccinationId(int vaccinationId);
+	public Vaccination getVaccinationByUuId(String uuid);
 }

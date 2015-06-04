@@ -7,10 +7,10 @@
 
 
 	<class name="AdverseReaction" table="vac_adverse_reactions">
-		<id name="id" type="int" column="id" unsaved-value="0">
+		<id name="id" type="int" column="adverse_reaction_id" unsaved-value="0">
 			<generator class="native" />
 		</id>
-		<discriminator column="id" insert="false" />
+		<discriminator column="adverse_reaction_id" insert="false" />
 
         <property name="date" type="java.util.Date" column="logged_date" not-null="true" length="19" />
         <property name="adverse_event" type="java.lang.String" column="adverse_event" not-null="true" length="255" />

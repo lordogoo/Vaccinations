@@ -26,10 +26,7 @@ import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * It is a default implementation of {@link VaccinationsService}.
@@ -64,62 +61,106 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         return simplifyVaccinations(listVaccinationsByPatientId(patientId));
     }
 
+    //WILL ONLY RETURN UNADMINISTERED VACCINATIONS
     @Override
     public List<Vaccination> combineVaccinesAndVaccinationsByPatientId(Integer patientId) throws APIException {
         //Retrieving all scheduled vaccines
         VaccinesService vaccinesService = Context.getService(VaccinesService.class);
         List<Vaccine> vaccines = vaccinesService.getScheduledVaccines(false);
+        if (vaccines != null && !vaccines.isEmpty()) {
+            //Retrieving all vaccinations by patientId
+            List<Vaccination> vaccinations = listVaccinationsByPatientId(patientId);
+            Date calculatedScheduledDate = new Date();
+            List<Vaccination> completeVaccinations = new ArrayList<Vaccination>();
+            if (vaccinations != null && !vaccinations.isEmpty()) {
+                //Combining scheduled vaccines and performed vaccinations
+                for (Vaccine vaccine : vaccines) {
+                    //Check if a scheduled vaccine has already been administered
+                    Boolean found = false;
+                    for (Vaccination vaccination : vaccinations) {
+                        if (vaccine.getUuid() == vaccination.getVaccine().getUuid()) {
+                            found = true;
+                            break;
+                        }
+                    }
 
-        //Retrieving all vaccinations by patientId
-        List<Vaccination> vaccinations = listVaccinationsByPatientId(patientId);
+                    if (!found) {
+                        calculatedScheduledDate = calculateScheduledDate(patientId, vaccine);
+                        //Vaccine to Vaccination
+                        completeVaccinations.add(vaccineToVaccination(vaccine, calculatedScheduledDate));
+                    }
+                }
+                completeVaccinations.addAll(vaccinations);
 
-        //Combining scheduled vaccines and performed vaccinations
-        for (Vaccine vaccine : vaccines){
-            //Check if a scheduled vaccine has already been administered
-            Boolean found = false;
-            for (Vaccination vaccination : vaccinations){
-                if (vaccine.getUuid() == vaccination.getVaccine().getUuid()){
-                    found = true;
-                    break;
+            } else {
+                try {
+                    for (Vaccine vaccine : vaccines) {
+                        calculatedScheduledDate = calculateScheduledDate(patientId, vaccine);
+                        //Vaccine to Vaccination
+                        Vaccination newVaccination = vaccineToVaccination(vaccine, calculatedScheduledDate);
+                        completeVaccinations.add(newVaccination);
+                    }
+                }catch (Exception ex){
+                    log.error(ex.getMessage() + " STACKTRACE: " + ex.getStackTrace() + " BDAY: " + calculatedScheduledDate.toString() + " VaccinationName: " + completeVaccinations.get(completeVaccinations.size()-1).getName());
+                    return null;
                 }
             }
-
-            if (!found){
-                //Get patient birthday using patient service
-                Date patientBDay = Context.getPatientService().getPatient(patientId).getBirthdate();
-
-                //Calculate scheduled date from birthday and numeric indication.
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(patientBDay);
-                cal.add(Calendar.DATE, vaccine.getNumeric_indication());
-                Date calculatedScheduledDate = cal.getTime();
-
-                //create a new vaccination using vaccine as a template
-                Vaccination newVaccination = new Vaccination();
-                newVaccination.setVaccine(vaccine);
-
-                newVaccination.setName(vaccine.getName());
-                newVaccination.setIndication_name(vaccine.getIndication_name());
-                newVaccination.setDose(vaccine.getDose());
-                newVaccination.setDosing_unit(vaccine.getDosing_unit());
-                newVaccination.setRoute(vaccine.getRoute());
-                newVaccination.setScheduled(vaccine.getScheduled());
-                newVaccination.setDose_number(vaccine.getDose_number());
-                //Assign calculated scheduled date
-                newVaccination.setScheduled_date(calculatedScheduledDate);
-
-                newVaccination.setAdministered(false);
-                newVaccination.setAdverse_reaction_observed(false);
-
-                vaccinations.add(newVaccination);
-            }
+            return completeVaccinations;
+        }else{
+            throw new APIException("The vaccines list is empty!");
         }
-        return vaccinations;
     }
 
     @Override
+    public Date calculateScheduledDate(Integer patientId, Vaccine vaccine) throws APIException{
+        Calendar cal = Calendar.getInstance();
+        Date patientBDay = new Date();
+        //Get patient birthday using patient service
+        if (Context.getPatientService().getPatient(patientId).getBirthdate() != null) {
+            patientBDay = Context.getPatientService().getPatient(patientId).getBirthdate();
+        } else {
+            //Once a decision is made regarding whether to show vaccines as overdue or not
+            //This code will contain an algorithm to handle that behavior
+        }
+
+        //Calculate scheduled date from birthday and numeric indication.
+        cal.setTime(patientBDay);
+        cal.add(Calendar.DATE, vaccine.getNumeric_indication());
+        Date calculatedScheduledDate = cal.getTime();
+        return calculatedScheduledDate;
+    }
+
+    @Override
+    public Vaccination vaccineToVaccination(Vaccine vaccine, Date calculatedScheduledDate) throws APIException {
+        //create a new vaccination using vaccine as a template
+        Vaccination newVaccination = new Vaccination();
+        newVaccination.setVaccine(vaccine);
+
+        newVaccination.setName(vaccine.getName());
+        newVaccination.setIndication_name(vaccine.getIndication_name());
+        newVaccination.setDose(vaccine.getDose());
+        newVaccination.setDosing_unit(vaccine.getDosing_unit());
+        newVaccination.setRoute(vaccine.getRoute());
+        newVaccination.setScheduled(vaccine.getScheduled());
+        newVaccination.setDose_number(vaccine.getDose_number());
+        //Assign calculated scheduled date
+        newVaccination.setScheduled_date(calculatedScheduledDate);
+
+        newVaccination.setAdministered(false);
+        newVaccination.setAdverse_reaction_observed(false);
+        return newVaccination;
+    }
+
+
+
+    @Override
     public List<SimpleVaccination> combineVaccinesAndVaccinationsByPatientIdSimple(Integer patientId) throws APIException {
-        return null;
+        return simplifyVaccinations(combineVaccinesAndVaccinationsByPatientId(patientId));
+    }
+
+    @Override
+    public Vaccination getVaccinationByUuid(String uuid) throws APIException {
+        return dao.getVaccinationByUuId(uuid);
     }
 
     @Override

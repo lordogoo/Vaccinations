@@ -7,4 +7,5 @@ import org.openmrs.module.vaccinations.AdverseReaction;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 public interface AdverseReactionsDAO {
     public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction);
+    public AdverseReaction getAdverseReactionByUuid(String uuid);
 }

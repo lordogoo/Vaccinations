@@ -15,4 +15,5 @@ public interface VaccinesDAO {
     public List<Vaccine> getScheduledVaccines(Boolean includeRetired);
     public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired);
     public Vaccine saveOrUpdateVaccine(Vaccine vaccine);
+    public Vaccine getVaccineByUuid(String uuid);
 }

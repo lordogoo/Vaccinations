@@ -26,6 +26,8 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
+	public SimpleVaccine() {
+	}
 
 	public SimpleVaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled, Integer numeric_indication) {
 		this.id = id;

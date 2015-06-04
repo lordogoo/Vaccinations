@@ -72,12 +72,12 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
 
     @Override
     public List<Vaccine> getScheduledVaccines(Boolean includeRetired) throws APIException {
-        return dao.getAllVaccines(includeRetired);
+        return dao.getScheduledVaccines(includeRetired);
     }
 
     @Override
     public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired) throws APIException {
-        return dao.getAllVaccines(includeRetired);
+        return dao.getUnscheduledVaccines(includeRetired);
     }
 
     @Override
@@ -86,8 +86,8 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
     }
 
     @Override
-    public Vaccine getVaccineByUuid(String Uuid) throws APIException {
-        return new Vaccine();
+    public Vaccine getVaccineByUuid(String uuid) throws APIException {
+        return dao.getVaccineByUuid(uuid);
     }
 
     @Override
@@ -97,5 +97,14 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
             simpleVaccines.add(new SimpleVaccine(vaccine));
         }
         return simpleVaccines;
+    }
+
+    @Override
+    public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws APIException{
+        ArrayList<Vaccine> vaccines = new ArrayList<Vaccine>();
+        for(SimpleVaccine simpleVaccine : simpleVaccines){
+            vaccines.add(new Vaccine(simpleVaccine));
+        }
+        return vaccines;
     }
 }

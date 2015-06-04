@@ -37,4 +37,8 @@ public interface AdverseReactionsService extends OpenmrsService {
     @Authorized( {PrivilegeConstants.MANAGE_ADVERSE_REACTIONS} )
     public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) throws APIException;
 
+
+    @Transactional(readOnly =  true)
+    @Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+    public AdverseReaction getAdverseReactionByUuid(String uuid) throws APIException;
 }

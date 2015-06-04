@@ -17,6 +17,8 @@ import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.User;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.vaccinations.api.VaccinationsService;
 
 import java.util.Date;
 
@@ -46,6 +48,47 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.dose_number = dose_number;
 		this.adverse_reaction_observed = adverse_reaction_observed;
 		this.patient_id = patient_id;
+	}
+
+	public Vaccination(SimpleVaccination simpleVaccination){
+		if (!(null == simpleVaccination)) {
+			this.id = simpleVaccination.getId();
+			this.scheduled_date = simpleVaccination.getScheduled_date();
+			this.name = simpleVaccination.getName();
+			this.indication_name = simpleVaccination.getIndication_name();
+			this.dose = simpleVaccination.getDose();
+			this.dosing_unit = simpleVaccination.getDosing_unit();
+			this.route = simpleVaccination.getRoute();
+			this.scheduled = simpleVaccination.getScheduled();
+			this.scheduled_date = simpleVaccination.getScheduled_date();
+			this.vaccine = new Vaccine(simpleVaccination.getSimpleVaccine());
+			this.adverse_reaction = new AdverseReaction(simpleVaccination.getSimpleAdverse_reaction());
+			this.administered = simpleVaccination.getAdministered();
+			this.administration_date = simpleVaccination.getAdministration_date();
+			this.body_site_administered = simpleVaccination.getBody_site_administered();
+			this.dose_number = simpleVaccination.getDose_number();
+			this.lot_number = simpleVaccination.getLot_number();
+			this.manufacturer = simpleVaccination.getManufacturer();
+			this.manufacture_date = simpleVaccination.getManufacture_date();
+			this.expiry_date = simpleVaccination.getExpiry_date();
+			this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
+			this.patient_id = simpleVaccination.getPatient_id();
+		}
+
+		//Database look up
+		Vaccination oldVersion = Context.getService(VaccinationsService.class).getVaccinationByUuid(simpleVaccination.getUuid()); //lookup by UUID
+		//
+		if (oldVersion == null) {
+			this.creator = Context.getAuthenticatedUser();
+			this.dateCreated = new Date();
+
+		}else{
+			this.setCreator(oldVersion.getCreator());
+			this.setDateCreated(oldVersion.dateCreated);
+			this.changedBy = Context.getAuthenticatedUser();
+			this.dateChanged = new Date();
+			this.setUuid(oldVersion.getUuid());
+		}
 	}
 
 	private Integer id;

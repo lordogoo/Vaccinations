@@ -36,10 +36,9 @@ import java.util.List;
 @Transactional
 public interface VaccinesService extends OpenmrsService {
 
-
-	@Transactional(readOnly =  true)
-	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public List<SimpleVaccine> simplifyVaccines(List<Vaccine> vaccines) throws APIException;
+
+	public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
@@ -67,7 +66,7 @@ public interface VaccinesService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
-	public Vaccine getVaccineByUuid(String Uuid) throws APIException;
+	public Vaccine getVaccineByUuid(String uuid) throws APIException;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.MANAGE_VACCINES} )

@@ -22,6 +22,7 @@ import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -63,5 +64,11 @@ public interface VaccinationsService extends OpenmrsService {
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+	public Vaccination getVaccinationByUuid(String uuid) throws APIException;
+
 	public List<SimpleVaccination> simplifyVaccinations(List<Vaccination> vaccines) throws APIException;
+
+	public Vaccination vaccineToVaccination(Vaccine vaccine, Date calculatedScheduledDate) throws APIException;
+
+	public Date calculateScheduledDate(Integer patientId, Vaccine vaccine) throws APIException;
 }
