@@ -92,10 +92,11 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return simpleVaccination2;
 	}
 
-	@RequestMapping(value = "/adverseReactions/patient/{patientId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/adverseReactions/patient/{patientId}/vaccinations/{vaccinationId}", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleVaccination saveAdverseReaction(
-			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int patientId) {
+			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int patientId, @PathVariable int vaccinationId) {
+		simpleAdverseReaction.setVaccination_id(vaccinationId);
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
 		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
 	}
