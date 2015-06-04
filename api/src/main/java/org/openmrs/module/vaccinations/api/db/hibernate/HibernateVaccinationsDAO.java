@@ -46,7 +46,7 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
     }
 
 	@Override
-	public List<Vaccination> getVaccinationsByPatientId(int patientId) {
+	public List<Vaccination> listVaccinationsByPatientId(int patientId) {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccination.class);
 		crit.add(Restrictions.eq("retired", false));
 		crit.add(Restrictions.eq("patient_id", patientId));

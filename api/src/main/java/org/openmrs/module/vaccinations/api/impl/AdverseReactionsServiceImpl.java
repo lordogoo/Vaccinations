@@ -56,4 +56,9 @@ public class AdverseReactionsServiceImpl extends BaseOpenmrsService implements A
 	public AdverseReaction getAdverseReactionByUuid(String uuid) throws APIException {
 		return dao.getAdverseReactionByUuid(uuid);
 	}
+
+	@Override
+	public AdverseReaction getAdverseReactionByAdverseReactionId(int adverseReactionId) throws APIException {
+		return dao.getAdverseReactionByAdverseReactionId(adverseReactionId);
+	}
 }

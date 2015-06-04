@@ -53,7 +53,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
     @Override
     public List<Vaccination> listVaccinationsByPatientId(Integer patientId) throws APIException {
-        return dao.getVaccinationsByPatientId(patientId);
+        return dao.listVaccinationsByPatientId(patientId);
     }
 
     @Override
@@ -170,7 +170,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
     @Override
     public Vaccination getVaccinationByVaccinationId(int vaccination_id) throws APIException {
-        return null;
+        return dao.getVaccinationByVaccinationId(vaccination_id);
     }
 
     @Override

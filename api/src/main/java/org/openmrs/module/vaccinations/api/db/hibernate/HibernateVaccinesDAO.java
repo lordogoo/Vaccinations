@@ -47,7 +47,7 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
     }
 
 	@Override
-	public List<Vaccine> getAllVaccines(Boolean includeRetired) {
+	public List<Vaccine> listAllVaccines(Boolean includeRetired) {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
 		if (!includeRetired){
 			crit.add(Restrictions.eq("retired", false));
@@ -56,7 +56,7 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
 	}
 
 	@Override
-	public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired) {
+	public List<Vaccine> listUnscheduledVaccines(Boolean includeRetired) {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
 		crit.add(Restrictions.eq("scheduled", false));
 		if (!includeRetired){
@@ -66,7 +66,7 @@ public class HibernateVaccinesDAO implements VaccinesDAO {
 	}
 
 	@Override
-	public List<Vaccine> getScheduledVaccines(Boolean includeRetired) {
+	public List<Vaccine> listScheduledVaccines(Boolean includeRetired) {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Vaccine.class);
 		crit.add(Restrictions.eq("scheduled", true));
 		if (!includeRetired){

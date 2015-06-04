@@ -52,6 +52,11 @@ public class HibernateAdverseReactionsDAO implements AdverseReactionsDAO {
 	}
 
 	@Override
+	public AdverseReaction getAdverseReactionByAdverseReactionId(int adverseReactionId) {
+		return (AdverseReaction)sessionFactory.getCurrentSession().get(AdverseReaction.class, adverseReactionId);
+	}
+
+	@Override
 	public AdverseReaction getAdverseReactionByUuid(String uuid) {
 		if (uuid == null)
 			return null;

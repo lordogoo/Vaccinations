@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface VaccinesDAO {
 
-    public List<Vaccine> getAllVaccines(Boolean includeRetired);
-    public List<Vaccine> getScheduledVaccines(Boolean includeRetired);
-    public List<Vaccine> getUnscheduledVaccines(Boolean includeRetired);
+    public List<Vaccine> listAllVaccines(Boolean includeRetired);
+    public List<Vaccine> listScheduledVaccines(Boolean includeRetired);
+    public List<Vaccine> listUnscheduledVaccines(Boolean includeRetired);
     public Vaccine saveOrUpdateVaccine(Vaccine vaccine);
     public Vaccine getVaccineByUuid(String uuid);
 }
