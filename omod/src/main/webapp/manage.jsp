@@ -2,19 +2,24 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <%@ include file="template/localHeader.jsp"%>
-<c:forEach var="vaccination" items="${vaccinations}">
-    ${vaccination.name}<br/>
-</c:forEach>
+
 <!doctype html>
 <html class="no-js">
-<head>
-<meta charset="utf-8">
-<title>vaccinations</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>vaccinations</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor-60509a3f.css">
+
+    <link rel="stylesheet" href="styles/app-51c872b4.css">
+  </head>
+  <body>
+
 <div id="appcontainer" ng-app="vaccinations">
+<!-- <div id="appcontainer"> -->
 
     <div class="container" ng-controller="MainController">
 
@@ -486,8 +491,10 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
 
+
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-f888816f.js"></script>
+		src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-fab2c5c6.js"></script>
+
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-60509a3f.css">
 

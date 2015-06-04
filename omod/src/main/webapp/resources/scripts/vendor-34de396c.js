@@ -10425,7 +10425,7 @@ function getNgAttribute(element, ngAttr) {
  *
  * @element ANY
  * @param {angular.Module} ngApp an optional application
- *   {@link angular.Module} name to load.
+ *   {@link angular.module module} name to load.
  * @param {boolean=} ngStrictDi if this attribute is present on the app element, the injector will be
  *   created in "strict-di" mode. This means that the application will fail to invoke functions which
  *   do not use explicit function annotation (and are thus unsuitable for minification), as described
@@ -10615,7 +10615,7 @@ function angularInit(element, bootstrap) {
  * @param {Array<String|Function|Array>=} modules an array of modules to load into the application.
  *     Each item in the array should be the name of a predefined module or a (DI annotated)
  *     function that will be invoked by the injector as a `config` block.
- *     See: {@link angular.Modules}
+ *     See: {@link angular.module modules}
  * @param {Object=} config an object for defining configuration options for the application. The
  *     following keys are supported:
  *
@@ -10892,7 +10892,7 @@ var NODE_TYPE_DOCUMENT_FRAGMENT = 11;
  * @module ng
  * @description
  *
- * Interface for configuring angular {@link angular.Modules}.
+ * Interface for configuring angular {@link angular.module modules}.
  */
 
 function setupModuleLoader(window) {
