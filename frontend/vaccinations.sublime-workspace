@@ -1,0 +1,3152 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"admi",
+				"administered"
+			],
+			[
+				"entered",
+				"enteredAdminFormData"
+			],
+			[
+				"Sch",
+				"Schedule"
+			],
+			[
+				"sch",
+				"scheduleOrAdminister"
+			],
+			[
+				"adverse",
+				"adverse_event_description"
+			],
+			[
+				"exp",
+				"expiry_date"
+			],
+			[
+				"man",
+				"manufacture_date"
+			],
+			[
+				"manu",
+				"manufacturer"
+			],
+			[
+				"bod",
+				"body_site_administered"
+			],
+			[
+				"ad",
+				"administration_date"
+			],
+			[
+				"forma",
+				"formattedVaccineName"
+			],
+			[
+				"non_",
+				"non_scheduled"
+			],
+			[
+				"mockVa",
+				"mockVaccine"
+			],
+			[
+				"mock",
+				"mockBackend"
+			],
+			[
+				"set",
+				"setPatiendId"
+			],
+			[
+				"app",
+				"appConstants"
+			],
+			[
+				"http",
+				"$httpBackend	AngularJS"
+			],
+			[
+				"submit",
+				"submitVaccination"
+			],
+			[
+				"vacc",
+				"vaccinationsManager"
+			],
+			[
+				"adm",
+				"administration_date"
+			],
+			[
+				"vaccination",
+				"vaccinations"
+			],
+			[
+				"vacci",
+				"vaccinations"
+			],
+			[
+				"pa",
+				"patientId ([])"
+			],
+			[
+				"get",
+				"getPatientId"
+			],
+			[
+				"patient",
+				"patientId"
+			],
+			[
+				"head",
+				"headercolor"
+			],
+			[
+				"moc",
+				"mock_data"
+			],
+			[
+				"un",
+				"unadministered"
+			],
+			[
+				"has",
+				"hasOwnProperty"
+			],
+			[
+				"sho",
+				"show"
+			],
+			[
+				"enter",
+				"enteredAdminFormData"
+			],
+			[
+				"sta",
+				"stageNewVaccination (?)"
+			],
+			[
+				"add",
+				"AddVaccinationController	AngularJS"
+			],
+			[
+				"staged",
+				"stagedVaccination"
+			],
+			[
+				"st",
+				"stagedVaccination"
+			],
+			[
+				"mo",
+				"module	AngularJS"
+			],
+			[
+				"admin",
+				"administerFormOpen"
+			],
+			[
+				"stage",
+				"stageNewVaccination"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"type",
+				"typeahead"
+			],
+			[
+				"direc",
+				"directive"
+			],
+			[
+				"m",
+				"module	AngularJS"
+			],
+			[
+				"ang",
+				"angular	AngularJS"
+			],
+			[
+				"setVa",
+				"setVaccines"
+			],
+			[
+				"rou",
+				"routine"
+			],
+			[
+				"don",
+				"dose_number"
+			],
+			[
+				"dose",
+				"dose_number"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"toB",
+				"toBe"
+			],
+			[
+				"an",
+				"angular	AngularJS"
+			],
+			[
+				"ge",
+				"getVaccination"
+			],
+			[
+				"Vaccin",
+				"VaccinationController"
+			],
+			[
+				"vaccinat",
+				"vaccinations-wrapper"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"padding",
+				"padding-left: "
+			],
+			[
+				"manufa",
+				"manufacture_date"
+			],
+			[
+				"attr",
+				"attributeValue"
+			],
+			[
+				"toBe",
+				"toBeDefined"
+			],
+			[
+				"Main",
+				"MainController"
+			],
+			[
+				"id",
+				"idOfVaccinationToRemove"
+			],
+			[
+				"vaccin",
+				"vaccinationsManager"
+			],
+			[
+				"$htt",
+				"$httpBackend	AngularJS"
+			],
+			[
+				"vac",
+				"vaccinations"
+			],
+			[
+				"$sc",
+				"$scope	AngularJS"
+			],
+			[
+				"vaccinati",
+				"VaccinationsController"
+			],
+			[
+				"vaccinations",
+				"vaccinationsResource"
+			],
+			[
+				"ind",
+				"include-replace"
+			],
+			[
+				"va",
+				"vaccination"
+			],
+			[
+				"au",
+				"auth_headers_user_a	statement"
+			],
+			[
+				"FOll",
+				"FollowerRelationship	class"
+			],
+			[
+				"new",
+				"new_unfollower	statement"
+			],
+			[
+				"Foll",
+				"FollowerRelationship	class"
+			],
+			[
+				"user",
+				"user_b	statement"
+			],
+			[
+				"ass",
+				"assertTrue"
+			],
+			[
+				"class",
+				"classmethod	class"
+			],
+			[
+				"auth_headers_u",
+				"auth_headers_user_b	statement"
+			],
+			[
+				"new_",
+				"new_follower	statement"
+			],
+			[
+				"fol",
+				"followers"
+			],
+			[
+				"F",
+				"FollowerRelationship	class"
+			],
+			[
+				"user_details",
+				"user_details_b"
+			],
+			[
+				"User",
+				"UserSerializer	class"
+			],
+			[
+				"url",
+				"urlpatterns	statement"
+			],
+			[
+				"A",
+				"AuthorCoAuthors	class"
+			],
+			[
+				"Au",
+				"AuthorPublications	class"
+			],
+			[
+				"time",
+				"timed_func	function"
+			],
+			[
+				"excepti",
+				"exception_wrapper	function"
+			],
+			[
+				"function",
+				"function_name	statement"
+			],
+			[
+				"Pars",
+				"ParseHelper	class"
+			],
+			[
+				"author",
+				"author_div	param"
+			],
+			[
+				"exce",
+				"exception_wrapped	function"
+			],
+			[
+				"exc",
+				"exception_wrapper	function"
+			],
+			[
+				"P",
+				"ParseHelper	class"
+			],
+			[
+				"artic",
+				"article_uids"
+			],
+			[
+				"arti",
+				"article_UIDs"
+			],
+			[
+				"articlu",
+				"article_url	statement"
+			],
+			[
+				"article_",
+				"article_dict	statement"
+			],
+			[
+				"art",
+				"article_uids	statement"
+			],
+			[
+				"coa",
+				"coauthors_parser	statement"
+			],
+			[
+				"Author",
+				"AuthorParser	class"
+			],
+			[
+				"co",
+				"co_authors_link	statement"
+			],
+			[
+				"pub",
+				"pubs_by_year	statement"
+			],
+			[
+				"authorim",
+				"test_author_image_URL"
+			],
+			[
+				"imag",
+				"image_url"
+			],
+			[
+				"hi",
+				"h_index_row	statement"
+			],
+			[
+				"to",
+				"total_citations	statement"
+			],
+			[
+				"res",
+				"research_interests"
+			],
+			[
+				"parse",
+				"parse_qs	function"
+			],
+			[
+				"link",
+				"link_tags	statement"
+			],
+			[
+				"name",
+				"name_div	statement"
+			],
+			[
+				"par",
+				"parsed_author	statement"
+			],
+			[
+				"ord",
+				"OrderedDict	class"
+			],
+			[
+				"html",
+				"html_file	statement"
+			],
+			[
+				"la",
+				"last_name	statement"
+			],
+			[
+				"first",
+				"first_name	statement"
+			],
+			[
+				"autho",
+				"author_query_results	statement"
+			],
+			[
+				"ema",
+				"email_domain	statement"
+			],
+			[
+				"rese",
+				"research_area	statement"
+			],
+			[
+				"email",
+				"email_domain_div	statement"
+			],
+			[
+				"researc",
+				"research_areas_a	statement"
+			],
+			[
+				"resea",
+				"research_areas_div	statement"
+			],
+			[
+				"af",
+				"affiliation_div	statement"
+			],
+			[
+				"search",
+				"search_results"
+			],
+			[
+				"que",
+				"query_URL	statement"
+			],
+			[
+				"quer",
+				"query_resp_parser	statement"
+			],
+			[
+				"Aut",
+				"Author	class"
+			],
+			[
+				"for",
+				"forecast"
+			],
+			[
+				"scop",
+				"$scope	AngularJS"
+			],
+			[
+				"rout",
+				"$routeProvider	AngularJS"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/app/vaccination/administered/vaccination_administered.template.html",
+			"settings":
+			{
+				"buffer_size": 7459,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 4379,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/vaccination/staged/vaccination_staged.template.html",
+			"settings":
+			{
+				"buffer_size": 5374,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/main/vaccination.directive.js",
+			"settings":
+			{
+				"buffer_size": 3239,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "'use strict';\n\nangular.module('vaccinations')\n.controller('StagedVaccinationController', ['$scope', '$http', '$interval', '$alert', 'vaccinationsManager',\n    function ($scope, $http, $interval, $alert, vaccinationsManager) {\n    //$scope.enteredFormData = getVaccination();\n    $scope.state = {};\n    $scope.state.administerFormOpen = true;\n    // $scope.alert = {\n    //     title: 'New Vaccination',\n    //     content: 'Fill in details and click submit to save.',\n    //     type: 'info',\n    //     show: true,\n    //     duration: 3\n    // };\n\n    //var myAlert = $alert({\n    //    title: 'New Vaccination.',\n    //    content: 'Add details and click submit to save.',\n    //    placement: 'top', type: 'info', show: true,\n    //    container: '#alert-container', duration: 4});\n\n    $scope.removeStagedVaccination = function () {\n        vaccinationsManager.removeStagedVaccination();\n    };\n\n\n\n    $scope.resetFormDataToDefaults = function () {\n         var vaccination = angular.copy($scope.getVaccination());\n         vaccination.administration_date = new Date();\n         vaccination.manufacture_date = new Date();\n         vaccination.expiry_date = new Date();\n         vaccination.scheduled_date = new Date();\n         $scope.enteredAdminFormData = vaccination;\n    };\n\n    $scope.saveVaccination = function (enteredAdminFormData) {\n        // When saving an administered vaccination ensure no scheduled\n        // date is saved.\n        delete enteredAdminFormData.scheduled_date;\n        vaccinationsManager.submitVaccination(enteredAdminFormData);\n    };\n\n    $scope.scheduleVaccination = function () {\n        // Ensure no details are submitted other than\n        // a scheduled date.\n        var vaccs = angular.copy($scope.getVaccination());\n        vaccs.scheduled_date = $scope.enteredAdminFormData.scheduled_date;\n        vaccinationsManager.submitVaccination(vaccs);\n    };\n\n    $scope.resetFormDataToDefaults();\n}]);",
+			"file": "src/app/vaccination/staged/stage_vaccination.controller.js",
+			"file_size": 1939,
+			"file_write_time": 130737858540000000,
+			"settings":
+			{
+				"buffer_size": 1941,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/main/helper_common.service.js",
+			"settings":
+			{
+				"buffer_size": 1117,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/main/vaccinations_manager.spec.js",
+			"settings":
+			{
+				"buffer_size": 3156,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/main/vaccines_manager.service.js",
+			"settings":
+			{
+				"buffer_size": 391,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/vaccination/unadministered/unadministered_vaccination.controller.js",
+			"settings":
+			{
+				"buffer_size": 1537,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/vaccination/unadministered/vaccination_unadministered.template.html",
+			"settings":
+			{
+				"buffer_size": 7009,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/index.scss",
+			"settings":
+			{
+				"buffer_size": 5951,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/dev/mock_data.js",
+			"settings":
+			{
+				"buffer_size": 8933,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/dev/mock_backend.js",
+			"settings":
+			{
+				"buffer_size": 4265,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app/main/main.controller.js",
+			"settings":
+			{
+				"buffer_size": 1985,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "'use strict';\n\n// Adds a vaccine from the new vaccination input box to the\n// patients vaccination list.\nangular.module('vaccinations').\ncontroller('AddVaccinationController', ['$scope', '$http', 'vaccinationsManager',\n    function ($scope, $http, vaccinationsManager) {\n\n    $scope.stageNewVaccination = function (vaccine) {\n        $scope.stagedVaccination = angular.copy(vaccine);\n        $scope.stagedVaccination._staged = true;\n    };\n\n    $scope.unstageNewVaccination = function () {\n        console.log('deleting.');\n        delete $scope.stagedVaccination;\n    };\n\n    $scope.stageVaccination = function (vaccine) {\n        var stagedVaccination = angular.copy(vaccine);\n        stagedVaccination._staged = true;\n        vaccinationsManager.addStagedVaccination(stagedVaccination);\n        $scope.newVaccine = '';\n    };\n\n\n}]);\n\n\n",
+			"file": "src/app/vaccination/staged/add_vaccination.controller.js",
+			"file_size": 838,
+			"file_write_time": 130738514330000000,
+			"settings":
+			{
+				"buffer_size": 838,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 200.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"des",
+				"Origami: Destroy Current Pane"
+			],
+			[
+				"create fil",
+				"Origami: Create Pane with File Above"
+			],
+			[
+				"minima",
+				"View: Toggle Minimap"
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"an",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"ang",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"zoom",
+				"Origami: Zoom Current Pane"
+			],
+			[
+				"create pane be",
+				"Origami: Create Pane Below"
+			],
+			[
+				"angular",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"packin",
+				"Package Control: Install Package"
+			],
+			[
+				"pack rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"key con",
+				"FindKeyConflicts: All Conflicts"
+			],
+			[
+				"definit",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"angular def",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"angular ",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"angularjs",
+				"AngularJS: Rebuild Search Index"
+			],
+			[
+				"crea pan ri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"zoo",
+				"Origami: Zoom Current Pane"
+			],
+			[
+				"creat pane",
+				"Origami: Create Pane Below"
+			],
+			[
+				"dash",
+				"DashDoc: invoke Dash with selected word"
+			],
+			[
+				"creaet ",
+				"Origami: Create Pane Below"
+			],
+			[
+				"defini",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"new ",
+				"Origami: Create Pane with File Above"
+			],
+			[
+				"pack con",
+				"Package Control: Remove Package"
+			],
+			[
+				"key",
+				"FindKeyConflicts: Multiple Package Conflicts"
+			],
+			[
+				"set syn an",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"set htm an",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"Angular",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"pack re",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack insta",
+				"Package Control: Install Package"
+			],
+			[
+				"cre pane be",
+				"Origami: Create Pane Below"
+			],
+			[
+				"def",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"packa con",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa ",
+				"Package Control: Install Package"
+			],
+			[
+				"packa in",
+				"Package Control: Install Package"
+			],
+			[
+				"pane ri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"cerbe",
+				"Origami: Create Pane Below"
+			],
+			[
+				"cre bel",
+				"Origami: Create Pane Below"
+			],
+			[
+				"creari",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"cre pnebe",
+				"Origami: Create Pane Below"
+			],
+			[
+				"cre belo",
+				"Origami: Create Pane Below"
+			],
+			[
+				"creapenbe",
+				"Origami: Create Pane Below"
+			],
+			[
+				"crepan b",
+				"Origami: Create Pane Below"
+			],
+			[
+				"creaet panri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"create pan ri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"destr curr",
+				"Origami: Destroy Current Pane"
+			],
+			[
+				"de",
+				"Origami: Destroy Current Pane"
+			],
+			[
+				"packagin",
+				"Package Control: Install Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"create pane ri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"creatri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"gitsta",
+				"Git: Status"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"creat",
+				"Origami: Create Pane Below"
+			],
+			[
+				"packre",
+				"Package Control: Remove Package"
+			],
+			[
+				"unzo",
+				"Origami: Unzoom Current Pane"
+			],
+			[
+				"creapabel",
+				"Origami: Create Pane Below"
+			],
+			[
+				"crea",
+				"Origami: Create Pane with File on the Right"
+			],
+			[
+				"creat pane bel",
+				"Origami: Create Pane Below"
+			],
+			[
+				"creat paneri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"create pane righ",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"create pane right",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"create pane file be",
+				"Origami: Create Pane with File Below"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indentation",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"create",
+				"Origami: Create Pane Below"
+			],
+			[
+				"create ",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"crea ri",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"cri ri",
+				"Origami: Create Pane with File on the Right"
+			],
+			[
+				"ori",
+				"Origami: Clone File to Pane Below"
+			],
+			[
+				"defin",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"go to",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"got ",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"got",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"new fil",
+				"ANF: New File"
+			],
+			[
+				"new",
+				"ANF: New File"
+			],
+			[
+				"create a",
+				"Origami: Create Pane Above"
+			],
+			[
+				"new f",
+				"ANF: New File"
+			],
+			[
+				"creat pane rig",
+				"Origami: Create Pane on the Right"
+			],
+			[
+				"origami",
+				"Origami: Destroy Pane Above"
+			],
+			[
+				"unz",
+				"Origami: Unzoom Current Pane"
+			],
+			[
+				"confl",
+				"FindKeyConflicts: All Conflicts"
+			],
+			[
+				"creatfil",
+				"Origami: Create Pane with File Below"
+			],
+			[
+				"orimo",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"moveab",
+				"Origami: Move File to Pane Above"
+			],
+			[
+				"clone",
+				"Origami: Clone File to Pane Below"
+			],
+			[
+				"repl py",
+				"SublimeREPL: Python - IPython"
+			],
+			[
+				"repl ip",
+				"SublimeREPL: Python - IPython"
+			],
+			[
+				"rep",
+				"SublimeREPL: Python"
+			],
+			[
+				"replpy",
+				"SublimeREPL: Python"
+			],
+			[
+				"ori cre",
+				"Origami: Create Pane Below"
+			],
+			[
+				"movepa",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"createb",
+				"Origami: Create Pane Below"
+			],
+			[
+				"oropbe",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"pai",
+				"Package Control: Install Package"
+			],
+			[
+				"mo",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"u",
+				"Origami: Unzoom Current Pane"
+			],
+			[
+				"focu",
+				"Origami: Focus on Pane Above"
+			],
+			[
+				"mov",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"or m",
+				"Origami: Move File to Pane Above"
+			],
+			[
+				"packi",
+				"Package Control: Install Package"
+			],
+			[
+				"sublimrep",
+				"SublimeREPL: Python - IPython"
+			],
+			[
+				"open ",
+				"Origami: Move File to Pane Below"
+			],
+			[
+				"sass",
+				"SassBeautify"
+			],
+			[
+				"fileb",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"package control",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack i",
+				"Package Control: Install Package"
+			],
+			[
+				"packagei",
+				"Package Control: Install Package"
+			],
+			[
+				"packai",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 338.0,
+		"history":
+		[
+			"sublime.log_commands(True)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/jon/Desktop/KMRI/vaccinations",
+		"/Users/jon/Desktop/KMRI/vaccinations/src",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/dev",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination/staged"
+	],
+	"file_history":
+	[
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/main.controller.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/app_constants.service.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination/unadministered/vaccination_unadministered.template.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination/staged/add_vaccination.controller.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/.tmp/serve/index.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination/staged/staged_header.template.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/angular/index.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/dev/mock_data.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/app_constants.spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/vaccinations_manager.service.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/vaccination.directive.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/vaccinations_manager.spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/dev/mock_backend.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/vaccinations.sublime-project",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/controllers/vaccinations.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/index.scss",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/app.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/dist/scripts/scripts.b0b2534f.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/angular/angular.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/vaccinations.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/index.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/constants.value.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/app/main/vaccination_popover.directive.js",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/Default (OSX).sublime-keymap",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/AngularJS/AngularJS-sublime-package.sublime-settings",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/mock_data/vaccinations.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/vaccination_staged_template.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/vaccination_unadministered.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/mock_data/vaccines.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/index.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/typeahead/vaccines_manager_service.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/typeahead/typeahead_controller.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/mock_backend.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/unit/vaccinations_manager_spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/typeahead/typeahead_template.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/typeahead/typeahead_directive.js",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/node_modules/colors/test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-protractor-runner/test/testConf.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-compass/node_modules/tmp/test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt/node_modules/colors/test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/scripts/testserver.sh",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/scripts/testonsauce.sh",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/scripts/test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt/node_modules/rimraf/test/test-sync.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/c1bf5b9fb19c60c82f10bc9684bf9d4846c9d5a3/_text-emphasis.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-karma/TODO.md",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/vaccination_administered.html",
+		"/Users/jon/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/directives.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/dist/mock_data/vaccinations.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/.tmp/styles/main.css",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/filters/hasTemplateIdFilter.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-uglify/node_modules/.bin/uglifyjs",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/graceful-fs/test/max-open.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/styles/main.scss",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma-jasmine/integration-tests.sh",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/mock_data/vaccinations_gen_text",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/inquirer/node_modules/rx/src/core/testing/mockdisposable.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/7d1d910ec285335997c9586ba0e4b0e5aa956d64/main.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/Gruntfile.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/karma.conf.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/karma-completion.sh",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/bin/karma",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/e2e/example_spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/.jshintrc",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/unit/about.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/unit/main.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma-phantomjs-launcher/node_modules/phantomjs/node_modules/npmconf/node_modules/uid-number/uid-number.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/docs/control-flow.md",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/bootstrap-sass-official/CONTRIBUTING.md",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-clean/docs/clean-options.md",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/es5-shim/CHANGES",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/node_modules/adm-zip/adm-zip.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-protractor-runner/node_modules/split/node_modules/through/test/auto-destroy.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/src/components/navbar/navbar.controller.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/lib/driverProviders/mock.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/node_modules/log4js/test/clusteredAppender-test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/vaccination.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/protractor.conf.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/e2e/sample_spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.underscore.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-watch/tasks/lib/livereload.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/inquirer/node_modules/rx/src/core/backpressure/controlled.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/protractor/node_modules/accessibility-developer-tools/test/audits/controls-without-label-test.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument_parser.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-clean/AUTHORS",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/angular-mocks/ngMock.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/controllers/main.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/test/spec/controllers/about.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-ngmin/test/src/controllers/one.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/controllers/main.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/.bowerrc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.editorconfig",
+		"/Users/jon/Desktop/KMRI/vaccinations/.gitattributes",
+		"/Users/jon/Desktop/KMRI/vaccinations/.gitignore",
+		"/Users/jon/Desktop/KMRI/vaccinations/.jshintrc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.travis.yml",
+		"/Users/jon/Desktop/KMRI/vaccinations/.yo-rc.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/package.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/README.md",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/61d9928b27f7b623333364dddbf6200ef2877632/_alerts.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/61d9928b27f7b623333364dddbf6200ef2877632/_badges.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/61d9928b27f7b623333364dddbf6200ef2877632/_breadcrumbs.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/61d9928b27f7b623333364dddbf6200ef2877632/_button-groups.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/61d9928b27f7b623333364dddbf6200ef2877632/_buttons.scssc",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/lib/core/resolvers/GitResolver.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/spec/example_spec.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/views/main.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/bower_components/angular-mocks/angular-mocks.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/node_modules/connect/node_modules/body-parser/node_modules/iconv-lite/encodings/dbcs-data.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/node_modules/useragent/test/mocha.opts",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/inquirer/node_modules/cli-color/node_modules/es5-ext/object/copy-deep.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-svgmin/node_modules/svgo/node_modules/sax/test/cdata.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/scripts/directives/vaccinations",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/mout/lang/isNull.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/app/views/vaccination.html",
+		"/Users/jon/Desktop/KMRI/vaccinations/mock_data/vaccinations_gen_text",
+		"/Users/jon/Desktop/KMRI/vaccinations/mock_data/vaccinations.json",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-google-cdn/node_modules/bower/node_modules/update-notifier/node_modules/latest-version/node_modules/package-json/node_modules/registry-url/node_modules/npmconf/node_modules/config-chain/test/chain-class.js",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/grunt-svgmin/node_modules/svgo/node_modules/coa/src/index.coffee",
+		"/Users/jon/Desktop/KMRI/vaccinations/node_modules/karma/node_modules/socket.io/node_modules/socket.io-client/lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/IConnectionState.as",
+		"/Users/jon/Desktop/KMRI/vaccinations/.sass-cache/c1bf5b9fb19c60c82f10bc9684bf9d4846c9d5a3/_nav-vertical-align.scssc",
+		"/Users/jon/Desktop/prj/socialdistribution/timeline/views.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 106.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"AddVaccinationController",
+			"ng-contro",
+			"stageNewVac",
+			"stageNewVaccination",
+			"dosel",
+			"dose",
+			"&&",
+			"form-warning",
+			"        <span ng-if=\"due\">\n            <span class=\"label label-danger\">Due</span>\n        </span>",
+			"meas",
+			"border",
+			"        vaccinationsManager.getVaccinations().success( function (data) {\n            vaccinations = data.vaccinations;\n            done();\n        });\n        httpBackend.flush();",
+			"patientId",
+			"header-info",
+			"header-ingo",
+			"16",
+			"240",
+			"26",
+			"230",
+			"200",
+			"56",
+			"$filter",
+			"show",
+			"vaccinationsApp",
+			"main",
+			"app/main/vaccin",
+			"vaccinationsApp",
+			"ng-app",
+			"angular",
+			"angularjs",
+			"ctrl+l",
+			"error",
+			"maincontr",
+			"newVaccine",
+			"UNADMINISTERED",
+			"aside",
+			"close",
+			"ng-click",
+			"orderByTemplate",
+			"vaccination",
+			"vaccin",
+			"typeahead",
+			"Rot",
+			"Polio",
+			"bootstrap",
+			"vaccination_adder",
+			"vaccination_add",
+			"indication",
+			"dose",
+			"Polio",
+			"tab",
+			"enter",
+			"console",
+			"getVaccinations",
+			"vaccinationsManager",
+			"setVaccinations",
+			"_vaccine_id",
+			"_template_id",
+			"angular",
+			"angularJS",
+			"angular",
+			"$scope",
+			"AdminVaccinationController",
+			"form",
+			"col-sm-offset-1 col-sm-10",
+			"col",
+			"col-sm-offset-1 col-sm-10",
+			"vacc",
+			"scheduled",
+			"sch",
+			"scheduled",
+			"polio",
+			"scheduled",
+			"sch",
+			"template",
+			"Polio",
+			"vaccination",
+			"vacc",
+			"enteredFormData",
+			"enteredFOrmData",
+			"ent",
+			"enteredFormData",
+			"vaccination",
+			"vacc",
+			"vaccination",
+			"ca",
+			"vaccination",
+			"vaccination.",
+			"Rotavi",
+			"2px",
+			"1px",
+			"label-",
+			"grey",
+			"Rota",
+			"Polio",
+			"Measles",
+			"Hep",
+			"2013",
+			"Polio",
+			"Rota",
+			"DPT",
+			"Rota",
+			"Rotavirus",
+			"Rotat",
+			"mo",
+			"fafafa",
+			"form-wrapper",
+			"text-align",
+			"Body",
+			"Units",
+			"grade",
+			"Grade",
+			"Route",
+			"Units",
+			"ng-show",
+			"form-group",
+			"col-sm-7",
+			"col-sm-4",
+			"form-group-sm",
+			"col-sm-9",
+			"col-sm-2",
+			"top",
+			"0",
+			"mockVaccinationsData",
+			"delete",
+			"mockBackend",
+			"console",
+			"VaccinationController"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/app/vaccination/administered/vaccination_administered.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7459,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4061,
+								4061
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 53
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4379,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1370,
+								1370
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 114
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/app/vaccination/staged/vaccination_staged.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2900,
+								2900
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/app/main/vaccination.directive.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								913,
+								913
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"visual_block_direction": 2,
+								"xpos": 20
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/app/vaccination/staged/stage_vaccination.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1941,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								555,
+								555
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"visual_block_direction": 2,
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "src/app/main/helper_common.service.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								530,
+								530
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 39
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/app/main/vaccinations_manager.spec.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3156,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"highlight_line": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/Jasmine JS/syntax/Jasmine.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"visual_block_direction": 2,
+								"xpos": 55
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/app/main/vaccines_manager.service.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 391,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								152
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 29
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/app/vaccination/unadministered/unadministered_vaccination.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								231,
+								231
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 55
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/app/vaccination/unadministered/vaccination_unadministered.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7009,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1918,
+								1918
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"highlight_line": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 12
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 250.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/app/main/vaccination.directive.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3238,
+								3238
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"visual_block_direction": 2,
+								"xpos": 8
+							}
+						},
+						"translation.x": 147.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/app/index.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1194,
+								1194
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 256.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/app/dev/mock_data.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8933,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7022,
+								7022
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 6
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 3450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "src/app/dev/mock_backend.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1052,
+								1052
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "src/app/main/main.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1985,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1279,
+								1279
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 23
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/app/vaccination/staged/vaccination_staged.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 12,
+					"file": "src/app/dev/mock_backend.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1312,
+								1312
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4379,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2353,
+								2353
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 114
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "src/app/vaccination/staged/add_vaccination.controller.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/app/vaccination/unadministered/unadministered_vaccination.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								976,
+								976
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 5
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/app/index.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5558,
+								5558
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/app/vaccination/staged/vaccination_staged.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								333,
+								333
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 26
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/app/vaccination/unadministered/vaccination_unadministered.template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7009,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2568,
+								2568
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"highlight_line": false,
+							"history_list_is_closing": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_non_interactive": false,
+								"_vintageous_processing_notation": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 63
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 481.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/app/vaccination/staged/stage_vaccination.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1941,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								901,
+								901
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Flatland_Monokai (SL).tmTheme",
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"visual_block_direction": 2,
+								"xpos": 0
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				1,
+				1,
+				3
+			],
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				1,
+				2,
+				2,
+				3
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.151363800578,
+			0.514450867052,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git-pull":
+	{
+		"height": 98.0
+	},
+	"pinned_build_system": "",
+	"project": "vaccinations.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"inde",
+				"src/index.html"
+			],
+			[
+				"main.con",
+				"src/app/main/main.controller.js"
+			],
+			[
+				"stagetem",
+				"src/app/vaccination/staged/vaccination_staged.template.html"
+			],
+			[
+				"addvacc",
+				"src/app/vaccination/staged/add_vaccination.controller.js"
+			],
+			[
+				"main",
+				"src/app/main/main.controller.js"
+			],
+			[
+				"index",
+				"src/index.html"
+			],
+			[
+				"mockbac",
+				"src/app/dev/mock_backend.js"
+			],
+			[
+				"directive",
+				"src/app/main/vaccination.directive.js"
+			],
+			[
+				"staged",
+				"src/app/vaccination/staged/stage_vaccination.controller.js"
+			],
+			[
+				"index.",
+				"src/index.html"
+			],
+			[
+				"mock",
+				"src/app/dev/mock_data.js"
+			],
+			[
+				"vaccinationstaged",
+				"src/app/vaccination/staged/stage_vaccination.controller.js"
+			],
+			[
+				"",
+				"src/app/vaccination/staged/vaccination_staged.template.html"
+			],
+			[
+				"inde.sc",
+				"src/app/index.scss"
+			],
+			[
+				"mockd",
+				"src/app/dev/mock_data.js"
+			],
+			[
+				"vaccinun",
+				"src/app/vaccination/unadministered/vaccination_unadministered.template.html"
+			],
+			[
+				"admin",
+				"src/app/vaccination/administered/vaccination_administered.template.html"
+			],
+			[
+				"stagedva",
+				"src/app/vaccination/staged/stage_vaccination.controller.js"
+			],
+			[
+				"stagedcon",
+				"src/app/vaccination/staged/add_vaccination.controller.js"
+			],
+			[
+				"vadi",
+				"src/app/main/vaccination.directive.js"
+			],
+			[
+				"vaccdir",
+				"src/app/main/vaccination.directive.js"
+			],
+			[
+				"index.sc",
+				"src/app/index.scss"
+			],
+			[
+				"vaccinationcont",
+				"src/app/vaccination/unadministered/unadministered_vaccination.controller.js"
+			],
+			[
+				"unadcon",
+				"src/app/vaccination/unadministered/unadministered_vaccination.controller.js"
+			],
+			[
+				"vaccineun",
+				"src/app/vaccination/unadministered/vaccination_unadministered.template.html"
+			],
+			[
+				"index.s",
+				"src/app/index.scss"
+			],
+			[
+				"vacc",
+				"src/app/main/vaccination.directive.js"
+			],
+			[
+				"maincon",
+				"src/app/main/main.controller.js"
+			],
+			[
+				"vaccinesser",
+				"src/app/main/vaccines_manager.service.js"
+			],
+			[
+				"mocda",
+				"src/app/dev/mock_data.js"
+			],
+			[
+				"mockback",
+				"src/app/dev/mock_backend.js"
+			],
+			[
+				"mockda",
+				"src/app/dev/mock_data.js"
+			],
+			[
+				"indexsc",
+				"src/app/index.scss"
+			],
+			[
+				"vaccdire",
+				"src/app/main/vaccination.directive.js"
+			],
+			[
+				"vacinman",
+				"src/app/main/vaccinations_manager.service.js"
+			],
+			[
+				"vaccinsta",
+				"src/app/vaccination/staged/vaccination_staged.template.html"
+			],
+			[
+				"vaccun",
+				"src/app/vaccination/unadministered/vaccination_unadministered.template.html"
+			],
+			[
+				"adminis",
+				"src/app/vaccination/administered/vaccination_administered.template.html"
+			],
+			[
+				"una",
+				"src/app/vaccination/unadministered/unadministered_vaccination.controller.js"
+			],
+			[
+				"vaccinatspec",
+				"src/app/main/vaccinations_manager.spec.js"
+			],
+			[
+				"manager",
+				"src/app/main/vaccinations_manager.spec.js"
+			],
+			[
+				"addva",
+				"src/app/vaccination/staged/add_vaccination.controller.js"
+			],
+			[
+				"app",
+				"app/scripts/app.js"
+			],
+			[
+				"main.sc",
+				"app/styles/main.scss"
+			],
+			[
+				"unad",
+				"app/scripts/directives/vaccination_unadministered.html"
+			],
+			[
+				"vaccines",
+				"app/mock_data/vaccines.json"
+			],
+			[
+				"vaccin",
+				"app/scripts/controllers/vaccinations.js"
+			],
+			[
+				"vaccina.js",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"controller",
+				"app/scripts/vaccination_adder/vaccination_adder_controller.js"
+			],
+			[
+				"ind",
+				"app/index.html"
+			],
+			[
+				"dire",
+				"app/scripts/vaccination_adder/vaccination_adder_directive.js"
+			],
+			[
+				"va.js",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"va",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"in",
+				"app/index.html"
+			],
+			[
+				"vaccinat",
+				"app/scripts/directives/vaccination_administered.html"
+			],
+			[
+				"app.",
+				"app/scripts/app.js"
+			],
+			[
+				"moc",
+				"app/scripts/mock_backend.js"
+			],
+			[
+				"mock_data",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"vac",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"vacad",
+				"app/scripts/directives/vaccination_administered.html"
+			],
+			[
+				"grun",
+				"Gruntfile.js"
+			],
+			[
+				"mains",
+				"app/styles/main.scss"
+			],
+			[
+				"mock_",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"karm",
+				"test/karma.conf.js"
+			],
+			[
+				"test/",
+				"test/spec/unit/about.js"
+			],
+			[
+				"main.",
+				"app/styles/main.scss"
+			],
+			[
+				"admi",
+				"app/scripts/directives/vaccination_administered.html"
+			],
+			[
+				"main.s",
+				"app/styles/main.scss"
+			],
+			[
+				"contrllers/",
+				"app/scripts/controllers/main.js"
+			],
+			[
+				"controller/",
+				"app/scripts/controllers/vaccinations.js"
+			],
+			[
+				"vaccinati",
+				"app/scripts/directives/vaccination_administered.html"
+			],
+			[
+				"mock_dat",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"mock_d",
+				"app/mock_data/vaccinations.json"
+			],
+			[
+				"tests",
+				"author/testsapi.py"
+			],
+			[
+				"test",
+				"author/testsauthentication.py"
+			],
+			[
+				"views",
+				"author/viewsauth.py"
+			],
+			[
+				"model",
+				"author/models.py"
+			],
+			[
+				"auth/vi",
+				"author/views.py"
+			],
+			[
+				"author/testapi",
+				"author/testsapi.py"
+			],
+			[
+				"testsap",
+				"author/testsapi.py"
+			],
+			[
+				"author/view",
+				"author/views.py"
+			],
+			[
+				"url",
+				"timeline/urls.py"
+			],
+			[
+				"urls",
+				"backend/urls.py"
+			],
+			[
+				"author/te",
+				"author/testsapi.py"
+			],
+			[
+				"authtestap",
+				"author/testsapi.py"
+			],
+			[
+				"timetest",
+				"timeline/tests.py"
+			],
+			[
+				"author/urls",
+				"author/urls.py"
+			],
+			[
+				"viewsau",
+				"author/viewsauth.py"
+			],
+			[
+				"timeline/view",
+				"timeline/views.py"
+			],
+			[
+				"author/tes",
+				"author/testsauthentication.py"
+			],
+			[
+				"models",
+				"author/models.py"
+			],
+			[
+				"timeline/per",
+				"timeline/permissions.py"
+			],
+			[
+				"permi",
+				"timeline/permissions.py"
+			],
+			[
+				"mod",
+				"author/models.py"
+			],
+			[
+				"sty",
+				"styles.css"
+			],
+			[
+				"soc",
+				"sockets.py"
+			],
+			[
+				"timeline/ser",
+				"timeline/serializers.py"
+			],
+			[
+				"timeline/views",
+				"timeline/views.py"
+			],
+			[
+				"timeline/sear",
+				"timeline/serializers.py"
+			],
+			[
+				"vi",
+				"tutorial/snippets/views.py"
+			],
+			[
+				"ser",
+				"tutorial/snippets/serializers.py"
+			],
+			[
+				"view",
+				"tutorial/snippets/views.py"
+			],
+			[
+				"sett",
+				"tutorial/tutorial/settings.py"
+			],
+			[
+				"gs",
+				"gs.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/KMRI/vaccinations/vaccinations.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 572.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+		"_vintageous_last_buffer_search": "that",
+		"_vintageous_last_buffer_search_command": "vi_star",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": ")",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/Users/jon/Desktop/KMRI/vaccinations/src/app/vaccination/staged"
+		}
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 265.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

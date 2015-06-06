@@ -74,3 +74,12 @@ nb-configuration.xml
 /webapp/src/main/webapp/WEB-INF/module_messages*
 /web/WEB-INF/dwr-modules.xml
 #############
+
+### Frontend dev tools ###
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+.DS_Store
+############
