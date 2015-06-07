@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="styles/vendor-60509a3f.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-60509a3f.css">
 
-    <link rel="stylesheet" href="styles/app-51c872b4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-51c872b4.css">
   </head>
   <body>
 
@@ -487,9 +487,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="scripts/vendor-34de396c.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
 
-    <script src="scripts/app-a599bf61.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-ac7f79c3.js"></script>
 
   </body>
 </html>

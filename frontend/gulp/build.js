@@ -32,8 +32,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     addRootSlash: false
   };
 
-  var jspUrlPrefix = '${pageContext.request.contextPath}/moduleResources/vaccinations/';
-  var htmlFilter = $.filter('*.html');
+  var htmlFilter = $.filter('**/*.html');
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
   var jspFilter = $.filter('**/*.jsp');
@@ -49,15 +48,15 @@ gulp.task('html', ['inject', 'partials'], function () {
     // Add hash to filenames
     .pipe($.rev())
 
-    // Filter on JS files.
     .pipe(jsFilter)
+    // Annotate angular components which aren't array prefixed.
     .pipe($.ngAnnotate())
     //.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
 
-    // Filter only CSS files.
     .pipe(cssFilter)
     .pipe($.replace('../bootstrap-sass-official/assets/fonts/bootstrap', 'fonts'))
+    // Optimize css
     .pipe($.csso())
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
@@ -66,10 +65,9 @@ gulp.task('html', ['inject', 'partials'], function () {
     // other than app/vender files
     .pipe($.useref())
 
-    // Rewrite references to app and vender files with appropriate hashs.
+    // Rewrite references to app and vender files with appropriate hash postfixes.
     .pipe($.revReplace())
 
-    // Filter on HTML file
     .pipe(htmlFilter)
     // .pipe($.minifyHtml({
       // empty: true,
@@ -83,26 +81,19 @@ gulp.task('html', ['inject', 'partials'], function () {
     // Inject Spring footers
     .pipe($.headerfooter.footer('\n\n'))
     .pipe($.headerfooter.footer('<%@ include file="/WEB-INF/template/footer.jsp"%>\n'))
-
-    // Rename index.html to manage.jsp.
-    // .pipe($.rename('manage.jsp'))
-
     // Restore all files in stream.
     .pipe(htmlFilter.restore())
 
     // Prefix scripts and style files with '/resources/'
     // so they are placed appropriately in the omod file strucure.
     .pipe($.rename(function (path) {
-      console.log(path);
+      // console.log(path);
       if (path.dirname === 'styles' || path.dirname === 'scripts') {
         path.dirname = '/resources/' + path.dirname;
       }
     }))
 
-    // Place html/jsp file into omod directory.
-    // .pipe(htmlFilter)
-    // .pipe($.prefix(jspUrlPrefix, null, '{{'))
-    // .pipe(htmlFilter.restore())
+    // Output files
     .pipe(gulp.dest(paths.omod + '/'))
 
     // Print files sizes to build window.
@@ -122,7 +113,20 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('clean', function (done) {
-  $.del([paths.omod + '/index.html', paths.omod + '/resources/', paths.tmp + '/'], {force: true}, done);
+  $.del([paths.omod + '/index.html', paths.omod + '/manage.jsp', paths.omod + '/resources/', paths.tmp + '/'], {force: true}, done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts']);
+gulp.task('build', ['html', 'images', 'fonts'], function () {
+  var jspUrlPrefix = '${pageContext.request.contextPath}/moduleResources/vaccinations/';
+
+  // After all build procedures are complete, prefix any href/src urls with the
+  // spring prefix.
+  gulp.src(paths.omod + '/index.html')
+    .pipe($.prefix(jspUrlPrefix, null, '{{'))
+    .pipe($.rename('manage.jsp'))
+    .pipe(gulp.dest(paths.omod + '/'));
+
+  return gulp.src(paths.omod + '/index.html')
+    .pipe($.rimraf({force: true}));
+
+});
