@@ -35,32 +35,78 @@ gulp.task('html', ['inject', 'partials'], function () {
   var htmlFilter = $.filter('*.html');
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
+  var jspFilter = $.filter('**/*.jsp');
   var assets;
 
   return gulp.src(paths.tmp + '/serve/*.html')
+    // HTML partials js injection.
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
+
+    // Collect html files into assets variable.
     .pipe(assets = $.useref.assets())
+    // Add hash to filenames
     .pipe($.rev())
+
+    // Filter on JS files.
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     //.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
+
+    // Filter only CSS files.
     .pipe(cssFilter)
     .pipe($.replace('../bootstrap-sass-official/assets/fonts/bootstrap', 'fonts'))
     .pipe($.csso())
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
+
+    // Remove references to all other scripts and stylesheets,
+    // other than app/vender files
     .pipe($.useref())
+
+    // Rewrite references to app and vender files with appropriate hashs.
     .pipe($.revReplace())
+
+    // Filter on HTML file
     .pipe(htmlFilter)
     // .pipe($.minifyHtml({
       // empty: true,
       // spare: true,
       // quotes: true
     // }))
+
+    // Inject Spring headers
+    .pipe($.headerfooter.header('<%@ include file="template/localHeader.jsp"%>\n\n'))
+    .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/header.jsp"%>\n'))
+    .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/include.jsp"%>\n'))
+
+    // Inject Spring footers
+    .pipe($.headerfooter.footer('\n\n'))
+    .pipe($.headerfooter.footer('<%@ include file="/WEB-INF/template/footer.jsp"%>\n'))
+
+    // Rename index.html to manage.jsp.
+    .pipe($.rename('manage.jsp'))
+
+    // Restore all files in stream.
     .pipe(htmlFilter.restore())
-    .pipe(gulp.dest(paths.dist + '/'))
-    .pipe($.size({ title: paths.dist + '/', showFiles: true }));
+
+    // Place JS files in omod/../resources/scripts dir.
+    .pipe(jsFilter)
+    .pipe(gulp.dest(paths.omod + '/resources' + '/'))
+    .pipe(jsFilter.restore())
+
+    // Place CSS files in omod/../resources/styles dir.
+    .pipe(cssFilter)
+    .pipe(gulp.dest(paths.omod + '/resources' + '/'))
+    .pipe(cssFilter.restore())
+
+    // Place html/jsp file into omod directory.
+    .pipe(jspFilter)
+    .pipe(gulp.dest(paths.omod + '/'))
+    .pipe(jspFilter.restore())
+
+    // Print files sizes to build window.
+    .pipe($.size({ title: paths.omod + '/', showFiles: true }));
 });
 
 gulp.task('images', function () {
@@ -75,13 +121,8 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest(paths.dist + '/fonts/'));
 });
 
-gulp.task('misc', function () {
-  return gulp.src(paths.src + '/**/*.ico')
-    .pipe(gulp.dest(paths.dist + '/'));
-});
-
 gulp.task('clean', function (done) {
   $.del([paths.dist + '/', paths.tmp + '/'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+gulp.task('build', ['html', 'images', 'fonts']);

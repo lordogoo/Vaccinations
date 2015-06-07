@@ -1,6 +1,5 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-
 <%@ include file="template/localHeader.jsp"%>
 
 <!doctype html>
@@ -488,22 +487,12 @@
 
     <!-- /TEMPLATES -->
 </div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
+    <script src="scripts/vendor-34de396c.js"></script>
 
+    <script src="scripts/app-a599bf61.js"></script>
 
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-fab2c5c6.js"></script>
-
-
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-60509a3f.css">
-
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-51c872b4.css">
-	<!--
-		<link rel="stylesheet" href="styles/vendor-60509a3f.css">
-		<link rel="stylesheet" href="styles/app-51c872b4.css">
- 	-->
-</body>
+  </body>
 </html>
+
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
