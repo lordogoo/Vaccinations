@@ -47,7 +47,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
 	}
 
-	@RequestMapping(value = "/vaccines/template", method = RequestMethod.GET)
+	@RequestMapping(value = "/vaccines/template", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleVaccination generateSimpleVaccinationTemplate(@RequestBody SimpleVaccine simpleVaccine) {
 		SimpleVaccination simpleVaccination = new SimpleVaccination();
