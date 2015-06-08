@@ -46,30 +46,32 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	}
 
 	public Vaccine (SimpleVaccine simpleVaccine){
+		//Since Vaccine should never be altered, we only do lookup by Uuid and then assign all the data to the new Vaccine
 		if (!(null == simpleVaccine)) {
-			this.id = simpleVaccine.getId();
-			this.name = simpleVaccine.getName();
-			this.indication_name = simpleVaccine.getIndication_name();
-			this.dose = simpleVaccine.getDose();
-			this.dose_number = simpleVaccine.getDose_number();
-			this.dosing_unit = simpleVaccine.getDosing_unit();
-			this.route = simpleVaccine.getRoute();
-			this.scheduled = simpleVaccine.getScheduled();
-			this.numeric_indication = simpleVaccine.getNumeric_indication();
-
-			//Database look up
-			Vaccine oldVersion = Context.getService(VaccinesService.class).getVaccineByUuid(simpleVaccine.getUuid()); //lookup by UUID
-			//
-			if (oldVersion == null) {
-				this.creator = Context.getAuthenticatedUser();
-				this.dateCreated = new Date();
-
-			}else{
+			if (this.getUuid() != null) {
+				//Database look up
+				Vaccine oldVersion = Context.getService(VaccinesService.class).getVaccineByUuid(simpleVaccine.getUuid()); //lookup by UUID
+				//
+				this.id = oldVersion.getId();
+				this.name = oldVersion.getName();
+				this.indication_name = oldVersion.getIndication_name();
+				this.dose = oldVersion.getDose();
+				this.dose_number = oldVersion.getDose_number();
+				this.dosing_unit = oldVersion.getDosing_unit();
+				this.route = oldVersion.getRoute();
+				this.scheduled = oldVersion.getScheduled();
+				this.numeric_indication = oldVersion.getNumeric_indication();
 				this.setCreator(oldVersion.getCreator());
 				this.setDateCreated(oldVersion.dateCreated);
-				this.changedBy = Context.getAuthenticatedUser();
-				this.dateChanged = new Date();
+				this.changedBy = oldVersion.getChangedBy();
+				this.dateChanged = oldVersion.getDateChanged();
+				this.retired = oldVersion.getRetired();
+				this.dateRetired = oldVersion.getDateRetired();
+				this.retiredBy = oldVersion.getRetiredBy();
+				this.retireReason = oldVersion.getRetireReason();
 				this.setUuid(oldVersion.getUuid());
+			}else{
+				//Do nothing, vaccination is lost
 			}
 		}
 	}
