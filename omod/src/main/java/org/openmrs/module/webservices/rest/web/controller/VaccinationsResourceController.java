@@ -47,6 +47,14 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
 	}
 
+	@RequestMapping(value = "/vaccines/template", method = RequestMethod.GET)
+	@ResponseBody
+	public SimpleVaccination generateSimpleVaccinationTemplate(@RequestBody SimpleVaccine simpleVaccine) {
+		SimpleVaccination simpleVaccination = new SimpleVaccination();
+		simpleVaccination.setSimpleVaccine(simpleVaccine);
+		return simpleVaccination;
+	}
+
 	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
@@ -55,17 +63,25 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleVaccination saveVaccination(@RequestBody SimpleVaccination simpleVaccination, @PathVariable int patientId) {
-		simpleVaccination.setPatient_id(patientId);
-		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+	public SimpleVaccination saveVaccination(@RequestBody SimpleVaccination simpleVaccination, @PathVariable int patientId) throws Exception {
+		try {
+			simpleVaccination.setPatient_id(patientId);
+			return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+		}catch (Exception ex){
+			throw ex;
+		}
 	}
 
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateVaccination(
-			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) {
-		simpleVaccination.setPatient_id(patientId);
-		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) throws Exception {
+		try {
+			simpleVaccination.setPatient_id(patientId);
+			return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+		}catch (Exception ex){
+			throw ex;
+		}
 	}
 
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.DELETE)

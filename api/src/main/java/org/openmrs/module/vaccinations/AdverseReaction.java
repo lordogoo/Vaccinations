@@ -55,21 +55,21 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
             this.adverse_event = simpleAdverseReaction.getAdverse_event();
             this.grade = simpleAdverseReaction.getGrade();
             this.vaccination_id = simpleAdverseReaction.getVaccination_id();
-        }
 
-        //Database look up
-        AdverseReaction oldVersion = Context.getService(AdverseReactionsService.class).getAdverseReactionByUuid(simpleAdverseReaction.getUuid()); //lookup by UUID
-        //
-        if (oldVersion == null) {
-            this.creator = Context.getAuthenticatedUser();
-            this.dateCreated = new Date();
+            //Database look up
+            AdverseReaction oldVersion = Context.getService(AdverseReactionsService.class).getAdverseReactionByUuid(simpleAdverseReaction.getUuid()); //lookup by UUID
+            //
+            if (oldVersion == null) {
+                this.creator = Context.getAuthenticatedUser();
+                this.dateCreated = new Date();
 
-        }else{
-            this.setCreator(oldVersion.getCreator());
-            this.setDateCreated(oldVersion.dateCreated);
-            this.changedBy = Context.getAuthenticatedUser();
-            this.dateChanged = new Date();
-            this.setUuid(oldVersion.getUuid());
+            }else{
+                this.setCreator(oldVersion.getCreator());
+                this.setDateCreated(oldVersion.dateCreated);
+                this.changedBy = Context.getAuthenticatedUser();
+                this.dateChanged = new Date();
+                this.setUuid(oldVersion.getUuid());
+            }
         }
     }
 

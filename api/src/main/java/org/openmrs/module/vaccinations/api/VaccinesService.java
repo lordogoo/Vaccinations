@@ -38,7 +38,7 @@ public interface VaccinesService extends OpenmrsService {
 
 	public List<SimpleVaccine> simplifyVaccines(List<Vaccine> vaccines) throws APIException;
 
-	public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws APIException;
+	public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws Exception;
 
 	@Transactional(readOnly =  true)
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )

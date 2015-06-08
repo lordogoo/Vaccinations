@@ -100,10 +100,14 @@ public class VaccinesServiceImpl extends BaseOpenmrsService implements VaccinesS
     }
 
     @Override
-    public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws APIException{
+    public List<Vaccine> complicateSimpleVaccines(List<SimpleVaccine> simpleVaccines) throws Exception {
         ArrayList<Vaccine> vaccines = new ArrayList<Vaccine>();
         for(SimpleVaccine simpleVaccine : simpleVaccines){
-            vaccines.add(new Vaccine(simpleVaccine));
+            try {
+                vaccines.add(new Vaccine(simpleVaccine));
+            }catch (Exception ex){
+                throw ex;
+            }
         }
         return vaccines;
     }
