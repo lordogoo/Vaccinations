@@ -23,8 +23,9 @@ angular.module('vaccinations')
         // When saving an administered vaccination ensure no scheduled
         // date is saved.
         var enteredAdminFormDataCopy = angular.copy(enteredAdminFormData);
-        delete enteredAdminFormDataCopy.scheduled_date;
-        enteredAdminFormDataCopy.name = $filter('uppercase')(enteredAdminFormDataCopy.name);
+        enteredAdminFormDataCopy.scheduled_date = null;
+        // This field is the vaccine_id and needs to be removed on posts to create new vaccinations.
+        enteredAdminFormDataCopy.id = null;
         vaccinationsManager.submitVaccination(enteredAdminFormDataCopy);
     };
 
@@ -32,10 +33,10 @@ angular.module('vaccinations')
         // When scheduling remove date properties that are setup for
         // administration.
         var enteredAdminFormDataCopy = angular.copy(enteredAdminFormData);
-        delete enteredAdminFormDataCopy.administration_date;
-        delete enteredAdminFormDataCopy.manufacture_date;
-        delete enteredAdminFormDataCopy.expiry_date;
-        enteredAdminFormDataCopy.name = $filter('uppercase')(enteredAdminFormDataCopy.name);
+        enteredAdminFormDataCopy.administration_date = null;
+        enteredAdminFormDataCopy.manufacture_date = null;
+        enteredAdminFormDataCopy.expiry_date = null;
+        enteredAdminFormDataCopy.id = null;
         vaccinationsManager.submitVaccination(enteredAdminFormDataCopy);
     };
 

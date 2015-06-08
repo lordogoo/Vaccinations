@@ -9,6 +9,7 @@ angular.module('vaccinations')
         '/vaccines/unscheduled')
 
     .success( function(data) {
+        debugger;
         self.vaccines = data;
     });
 

@@ -52,12 +52,10 @@ angular.module('vaccinations')
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
             // modifications.
+            debugger;
             var vaccination = angular.copy(vaccination);
-            try {
-                delete vaccination.reaction_details;
-            } catch(err) {
-                console.log(err);
-            }
+            delete vaccination.reaction_details;
+
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
             if (vaccination.id !== null) {
@@ -82,10 +80,17 @@ angular.module('vaccinations')
                 });
             } else {
                 // Vaccination does not exist on server. Post to server.
-                // Removed internal staged field before sending.
-                delete vaccination.staged;
+                // Removed internal fields before sending.
+                delete vaccination._staged;
+                delete vaccination.numeric_indication;
                 // Set administered flag.
-                vaccination.administered = true;
+                if (vaccination._administering) {
+                    vaccination.administered = true;
+                } else if (vaccination._scheduling) {
+                    vaccination.administered = false;
+                }
+                delete vaccination._administering;
+                delete vaccination._scheduling;
 
                 $http.post(
                     appConstants.URL +
@@ -108,7 +113,8 @@ angular.module('vaccinations')
                         var idx = helperFunctions.findObjectIndexByEquality(vaccsOrigCopy, self.vaccinations);
                         self.vaccinations.splice(idx, 1);
                     }
-                    that.addVaccination(data); })
+                    that.addVaccination(data);
+                })
                 .error( function (data) {
                     $rootScope.$broadcast('failure');
                     alert("The vaccination was not saved. Please try again.");
@@ -152,9 +158,8 @@ angular.module('vaccinations')
             if (vaccination.adverse_reaction) {
                 $http.put(
                     appConstants.URL +
-                    appConstants.PATH +
                     '/openmrs/ws/rest/v2/vaccinationsmodule/' +
-                    '/adverseReactions/' +
+                    'adversereactions/' +
                     reaction.id +
                     'patient/' +
                     appConstants.getPatientId(window.location.href) + '/' +
@@ -174,9 +179,8 @@ angular.module('vaccinations')
             } else {
                 $http.post(
                     appConstants.URL +
-                    appConstants.PATH +
                     '/openmrs/ws/rest/v2/vaccinationsmodule/' +
-                    '/adverseReactions/' +
+                    'adversereactions/' +
                     'patient/' +
                     appConstants.getPatientId(window.location.href) + '/' +
                     'vaccinations/' + vaccination.id,

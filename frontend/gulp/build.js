@@ -41,7 +41,6 @@ gulp.task('html', ['inject', 'partials'], function () {
   return gulp.src(paths.tmp + '/serve/*.html')
     // HTML partials js injection.
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-
     // Collect html files into assets variable.
     .pipe(assets = $.useref.assets())
 

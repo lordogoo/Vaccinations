@@ -9,13 +9,13 @@
 	<name>Vaccinations Module</name>
 	<description>Used to manage patient vaccinations information.</description>
 	<url>https://wiki.openmrs.org/display/docs/Vaccinations+Module+Module+Module</url>
-	
+
 	<developers>
 		<developer>
 			<name>Serghei Luchianov, Jon Cairo</name>
 		</developer>
 	</developers>
-	
+
 	<organization>
 		<name>OpenMRS</name>
 		<url>http://openmrs.org</url>
@@ -31,7 +31,7 @@
 		<module>api</module>
 		<module>omod</module>
 	</modules>
-	
+
 	<properties>
 		<openMRSVersion>1.8.2</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,7 +39,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<!--
 			Libraries to add as dependencies with compile or runtime scope:
 			Find matching dependencies in the maven central repository.
@@ -53,20 +53,20 @@
 
 
 			<!-- Begin OpenMRS modules -->
-			
-						
+
+
 			<dependency>
 					<groupId>org.openmrs.module</groupId>
 					<artifactId>webservices.rest-omod</artifactId>
 					<version>2.4</version>
 					<scope>provided</scope>
 			</dependency>
-						
+
 			<!-- End OpenMRS modules -->
-			
+
 
 			<!-- Begin OpenMRS core -->
-			
+
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
@@ -82,7 +82,7 @@
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
-						
+
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
@@ -90,7 +90,7 @@
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
@@ -98,7 +98,7 @@
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.test</groupId>
 				<artifactId>openmrs-test</artifactId>
@@ -106,7 +106,7 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
-						
+
 			<!-- End OpenMRS core -->
 
 			<!-- Jackson JSON Mapper -->
@@ -147,6 +147,59 @@
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.4</version>
 				</plugin>
+	            <plugin>
+	                <groupId>com.github.eirslett</groupId>
+	                <artifactId>frontend-maven-plugin</artifactId>
+	                <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
+	                <version>@project.version@</version>
+
+	                <executions>
+
+	                    <execution>
+	                        <id>install node and npm</id>
+	                        <goals>
+	                            <goal>install-node-and-npm</goal>
+	                        </goals>
+	                        <configuration>
+	                            <nodeVersion>v0.12.2</nodeVersion>
+	                            <npmVersion>2.7.6</npmVersion>
+						        <workingDirectory>frontend/</workingDirectory>
+	                        </configuration>
+	                    </execution>
+
+	                    <execution>
+	                        <id>npm install</id>
+	                        <goals>
+	                            <goal>npm</goal>
+	                        </goals>
+	                        <!-- Optional configuration which provides for running any npm command -->
+	                        <configuration>
+	                            <arguments>install</arguments>
+	                        </configuration>
+	                    </execution>
+
+	                    <execution>
+	                        <id>bower install</id>
+	                        <goals>
+	                            <goal>bower</goal>
+	                        </goals>
+	                        <configuration>
+	                            <arguments>install</arguments>
+	                        </configuration>
+	                    </execution>
+
+	                    <execution>
+	                        <id>gulp build</id>
+	                        <goals>
+	                            <goal>gulp</goal>
+	                        </goals>
+	                        <configuration>
+	                            <arguments>build</arguments>
+	                        </configuration>
+	                    </execution>
+
+	                </executions>
+	            </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
