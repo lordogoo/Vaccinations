@@ -250,9 +250,9 @@
 
                     <div class="form-group">
                         <label>Adverse Event Description</label>
-                        <textarea name="adverse_event_description" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event_description" placeholder="Description" required></textarea>
+                        <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required></textarea>
                     </div>
-                    <feedback warn="form.adverse_event_description.$error.required" warning="Enter a valid adverse event description."></feedback>
+                    <feedback warn="form.adverse_event.$error.required" warning="Enter a valid adverse event description."></feedback>
 
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->

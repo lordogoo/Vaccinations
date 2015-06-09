@@ -60,6 +60,11 @@ angular.module('vaccinations')
             // or adding new vaccination.
             if (vaccination.id !== null) {
                 // Vaccination exists, modify on server.
+                if (vaccination.administration_date !== null) {
+                    vaccination.administered = true;
+                } else if (vaccination.administration_date === null) {
+                    vaccination.administered = false;
+                }
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
