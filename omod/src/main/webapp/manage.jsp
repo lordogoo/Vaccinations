@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-60509a3f.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-51c872b4.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3c43a124.css">
   </head>
   <body>
 
@@ -245,9 +245,9 @@
 
                     <div class="form-group">
                         <label>Adverse Event Description</label>
-                        <textarea name="adverse_event_description" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event_description" placeholder="Description" required></textarea>
+                        <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required></textarea>
                     </div>
-                    <feedback warn="form.adverse_event_description.$error.required" warning="Enter a valid adverse event description."></feedback>
+                    <feedback warn="form.adverse_event.$error.required" warning="Enter a valid adverse event description."></feedback>
 
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
@@ -489,7 +489,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-ac7f79c3.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bb472b5e.js"></script>
 
   </body>
 </html>

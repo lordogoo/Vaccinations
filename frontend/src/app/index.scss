@@ -317,6 +317,12 @@ button {
     max-height: 0px;
 }
 
+// Defensive openmrs styles.
+input[type="text"], input[type="password"] {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+}
+
 @import 'sass_partials/loader';
 
 // injector
