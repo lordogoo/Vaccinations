@@ -22,7 +22,7 @@ import java.util.Date;
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
-public class SimpleAdverseReaction extends BaseOpenmrsObject implements Serializable {
+public class SimpleAdverseReaction implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
@@ -44,6 +44,7 @@ public class SimpleAdverseReaction extends BaseOpenmrsObject implements Serializ
             this.adverse_event = adverseReaction.getAdverse_event();
             this.grade = adverseReaction.getGrade();
             this.vaccination_id = adverseReaction.getVaccination_id();
+            this.setUuid(adverseReaction.getUuid());
         }
     }
 
@@ -52,6 +53,15 @@ public class SimpleAdverseReaction extends BaseOpenmrsObject implements Serializ
     private String adverse_event;
     private String grade;
     private Integer vaccination_id;
+    private String uuid;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Date getDate() {
         return date;
@@ -77,12 +87,10 @@ public class SimpleAdverseReaction extends BaseOpenmrsObject implements Serializ
         this.grade = grade;
     }
 
-	@Override
 	public Integer getId() {
 		return id;
 	}
-	
-	@Override
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
-public class SimpleVaccination extends BaseOpenmrsObject implements Serializable {
+public class SimpleVaccination implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
@@ -75,6 +75,7 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 			this.patient_id = vaccination.getPatient_id();
+			this.uuid = vaccination.getUuid();
 		}
 	}
 
@@ -109,6 +110,7 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 	private boolean adverse_reaction_observed;
 
 	private int patient_id;
+	private String uuid;
 
 	public SimpleAdverseReaction getSimpleAdverse_reaction() {
 		return simpleAdverse_reaction;
@@ -116,6 +118,14 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 
 	public void setSimpleAdverse_reaction(SimpleAdverseReaction simpleAdverse_reaction) {
 		this.simpleAdverse_reaction = simpleAdverse_reaction;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getPatient_id() {
@@ -254,13 +264,10 @@ public class SimpleVaccination extends BaseOpenmrsObject implements Serializable
 		this.adverse_reaction_observed = adverse_reaction_observed;
 	}
 
-	
-	@Override
 	public Integer getId() {
 		return id;
 	}
-	
-	@Override
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

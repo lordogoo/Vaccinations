@@ -53,22 +53,22 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 				Vaccine oldVersion = Context.getService(VaccinesService.class).getVaccineByUuid(simpleVaccine.getUuid()); //lookup by UUID
 				//
 				this.id = oldVersion.getId();
-				this.name = oldVersion.getName();
+				/*this.name = oldVersion.getName();
 				this.indication_name = oldVersion.getIndication_name();
 				this.dose = oldVersion.getDose();
 				this.dose_number = oldVersion.getDose_number();
 				this.dosing_unit = oldVersion.getDosing_unit();
 				this.route = oldVersion.getRoute();
 				this.scheduled = oldVersion.getScheduled();
-				this.numeric_indication = oldVersion.getNumeric_indication();
+				this.numeric_indication = oldVersion.getNumeric_indication();*/
 				this.setCreator(oldVersion.getCreator());
 				this.setDateCreated(oldVersion.dateCreated);
-				this.changedBy = oldVersion.getChangedBy();
+				/*this.changedBy = oldVersion.getChangedBy();
 				this.dateChanged = oldVersion.getDateChanged();
 				this.retired = oldVersion.getRetired();
 				this.dateRetired = oldVersion.getDateRetired();
 				this.retiredBy = oldVersion.getRetiredBy();
-				this.retireReason = oldVersion.getRetireReason();
+				this.retireReason = oldVersion.getRetireReason();*/
 				this.setUuid(oldVersion.getUuid());
 			}else{
 				//Do nothing, vaccination is lost

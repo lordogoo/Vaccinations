@@ -13,18 +13,24 @@
  */
 package org.openmrs.module.vaccinations;
 
+//For debugging purposes
+/*import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;*/
+
+
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.User;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * It is a model class. It should extend {@link BaseOpenmrsObject}.
+ * It is a model class. It should extend {@link BaseOpenmrsObject}. But it doesn't because BaseOpenmrsObject's behaviour is erratic.
  */
-public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
+public class SimpleVaccine implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
+
+	//For debugging purposes
+	//protected final Log log = LogFactory.getLog(this.getClass());
 
 	public SimpleVaccine() {
 	}
@@ -42,7 +48,7 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 	}
 
 	public SimpleVaccine(Vaccine vaccine){
-		if (!(null == vaccine)) {
+		if (vaccine != null) {
 			this.id = vaccine.getId();
 			this.name = vaccine.getName();
 			this.indication_name = vaccine.getIndication_name();
@@ -52,7 +58,13 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 			this.route = vaccine.getRoute();
 			this.scheduled = vaccine.getScheduled();
 			this.numeric_indication = vaccine.getNumeric_indication();
+			this.uuid = vaccine.getUuid();
+			/*log.warn("OLD UUID: " + vaccine.getUuid());
+			log.warn("NEW UUID: " + this.getUuid());*/
+		}else{
+
 		}
+
 	}
 
 	private Integer id;
@@ -64,6 +76,15 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 	private String route;
 	private boolean scheduled;
 	private Integer numeric_indication;
+	private String uuid;
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 
 	public Integer getNumeric_indication() {
 		return numeric_indication;
@@ -129,12 +150,12 @@ public class SimpleVaccine extends BaseOpenmrsObject implements Serializable {
 		this.route = route;
 	}
 	
-	@Override
+
 	public Integer getId() {
 		return id;
 	}
 	
-	@Override
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -19,6 +19,7 @@ import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.webservices.rest.web.RestConstants;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,10 +33,19 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+//For debugging
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 @Controller
 @RequestMapping("/rest/" + RestConstants.VERSION_2 + "/vaccinationsmodule")
 public class VaccinationsResourceController {// extends MainResourceController {
+
+    //private AdverseReactionsService adverseReactionsService = Context.getService(AdverseReactionsService.class);
+    //private VaccinationsService vaccinationsService = Context.getService(VaccinationsService.class);
+    //private VaccinesService vaccinesService = Context.getService(VaccinesService.class);
+    protected final Log log = LogFactory.getLog(this.getClass());
 	/*@Override
 	public String getNamespace() {
 		return  RestConstants.VERSION_2 + "/vaccinations/";
@@ -66,7 +76,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	public SimpleVaccination saveVaccination(@RequestBody SimpleVaccination simpleVaccination, @PathVariable int patientId) throws Exception {
 		try {
 			simpleVaccination.setPatient_id(patientId);
-			return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+            return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
 		}catch (Exception ex){
 			throw ex;
 		}
@@ -76,9 +86,18 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@ResponseBody
 	public SimpleVaccination updateVaccination(
 			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) throws Exception {
-		try {
+		try
+		{
 			simpleVaccination.setPatient_id(patientId);
-			return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+
+			//If an object already exists in the session, save using that object
+			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
+			if (oldVaccination != null) {
+				oldVaccination = new Vaccination(simpleVaccination);
+				return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(oldVaccination));
+            } else {
+                return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+			}
 		}catch (Exception ex){
 			throw ex;
 		}
@@ -87,8 +106,8 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId) {
-		VaccinationsService vaccinationsService = Context.getService(VaccinationsService.class);
-		Vaccination vaccination1 = vaccinationsService.getVaccinationByVaccinationId(vaccinationId);
+
+		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
 		vaccination1.setRetired(true);
 		vaccination1.setRetiredBy(Context.getAuthenticatedUser());
 		vaccination1.setDateRetired(new Date());
@@ -98,7 +117,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		//check if vaccination is based on a scheduled vaccine
 		if (vaccination1.getScheduled()){
 			//returns a new vaccination template
-			simpleVaccination2 = new SimpleVaccination(vaccinationsService.vaccineToVaccination(vaccination1.getVaccine(), vaccinationsService.calculateScheduledDate(patientId,vaccination1.getVaccine())));
+			simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).vaccineToVaccination(vaccination1.getVaccine(), Context.getService(VaccinationsService.class).calculateScheduledDate(patientId,vaccination1.getVaccine())));
 			//simpleVaccination2.setId(vaccinationId); //id has to be null since
 			//simpleVaccination2.setPatient_id(patientId);
 			//return simpleVaccination2;
@@ -115,14 +134,14 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		simpleAdverseReaction.setVaccination_id(vaccinationId);
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
 		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
-	}
+    }
 
-	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateAdverseReaction(
 			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId) {
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
-		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
+        return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
 	}
 
 	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
@@ -142,7 +161,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		//set vaccination's adverse reaction to the adjusted adverse reaction.
 		vaccination1.setAdverse_reaction(adverseReaction);
 		//save or update vaccination
-		Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
+        Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
 		return HttpStatus.OK;
 	}
 }

@@ -22,13 +22,17 @@ import org.openmrs.module.vaccinations.api.VaccinationsService;
 
 import java.util.Date;
 
+//For debugging
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
 public class Vaccination extends BaseOpenmrsObject implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
-
+	protected final Log log = LogFactory.getLog(this.getClass());
 
 	public Vaccination() {
 	}
@@ -50,8 +54,10 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		this.patient_id = patient_id;
 	}
 
+    //Converts new SimpleVaccination into a new Vaccination
+    //UUID is automatically generated
 	public Vaccination(SimpleVaccination simpleVaccination){
-		if (!(null == simpleVaccination)) {
+		if (simpleVaccination != null) {
 			this.id = simpleVaccination.getId();
 			this.scheduled_date = simpleVaccination.getScheduled_date();
 			this.name = simpleVaccination.getName();
@@ -73,23 +79,19 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 			this.expiry_date = simpleVaccination.getExpiry_date();
 			this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
 			this.patient_id = simpleVaccination.getPatient_id();
-		}
 
-		//Database look up
-		Vaccination oldVersion = Context.getService(VaccinationsService.class).getVaccinationByUuid(simpleVaccination.getUuid()); //lookup by UUID
-		//
-		if (oldVersion == null) {
-			this.creator = Context.getAuthenticatedUser();
-			this.dateCreated = new Date();
-
-		}else{
-			this.setCreator(oldVersion.getCreator());
-			this.setDateCreated(oldVersion.dateCreated);
-			this.changedBy = Context.getAuthenticatedUser();
-			this.dateChanged = new Date();
-			this.setUuid(oldVersion.getUuid());
+            this.setUuid(simpleVaccination.getUuid());
+            this.creator = Context.getAuthenticatedUser();
+            this.dateCreated = new Date();
 		}
 	}
+
+    public Vaccination (SimpleVaccination simpleVaccination, Integer id)
+    {
+        if (id != null && simpleVaccination != null){
+
+        }
+    }
 
 	private Integer id;
     private Date scheduled_date;
