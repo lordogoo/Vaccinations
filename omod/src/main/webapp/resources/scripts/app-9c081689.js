@@ -164,8 +164,8 @@ angular.module('vaccinations')
         $scope.enteredEditFormData = vaccination;
 
         if (vaccination.adverse_reaction_observed) {
-            $scope.enteredAdverseFormData = vaccination.reaction_details;
-            $scope.enteredAdverseFormData.date = new Date(vaccination.reaction_details.date);
+            $scope.enteredAdverseFormData = vaccination.simpleAdverse_reaction;
+            $scope.enteredAdverseFormData.date = new Date(vaccination.simpleAdverse_reaction.date);
         } else {
             $scope.enteredAdverseFormData.date = new Date();
         }
@@ -429,6 +429,7 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
+                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id);
                     that.addVaccination(data);
@@ -469,7 +470,7 @@ angular.module('vaccinations')
                     appConstants.PATH +
                     '/adverseReactions/' +
                     reaction.id +
-                    'patient/' +
+                    '/patient/' +
                     appConstants.getPatientId(window.location.href))
 
             .success( function (data) {

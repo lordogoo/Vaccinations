@@ -9,12 +9,13 @@
     <title>vaccinations</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+
+    <!-- Link to icon fonts -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/assets/fonts/fontello-97618726/css/trash.css">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-afb7feeb.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-da422e0a.css">
   </head>
   <body>
 
@@ -118,7 +119,7 @@
         <div ng-controller="AdminVaccinationController" class="vaccination administered">
 
             <!-- ADMINISTERED HEADER -->
-            <div class="header administered-header" ng-class="{'adverse-header': enteredEditFormData.adverse_reaction_observed, 'last-of-kind': lastOfKind}">
+            <div class="header administered-header" ng-class="{'adverse-header': enteredEditFormData.adverse_reaction_observed}">
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
@@ -487,9 +488,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1c5740e.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-9c081689.js"></script>
 
   </body>
 </html>

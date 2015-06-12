@@ -225,7 +225,7 @@ angular.module('vaccinations')
                     appConstants.PATH +
                     '/adverseReactions/' +
                     reaction.id +
-                    'patient/' +
+                    '/patient/' +
                     appConstants.getPatientId(window.location.href))
 
             .success( function (data) {

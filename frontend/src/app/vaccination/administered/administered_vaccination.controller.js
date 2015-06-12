@@ -32,8 +32,8 @@ angular.module('vaccinations')
         $scope.enteredEditFormData = vaccination;
 
         if (vaccination.adverse_reaction_observed) {
-            $scope.enteredAdverseFormData = vaccination.reaction_details;
-            $scope.enteredAdverseFormData.date = new Date(vaccination.reaction_details.date);
+            $scope.enteredAdverseFormData = vaccination.simpleAdverse_reaction;
+            $scope.enteredAdverseFormData.date = new Date(vaccination.simpleAdverse_reaction.date);
         } else {
             $scope.enteredAdverseFormData.date = new Date();
         }

@@ -328,8 +328,12 @@ div#appcontainer.appcontainer {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-div {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+// div {
+    // font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+// }
+
+.vaccination * {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
 // Fontello font sizes controls size of vaccine checkboxes
