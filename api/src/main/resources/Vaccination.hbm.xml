@@ -15,6 +15,7 @@
 		<property name="dosing_unit" type="java.lang.String" column="dosing_unit" length="255" />
 		<property name="route" type="java.lang.String" column="route" length="255" />
 		<property name="scheduled" type="boolean" column="scheduled" length="1" not-null="true"/>
+        <property name="scheduled_date" type="java.util.Date" column="scheduled_date" length="19" />
 
 
         <property name="administered" type="boolean" column="administered" length="1" not-null="true"/>
