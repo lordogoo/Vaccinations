@@ -47,7 +47,7 @@ angular.module('vaccinations')
         // the function with a new vaccination, not when the vaccination
         // exists on the server and needs to be modified.
 
-        submitVaccination: function(vaccination, vaccsOrigCopy) {
+        submitVaccination: function(vaccination) {
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -76,7 +76,7 @@ angular.module('vaccinations')
                 .success( function (data) {
                     // Remove the old version and add the new version
                     $rootScope.$broadcast('success');
-                    that.removeVaccination(vaccination.id);
+                    that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data); })
 
                 .error( function (data) {
@@ -86,7 +86,17 @@ angular.module('vaccinations')
             } else {
                 // Vaccination does not exist on server. Post to server.
                 // Removed internal fields before sending.
-                delete vaccination._staged;
+                if (vaccination._staged) {
+                    // Since we can't send the internal staged field to the server
+                    // remove it and set a local staged flag.
+                    delete vaccination._staged;
+                    var stagedVaccination = true;
+                }
+
+                if (typeof vaccination.custom !== undefined && vaccination.custom) {
+                    delete vaccination.custom;
+                }
+
                 delete vaccination.numeric_indication;
                 // Set administered flag.
                 if (vaccination._administering) {
@@ -94,6 +104,7 @@ angular.module('vaccinations')
                 } else if (vaccination._scheduling) {
                     vaccination.administered = false;
                 }
+
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
@@ -108,15 +119,16 @@ angular.module('vaccinations')
                     // This catches new, unscheduled vaccinations
                     // that have not been saved to the patients records.
                     $rootScope.$broadcast('success');
-                    if (vaccination._staged) {
+                    if (typeof stagedVaccination !== undefined && stagedVaccination === true) {
+                        $rootScope.$broadcast('success');
                         that.removeStagedVaccination();
                     // This catches scheduled vaccinations that
                     // have yet to be saved to the patients records.
                     // Since scheduled unadministered vaccs have no id
                     // remove old version using object equality.
                     } else {
-                        var idx = helperFunctions.findObjectIndexByEquality(vaccsOrigCopy, self.vaccinations);
-                        self.vaccinations.splice(idx, 1);
+                        $rootScope.$broadcast('success');
+                        that.removeVaccination(vaccination.uuid, 'uuid');
                     }
                     that.addVaccination(data);
                 })
@@ -172,6 +184,7 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
+                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id);
                     that.addVaccination(data);
@@ -193,7 +206,7 @@ angular.module('vaccinations')
 
                 .success( function (data) {
                     $rootScope.$broadcast('success');
-                    that.removeVaccination(vaccination.id);
+                    that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
                 })
 

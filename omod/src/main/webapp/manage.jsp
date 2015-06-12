@@ -9,21 +9,21 @@
     <title>vaccinations</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/assets/fonts/fontello-97618726/css/trash.css">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-60509a3f.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3c43a124.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-afb7feeb.css">
   </head>
   <body>
 
-<div id="appcontainer" ng-app="vaccinations">
+<div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
     <div class="container" ng-controller="MainController">
 
         <loader></loader>
-
         <!-- ADD SECTION -->
         <div class="add-vaccination-wrapper">
 
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div ng-if="state.success" class="success-check">
-                <i class="fa fa-check fa-5x"></i>
+                <i class="demo-icon icon-ok-circled2 big-check"></i>
             </div>
         </div>
     </script>
@@ -120,9 +120,9 @@
             <!-- ADMINISTERED HEADER -->
             <div class="header administered-header" ng-class="{'adverse-header': enteredEditFormData.adverse_reaction_observed, 'last-of-kind': lastOfKind}">
 
-                <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="fa fa-check-circle-o fa-lg admin-check"></i>
+                <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
-                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="fa fa-check-circle-o fa-lg admin-check-reaction"></i>
+                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
 
                 <span ng-if="enteredEditFormData.adverse_reaction_observed" class="label label-danger adverse-label">Adverse Reaction</span>
 
@@ -274,7 +274,7 @@
             <!-- UNADMINISTERED HEADER -->
             <div class="header unadministered-header" >
 
-                <i class="fa fa-circle-o fa-lg unadmin-x"></i>
+                <i class="demo-icon icon-circle-empty unadmin-x"></i>
 
                 <span ng-if="due" class="label label-danger due-label">Due</span>
 
@@ -489,7 +489,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bb472b5e.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1c5740e.js"></script>
 
   </body>
 </html>

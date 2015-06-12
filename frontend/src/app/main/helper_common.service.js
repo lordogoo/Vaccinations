@@ -24,10 +24,10 @@ angular.module('vaccinations')
             return formattedVaccineName;
         },
 
-        // Find the index of an object with a given id.
+        // Find the index of an object with a given property value.
         findObjectIndexByAttribute: function(attribute, attributeValue, array){
             for (var i = 0; i < array.length; i++) {
-                if (array[i][attribute] === attributeValue){
+                if (array[i][attributeValue] === attribute){
                     return i;
                 }
             }

@@ -21,6 +21,53 @@
 }]);
 'use strict';
 
+// Manages a vaccination instance on each vaccination
+// directive.
+angular.module('vaccinations')
+.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
+    function($scope, vaccinationsManager){
+
+    // Form states and methods.
+    $scope.state = {};
+    $scope.state.administerFormOpen = false;
+
+    $scope.resetFormDataToDefaults = function(){
+
+        var vaccination = angular.copy($scope.getVaccination());
+        vaccination.administration_date = new Date();
+        vaccination.manufacture_date = new Date();
+        vaccination.expiry_date = new Date();
+        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
+        $scope.enteredAdminFormData = vaccination;
+        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
+            $scope.due = true;
+        }
+    };
+
+    $scope.toggleAdministerForm = function(){
+        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
+    };
+
+    // Called when vaccination data from form has been validated
+    // and ready to create a new vaccination event.
+    $scope.submitVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+    // Only available if the vaccination is of type unscheduled.
+    $scope.deleteVaccination = function(vaccination) {
+        vaccinationsManager.deleteVaccination(vaccination);
+    };
+
+    // Form data inits.
+    $scope.resetFormDataToDefaults();
+}]);
+
+'use strict';
+
 angular.module('vaccinations')
 .controller('StagedVaccinationController', ['$scope', '$filter', 'vaccinationsManager',
     function ($scope, $filter, vaccinationsManager) {
@@ -32,12 +79,15 @@ angular.module('vaccinations')
     };
 
     $scope.resetFormDataToDefaults = function () {
-         var vaccination = angular.copy($scope.getVaccination());
-         vaccination.administration_date = new Date();
-         vaccination.manufacture_date = new Date();
-         vaccination.expiry_date = new Date();
-         vaccination.scheduled_date = new Date();
-         $scope.enteredAdminFormData = vaccination;
+        var vaccination = angular.copy($scope.getVaccination());
+        if (vaccination.custom) {
+            vaccination.name = '';
+        }
+        vaccination.administration_date = new Date();
+        vaccination.manufacture_date = new Date();
+        vaccination.expiry_date = new Date();
+        vaccination.scheduled_date = new Date();
+        $scope.enteredAdminFormData = vaccination;
     };
 
     // Transform a vaccine object into a vaccination object that
@@ -77,51 +127,6 @@ angular.module('vaccinations')
         vaccinationsManager.submitVaccination(vaccination);
     };
 
-    $scope.resetFormDataToDefaults();
-}]);
-
-'use strict';
-
-// Manages a vaccination instance on each vaccination
-// directive.
-angular.module('vaccinations')
-.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
-    function($scope, vaccinationsManager){
-
-    // Form states and methods.
-    $scope.state = {};
-    $scope.state.administerFormOpen = false;
-
-    $scope.resetFormDataToDefaults = function(){
-
-        var vaccination = angular.copy($scope.getVaccination());
-        vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
-        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
-        $scope.enteredAdminFormData = vaccination;
-        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
-            $scope.due = true;
-        }
-    };
-
-    $scope.toggleAdministerForm = function(){
-        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
-    };
-
-    // Called when vaccination data from form has been validated
-    // and ready to create a new vaccination event.
-    $scope.submitVaccination = function(vaccination) {
-        var vaccsOrigCopy = angular.copy($scope.getVaccination());
-        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
-    };
-
-    // Only available if the vaccination is of type unscheduled.
-    $scope.deleteVaccination = function(vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
-    };
-
-    // Form data inits.
     $scope.resetFormDataToDefaults();
 }]);
 
@@ -215,6 +220,17 @@ angular.module('vaccinations')
         '/vaccines/unscheduled')
 
     .success( function(data) {
+        // Add flag to denote this is a custom vaccine.
+        // It is required because an extra field is available as 'vaccine name'
+        // when entering a custom vaccine.
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].name === 'Custom') {
+                data[i].name = 'Custom vaccine::';
+                data[i].custom = true;
+                console.log(data[i]);
+                break;
+            }
+        }
         self.vaccines = data;
     });
 
@@ -276,7 +292,7 @@ angular.module('vaccinations')
         // the function with a new vaccination, not when the vaccination
         // exists on the server and needs to be modified.
 
-        submitVaccination: function(vaccination, vaccsOrigCopy) {
+        submitVaccination: function(vaccination) {
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -305,7 +321,7 @@ angular.module('vaccinations')
                 .success( function (data) {
                     // Remove the old version and add the new version
                     $rootScope.$broadcast('success');
-                    that.removeVaccination(vaccination.id);
+                    that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data); })
 
                 .error( function (data) {
@@ -315,7 +331,17 @@ angular.module('vaccinations')
             } else {
                 // Vaccination does not exist on server. Post to server.
                 // Removed internal fields before sending.
-                delete vaccination._staged;
+                if (vaccination._staged) {
+                    // Since we can't send the internal staged field to the server
+                    // remove it and set a local staged flag.
+                    delete vaccination._staged;
+                    var stagedVaccination = true;
+                }
+
+                if (typeof vaccination.custom !== undefined && vaccination.custom) {
+                    delete vaccination.custom;
+                }
+
                 delete vaccination.numeric_indication;
                 // Set administered flag.
                 if (vaccination._administering) {
@@ -323,6 +349,7 @@ angular.module('vaccinations')
                 } else if (vaccination._scheduling) {
                     vaccination.administered = false;
                 }
+
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
@@ -337,15 +364,16 @@ angular.module('vaccinations')
                     // This catches new, unscheduled vaccinations
                     // that have not been saved to the patients records.
                     $rootScope.$broadcast('success');
-                    if (vaccination._staged) {
+                    if (typeof stagedVaccination !== undefined && stagedVaccination === true) {
+                        $rootScope.$broadcast('success');
                         that.removeStagedVaccination();
                     // This catches scheduled vaccinations that
                     // have yet to be saved to the patients records.
                     // Since scheduled unadministered vaccs have no id
                     // remove old version using object equality.
                     } else {
-                        var idx = helperFunctions.findObjectIndexByEquality(vaccsOrigCopy, self.vaccinations);
-                        self.vaccinations.splice(idx, 1);
+                        $rootScope.$broadcast('success');
+                        that.removeVaccination(vaccination.uuid, 'uuid');
                     }
                     that.addVaccination(data);
                 })
@@ -422,7 +450,7 @@ angular.module('vaccinations')
 
                 .success( function (data) {
                     $rootScope.$broadcast('success');
-                    that.removeVaccination(vaccination.id);
+                    that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
                 })
 
@@ -608,10 +636,10 @@ angular.module('vaccinations')
             return formattedVaccineName;
         },
 
-        // Find the index of an object with a given id.
+        // Find the index of an object with a given property value.
         findObjectIndexByAttribute: function(attribute, attributeValue, array){
             for (var i = 0; i < array.length; i++) {
-                if (array[i][attribute] === attributeValue){
+                if (array[i][attributeValue] === attribute){
                     return i;
                 }
             }
