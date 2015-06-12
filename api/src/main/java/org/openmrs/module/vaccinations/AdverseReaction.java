@@ -32,24 +32,8 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
     public AdverseReaction() {
     }
 
-    public AdverseReaction(Integer id, Date date, String adverse_event, String grade, Integer vaccination_id, User creator, Date dateCreated, User changedBy, Date dateChanged, Boolean retired, Date dateRetired, User retiredBy, String retireReason) {
-        this.id = id;
-        this.date = date;
-        this.adverse_event = adverse_event;
-        this.grade = grade;
-        this.vaccination_id = vaccination_id;
-        this.creator = creator;
-        this.dateCreated = dateCreated;
-        this.changedBy = changedBy;
-        this.dateChanged = dateChanged;
-        this.retired = retired;
-        this.dateRetired = dateRetired;
-        this.retiredBy = retiredBy;
-        this.retireReason = retireReason;
-    }
-
     public AdverseReaction(SimpleAdverseReaction simpleAdverseReaction){
-        if (!(null == simpleAdverseReaction)) {
+        if (simpleAdverseReaction != null) {
             this.id = simpleAdverseReaction.getId();
             this.date = simpleAdverseReaction.getDate();
             this.adverse_event = simpleAdverseReaction.getAdverse_event();
@@ -60,6 +44,7 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
             AdverseReaction oldVersion = Context.getService(AdverseReactionsService.class).getAdverseReactionByUuid(simpleAdverseReaction.getUuid()); //lookup by UUID
             //
             if (oldVersion == null) {
+                this.retired = false;
                 this.creator = Context.getAuthenticatedUser();
                 this.dateCreated = new Date();
 
@@ -148,7 +133,7 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
     private Date dateCreated;
     private User changedBy;
     private Date dateChanged;
-    private Boolean retired;
+    private boolean retired;
     private Date dateRetired;
     private User retiredBy;
     private String retireReason;

@@ -35,18 +35,6 @@ public class SimpleVaccine implements Serializable {
 	public SimpleVaccine() {
 	}
 
-	public SimpleVaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled, Integer numeric_indication) {
-		this.id = id;
-		this.name = name;
-		this.indication_name = indication_name;
-		this.dose = dose;
-		this.dose_number = dose_number;
-		this.dosing_unit = dosing_unit;
-		this.route = route;
-		this.scheduled = scheduled;
-		this.numeric_indication = numeric_indication;
-	}
-
 	public SimpleVaccine(Vaccine vaccine){
 		if (vaccine != null) {
 			this.id = vaccine.getId();

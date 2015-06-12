@@ -30,29 +30,6 @@ public class SimpleVaccination implements Serializable {
     public SimpleVaccination() {
     }
 
-	public SimpleVaccination(Integer id, Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, SimpleVaccine simpleVaccine, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, String lot_number, String manufacturer, Date manufacture_date, Date expiry_date, boolean adverse_reaction_observed, int patient_id, SimpleAdverseReaction adverseReaction) {
-		this.id = id;
-		this.scheduled_date = scheduled_date;
-		this.name = name;
-		this.indication_name = indication_name;
-		this.dose = dose;
-		this.dosing_unit = dosing_unit;
-		this.route = route;
-		this.scheduled = scheduled;
-		this.simpleVaccine = simpleVaccine;
-		this.administered = administered;
-		this.administration_date = administration_date;
-		this.body_site_administered = body_site_administered;
-		this.dose_number = dose_number;
-		this.lot_number = lot_number;
-		this.manufacturer = manufacturer;
-		this.manufacture_date = manufacture_date;
-		this.expiry_date = expiry_date;
-		this.adverse_reaction_observed = adverse_reaction_observed;
-		this.patient_id = patient_id;
-		this.simpleAdverse_reaction = adverseReaction;
-	}
-
 	public SimpleVaccination(Vaccination vaccination){
 		if (!(null == vaccination)) {
 			this.id = vaccination.getId();

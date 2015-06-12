@@ -16,8 +16,10 @@ package org.openmrs.module.vaccinations.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.api.db.DAOException;
 import org.openmrs.module.vaccinations.Vaccination;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
 
@@ -59,9 +61,12 @@ public class HibernateVaccinationsDAO implements VaccinationsDAO {
 	}
 
 	@Override
-	public Vaccination saveOrUpdateVaccination(Vaccination vaccination) {
-		sessionFactory.getCurrentSession().saveOrUpdate(vaccination);
-		return vaccination;
+	public Vaccination saveOrUpdateVaccination(Vaccination vaccination) throws DAOException {
+        Vaccination vaccination1 = (Vaccination)sessionFactory.getCurrentSession().merge(vaccination);
+        sessionFactory.getCurrentSession().saveOrUpdate(vaccination1);
+        sessionFactory.getCurrentSession().flush();
+        //log.warn("MERGED VACCINATION RETURNING: " + vaccination1.toString());
+		return vaccination1;
 	}
 
 	@Override

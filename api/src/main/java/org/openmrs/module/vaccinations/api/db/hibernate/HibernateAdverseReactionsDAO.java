@@ -47,8 +47,10 @@ public class HibernateAdverseReactionsDAO implements AdverseReactionsDAO {
 
 	@Override
 	public AdverseReaction saveOrUpdateAdverseReaction(AdverseReaction adverseReaction) {
-		sessionFactory.getCurrentSession().saveOrUpdate(adverseReaction);
-		return adverseReaction;
+        AdverseReaction adverseReaction1 = (AdverseReaction)sessionFactory.getCurrentSession().merge(adverseReaction);
+		sessionFactory.getCurrentSession().saveOrUpdate(adverseReaction1);
+        sessionFactory.getCurrentSession().flush();
+		return adverseReaction1;
 	}
 
 	@Override

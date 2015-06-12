@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.vaccinations.api.impl;
 
+import org.hibernate.SessionFactory;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
@@ -26,6 +27,7 @@ import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinationsDAO;
 
+
 import java.util.*;
 
 /**
@@ -34,7 +36,7 @@ import java.util.*;
 public class VaccinationsServiceImpl extends BaseOpenmrsService implements VaccinationsService {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+	private SessionFactory sessionFactory;
 	private VaccinationsDAO dao;
 	
 	/**

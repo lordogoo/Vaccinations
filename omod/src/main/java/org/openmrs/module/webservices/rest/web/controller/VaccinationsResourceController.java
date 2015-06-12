@@ -13,6 +13,15 @@
  */
 package org.openmrs.module.webservices.rest.web.controller;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Interceptor;
+import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
+import org.hibernate.classic.Session;
+import org.hibernate.engine.FilterDefinition;
+import org.hibernate.metadata.ClassMetadata;
+import org.hibernate.metadata.CollectionMetadata;
+import org.hibernate.stat.Statistics;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
@@ -28,10 +37,12 @@ import org.springframework.ui.ModelMap;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.MainResourceController; //To potentially remove
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.NamingException;
+import javax.naming.Reference;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
+import java.sql.Connection;
+import java.util.*;
 
 //For debugging
 import org.apache.commons.logging.Log;
@@ -46,6 +57,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
     //private VaccinationsService vaccinationsService = Context.getService(VaccinationsService.class);
     //private VaccinesService vaccinesService = Context.getService(VaccinesService.class);
     protected final Log log = LogFactory.getLog(this.getClass());
+    private SessionFactory sessionFactory;
 	/*@Override
 	public String getNamespace() {
 		return  RestConstants.VERSION_2 + "/vaccinations/";
@@ -68,7 +80,9 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
-		return Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+        List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+        //Context.clearSession();
+		return simpleVaccinations;
 	}
 
 	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.POST)
@@ -92,7 +106,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 			//If an object already exists in the session, save using that object
 			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
-			if (oldVaccination != null) {
+            if (oldVaccination != null) {
 				oldVaccination = new Vaccination(simpleVaccination);
 				return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(oldVaccination));
             } else {
@@ -132,8 +146,12 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	public SimpleVaccination saveAdverseReaction(
 			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int patientId, @PathVariable int vaccinationId) {
 		simpleAdverseReaction.setVaccination_id(vaccinationId);
-		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
-		return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
+        AdverseReaction adverseReaction = Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction));
+
+        Vaccination vaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
+        vaccination.setAdverse_reaction(adverseReaction);
+        vaccination.setAdverse_reaction_observed(true);
+		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination));
     }
 
     @RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
@@ -160,6 +178,8 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		adverseReaction.setRetireReason("Deleted");
 		//set vaccination's adverse reaction to the adjusted adverse reaction.
 		vaccination1.setAdverse_reaction(adverseReaction);
+
+        vaccination1.setAdverse_reaction_observed(false);
 		//save or update vaccination
         Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
 		return HttpStatus.OK;

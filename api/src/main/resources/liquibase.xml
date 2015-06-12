@@ -2110,5 +2110,4 @@
 			<column name="patient_id" type="int"/>
 		</addColumn>
 	</changeSet>
-
 </databaseChangeLog>

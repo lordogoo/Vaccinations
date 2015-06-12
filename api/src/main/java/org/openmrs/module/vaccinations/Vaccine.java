@@ -33,22 +33,11 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	public Vaccine() {
 	}
 
-	public Vaccine(Integer id, String name, String indication_name, Double dose, Integer dose_number, String dosing_unit, String route, boolean scheduled, Integer numeric_indication) {
-		this.id = id;
-		this.name = name;
-		this.indication_name = indication_name;
-		this.dose = dose;
-		this.dose_number = dose_number;
-		this.dosing_unit = dosing_unit;
-		this.route = route;
-		this.scheduled = scheduled;
-		this.numeric_indication = numeric_indication;
-	}
 
 	public Vaccine (SimpleVaccine simpleVaccine){
 		//Since Vaccine should never be altered, we only do lookup by Uuid and then assign all the data to the new Vaccine
-		if (!(null == simpleVaccine)) {
-			if (this.getUuid() != null) {
+		if (simpleVaccine != null) {
+			if (simpleVaccine.getUuid() != null) {
 				//Database look up
 				Vaccine oldVersion = Context.getService(VaccinesService.class).getVaccineByUuid(simpleVaccine.getUuid()); //lookup by UUID
 				//

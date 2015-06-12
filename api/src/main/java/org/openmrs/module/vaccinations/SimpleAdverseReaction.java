@@ -29,16 +29,8 @@ public class SimpleAdverseReaction implements Serializable {
     public SimpleAdverseReaction() {
     }
 
-    public SimpleAdverseReaction(Integer id, Date date, String adverse_event, String grade, Integer vaccination_id) {
-        this.id = id;
-        this.date = date;
-        this.adverse_event = adverse_event;
-        this.grade = grade;
-        this.vaccination_id = vaccination_id;
-    }
-
     public SimpleAdverseReaction(AdverseReaction adverseReaction){
-        if (!(null == adverseReaction)) {
+        if (adverseReaction != null) {
             this.id = adverseReaction.getId();
             this.date = adverseReaction.getDate();
             this.adverse_event = adverseReaction.getAdverse_event();

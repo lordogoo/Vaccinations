@@ -13,7 +13,7 @@
  */
 package org.openmrs.module.vaccinations.api.db.hibernate;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;

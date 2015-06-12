@@ -1,0 +1,143 @@
+/**
+ * The contents of this file are subject to the OpenMRS Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ * http://license.openmrs.org
+ *
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations
+ * under the License.
+ *
+ * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+ */
+package org.openmrs.module.vaccinations.api;
+
+import static org.junit.Assert.*;
+
+
+import org.hibernate.SessionFactory;
+import org.junit.Before;
+import org.junit.Test;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.vaccinations.*;
+import org.openmrs.test.BaseModuleContextSensitiveTest;
+
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Tests {@link {VaccinationsService}}.
+ */
+public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
+
+    private VaccinationsService vaccinationsService;
+    private SessionFactory sessionFactory;
+
+    @Before
+    public void before() throws Exception {
+        initializeInMemoryDatabase();
+        executeDataSet("src/test/resources/VaccinationsTestData.xml");
+        vaccinationsService = Context.getService(VaccinationsService.class);
+    }
+
+    @Test
+    public void shouldSetupContext() throws Exception{
+        assertNotNull(vaccinationsService);
+    }
+
+    @Test
+    public void shouldReturnVaccinationByUuid(){
+        logger.debug("Looking for Vaccination by Uuid");
+        Vaccination vaccination = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c28c22");
+        assertNotNull(vaccination);
+        assertEquals(new Integer(1), vaccination.getId());
+    }
+
+    //This test will not fail if more than one unscheduled vaccination is added to the test data file
+    @Test
+    public void shouldReturnListPatientVaccinations(){
+        logger.debug("Looking for Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        Vaccination vaccination = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
+        assertNotNull(vaccination);
+        assertEquals(new Integer(2), vaccination.getId());
+
+        List<Vaccination> vaccinationList = vaccinationsService.listVaccinationsByPatientId(3);
+        assertTrue(vaccinationList.contains(vaccination));
+    }
+
+    //This test will not fail if more than one unscheduled vaccination is added to the test data file
+    @Test
+    public void shouldReturnListOfSimplePatientVaccinations(){
+        logger.debug("Looking for Simple Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        SimpleVaccination simpleVaccination = new SimpleVaccination(vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11"));
+        assertNotNull(simpleVaccination);
+        assertEquals(new Integer(2), simpleVaccination.getId());
+
+        List<SimpleVaccination> vaccinationList = vaccinationsService.listSimpleVaccinationsByPatientId(3);
+        assertTrue(vaccinationList.size() > 0);
+    }
+
+    //This test will not fail if more than one unscheduled vaccination is added to the test data file
+    @Test
+    public void shouldSaveOrUpdatePatientVaccination(){
+        logger.warn("Updating Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        SimpleVaccination simpleVaccination = new SimpleVaccination(vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11"));
+        assertNotNull(simpleVaccination);
+        assertEquals(new Integer(2), simpleVaccination.getId());
+
+        simpleVaccination.setDose(500.00);
+
+        Vaccination vaccination = new Vaccination(simpleVaccination);
+        assertEquals(new String("6304a894-7806-44ad-97c6-0d1e04c18c11"), vaccination.getUuid());
+        assertEquals(new Integer(2), vaccination.getId());
+
+
+        vaccinationsService.saveOrUpdateVaccination(vaccination);
+
+        Vaccination vaccination1 = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
+        assertEquals(new Double(500.00), vaccination1.getDose());
+        //assertEquals(new Integer(2), vaccination.getId());
+    }
+
+    //This test will not fail if more than one unscheduled vaccination is added to the test data file
+    @Test
+    public void shouldSavePatientVaccination(){
+        logger.warn("Saving Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, new Date());
+
+        //TODO: Ensure that adverse reaction is automatically assigned on constructor call
+        vaccination.setPatient_id(3);
+        vaccination.setDose(500.00);
+        vaccination.setAdministered(true);
+        vaccination.setScheduled(false);
+        vaccination.setAdministration_date(new Date());
+        vaccination.setBody_site_administered("Nah");
+        vaccination.setAdverse_reaction_observed(false);
+        vaccination.setDosing_unit("bla");
+        vaccination.setExpiry_date(new Date());
+        vaccination.setLot_number("meh");
+        vaccination.setManufacture_date(new Date());
+        vaccination.setManufacturer("Vaccines Inc");
+        vaccination.setDose_number(1);
+        vaccination.setCreator(vaccine.getCreator());
+        vaccination.setDateCreated(new Date());
+
+        Vaccination vaccination1 = vaccinationsService.saveOrUpdateVaccination(vaccination);
+
+        Vaccination vaccination2 = vaccinationsService.getVaccinationByUuid(vaccination1.getUuid());
+        assertEquals(new Double(500.00), vaccination2.getDose());
+        //assertEquals(new Integer(2), vaccination.getId());
+    }
+}

@@ -35,23 +35,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	protected final Log log = LogFactory.getLog(this.getClass());
 
 	public Vaccination() {
-	}
 
-	public Vaccination(Date scheduled_date, String name, String indication_name, Double dose, String dosing_unit, String route, boolean scheduled, Vaccine vaccine, boolean administered, Date administration_date, String body_site_administered, Integer dose_number, boolean adverse_reaction_observed, int patient_id) {
-		this.scheduled_date = scheduled_date;
-		this.name = name;
-		this.indication_name = indication_name;
-		this.dose = dose;
-		this.dosing_unit = dosing_unit;
-		this.route = route;
-		this.scheduled = scheduled;
-		this.vaccine = vaccine;
-		this.administered = administered;
-		this.administration_date = administration_date;
-		this.body_site_administered = body_site_administered;
-		this.dose_number = dose_number;
-		this.adverse_reaction_observed = adverse_reaction_observed;
-		this.patient_id = patient_id;
 	}
 
     //Converts new SimpleVaccination into a new Vaccination
@@ -68,7 +52,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 			this.scheduled = simpleVaccination.getScheduled();
 			this.scheduled_date = simpleVaccination.getScheduled_date();
 			this.vaccine = new Vaccine(simpleVaccination.getSimpleVaccine());
-			this.adverse_reaction = new AdverseReaction(simpleVaccination.getSimpleAdverse_reaction());
+            if (simpleVaccination.getAdverse_reaction_observed())
+                this.adverse_reaction = new AdverseReaction(simpleVaccination.getSimpleAdverse_reaction());
 			this.administered = simpleVaccination.getAdministered();
 			this.administration_date = simpleVaccination.getAdministration_date();
 			this.body_site_administered = simpleVaccination.getBody_site_administered();
@@ -86,12 +71,57 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 		}
 	}
 
+    public void setVaccination(Vaccination vaccination){
+        if (vaccination != null) {
+            this.id = vaccination.getId();
+            this.scheduled_date = vaccination.getScheduled_date();
+            this.name = vaccination.getName();
+            this.indication_name = vaccination.getIndication_name();
+            this.dose = vaccination.getDose();
+            this.dosing_unit = vaccination.getDosing_unit();
+            this.route = vaccination.getRoute();
+            this.scheduled = vaccination.getScheduled();
+            this.scheduled_date = vaccination.getScheduled_date();
+            this.vaccine = vaccination.getVaccine();
+            if (vaccination.getAdverse_reaction_observed())
+                this.adverse_reaction = vaccination.getAdverse_reaction();
+            this.administered = vaccination.getAdministered();
+            this.administration_date = vaccination.getAdministration_date();
+            this.body_site_administered = vaccination.getBody_site_administered();
+            this.dose_number = vaccination.getDose_number();
+            this.lot_number = vaccination.getLot_number();
+            this.manufacturer = vaccination.getManufacturer();
+            this.manufacture_date = vaccination.getManufacture_date();
+            this.expiry_date = vaccination.getExpiry_date();
+            this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+            this.patient_id = vaccination.getPatient_id();
+
+            this.setUuid(vaccination.getUuid());
+            this.creator = vaccination.getCreator();
+            this.dateCreated = vaccination.getDateCreated();
+        }
+    }
+
     public Vaccination (SimpleVaccination simpleVaccination, Integer id)
     {
         if (id != null && simpleVaccination != null){
 
         }
     }
+
+    /*public String toString()
+    {
+        String complete = new String();
+        complete += "ID: " + id.toString() + "\n";
+        complete += "name: " + name.toString() + "\n";
+        complete += "indication_name: " + indication_name.toString() + "\n";
+        complete += "dose: " + dose.toString() + "\n";
+        complete += "dosing_unit: " + dosing_unit.toString() + "\n";
+        complete += "route: " + route.toString() + "\n";
+        complete += "scheduled: " + scheduled + "\n";
+
+        return complete;
+    }*/
 
 	private Integer id;
     private Date scheduled_date;
@@ -222,7 +252,6 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	public void setAdverse_reaction(AdverseReaction adverse_reaction) {
 		this.adverse_reaction = adverse_reaction;
 	}
-
 
 	public Date getScheduled_date() {
 		return scheduled_date;

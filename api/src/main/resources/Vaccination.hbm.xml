@@ -30,7 +30,7 @@
         <!--    Linking back to the original vaccine
                 Linking to the adverse reaction        -->
 		<many-to-one name="Vaccine" class="Vaccine" column="vaccine_id" />
-		<many-to-one name="Adverse_reaction" class="AdverseReaction" column="adverse_reaction_id" />
+		<many-to-one name="Adverse_reaction" class="AdverseReaction" not-found="ignore" column="adverse_reaction_id" />
 
 		<property name="patient_id" type="int" column="patient_id"/>
 			
