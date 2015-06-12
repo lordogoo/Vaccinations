@@ -11,12 +11,15 @@ angular.module('vaccinations')
     };
 
     $scope.resetFormDataToDefaults = function () {
-         var vaccination = angular.copy($scope.getVaccination());
-         vaccination.administration_date = new Date();
-         vaccination.manufacture_date = new Date();
-         vaccination.expiry_date = new Date();
-         vaccination.scheduled_date = new Date();
-         $scope.enteredAdminFormData = vaccination;
+        var vaccination = angular.copy($scope.getVaccination());
+        if (vaccination.custom) {
+            vaccination.name = '';
+        }
+        vaccination.administration_date = new Date();
+        vaccination.manufacture_date = new Date();
+        vaccination.expiry_date = new Date();
+        vaccination.scheduled_date = new Date();
+        $scope.enteredAdminFormData = vaccination;
     };
 
     // Transform a vaccine object into a vaccination object that

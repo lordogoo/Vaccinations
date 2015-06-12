@@ -328,10 +328,15 @@ div#appcontainer.appcontainer {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+div {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 // Fontello font sizes controls size of vaccine checkboxes
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */
-.icon-ok-circled2:before{ font-size: 50px; }
+.icon-ok-circled2:before.big-check{ font-size: 50px; }
+
 @import 'sass_partials/loader';
 
 // injector

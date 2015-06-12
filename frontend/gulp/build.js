@@ -107,8 +107,17 @@ gulp.task('images', function () {
 gulp.task('fonts', function () {
   return gulp.src($.mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+    // Prefix scripts and style files with '/resources/'
+    // so they are placed appropriately in the omod file strucure.
+    // .pipe($.rename(function (path) {
+    //     path.dirname = '/fonts/';
+    // }))
+    // .pipe($.rename(function (path) {
+    //     console.log(path);
+    //     // path.dirname = '/fonts/';
+    // }))
     .pipe($.flatten())
-    .pipe(gulp.dest(paths.dist + '/fonts/'));
+    .pipe(gulp.dest(paths.omod + '/resources/fonts/'));
 });
 
 gulp.task('clean', function (done) {

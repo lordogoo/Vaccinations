@@ -31,6 +31,8 @@ angular.module('vaccinations')
     // and ready to create a new vaccination event.
     $scope.submitVaccination = function(vaccination) {
         var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = true;
         vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
     };
 

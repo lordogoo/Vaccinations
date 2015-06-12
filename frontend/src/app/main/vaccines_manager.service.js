@@ -9,6 +9,17 @@ angular.module('vaccinations')
         '/vaccines/unscheduled')
 
     .success( function(data) {
+        // Add flag to denote this is a custom vaccine.
+        // It is required because an extra field is available as 'vaccine name'
+        // when entering a custom vaccine.
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].name === 'Custom') {
+                data[i].name = 'Custom vaccine::';
+                data[i].custom = true;
+                console.log(data[i]);
+                break;
+            }
+        }
         self.vaccines = data;
     });
 

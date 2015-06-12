@@ -1,3 +1,7 @@
+<%@ include file="/WEB-INF/template/include.jsp"%>
+<%@ include file="/WEB-INF/template/header.jsp"%>
+<%@ include file="template/localHeader.jsp"%>
+
 <!doctype html>
 <html class="no-js">
   <head>
@@ -5,22 +9,12 @@
     <title>vaccinations</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/assets/fonts/fontello-97618726/css/trash.css">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- Link to icon fonts -->
-    <link rel="stylesheet" href="assets/fonts/fontello-97618726/css/trash.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <link rel="stylesheet" href="app/vendor.css">
-    <!-- bower:css -->
-    <!-- run `gulp wiredep` to automaticaly populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automaticaly insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-afb7feeb.css">
   </head>
   <body>
 
@@ -493,21 +487,12 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-34de396c.js"></script>
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automaticaly insert here -->
-    <!-- endinject -->
-
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1c5740e.js"></script>
 
   </body>
 </html>
+
+
+<%@ include file="/WEB-INF/template/footer.jsp"%>
