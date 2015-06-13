@@ -67,6 +67,7 @@ $adverse-foreground: #E7687D;
 }
 
 .section-label {
+    display: inline-block;
     border-bottom: 1px solid lightgrey;
     background: black;
     border-bottom-left-radius: 0px;

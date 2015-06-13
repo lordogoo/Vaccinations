@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3d4a25b3.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-1c39dd1b.css">
   </head>
   <body>
 
@@ -64,8 +64,9 @@
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
-            <div class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'false'} | groupBy: 'name'">
+                <!-- Show the unscheduled header only if unscheduled vaccs present -->
+                <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" >{{ ::name }}</div>
                 <vaccination get-vaccination="vaccination" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
@@ -124,7 +125,7 @@
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
-                <span class="label label-danger due-label" style="visibility: hidden;">Due</span>
+                <span ng-if="!enteredEditFormData.adverse_reaction_observed" class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
 
@@ -279,6 +280,9 @@
             <div class="header unadministered-header" >
 
                 <i class="demo-icon icon-circle-empty unadmin-x"></i>
+
+
+                <span ng-if='!due' class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <span class="label label-danger due-label" ng-class="{'hidden': !due}">Due</span>
 
@@ -493,7 +497,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-59768e3e.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-6066cd70.js"></script>
 
   </body>
 </html>
