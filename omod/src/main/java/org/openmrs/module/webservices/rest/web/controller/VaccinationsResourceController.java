@@ -117,6 +117,9 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		}
 	}
 
+    /*
+    *
+    */
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId) {
@@ -130,11 +133,12 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 		//check if vaccination is based on a scheduled vaccine
 		if (vaccination1.getScheduled()){
+
 			//returns a new vaccination template
 			simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).vaccineToVaccination(vaccination1.getVaccine(), Context.getService(VaccinationsService.class).calculateScheduledDate(patientId,vaccination1.getVaccine())));
-			//simpleVaccination2.setId(vaccinationId); //id has to be null since
-			//simpleVaccination2.setPatient_id(patientId);
-			//return simpleVaccination2;
+            simpleVaccination2.setId(vaccinationId);
+            simpleVaccination2.setUuid(vaccination1.getUuid());
+
 		}else{
 			//returns a retired vaccination body
 		}
@@ -164,7 +168,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public HttpStatus deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId) {
+	public SimpleVaccination deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId) {
 		//Lookup adverse reaction
 		AdverseReaction adverseReaction = Context.getService(AdverseReactionsService.class).getAdverseReactionByAdverseReactionId(adverseReactionId);
 
@@ -181,8 +185,8 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
         vaccination1.setAdverse_reaction_observed(false);
 		//save or update vaccination
-        Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
-		return HttpStatus.OK;
+
+		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1));
 	}
 }
 
