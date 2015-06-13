@@ -16,56 +16,14 @@
     'ngResource',
     'angular.filter'
 ])
-.config(["$httpProvider", function ($httpProvider) {
+// Top level angular configs
+.config(["$httpProvider", "$locationProvider", function ($httpProvider, $locationProvider) {
     $httpProvider.defaults.withCredentials = true;
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 }]);
-'use strict';
-
-// Manages a vaccination instance on each vaccination
-// directive.
-angular.module('vaccinations')
-.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
-    function($scope, vaccinationsManager){
-
-    // Form states and methods.
-    $scope.state = {};
-    $scope.state.administerFormOpen = false;
-
-    $scope.resetFormDataToDefaults = function(){
-
-        var vaccination = angular.copy($scope.getVaccination());
-        vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
-        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
-        $scope.enteredAdminFormData = vaccination;
-        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
-            $scope.due = true;
-        }
-    };
-
-    $scope.toggleAdministerForm = function(){
-        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
-    };
-
-    // Called when vaccination data from form has been validated
-    // and ready to create a new vaccination event.
-    $scope.submitVaccination = function(vaccination) {
-        var vaccsOrigCopy = angular.copy($scope.getVaccination());
-        var vaccination = angular.copy(vaccination);
-        vaccination.administered = true;
-        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
-    };
-
-    // Only available if the vaccination is of type unscheduled.
-    $scope.deleteVaccination = function(vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
-    };
-
-    // Form data inits.
-    $scope.resetFormDataToDefaults();
-}]);
-
 'use strict';
 
 angular.module('vaccinations')
@@ -135,6 +93,53 @@ angular.module('vaccinations')
 // Manages a vaccination instance on each vaccination
 // directive.
 angular.module('vaccinations')
+.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
+    function($scope, vaccinationsManager){
+
+    // Form states and methods.
+    $scope.state = {};
+    $scope.state.administerFormOpen = false;
+
+    $scope.resetFormDataToDefaults = function(){
+
+        var vaccination = angular.copy($scope.getVaccination());
+        vaccination.administration_date = new Date();
+        vaccination.manufacture_date = new Date();
+        vaccination.expiry_date = new Date();
+        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
+        $scope.enteredAdminFormData = vaccination;
+        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
+            $scope.due = true;
+        }
+    };
+
+    $scope.toggleAdministerForm = function(){
+        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
+    };
+
+    // Called when vaccination data from form has been validated
+    // and ready to create a new vaccination event.
+    $scope.submitVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+    // Only available if the vaccination is of type unscheduled.
+    $scope.deleteVaccination = function(vaccination) {
+        vaccinationsManager.deleteVaccination(vaccination);
+    };
+
+    // Form data inits.
+    $scope.resetFormDataToDefaults();
+}]);
+
+'use strict';
+
+// Manages a vaccination instance on each vaccination
+// directive.
+angular.module('vaccinations')
 .controller('AdminVaccinationController', ['$scope', 'vaccinationsManager', function($scope, vaccinationsManager){
     // Form data inits.
     $scope.enteredEditFormData = {};
@@ -175,8 +180,8 @@ angular.module('vaccinations')
         vaccinationsManager.submitReaction(reaction, enteredAdminFormData);
     };
 
-    $scope.removeReaction = function (reaction) {
-        vaccinationsManager.removeReaction(reaction);
+    $scope.removeReaction = function (reaction, vaccination) {
+        vaccinationsManager.removeReaction(reaction, vaccination);
     };
 
     // Available for all administered vaccinations.
@@ -266,7 +271,7 @@ angular.module('vaccinations')
             appConstants.URL +
             appConstants.PATH +
             '/patient/' +
-            appConstants.getPatientId(window.location.href))
+            appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
             setVaccinations(data);
@@ -297,7 +302,6 @@ angular.module('vaccinations')
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
             // modifications.
-            debugger;
             var vaccination = angular.copy(vaccination);
             delete vaccination.reaction_details;
 
@@ -315,7 +319,7 @@ angular.module('vaccinations')
                     appConstants.PATH + '/' +
                     vaccination.id +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href),
+                    appConstants.getPatientId(),
                     vaccination)
 
                 .success( function (data) {
@@ -357,7 +361,7 @@ angular.module('vaccinations')
                     appConstants.URL +
                     appConstants.PATH +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href),
+                    appConstants.getPatientId(),
                     vaccination)
 
                 .success( function (data) {
@@ -392,10 +396,10 @@ angular.module('vaccinations')
                 appConstants.PATH + '/' +
                 vaccination.id +
                 '/patient/' +
-                appConstants.getPatientId(window.location.href))
+                appConstants.getPatientId())
 
             .success( function (data) {
-                that.removeVaccination('uuid', vaccination.uuid);
+                that.removeVaccination(vaccination.uuid, 'uuid');
                 // If deleting a scheduled vaccination, add back template to the vaccinations list.
                 // If the vaccination is unscheduled just remove it.
                 if (vaccination.scheduled === true) {
@@ -411,7 +415,6 @@ angular.module('vaccinations')
         },
 
         submitReaction: function (reaction, vaccination) {
-            debugger;
             // Get the vaccination from the array.
             // Adding reaction details to the vaccination passed
             // into the function will only change the copy.
@@ -424,12 +427,11 @@ angular.module('vaccinations')
                     'adversereactions/' +
                     reaction.id +
                     'patient/' +
-                    appConstants.getPatientId(window.location.href) + '/' +
+                    appConstants.getPatientId() + '/' +
                     'vaccinations/' + vaccination.id,
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id);
                     that.addVaccination(data);
@@ -445,7 +447,7 @@ angular.module('vaccinations')
                     '/openmrs/ws/rest/v2/vaccinationsmodule/' +
                     'adversereactions/' +
                     'patient/' +
-                    appConstants.getPatientId(window.location.href) + '/' +
+                    appConstants.getPatientId() + '/' +
                     'vaccinations/' + vaccination.id,
                     reaction)
 
@@ -462,20 +464,20 @@ angular.module('vaccinations')
             }
         },
 
-        removeReaction: function (reaction) {
+        removeReaction: function (reaction, vaccination) {
             var that = this;
             $rootScope.$broadcast('waiting');
             $http.delete(
                     appConstants.URL +
-                    appConstants.PATH +
-                    '/adverseReactions/' +
+                    '/openmrs/ws/rest/v2/vaccinationsmodule/' +
+                    'adversereactions/' +
                     reaction.id +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href))
+                    appConstants.getPatientId())
 
             .success( function (data) {
                 $rootScope.$broadcast('success');
-                that.removeVaccination(data.id);
+                that.removeVaccination(vaccination.uuid, 'uuid');
                 that.addVaccination(data);
             })
 
@@ -499,9 +501,7 @@ angular.module('vaccinations')
         removeVaccination: function(key, value){
             var index = helperFunctions.findObjectIndexByAttribute(key, value, self.vaccinations);
             if (index !== undefined){
-                console.log(self.vaccinations);
                 self.vaccinations.splice(index, 1);
-                console.log(self.vaccinations);
             } else {
                 console.log("The index of the vaccination to be removed could not be found.");
             }
@@ -671,47 +671,21 @@ angular.module('vaccinations')
 
 // Constants for this instance of the app
 angular.module('vaccinations')
-.service('appConstants', ["$http", function ($http) {
+.service('appConstants', ["$http", "$location", function ($http, $location) {
     var exports = {
         // Set url for testing
         URL: 'http://208.77.196.178:64000',
         PATH:'/openmrs/ws/rest/v2/vaccinationsmodule/vaccinations',
 
-
-        // Should only be used for testing purposes
-        setPatiendId: function (id) {
-            this.patientId = id;
-        },
-
-        // TODO: Get the session ID if its not auto appended to requests.
-        getSessionId: function () {
-
-        },
-
-        getURL: function (url) {
-
-        },
-
         // Retrive patient ID from window.location;
-        getPatientId: function (url) {
-            return 3;
-
-            if (this.patientId) {
-                return this.patientId;
+        getPatientId: function () {
+            var patientId = $location.search().patientId;
+            if (!patientId) {
+                throw new Error('The patient ID could not be parsed from the URL');
+            } else {
+                return patientId;
             }
-            var patientId = /[0-9]+$/.exec(url);
-            if (patientId === undefined || patientId === null) {
-                throw new Error('The patient ID cannot be parsed from the URL');
-            }
-            if (patientId.length > 1 || patientId.length === 0) {
-                throw new Error('The patient ID URL matched regex more than once.');
-            }
-            if (patientId[0] === undefined) {
-                throw new Error('The patient ID could not be parsed from URL.');
-            }
-            // TODO: remove patientId and return actual
-            return patientId[0];
-        }
+       }
     };
 
     return exports;
@@ -735,7 +709,7 @@ angular.module('vaccinations')
             $scope.$on('success', function () {
                 $scope.state.loading = false;
                 $scope.state.success = true;
-                $timeout( function () { $scope.state.success = false; }, 1000);
+                $timeout( function () { $scope.state.success = false; }, 1050);
             });
 
             $scope.$on('failure', function () {

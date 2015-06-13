@@ -43,8 +43,8 @@ angular.module('vaccinations')
         vaccinationsManager.submitReaction(reaction, enteredAdminFormData);
     };
 
-    $scope.removeReaction = function (reaction) {
-        vaccinationsManager.removeReaction(reaction);
+    $scope.removeReaction = function (reaction, vaccination) {
+        vaccinationsManager.removeReaction(reaction, vaccination);
     };
 
     // Available for all administered vaccinations.

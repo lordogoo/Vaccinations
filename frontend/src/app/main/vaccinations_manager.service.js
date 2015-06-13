@@ -21,7 +21,7 @@ angular.module('vaccinations')
             appConstants.URL +
             appConstants.PATH +
             '/patient/' +
-            appConstants.getPatientId(window.location.href))
+            appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
             setVaccinations(data);
@@ -52,7 +52,6 @@ angular.module('vaccinations')
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
             // modifications.
-            debugger;
             var vaccination = angular.copy(vaccination);
             delete vaccination.reaction_details;
 
@@ -70,7 +69,7 @@ angular.module('vaccinations')
                     appConstants.PATH + '/' +
                     vaccination.id +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href),
+                    appConstants.getPatientId(),
                     vaccination)
 
                 .success( function (data) {
@@ -112,7 +111,7 @@ angular.module('vaccinations')
                     appConstants.URL +
                     appConstants.PATH +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href),
+                    appConstants.getPatientId(),
                     vaccination)
 
                 .success( function (data) {
@@ -147,10 +146,10 @@ angular.module('vaccinations')
                 appConstants.PATH + '/' +
                 vaccination.id +
                 '/patient/' +
-                appConstants.getPatientId(window.location.href))
+                appConstants.getPatientId())
 
             .success( function (data) {
-                that.removeVaccination('uuid', vaccination.uuid);
+                that.removeVaccination(vaccination.uuid, 'uuid');
                 // If deleting a scheduled vaccination, add back template to the vaccinations list.
                 // If the vaccination is unscheduled just remove it.
                 if (vaccination.scheduled === true) {
@@ -166,7 +165,6 @@ angular.module('vaccinations')
         },
 
         submitReaction: function (reaction, vaccination) {
-            debugger;
             // Get the vaccination from the array.
             // Adding reaction details to the vaccination passed
             // into the function will only change the copy.
@@ -179,12 +177,11 @@ angular.module('vaccinations')
                     'adversereactions/' +
                     reaction.id +
                     'patient/' +
-                    appConstants.getPatientId(window.location.href) + '/' +
+                    appConstants.getPatientId() + '/' +
                     'vaccinations/' + vaccination.id,
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id);
                     that.addVaccination(data);
@@ -200,7 +197,7 @@ angular.module('vaccinations')
                     '/openmrs/ws/rest/v2/vaccinationsmodule/' +
                     'adversereactions/' +
                     'patient/' +
-                    appConstants.getPatientId(window.location.href) + '/' +
+                    appConstants.getPatientId() + '/' +
                     'vaccinations/' + vaccination.id,
                     reaction)
 
@@ -217,20 +214,20 @@ angular.module('vaccinations')
             }
         },
 
-        removeReaction: function (reaction) {
+        removeReaction: function (reaction, vaccination) {
             var that = this;
             $rootScope.$broadcast('waiting');
             $http.delete(
                     appConstants.URL +
-                    appConstants.PATH +
-                    '/adverseReactions/' +
+                    '/openmrs/ws/rest/v2/vaccinationsmodule/' +
+                    'adversereactions/' +
                     reaction.id +
                     '/patient/' +
-                    appConstants.getPatientId(window.location.href))
+                    appConstants.getPatientId())
 
             .success( function (data) {
                 $rootScope.$broadcast('success');
-                that.removeVaccination(data.id);
+                that.removeVaccination(vaccination.uuid, 'uuid');
                 that.addVaccination(data);
             })
 
@@ -254,9 +251,7 @@ angular.module('vaccinations')
         removeVaccination: function(key, value){
             var index = helperFunctions.findObjectIndexByAttribute(key, value, self.vaccinations);
             if (index !== undefined){
-                console.log(self.vaccinations);
                 self.vaccinations.splice(index, 1);
-                console.log(self.vaccinations);
             } else {
                 console.log("The index of the vaccination to be removed could not be found.");
             }

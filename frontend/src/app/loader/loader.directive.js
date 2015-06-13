@@ -17,7 +17,7 @@ angular.module('vaccinations')
             $scope.$on('success', function () {
                 $scope.state.loading = false;
                 $scope.state.success = true;
-                $timeout( function () { $scope.state.success = false; }, 1000);
+                $timeout( function () { $scope.state.success = false; }, 1050);
             });
 
             $scope.$on('failure', function () {

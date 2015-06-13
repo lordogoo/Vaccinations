@@ -12,10 +12,11 @@
 
     <!-- Link to icon fonts -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/assets/fonts/fontello-97618726/css/trash.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/fonts/fontello-97618726/css/trash.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-da422e0a.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3d4a25b3.css">
   </head>
   <body>
 
@@ -99,7 +100,7 @@
                 </div>
             </div>
             <div ng-if="state.success" class="success-check">
-                <i class="demo-icon icon-ok-circled2 big-check"></i>
+                <i class="demo-icon icon-ok-check "></i>
             </div>
         </div>
     </script>
@@ -122,6 +123,8 @@
             <div class="header administered-header" ng-class="{'adverse-header': enteredEditFormData.adverse_reaction_observed}">
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
+
+                <span class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
 
@@ -214,7 +217,7 @@
 
                         <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
-                        <button type="button" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
+                         <button ng-if="form.$valid" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
                         <button ng-if="form.$valid" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)">Update</button>
                     </div>
@@ -252,7 +255,7 @@
 
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
-                        <button class="btn btn-danger" ng-if="enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData)">Delete</button>
+                        <button class="btn btn-danger" ng-if="enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
 
                         <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Submit</button>
 
@@ -277,7 +280,7 @@
 
                 <i class="demo-icon icon-circle-empty unadmin-x"></i>
 
-                <span ng-if="due" class="label label-danger due-label">Due</span>
+                <span class="label label-danger due-label" ng-class="{'hidden': !due}">Due</span>
 
                 <span ng-if="enteredAdminFormData.dose_number" class="header-info">
                     <span class="dose-number-label">Dose Number: </span>
@@ -490,7 +493,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-9c081689.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-59768e3e.js"></script>
 
   </body>
 </html>

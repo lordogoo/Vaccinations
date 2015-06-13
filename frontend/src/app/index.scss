@@ -304,6 +304,13 @@ button {
     background-color: #FAFAFA;
 }
 
+// Padding for checkmarks/empty checkmarks
+.vaccination .demo-icon {
+    // border-right: 1px dotted grey;
+    padding-right: 0px;
+}
+
+
 // Form styling
 .form-warning {
     padding-top: 5px;
@@ -315,6 +322,11 @@ button {
 .form-warning.ng-hide {
     opacity: 0;
     max-height: 0px;
+}
+
+// Generic hide class
+.hidden {
+    visibility: hidden;
 }
 
 // Defensive openmrs styles.
@@ -339,7 +351,7 @@ div#appcontainer.appcontainer {
 // Fontello font sizes controls size of vaccine checkboxes
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */
-.icon-ok-circled2:before.big-check{ font-size: 50px; }
+.icon-ok-check:before{ font-size: 80px; }
 
 @import 'sass_partials/loader';
 

@@ -13,6 +13,7 @@ gulp.task('styles', function () {
   };
 
   var injectFiles = gulp.src([
+    paths.src + '/assets/fonts/**/trash.css',
     paths.src + '/{app,components}/**/*.scss',
     '!' + paths.src + '/app/index.scss',
     '!' + paths.src + '/app/vendor.scss'

@@ -16,6 +16,11 @@
     'ngResource',
     'angular.filter'
 ])
-.config(function ($httpProvider) {
+// Top level angular configs
+.config(function ($httpProvider, $locationProvider) {
     $httpProvider.defaults.withCredentials = true;
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 });
