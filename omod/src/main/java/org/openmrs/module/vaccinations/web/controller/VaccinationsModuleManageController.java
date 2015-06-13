@@ -43,4 +43,9 @@ public class  VaccinationsModuleManageController {
 		//model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
 		//model.put("vaccinations", Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientId(3));
 	}
+
+    @RequestMapping(value = "/module/vaccinations/vaccinationsPatientSelector", method = RequestMethod.GET)
+    public void vitalsPatientSelector(ModelMap model) {
+
+    }
 }

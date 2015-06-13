@@ -5,8 +5,6 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 
-<!--<%@ include file="template/localMenuHeader.jsp"%> -->
-
 <h1><openmrs:message code="formseparator.vaccinationsmenuitem"/></h1>
 <h2><openmrs:message code="Patient.search"/></h2>	
 
