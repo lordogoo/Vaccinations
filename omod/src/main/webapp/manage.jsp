@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-1c39dd1b.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-eb4fc2f5.css">
   </head>
   <body>
 
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div ng-if="state.success" class="success-check">
-                <i class="demo-icon icon-ok-check "></i>
+                <i class="demo-icon icon-ok-circled2 big-check"></i>
             </div>
         </div>
     </script>

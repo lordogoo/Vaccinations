@@ -51,9 +51,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+   /*text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);*/
 }
 
 .icon-circle-empty:before { content: '\e800'; } /* '' */
 .icon-ok-circled2:before { content: '\e802'; } /* '' */
-.icon-ok-check:before { content: '\e802'; }
+/*.icon-ok-check:before { content: '\e802'; }*/

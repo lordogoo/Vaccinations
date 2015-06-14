@@ -270,7 +270,7 @@ $adverse-foreground: #E7687D;
 }
 
 // Button stuff.
-// Remove blue outline.
+// Remove blue outline from openmrs styling.
 
 .form-button-wrapper {
   text-align: center;
@@ -349,10 +349,10 @@ div#appcontainer.appcontainer {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
-// Fontello font sizes controls size of vaccine checkboxes
+// Fontello font sizes controls size of vaccine check/uncheck icons
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */
-.icon-ok-check:before{ font-size: 80px; }
+.big-check.icon-ok-circled2:before { font-size: 80px;} /* '' */
 
 @import 'sass_partials/loader';
 

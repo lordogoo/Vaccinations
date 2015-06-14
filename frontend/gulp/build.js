@@ -60,8 +60,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
 
-    // Remove references to all other scripts and stylesheets,
-    // other than app/vender files
+    // Remove references to all other scripts and stylesheets.
     .pipe($.useref())
 
     // Rewrite references to app and vender files with appropriate hash postfixes.
