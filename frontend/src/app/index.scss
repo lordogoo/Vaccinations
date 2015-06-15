@@ -96,6 +96,7 @@ $adverse-foreground: #E7687D;
         margin-top: 45px;
     }
 
+    // Form in/out transition
     .form-wrapper, .header:nth-last-child(1) {
         @include border-bottom-radius(4px);
     }
@@ -112,7 +113,7 @@ $adverse-foreground: #E7687D;
     }
 
     .form-wrapper.ng-enter, .form-wrapper.ng-leave {
-        transition: all .3s linear;
+        transition: all .1s ease;
     }
 
     .form-wrapper.ng-enter, .form-wrapper.ng-leave.ng-leave-active {
@@ -341,10 +342,6 @@ div#appcontainer.appcontainer {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-// div {
-    // font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-// }
-
 .vaccination * {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
@@ -353,8 +350,6 @@ div#appcontainer.appcontainer {
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */
 .big-check.icon-ok-circled2:before { font-size: 80px;} /* '' */
-
-@import 'sass_partials/loader';
 
 // injector
 // endinjector

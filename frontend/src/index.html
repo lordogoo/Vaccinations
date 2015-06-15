@@ -126,8 +126,6 @@
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
-                <span ng-if="!enteredEditFormData.adverse_reaction_observed" class="label label-danger due-label" style="visibility: hidden;">Due</span>
-
                 <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
 
                 <span ng-if="enteredEditFormData.adverse_reaction_observed" class="label label-danger adverse-label">Adverse Reaction</span>
@@ -219,7 +217,7 @@
 
                         <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
-                         <button ng-if="!enteredEditFormData.scheduled" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
+                         <button ng-if="enteredEditFormData.scheduled" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
                         <button ng-if="form.$valid" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)">Update</button>
                     </div>
@@ -283,7 +281,6 @@
                 <i class="demo-icon icon-circle-empty unadmin-x"></i>
 
 
-                <span ng-if='!due' class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <span class="label label-danger due-label" ng-class="{'hidden': !due}">Due</span>
 
