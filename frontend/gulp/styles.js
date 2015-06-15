@@ -6,6 +6,7 @@ var paths = gulp.paths;
 
 var $ = require('gulp-load-plugins')();
 
+// Collects and proccesses Sass files into .tmp/serve/app/
 gulp.task('styles', function () {
 
   var sassOptions = {

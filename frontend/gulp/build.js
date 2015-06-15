@@ -4,6 +4,8 @@ var gulp = require('gulp');
 
 var paths = gulp.paths;
 
+var urlAdjuster = require('gulp-css-url-adjuster');
+
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -35,13 +37,15 @@ gulp.task('html', ['inject', 'partials'], function () {
   var htmlFilter = $.filter('**/*.html');
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
+  var indexCssFilter = $.filter('**/index.css');
   var jspFilter = $.filter('**/*.jsp');
   var assets;
 
   return gulp.src(paths.tmp + '/serve/*.html')
     // HTML partials js injection.
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-    // Collect html files into assets variable.
+
+    // Collect js/css files into assets variable and filters out index.html
     .pipe(assets = $.useref.assets())
 
     // Add hash to filenames
@@ -55,6 +59,11 @@ gulp.task('html', ['inject', 'partials'], function () {
 
     .pipe(cssFilter)
     .pipe($.replace('../bootstrap-sass-official/assets/fonts/bootstrap', 'fonts'))
+
+    // Adjust the css url links for the fontello fonts.
+    .pipe(urlAdjuster ({
+      replace: ['/assets/fonts/fontello-97618726/font/', '/openmrs/moduleResources/vaccinations/fonts/']
+    }))
     // Optimize css
     .pipe($.csso())
     .pipe(cssFilter.restore())
@@ -104,8 +113,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+  return gulp.src(paths.src + '/assets/fonts/**/*.{eot,svg,ttf,woff}')
     // Prefix scripts and style files with '/resources/'
     // so they are placed appropriately in the omod file strucure.
     // .pipe($.rename(function (path) {

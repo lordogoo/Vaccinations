@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width">
 
     <!-- Link to icon fonts -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/assets/fonts/fontello-97618726/css/trash.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/fonts/fontello-97618726/css/trash.css">
+    <!-- <link rel="stylesheet" href="assets/fonts/fontello-97618726/css/trash.css"> -->
+    <!-- <link rel="stylesheet" href="fonts/fontello-97618726/css/trash.css"> -->
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-eb4fc2f5.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-6dbf8630.css">
   </head>
   <body>
 
