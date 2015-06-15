@@ -37,9 +37,9 @@
                 </div>
 
                 <div class="form-button-wrapper">
-                    <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer</strong></button>
+                    <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
 
-                    <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Schedule</strong></button>
+                    <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
                 </div>
 
 
@@ -60,7 +60,7 @@
             <!-- SCHEDULED VACCINATIONS -->
             <div class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
-                <div class="vaccination-group-header" >{{ ::name }}</div>
+                <div class="vaccination-group-header"><span class="label label-default header-label">{{ ::name }}</span></div>
                 <vaccination get-vaccination="vaccination" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
@@ -68,7 +68,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'false'} | groupBy: 'name'">
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
-                <div class="vaccination-group-header" >{{ ::name }}</div>
+                <div class="vaccination-group-header" ><span class="label label-default header-label">{{ ::name }}</span></div>
                 <vaccination get-vaccination="vaccination" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
