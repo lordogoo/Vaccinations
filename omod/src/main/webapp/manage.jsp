@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
+<openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" />
 <!doctype html>
 <html class="no-js">
   <head>
