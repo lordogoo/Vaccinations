@@ -126,7 +126,7 @@
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
-                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
+                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-cancel-circled2 admin-check-reaction"></i>
 
                 <span ng-if="enteredEditFormData.adverse_reaction_observed" class="label label-danger adverse-label">Adverse Reaction</span>
 
@@ -481,7 +481,7 @@
 
                         <button ng-if="enteredAdminFormData._administering && form.$valid" type="submit" class="btn btn-warning" ng-click="saveVaccination(enteredAdminFormData)">Administer</button>
 
-                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)">Schedule</button>
+                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)">Book</button>
                     </div>
                 </div>
             </form>

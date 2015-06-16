@@ -37,10 +37,10 @@
 }
 
 .success-check {
-    margin: 50% auto;
-    width: 100px;
-    height: 100px;
-    position: relative
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
 }
 
 .container1 > div, .container2 > div, .container3 > div {
