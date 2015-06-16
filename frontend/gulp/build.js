@@ -86,7 +86,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.headerfooter.header('<%@ include file="template/localHeader.jsp"%>\n\n'))
     .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/header.jsp"%>\n'))
     .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/include.jsp"%>\n'))
-    .pipe($.headerfooter.header('<openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" />'))
+    .pipe($.headerfooter.header('<openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" />\n'))
 
     // Inject Spring footers
     .pipe($.headerfooter.footer('\n\n'))
