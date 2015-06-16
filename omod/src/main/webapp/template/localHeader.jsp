@@ -13,6 +13,3 @@
 
 	<!-- Add further links here -->
 </ul>
-<h2>
-	<spring:message code="vaccinations.title" />
-</h2>
