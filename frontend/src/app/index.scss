@@ -238,6 +238,7 @@ $adverse-foreground: #E7687D;
   margin-bottom: 4px;
   margin-top: 4px;
   font-size: 13px;
+
 }
 
 .staged.header {
@@ -353,10 +354,9 @@ div#appcontainer.appcontainer {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.vaccination * {
+#appcontainer * {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
-
 // Fontello font sizes controls size of vaccine check/uncheck icons
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */

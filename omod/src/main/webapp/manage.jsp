@@ -2,7 +2,6 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
-<openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" />
 <!doctype html>
 <html class="no-js">
   <head>
@@ -11,13 +10,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- Link to icon fonts -->
-    <!-- <link rel="stylesheet" href="assets/fonts/fontello-97618726/css/trash.css"> -->
-    <!-- <link rel="stylesheet" href="fonts/fontello-97618726/css/trash.css"> -->
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-6dbf8630.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ecbf5978.css">
   </head>
   <body>
 
@@ -37,9 +32,9 @@
                 </div>
 
                 <div class="form-button-wrapper">
-                    <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer</strong></button>
+                    <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
 
-                    <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Schedule</strong></button>
+                    <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
                 </div>
 
 
@@ -60,7 +55,7 @@
             <!-- SCHEDULED VACCINATIONS -->
             <div class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
-                <div class="vaccination-group-header" >{{ ::name }}</div>
+                <div class="vaccination-group-header"><span class="label label-default header-label">{{ ::name }}</span></div>
                 <vaccination get-vaccination="vaccination" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
@@ -68,7 +63,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'false'} | groupBy: 'name'">
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
-                <div class="vaccination-group-header" >{{ ::name }}</div>
+                <div class="vaccination-group-header" ><span class="label label-default header-label">{{ ::name }}</span></div>
                 <vaccination get-vaccination="vaccination" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
@@ -125,8 +120,6 @@
             <div class="header administered-header" ng-class="{'adverse-header': enteredEditFormData.adverse_reaction_observed}">
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
-
-                <span ng-if="!enteredEditFormData.adverse_reaction_observed" class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
 
@@ -219,7 +212,7 @@
 
                         <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
-                         <button ng-if="form.$valid" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
+                         <button ng-if="enteredEditFormData.scheduled" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
                         <button ng-if="form.$valid" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)">Update</button>
                     </div>
@@ -283,7 +276,6 @@
                 <i class="demo-icon icon-circle-empty unadmin-x"></i>
 
 
-                <span ng-if='!due' class="label label-danger due-label" style="visibility: hidden;">Due</span>
 
                 <span class="label label-danger due-label" ng-class="{'hidden': !due}">Due</span>
 
