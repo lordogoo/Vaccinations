@@ -70,11 +70,39 @@
     <!-- Module Privileges -->
     <privilege>
         <name>Manage Vaccines</name>
-        <description>Allows user to manage vaccines in the administrator tab.</description>
+        <description>Allows user to manage vaccines.</description>
+    </privilege>
+    <privilege>
+        <name>View Vaccines</name>
+        <description>Allows user to view vaccines.</description>
+    </privilege>
+    <privilege>
+        <name>Purge Vaccines</name>
+        <description>Allows user to purge vaccines from the database.</description>
     </privilege>
     <privilege>
         <name>Manage Vaccinations</name>
         <description>Allows user to access and manage patient vaccinations.</description>
+    </privilege>
+    <privilege>
+        <name>View Vaccinations</name>
+        <description>Allows user to view patient vaccinations.</description>
+    </privilege>
+    <privilege>
+        <name>Purge Vaccinations</name>
+        <description>Allows user to purge vaccinations from the database.</description>
+    </privilege>
+    <privilege>
+        <name>Manage AdverseReactions</name>
+        <description>Allows user to access and manage patient Adverse Reactions.</description>
+    </privilege>
+    <privilege>
+        <name>View AdverseReactions</name>
+        <description>Allows user to view patient Adverse Reactions.</description>
+    </privilege>
+    <privilege>
+        <name>Purge AdverseReactions</name>
+        <description>Allows user to purge patient Adverse Reactions.</description>
     </privilege>
 </module>
 
