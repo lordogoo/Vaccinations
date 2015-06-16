@@ -82,22 +82,24 @@ gulp.task('html', ['inject', 'partials'], function () {
       // quotes: true
     // }))
     // Inject Spring headers
-    .pipe($.headerfooter.header('<%@ include file="template/localHeader.jsp"%>\n\n'))
-    .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/header.jsp"%>\n'))
     .pipe($.headerfooter.header('<%@ include file="/WEB-INF/template/include.jsp"%>\n'))
 
-    // Inject Spring footers
-    .pipe($.headerfooter.footer('\n\n'))
-    .pipe($.headerfooter.footer('<%@ include file="/WEB-INF/template/footer.jsp"%>\n'))
     // Restore all files in stream.
     .pipe(htmlFilter.restore())
 
     // Prefix scripts and style files with '/resources/'
     // so they are placed appropriately in the omod file strucure.
     .pipe($.rename(function (path) {
-      // console.log(path);
       if (path.dirname === 'styles' || path.dirname === 'scripts') {
         path.dirname = '/resources/' + path.dirname;
+      }
+
+      if (path.basename === 'index') {
+        console.log(path);
+        path.dirname = '/portlets/';
+        path.basename = 'vaccinationsPortlet';
+        path.extname = '.jsp';
+        console.log(path);
       }
     }))
 
@@ -129,7 +131,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('clean', function (done) {
-  $.del([paths.omod + '/index.html', paths.omod + '/manage.jsp', paths.omod + '/resources/', paths.tmp + '/'], {force: true}, done);
+  $.del([paths.omod + '/index.html', paths.omod + '/portlets/', paths.omod + '/resources/', paths.tmp + '/'], {force: true}, done);
 });
 
 gulp.task('build', ['html', 'images', 'fonts'], function () {
@@ -137,10 +139,9 @@ gulp.task('build', ['html', 'images', 'fonts'], function () {
 
   // After all build procedures are complete, prefix any href/src urls with the
   // spring prefix.
-  gulp.src(paths.omod + '/index.html')
+  gulp.src(paths.omod + '/portlets/vaccinationsPortlet.jsp')
     .pipe($.prefix(jspUrlPrefix, null, '{{'))
-    .pipe($.rename('manage.jsp'))
-    .pipe(gulp.dest(paths.omod + '/'));
+    .pipe(gulp.dest(paths.omod + '/portlets/'));
 
   return gulp.src(paths.omod + '/index.html')
     .pipe($.rimraf({force: true}));

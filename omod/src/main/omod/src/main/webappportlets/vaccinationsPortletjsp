@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
+    <link rel="stylesheet" href="styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ecbf5978.css">
+    <link rel="stylesheet" href="styles/app-ecbf5978.css">
   </head>
   <body>
 
@@ -485,9 +485,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
+    <script src="scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-6066cd70.js"></script>
+    <script src="scripts/app-6066cd70.js"></script>
 
   </body>
 </html>
