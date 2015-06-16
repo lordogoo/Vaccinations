@@ -1,4 +1,4 @@
-<%@ include file="/WEB-INF/template/include.jsp"%>
+<openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" /><%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
 
@@ -490,7 +490,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-6066cd70.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-32fcfd72.js"></script>
 
   </body>
 </html>
