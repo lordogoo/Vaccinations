@@ -10,6 +10,6 @@
 
 <br />
 
-<openmrs:portlet id="findPatient" url="findPatient" parameters="size=full|hideAddNewPatient=true|postURL=manage.form|showIncludeVoided=false|viewType=shortEdit" />
+<openmrs:portlet id="findPatient" url="findPatient" parameters="size=full|hideAddNewPatient=true|postURL=vaccinationsPage.form|showIncludeVoided=false|viewType=shortEdit" />
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>

@@ -39,13 +39,17 @@ public class  VaccinationsModuleManageController {
 	@RequestMapping(value = "/module/vaccinations/manage", method = RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
-
 		//model.put("vaccines", Context.getService(VaccinesService.class).getAllVaccines(false));
 		//model.put("vaccinations", Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientId(3));
 	}
 
     @RequestMapping(value = "/module/vaccinations/vaccinationsPatientSelector", method = RequestMethod.GET)
     public void vitalsPatientSelector(ModelMap model) {
+        model.addAttribute("user", Context.getAuthenticatedUser());
+    }
 
+    @RequestMapping(value = "/module/vaccinations/vaccinationsPortlet", method = RequestMethod.GET)
+    public void PatientBillHistoryController(ModelMap model) {
+        model.addAttribute("user", Context.getAuthenticatedUser());
     }
 }
