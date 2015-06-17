@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/template/include.jsp"%>
 <!doctype html>
 <html class="no-js">
   <head>
@@ -8,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ecbf5978.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-6f7cd9fd.css">
   </head>
   <body>
 
@@ -117,7 +118,7 @@
 
                 <i ng-if="!enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check"></i>
 
-                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-ok-circled2 admin-check-reaction"></i>
+                <i ng-if="enteredEditFormData.adverse_reaction_observed" class="demo-icon icon-cancel-circled2 admin-check-reaction"></i>
 
                 <span ng-if="enteredEditFormData.adverse_reaction_observed" class="label label-danger adverse-label">Adverse Reaction</span>
 
@@ -472,7 +473,7 @@
 
                         <button ng-if="enteredAdminFormData._administering && form.$valid" type="submit" class="btn btn-warning" ng-click="saveVaccination(enteredAdminFormData)">Administer</button>
 
-                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)">Schedule</button>
+                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)">Book</button>
                     </div>
                 </div>
             </form>

@@ -62,7 +62,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 
     // Adjust the css url links for the fontello fonts.
     .pipe(urlAdjuster ({
-      replace: ['/assets/fonts/fontello-97618726/font/', '/openmrs/moduleResources/vaccinations/fonts/']
+      replace: ['/assets/fonts/fontello-897d15b6/font/', '/openmrs/moduleResources/vaccinations/fonts/']
     }))
     // Optimize css
     .pipe($.csso())
