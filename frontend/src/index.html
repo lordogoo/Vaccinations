@@ -29,18 +29,26 @@
         <loader></loader>
         <!-- ADD SECTION -->
         <div class="add-vaccination-wrapper">
+            <!--LEGEND-->
+            <div class="legend-wrapper">
+                <div><i class="demo-icon icon-circle-empty unadmin-x"></i><span>Unadministered Vaccination</span></div>
+                <div><i class="demo-icon icon-ok-circled2 admin-check"></i><span>Administered Vaccination</span></div>
+                <div><i class="demo-icon icon-cancel-circled2 admin-check-reaction"></i><span>Adverse Reaction</span></div>
+            </div>
+            <!--LEGEND-->
 
-                <h5 class="add-vaccination-header">Add New Vaccination</h5>
+            <h5 class="add-vaccination-header">Add New Vaccination</h5>
 
-                <div class="add-vaccination-select-wrapper">
-                    <select class="form-control add-vaccination" ng-model="newVaccine" ng-options="vaccines as formatVaccine(vaccines) for vaccines in vaccines"></select>
-                </div>
+            <div class="add-vaccination-select-wrapper">
+                <select class="form-control add-vaccination" ng-model="newVaccine" ng-options="vaccines as formatVaccine(vaccines) for vaccines in vaccines"></select>
+            </div>
 
-                <div class="form-button-wrapper">
-                    <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
+            <div class="form-button-wrapper">
+                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
 
-                    <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
-                </div>
+                <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
+            </div>
+
 
 
             <div class="staged-wrapper" ng-if="stagedVaccinations.length > 0">
