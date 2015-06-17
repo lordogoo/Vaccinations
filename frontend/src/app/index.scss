@@ -227,6 +227,10 @@ $adverse-foreground: #E7687D;
         font-color: darkgrey;
         font-weight: bold;
     }
+
+    .scheduled-date {
+      text-decoration: none;
+    }
 }
 
 // Label styling for vaccination group headers.
