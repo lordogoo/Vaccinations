@@ -150,7 +150,20 @@ angular.module('vaccinations')
     $scope.state.editFormOpen = false;
     $scope.state.adverseFormOpen = false;
 
-    $scope.toggleReactionForm = function(){
+    $scope.isUnadministerable = function () {
+        var administeredTime = angular.copy(new Date($scope.getVaccination().administration_date));
+        var currentTime = new Date();
+        var msDiff = currentTime - administeredTime;
+        var minsDiff = Math.round(((msDiff % 86400000) % 3600000) / 60000);
+        console.log(minsDiff);
+        if (minsDiff < 5 && minsDiff > 0) {
+          return true;
+        } else {
+          return false;
+        }
+    };
+
+    $scope.toggleReactionForm = function() {
         $scope.state.editFormOpen = false;
         $scope.state.adverseFormOpen = !$scope.state.adverseFormOpen;
     };
@@ -162,7 +175,6 @@ angular.module('vaccinations')
 
     $scope.resetFormDataToDefaults = function () {
         var vaccination = angular.copy($scope.getVaccination());
-        vaccination = angular.copy($scope.getVaccination());
         vaccination.administration_date = new Date(vaccination.administration_date);
         vaccination.manufacture_date = new Date(vaccination.manufacture_date);
         vaccination.expiry_date = new Date(vaccination.expiry_date);

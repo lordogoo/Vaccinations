@@ -291,12 +291,17 @@ $adverse-foreground: #E7687D;
 
 .form-button-wrapper {
   text-align: center;
+  height: 65px;
+
   button {
     margin-bottom: 30px;
     margin-top: 15px;
   }
 }
 
+.new-vaccine-wrapper {
+  height: 35px;
+}
 button {
     outline: 0 !important;
 }
