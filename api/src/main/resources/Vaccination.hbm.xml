@@ -34,6 +34,8 @@
 		<many-to-one name="Adverse_reaction" class="AdverseReaction" not-found="ignore" column="adverse_reaction_id" />
 
 		<property name="patient_id" type="int" column="patient_id"/>
+
+        <many-to-one name="clinic_location" class="org.openmrs.Location" column="location_id" />
 			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />

@@ -13,18 +13,18 @@
  */
 package org.openmrs.module.vaccinations;
 
-import java.io.Serializable;
-import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.BaseOpenmrsMetadata;
-import org.openmrs.User;
-import org.openmrs.api.context.Context;
-import org.openmrs.module.vaccinations.api.VaccinationsService;
-
-import java.util.Date;
-
-//For debugging
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.BaseOpenmrsMetadata;
+import org.openmrs.BaseOpenmrsObject;
+import org.openmrs.Location;
+import org.openmrs.User;
+import org.openmrs.api.context.Context;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.openmrs.module.vaccinations.util.Constants;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -67,6 +67,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 
             this.setUuid(simpleVaccination.getUuid());
             this.creator = Context.getAuthenticatedUser();
+            this.clinic_location = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
             this.dateCreated = new Date();
 		}
 	}
@@ -96,32 +97,13 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
             this.patient_id = vaccination.getPatient_id();
 
+            this.clinic_location = vaccination.getClinic_location();
+
             this.setUuid(vaccination.getUuid());
             this.creator = vaccination.getCreator();
             this.dateCreated = vaccination.getDateCreated();
         }
     }
-
-    public Vaccination (SimpleVaccination simpleVaccination, Integer id)
-    {
-        if (id != null && simpleVaccination != null){
-
-        }
-    }
-
-    /*public String toString()
-    {
-        String complete = new String();
-        complete += "ID: " + id.toString() + "\n";
-        complete += "name: " + name.toString() + "\n";
-        complete += "indication_name: " + indication_name.toString() + "\n";
-        complete += "dose: " + dose.toString() + "\n";
-        complete += "dosing_unit: " + dosing_unit.toString() + "\n";
-        complete += "route: " + route.toString() + "\n";
-        complete += "scheduled: " + scheduled + "\n";
-
-        return complete;
-    }*/
 
 	private Integer id;
     private Date scheduled_date;
@@ -145,6 +127,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private Date expiry_date;
 	private boolean adverse_reaction_observed;
 
+    private Location clinic_location;
 
 	private User creator;
 	private Date dateCreated;
@@ -157,7 +140,15 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 
 	private int patient_id;
 
-	public int getPatient_id() {
+    public Location getClinic_location() {
+        return clinic_location;
+    }
+
+    public void setClinic_location(Location clinic_location) {
+        this.clinic_location = clinic_location;
+    }
+
+    public int getPatient_id() {
 		return patient_id;
 	}
 

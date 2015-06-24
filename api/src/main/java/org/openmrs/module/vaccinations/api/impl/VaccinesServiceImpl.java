@@ -22,7 +22,6 @@ import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.SimpleVaccine;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.api.db.VaccinesDAO;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

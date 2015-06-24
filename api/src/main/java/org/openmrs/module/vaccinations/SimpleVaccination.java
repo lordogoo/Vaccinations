@@ -51,6 +51,8 @@ public class SimpleVaccination implements Serializable {
 			this.manufacture_date = vaccination.getManufacture_date();
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+            this.administered_by = vaccination.getCreator().getGivenName() + " " + vaccination.getCreator().getFamilyName();
+            this.clinic_location = vaccination.getClinic_location().getName();
 			this.patient_id = vaccination.getPatient_id();
 			this.uuid = vaccination.getUuid();
 		}
@@ -86,10 +88,29 @@ public class SimpleVaccination implements Serializable {
 	private Date expiry_date;
 	private boolean adverse_reaction_observed;
 
+    private String administered_by;
+    private String clinic_location;
+
 	private int patient_id;
 	private String uuid;
 
-	public SimpleAdverseReaction getSimpleAdverse_reaction() {
+    public String getAdministered_by() {
+        return administered_by;
+    }
+
+    public void setAdministered_by(String administered_by) {
+        this.administered_by = administered_by;
+    }
+
+    public String getClinic_location() {
+        return clinic_location;
+    }
+
+    public void setClinic_location(String clinic_location) {
+        this.clinic_location = clinic_location;
+    }
+
+    public SimpleAdverseReaction getSimpleAdverse_reaction() {
 		return simpleAdverse_reaction;
 	}
 

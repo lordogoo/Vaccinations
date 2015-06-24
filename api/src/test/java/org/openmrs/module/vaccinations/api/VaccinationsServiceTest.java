@@ -41,6 +41,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         initializeInMemoryDatabase();
         executeDataSet("src/test/resources/VaccinationsTestData.xml");
         vaccinationsService = Context.getService(VaccinationsService.class);
+        Context.getUserService().setUserProperty(Context.getAuthenticatedUser(), "defaultLocation", "1");
     }
 
     @Test
@@ -93,6 +94,8 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         SimpleVaccination simpleVaccination = new SimpleVaccination(vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11"));
         assertNotNull(simpleVaccination);
         assertEquals(new Integer(2), simpleVaccination.getId());
+        assertEquals(new String("Test Location"), simpleVaccination.getClinic_location());
+        assertEquals(new String("Hank Williams"), simpleVaccination.getAdministered_by());
 
         simpleVaccination.setDose(500.00);
 
@@ -105,7 +108,8 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
 
         Vaccination vaccination1 = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
         assertEquals(new Double(500.00), vaccination1.getDose());
-        //assertEquals(new Integer(2), vaccination.getId());
+        assertNotNull(vaccination.getClinic_location());
+        assertEquals(new String("Test Location"), vaccination1.getClinic_location().getName());
     }
 
     //This test will not fail if more than one unscheduled vaccination is added to the test data file
