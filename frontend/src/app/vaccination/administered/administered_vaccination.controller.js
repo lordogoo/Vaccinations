@@ -18,7 +18,6 @@ angular.module('vaccinations')
         var currentTime = new Date();
         var msDiff = currentTime - administeredTime;
         var minsDiff = Math.round(((msDiff % 86400000) % 3600000) / 60000);
-        console.log(minsDiff);
         if (minsDiff < 5 && minsDiff > 0) {
           return true;
         } else {

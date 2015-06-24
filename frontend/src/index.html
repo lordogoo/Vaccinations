@@ -160,6 +160,16 @@
             <form  name="form" novalidate>
 
                     <div class="form-group">
+                        <label>Administered By</label>
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.administered_by" placeholder="Administered By">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Clinic Location</label>
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.clinic_location" placeholder="Clinic Location">
+                    </div>
+
+                    <div class="form-group">
                         <label>Adminstration Date</label>
                         <input ng-disabled="!isUnadministerable()" administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
