@@ -152,6 +152,16 @@
             <form  name="form" novalidate>
 
                     <div class="form-group">
+                        <label>Administered By</label>
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.administered_by" placeholder="Administered By">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Clinic Location</label>
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.clinic_location" placeholder="Clinic Location">
+                    </div>
+
+                    <div class="form-group">
                         <label>Adminstration Date</label>
                         <input ng-disabled="!isUnadministerable()" administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
@@ -495,7 +505,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-ff6d4406.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-6aebffcb.js"></script>
 
   </body>
 </html>
