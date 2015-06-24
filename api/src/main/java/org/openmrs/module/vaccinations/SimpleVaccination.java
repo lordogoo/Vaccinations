@@ -55,14 +55,16 @@ public class SimpleVaccination implements Serializable {
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 
-			
-			if (vaccination.getCreator().getGivenName() != null)
-                gName = vaccination.getCreator().getGivenName();
-			if (vaccination.getCreator().getFamilyName() != null)
-                lName = vaccination.getCreator().getFamilyName();
-			
+			if (vaccination.getCreator() != null) {
+                if (vaccination.getCreator().getGivenName() != null)
+                    gName = vaccination.getCreator().getGivenName();
+                if (vaccination.getCreator().getFamilyName() != null)
+                    lName = vaccination.getCreator().getFamilyName();
+            }
             this.administered_by = gName + " " + lName;
-            this.clinic_location = vaccination.getClinic_location().getName();
+
+            if (vaccination.getClinic_location() != null)
+                this.clinic_location = vaccination.getClinic_location().getName();
 			this.patient_id = vaccination.getPatient_id();
 			this.uuid = vaccination.getUuid();
 		}
