@@ -27,6 +27,9 @@ public class SimpleVaccination implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
+    private String gName = "";
+    private String lName = "";
+
     public SimpleVaccination() {
     }
 
@@ -51,7 +54,14 @@ public class SimpleVaccination implements Serializable {
 			this.manufacture_date = vaccination.getManufacture_date();
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
-            this.administered_by = vaccination.getCreator().getGivenName() + " " + vaccination.getCreator().getFamilyName();
+
+			
+			if (vaccination.getCreator().getGivenName() != null)
+                gName = vaccination.getCreator().getGivenName();
+			if (vaccination.getCreator().getFamilyName() != null)
+                lName = vaccination.getCreator().getFamilyName();
+			
+            this.administered_by = gName + " " + lName;
             this.clinic_location = vaccination.getClinic_location().getName();
 			this.patient_id = vaccination.getPatient_id();
 			this.uuid = vaccination.getUuid();
