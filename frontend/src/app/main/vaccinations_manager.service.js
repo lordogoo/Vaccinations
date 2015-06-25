@@ -9,7 +9,6 @@ angular.module('vaccinations')
     self.stagedVaccinations = [];
 
     var setVaccinations = function (vaccinations) {
-        debugger;
         if (self.vaccinations){
             throw new Error('Vaccinations have already been set.');
         } else {
@@ -21,11 +20,11 @@ angular.module('vaccinations')
     var promise = $http.get(
             appConstants.URL +
             appConstants.PATH +
+            '/enums' +
             '/patient/' +
             appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
-            debugger;
             appConstants.setRoutes(data[1]);
             appConstants.setDosingUnits(data[2]);
             appConstants.setBodySitesAdministered(data[3]);

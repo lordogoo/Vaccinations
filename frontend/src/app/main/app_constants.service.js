@@ -12,11 +12,6 @@
 // Constants for this instance of the app
 angular.module('vaccinations')
 .service('appConstants', function ($http, $location) {
-    self = this;
-    self.bodySitesAdministered;
-    self.routes;
-    self.dosingUnits;
-
     var exports = {
         // Set url for testing
         URL: 'http://208.77.196.178:64000',
@@ -30,32 +25,7 @@ angular.module('vaccinations')
             } else {
                 return patientId;
             }
-        },
-
-        // Set body site administered
-        setRoutes: function (routes) {
-            self.routes = routes;
-        },
-
-        getRoutes: function() {
-            return self.routes;
-        },
-
-        setDosingUnits: function (dosingUnits) {
-            self.dosingUnits = dosingUnits;
-        },
-
-        getDosingUnits: function () {
-            return self.dosingUnits;
-        },
-
-        setBodySitesAdministered: function (bodySites) {
-            self.bodySitesAdministered = bodySites
-        },
-
-        getBodySitesAdministered: function () {
-            return self.bodySitesAdministered;
-        }
+       }
     };
 
     return exports;

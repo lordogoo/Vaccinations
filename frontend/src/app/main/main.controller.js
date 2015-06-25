@@ -13,7 +13,11 @@ angular.module('vaccinations')
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
-        $scope.vaccinations = data;
+        $scope.vaccinations = data[0];
+        $scope.dropDownData = {};
+        $scope.dropDownData.routes = data[1];
+        $scope.dropDownData.dosingUnits = data[2];
+        $scope.dropDownData.bodySites = data[3];
     });
 
 
