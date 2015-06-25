@@ -27,6 +27,8 @@ import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
+import org.openmrs.module.vaccinations.enums.DosingUnits;
+import org.openmrs.module.vaccinations.enums.Routes;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 
 import org.springframework.http.HttpStatus;
@@ -77,13 +79,26 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return simpleVaccination;
 	}
 
-	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
-	@ResponseBody
-	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
+    //Originally returning only simple Vaccination, now also need drop-down data/
+//	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
+//        List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+//        //Context.clearSession();
+//		return simpleVaccinations;
+//	}
+
+    @RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Object> getVaccinations(@PathVariable int patientId) {
+        List<Object> objects = new ArrayList<Object>();
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+        objects.add(simpleVaccinations);
+        objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal});
+        objects.add(new DosingUnits[] {DosingUnits.International, DosingUnits.Ampule, DosingUnits.Drop, DosingUnits.Ounce, DosingUnits.Gram, DosingUnits.Milligram, DosingUnits.Milliequivalent, DosingUnits.Microgram, DosingUnits.Milliliter, DosingUnits.Tablet, DosingUnits.Unit, DosingUnits.Vial});
         //Context.clearSession();
-		return simpleVaccinations;
-	}
+        return objects;
+    }
 
 	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.POST)
 	@ResponseBody
