@@ -21,6 +21,8 @@
         <property name="administered" type="boolean" column="administered" length="1" not-null="true"/>
         <property name="administration_date" type="java.util.Date" column="administration_date" length="19" />
         <property name="body_site_administered" type="java.lang.String" column="body_site_administered" not-null="true" length="255" />
+
+        <property name="side_administered_left" type="boolean" column="left" length="1" not-null="true"/>
         <property name="dose_number" type="int" column="dose_number" not-null="true" length="255" />
         <property name="lot_number" type="java.lang.String" column="lot_number" not-null="true" length="255" />
         <property name="manufacturer" type="java.lang.String" column="manufacturer" length="255" />

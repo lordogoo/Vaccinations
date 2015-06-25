@@ -27,6 +27,7 @@ import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
+import org.openmrs.module.vaccinations.enums.BodySites;
 import org.openmrs.module.vaccinations.enums.DosingUnits;
 import org.openmrs.module.vaccinations.enums.Routes;
 import org.openmrs.module.webservices.rest.web.RestConstants;
@@ -96,6 +97,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         objects.add(simpleVaccinations);
         objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal});
         objects.add(new DosingUnits[] {DosingUnits.International, DosingUnits.Ampule, DosingUnits.Drop, DosingUnits.Ounce, DosingUnits.Gram, DosingUnits.Milligram, DosingUnits.Milliequivalent, DosingUnits.Microgram, DosingUnits.Milliliter, DosingUnits.Tablet, DosingUnits.Unit, DosingUnits.Vial});
+        objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.NA});
         //Context.clearSession();
         return objects;
     }

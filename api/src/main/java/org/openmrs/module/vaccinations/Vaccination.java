@@ -57,6 +57,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 			this.administered = simpleVaccination.getAdministered();
 			this.administration_date = simpleVaccination.getAdministration_date();
 			this.body_site_administered = simpleVaccination.getBody_site_administered();
+            this.side_administered_left = simpleVaccination.getSide_administered_left();
 			this.dose_number = simpleVaccination.getDose_number();
 			this.lot_number = simpleVaccination.getLot_number();
 			this.manufacturer = simpleVaccination.getManufacturer();
@@ -89,6 +90,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.administered = vaccination.getAdministered();
             this.administration_date = vaccination.getAdministration_date();
             this.body_site_administered = vaccination.getBody_site_administered();
+            this.side_administered_left = vaccination.getSide_administered_left();
             this.dose_number = vaccination.getDose_number();
             this.lot_number = vaccination.getLot_number();
             this.manufacturer = vaccination.getManufacturer();
@@ -120,6 +122,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private boolean administered;
 	private Date administration_date;
 	private String body_site_administered;
+    private boolean side_administered_left;
     private Integer dose_number;
 	private String lot_number;
 	private String manufacturer;
@@ -139,6 +142,14 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private String retireReason;
 
 	private int patient_id;
+
+    public boolean getSide_administered_left() {
+        return side_administered_left;
+    }
+
+    public void setSide_administered_left(boolean side_administered_left) {
+        this.side_administered_left = side_administered_left;
+    }
 
     public Location getClinic_location() {
         return clinic_location;
