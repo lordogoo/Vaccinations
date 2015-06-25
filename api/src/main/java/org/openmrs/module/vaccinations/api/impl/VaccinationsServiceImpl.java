@@ -150,6 +150,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
         newVaccination.setAdministered(false);
         newVaccination.setAdverse_reaction_observed(false);
+        newVaccination.setSide_administered_left(false);
         return newVaccination;
     }
 

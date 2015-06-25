@@ -80,18 +80,18 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		return simpleVaccination;
 	}
 
-    //Originally returning only simple Vaccination, now also need drop-down data/
-//	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
-//	@ResponseBody
-//	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
-//        List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
-//        //Context.clearSession();
-//		return simpleVaccinations;
-//	}
+    //Legacy functionality
+	@RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SimpleVaccination> getVaccinations(@PathVariable int patientId) {
+        List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+        //Context.clearSession();
+		return simpleVaccinations;
+	}
 
-    @RequestMapping(value = "/vaccinations/patient/{patientId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/vaccinations/enums/patient/{patientId}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Object> getVaccinations(@PathVariable int patientId) {
+    public List<Object> getVaccinationsAndEnums(@PathVariable int patientId) {
         List<Object> objects = new ArrayList<Object>();
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
         objects.add(simpleVaccinations);

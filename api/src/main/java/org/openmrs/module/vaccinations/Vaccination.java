@@ -24,6 +24,11 @@ import org.openmrs.api.context.Context;
 import java.io.Serializable;
 import java.util.Date;
 
+
+//For debugging
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.openmrs.module.vaccinations.util.Constants;
 
 /**
