@@ -2118,7 +2118,7 @@
     </changeSet>
 
 
-    <changeSet id="vaccinations-20150623-1" author="Serghei Luchianov">
+    <changeSet id="vaccinations-20150625-1" author="Serghei Luchianov">
         <addColumn tableName="vac_vaccinations">
             <column name="left" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
         </addColumn>
