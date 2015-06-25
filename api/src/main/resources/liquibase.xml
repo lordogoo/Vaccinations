@@ -2123,4 +2123,12 @@
             <column name="left" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
         </addColumn>
     </changeSet>
+    <changeSet id="vaccinations-20150625-2" author="Serghei Luchianov">
+        <dropColumn tableName="vac_vaccinations" columnName="left"/>
+    </changeSet>
+    <changeSet id="vaccinations-20150625-3" author="Serghei Luchianov">
+        <addColumn tableName="vac_vaccinations">
+            <column name="side_administered_left" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

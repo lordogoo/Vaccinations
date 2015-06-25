@@ -96,8 +96,10 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Integer(2), simpleVaccination.getId());
         assertEquals(new String("Test Location"), simpleVaccination.getClinic_location());
         assertEquals(new String("Hank Williams"), simpleVaccination.getAdministered_by());
+        assertTrue(simpleVaccination.getSide_administered_left());
 
         simpleVaccination.setDose(500.00);
+        simpleVaccination.setSide_administered_left(false);
 
         Vaccination vaccination = new Vaccination(simpleVaccination);
         assertEquals(new String("6304a894-7806-44ad-97c6-0d1e04c18c11"), vaccination.getUuid());
@@ -110,6 +112,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Double(500.00), vaccination1.getDose());
         assertNotNull(vaccination.getClinic_location());
         assertEquals(new String("Test Location"), vaccination1.getClinic_location().getName());
+        assertFalse(simpleVaccination.getSide_administered_left());
     }
 
     //This test will not fail if more than one unscheduled vaccination is added to the test data file
@@ -128,6 +131,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setScheduled(false);
         vaccination.setAdministration_date(new Date());
         vaccination.setBody_site_administered("Nah");
+        vaccination.setSide_administered_left(true);
         vaccination.setAdverse_reaction_observed(false);
         vaccination.setDosing_unit("bla");
         vaccination.setExpiry_date(new Date());
@@ -142,6 +146,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
 
         Vaccination vaccination2 = vaccinationsService.getVaccinationByUuid(vaccination1.getUuid());
         assertEquals(new Double(500.00), vaccination2.getDose());
+        assertTrue(vaccination2.getSide_administered_left());
         //assertEquals(new Integer(2), vaccination.getId());
     }
 }
