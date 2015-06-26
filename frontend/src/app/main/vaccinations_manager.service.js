@@ -25,9 +25,6 @@ angular.module('vaccinations')
             appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
-            appConstants.setRoutes(data[1]);
-            appConstants.setDosingUnits(data[2]);
-            appConstants.setBodySitesAdministered(data[3]);
             setVaccinations(data[0]);
         })
 

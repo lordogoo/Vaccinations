@@ -155,8 +155,8 @@ angular.module('vaccinations')
         var currentTime = new Date();
         var msDiff = currentTime - administeredTime;
         var minsDiff = Math.round(((msDiff % 86400000) % 3600000) / 60000);
-        console.log(minsDiff);
-        if (minsDiff < 5 && minsDiff > 0) {
+
+        if (minsDiff < 5 && minsDiff >= 0) {
           return true;
         } else {
           return false;
@@ -282,11 +282,15 @@ angular.module('vaccinations')
     var promise = $http.get(
             appConstants.URL +
             appConstants.PATH +
+            '/enums' +
             '/patient/' +
             appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
-            setVaccinations(data);
+            appConstants.setRoutes(data[1]);
+            appConstants.setDosingUnits(data[2]);
+            appConstants.setBodySitesAdministered(data[3]);
+            setVaccinations(data[0]);
         })
 
         .error(function(data, status, headers, config){
@@ -594,7 +598,11 @@ angular.module('vaccinations')
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
-        $scope.vaccinations = data;
+        $scope.vaccinations = data[0];
+        $scope.dropDownData = {};
+        $scope.dropDownData.routes = data[1];
+        $scope.dropDownData.dosingUnits = data[2];
+        $scope.dropDownData.bodySites = data[3];
     });
 
 

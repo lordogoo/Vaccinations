@@ -197,6 +197,14 @@
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid site. For example right outer thigh, left outer shoulder..."></feedback>
 
                     <div class="form-group">
+                        <label>Side Administered</label>
+                        <select name="side_administered_left" class="form-control" ng-model="enteredAdverseFormData.side_administered_left" required>       <option selected="selected" value=true>Left</option>
+                              <option value=false>Right</option>
+                        </select>
+                    </div>
+                    <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
+
+                    <div class="form-group">
                         <label>Manufacturer</label>
                         <input ng-disabled="!isUnadministerable()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required>
                     </div>
@@ -355,6 +363,14 @@
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid site. For example right outer thigh, left outer shoulder..."></feedback>
 
                     <div class="form-group">
+                    <label>Side Administered</label>
+                    <select name="side_administered_left" class="form-control" ng-model="enteredAdverseFormData.side_administered_left" required>        <option selected="selected" value=true>Left</option>
+                       <option value=false>Right</option>
+                    </select>
+                    </div>
+                    <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
+
+                    <div class="form-group">
                         <label>Manufacturer</label>
                         <input name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required>
                     </div>
@@ -459,6 +475,15 @@
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.body_site_administered.$error.required || enteredAdminFormData._scheduling && form.body_site_administered.$error.text" warning="Enter a valid site. For example right outer thigh, left outer shoulder..."></feedback>
 
+                    <div ng-if="enteredAdminFormData._administering" class="form-group">
+                        <label>Side Administered</label>
+                        <select name="side_administered_left" class="form-control" ng-model="enteredAdverseFormData.side_administered_left" required>
+                          <option selected="selected" value=true>Left</option>
+                          <option value=false>Right</option>
+                        </select>
+                    </div>
+                    <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
+
                      <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacturer</label>
                         <input name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering">
@@ -505,7 +530,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-6aebffcb.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e65b8ba6.js"></script>
 
   </body>
 </html>

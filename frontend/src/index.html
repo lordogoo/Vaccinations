@@ -206,7 +206,7 @@
 
                     <div class="form-group">
                         <label>Side Administered</label>
-                        <select name="side_administered_left" class="form-control" ng-model="enteredAdverseFormData.side_administered_left" required>       <option selected="selected" value=true>Left</option>
+                        <select name="side_administered_left" class="form-control" ng-model="enteredEditFormData.side_administered_left" required>       <option selected="selected" value=true>Left</option>
                               <option value=false>Right</option>
                         </select>
                     </div>
@@ -371,8 +371,15 @@
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid site. For example right outer thigh, left outer shoulder..."></feedback>
 
                     <div class="form-group">
+                        <label>Body Site Administered</label>
+                        <select name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" required ng-options="bodySite.name for bodySite in dropDownData.bodySites">
+                        </select>
+                    </div>
+                    {{$scope.dropDownData.bodySites}}
+
+                    <div class="form-group">
                     <label>Side Administered</label>
-                    <select name="side_administered_left" class="form-control" ng-model="enteredAdverseFormData.side_administered_left" required>        <option selected="selected" value=true>Left</option>
+                    <select name="side_administered_left" class="form-control" ng-model="enteredEditFormData.side_administered_left" required>        <option selected="selected" value=true>Left</option>
                        <option value=false>Right</option>
                     </select>
                     </div>
