@@ -12,7 +12,8 @@ public enum Routes {
     Intramuscular (160243, "Intramuscular"),
     Subcutaneous (160245, "Subcutaneous"),
     Intranasal (161253, "Intranasal"),
-    Transdermal (162391, "Transdermal");
+    Transdermal (162391, "Transdermal"),
+    Intradermal (123456, "Intradermal");
 
     private final String name;
     private final int conceptId;

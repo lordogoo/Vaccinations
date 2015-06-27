@@ -95,7 +95,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         List<Object> objects = new ArrayList<Object>();
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
         objects.add(simpleVaccinations);
-        objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal});
+        objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal, Routes.Intradermal});
         objects.add(new DosingUnits[] {DosingUnits.International, DosingUnits.Ampule, DosingUnits.Drop, DosingUnits.Ounce, DosingUnits.Gram, DosingUnits.Milligram, DosingUnits.Milliequivalent, DosingUnits.Microgram, DosingUnits.Milliliter, DosingUnits.Tablet, DosingUnits.Unit, DosingUnits.Vial});
         objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.NA});
         //Context.clearSession();

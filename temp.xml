@@ -1,0 +1,2060 @@
+    <changeSet id="vaccinations-20150627" author="Jon Cairo">
+        <preConditions>
+            <tableExists tableName="vac_vaccines"/>
+        </preConditions>
+        <comment> This code populates the vaccines table vaccines. </comment>
+        <sql>
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Bacillus Calmette-Guerin (BCG)',
+            'birth to 1yo',
+            1,
+            .05,
+            '162263',
+            'intra-dermal left forearm',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            183,
+            1
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Bacillus Calmette-Guerin (BCG)',
+            'older than 1yo',
+            2,
+            .1,
+            '162263',
+            'intra-dermal left forearm',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            365,
+            1
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Bacillus Calmette-Guerin (BCG)',
+            null,
+            null,
+            null,
+            '162263',
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Oral Polio Vaccine (OPV)',
+            'birth to 2 weeks',
+            1,
+            2,
+            '162356',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            7,
+            null
+            );
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Oral Polio Vaccine (OPV)',
+            '6 weeks',
+            2,
+            2,
+            '162356',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            42,
+            null
+            );
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Oral Polio Vaccine (OPV)',
+            '10 weeks',
+            3,
+            2,
+            '162356',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            70,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Oral Polio Vaccine (OPV)',
+            '14 weeks',
+            4,
+            2,
+            '162356',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            98,
+            null
+            );
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pentavalent Vaccine',
+            '6 weeks',
+            1,
+            .5,
+            '162263',
+            'IM left outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            42,
+            1
+            );
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pentavalent Vaccine',
+            '10 weeks',
+            2,
+            .5,
+            '162263',
+            'IM left outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            70,
+            1
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pentavalent Vaccine',
+            '14 weeks',
+            3,
+            .5,
+            '162263',
+            'IM left outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            98,
+            1
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pneumococcal conjugate vaccine (PCV)',
+            '6 weeks',
+            1,
+            .5,
+            '162263',
+            'IM right outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            42,
+            0
+            );
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pneumococcal conjugate vaccine (PCV)',
+            '10 weeks',
+            2,
+            .5,
+            '162263',
+            'IM right outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            70,
+            0
+            );
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Pneumococcal conjugate vaccine (PCV)',
+            '14 weeks',
+            3,
+            .5,
+            '162263',
+            'IM right outer thigh',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            98,
+            0
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Measles',
+            '9 months',
+            1,
+            .5,
+            '162263',
+            'SC right upper arm',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            270,
+            0
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            1,
+            'Yellow Fever',
+            '9 months',
+            1,
+            .5,
+            '162263',
+            'IM left upper deltoid',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            270,
+            1
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Diphtheria-Pertussis-Tetanus (DPT)',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Hepatitis A (HA)',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Hepatitis B (HA)',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Haemophilus influenza type b (Hib)',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Rotavirus',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Rabies',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Chickenpox',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Cholera',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Typhoid',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+
+            )
+            VALUES (
+            0,
+            'Influenza',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Mumps',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Rubella',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Meningococcal',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Tetanus toxoid',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '6 months',
+            1,
+            100000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            180,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '1 year',
+            2,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            365,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '1 1/2 years',
+            3,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            548,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '2 years',
+            4,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            730,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '2 1/2 years',
+            5,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            913,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '3 years',
+            6,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1095,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '3 1/2 years',
+            7,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1278,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '4 years',
+            8,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1460,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '4 1/2 years',
+            9,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1643,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+
+            )
+            VALUES (
+            0,
+            'Vitamin A',
+            '5 years',
+            10,
+            200000,
+            '162264',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1825,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Mebendazole',
+            '1 year',
+            1,
+            500,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            365,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Mebendazole',
+            '1 1/2 years',
+            2,
+            500,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            548,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '2 years',
+            3,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            730,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '2 1/2 years',
+            4,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            913,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '3 years',
+            5,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1095,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '3 1/2 years',
+            6,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1278,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '4 years',
+            7,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1460,
+            null
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '4 1/2 years',
+            8,
+            400,
+            '161553',
+            'PO',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            1643,
+            null
+            );
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`
+            )
+            VALUES (
+            0,
+            'Custom',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null
+            );
+
+        </sql>
+
+    </changeSet>
