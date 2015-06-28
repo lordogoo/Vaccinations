@@ -20,7 +20,7 @@ public class DosingUnitsSerializer extends JsonSerializer<DosingUnits> {
 
         generator.writeStartObject();
         generator.writeFieldName("conceptId");
-        generator.writeNumber(value.getConceptId());
+        generator.writeString(value.getConceptId());
         generator.writeFieldName("name");
         generator.writeString(value.getName());
         generator.writeEndObject();

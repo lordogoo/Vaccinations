@@ -8,22 +8,22 @@ import org.openmrs.module.vaccinations.util.RoutesSerializer;
  */
 @JsonSerialize(using = RoutesSerializer.class)
 public enum Routes {
-    Oral (160240, "Oral"),
-    Intramuscular (160243, "Intramuscular"),
-    Subcutaneous (160245, "Subcutaneous"),
-    Intranasal (161253, "Intranasal"),
-    Transdermal (162391, "Transdermal"),
-    Intradermal (123456, "Intradermal");
+    Oral ("160240", "Oral"),
+    Intramuscular ("160243", "Intramuscular"),
+    Subcutaneous ("160245", "Subcutaneous"),
+    Intranasal ("161253", "Intranasal"),
+    Transdermal ("162391", "Transdermal"),
+    Intradermal ("123456", "Intradermal");
 
     private final String name;
-    private final int conceptId;
+    private final String conceptId;
 
-    private Routes(int conceptId, String name){
+    private Routes(String conceptId, String name){
         this.conceptId = conceptId;
         this.name = name;
     }
 
-    public int getConceptId() {
+    public String getConceptId() {
         return conceptId;
     }
 
