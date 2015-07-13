@@ -2135,7 +2135,7 @@
 
     <changeSet id="vaccinations-20150713-1" author="Serghei Luchianov">
         <addColumn tableName="vac_vaccines">
-            <column name="side_administered_left" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+            <column name="side_administered_left" type="BOOLEAN" />
             <column name="body_site_administered" type="varchar(255)" />
         </addColumn>
     </changeSet>
