@@ -10,7 +10,7 @@ angular.module('vaccinations')
                 return 'Custom Vaccine::';
             }
             if (typeof vaccine.dose_number !== 'undefined' && vaccine.dose_number !== null) {
-                formattedVaccineName += 'Dose Number: ' + vaccine.dose_number + ' ';
+                formattedVaccineName += 'Course Number: ' + vaccine.dose_number + ' ';
             }
             if (typeof vaccine.dose !== 'undefined' && vaccine.dose !== null) {
                 formattedVaccineName += 'Dose: ' + vaccine.dose + ' ';

@@ -92,17 +92,13 @@ $adverse-foreground: #E7687D;
 
 .vaccination {
 
-    .form-group:nth-child(1) {
-        margin-top: 45px;
-    }
-
     // Form in/out transition
     .form-wrapper, .header:nth-last-child(1) {
         @include border-bottom-radius(4px);
     }
 
     .form-wrapper {
-        padding: 15px 80px;
+        padding: 60px 80px 45px 80px;
         margin-right: 0;
         margin-left: 0;
         background-color: #FDFDFD;
@@ -294,7 +290,6 @@ $adverse-foreground: #E7687D;
   height: 65px;
 
   button {
-    margin-bottom: 30px;
     margin-top: 15px;
   }
 }
@@ -346,6 +341,7 @@ button {
     opacity: 0;
     max-height: 0px;
 }
+
 
 // Generic hide class
 .hidden {
