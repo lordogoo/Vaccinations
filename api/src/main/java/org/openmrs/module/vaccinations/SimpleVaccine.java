@@ -46,7 +46,10 @@ public class SimpleVaccine implements Serializable {
 			this.route = vaccine.getRoute();
 			this.scheduled = vaccine.getScheduled();
 			this.numeric_indication = vaccine.getNumeric_indication();
-			this.uuid = vaccine.getUuid();
+            this.body_site_administered = vaccine.getBody_site_administered();
+            if (vaccine.getSide_administered_left() != null)
+                this.side_administered_left = vaccine.getSide_administered_left();
+            this.uuid = vaccine.getUuid();
 			/*log.warn("OLD UUID: " + vaccine.getUuid());
 			log.warn("NEW UUID: " + this.getUuid());*/
 		}else{
@@ -64,9 +67,27 @@ public class SimpleVaccine implements Serializable {
 	private String route;
 	private boolean scheduled;
 	private Integer numeric_indication;
+    private String body_site_administered;
+    private boolean side_administered_left;
 	private String uuid;
 
-	public String getUuid() {
+    public String getBody_site_administered() {
+        return body_site_administered;
+    }
+
+    public void setBody_site_administered(String body_site_administered) {
+        this.body_site_administered = body_site_administered;
+    }
+
+    public boolean getSide_administered_left() {
+        return side_administered_left;
+    }
+
+    public void setSide_administered_left(boolean side_administered_left) {
+        this.side_administered_left = side_administered_left;
+    }
+
+    public String getUuid() {
 		return uuid;
 	}
 

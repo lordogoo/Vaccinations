@@ -75,6 +75,9 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private boolean scheduled;
 	private Integer numeric_indication;
 
+    private String body_site_administered;
+    private Boolean side_administered_left;
+
 	private User creator;
 	private Date dateCreated;
 	private User changedBy;
@@ -83,6 +86,22 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private Date dateRetired;
 	private User retiredBy;
 	private String retireReason;
+
+    public String getBody_site_administered() {
+        return body_site_administered;
+    }
+
+    public void setBody_site_administered(String body_site_administered) {
+        this.body_site_administered = body_site_administered;
+    }
+
+    public Boolean getSide_administered_left() {
+        return side_administered_left;
+    }
+
+    public void setSide_administered_left(Boolean side_administered_left) {
+        this.side_administered_left = side_administered_left;
+    }
 
 	public Integer getNumeric_indication() {
 		return numeric_indication;

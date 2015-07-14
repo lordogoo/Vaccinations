@@ -51,6 +51,22 @@ public class  VaccinesServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Integer(34), vaccine.getId());
     }
 
+    @Test
+    public void shouldEnsureVaccineBodySitePresent(){
+        logger.debug("Looking for Vaccine by Uuid");
+        Vaccine vaccine = vaccinesService.getVaccineByUuid("d5f0b023-0a36-11e5-ba5b-005056be863d");
+        assertNotNull(vaccine);
+        assertEquals(new String("b"), vaccine.getBody_site_administered());
+        assertEquals(new Boolean(true), vaccine.getSide_administered_left());
+        assertEquals(new Integer(34), vaccine.getId());
+
+        Vaccine vaccine1 = vaccinesService.getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
+        assertNotNull(vaccine1);
+        assertEquals(new String("a"), vaccine1.getBody_site_administered());
+        assertNull(vaccine1.getSide_administered_left());
+        assertEquals(new Integer(36), vaccine1.getId());
+    }
+
     //This test will not fail if more than one unscheduled vaccine is added to the test data file
     @Test
     public void shouldReturnListOfUnscheduledVaccines(){

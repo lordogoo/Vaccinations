@@ -145,6 +145,12 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         newVaccination.setRoute(vaccine.getRoute());
         newVaccination.setScheduled(vaccine.getScheduled());
         newVaccination.setDose_number(vaccine.getDose_number());
+
+        if (vaccine.getSide_administered_left() != null){
+            newVaccination.setSide_administered_left(vaccine.getSide_administered_left());
+        }
+        newVaccination.setBody_site_administered(vaccine.getBody_site_administered());
+
         //Assign calculated scheduled date
         newVaccination.setScheduled_date(calculatedScheduledDate);
 
