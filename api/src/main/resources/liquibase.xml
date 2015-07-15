@@ -4343,7 +4343,7 @@
             VALUES('KAM Pharmacy Limited');
 
             INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
-            VALUES('Laboratory & Allied Limited');
+            VALUES('Laboratory &amp; Allied Limited');
 
             INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
             VALUES('Manhar Brothers (K) Limited');

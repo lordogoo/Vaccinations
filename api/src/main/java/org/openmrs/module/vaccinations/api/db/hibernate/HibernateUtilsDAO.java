@@ -49,9 +49,9 @@ public class HibernateUtilsDAO implements UtilsDAO {
     @Override
     public List<Manufacturer> getAllManufacturers(Boolean includeRetired) {
         Criteria crit = sessionFactory.getCurrentSession().createCriteria(Manufacturer.class);
-        if (!includeRetired){
+        /*if (!includeRetired){
             crit.add(Restrictions.eq("retired", false));
-        }
+        }*/
         return (List<Manufacturer>)crit.list();
     }
 }

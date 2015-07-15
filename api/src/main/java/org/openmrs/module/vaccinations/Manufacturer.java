@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by Serghei Luchianov on 14/Jul/2015.
  */
-public class Manufacturer extends BaseOpenmrsObject implements Serializable {
+public class Manufacturer implements Serializable {
     private Integer id;
     private String name;
 
@@ -19,12 +19,10 @@ public class Manufacturer extends BaseOpenmrsObject implements Serializable {
         this.name = name;
     }
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }
