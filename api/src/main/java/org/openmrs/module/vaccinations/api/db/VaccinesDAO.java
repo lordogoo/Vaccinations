@@ -9,6 +9,9 @@ import org.openmrs.module.vaccinations.api.VaccinesService;
 
 import java.util.List;
 
+/**
+ *  Database methods for {@link VaccinesService}.
+ */
 public interface VaccinesDAO {
 
     public List<Vaccine> listAllVaccines(Boolean includeRetired);

@@ -49,6 +49,7 @@
         Vaccination.hbm.xml
         Vaccine.hbm.xml
         AdverseReaction.hbm.xml
+        Manufacturer.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->

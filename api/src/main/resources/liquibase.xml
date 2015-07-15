@@ -4296,4 +4296,78 @@
         </sql>
 
     </changeSet>
+
+    <!-- This changeset creates manufacturers table -->
+    <changeSet id="vaccinations-20150714" author="Serghei Luchianov">
+        <preConditions onFail="MARK_RAN">
+                <not><tableExists tableName="vac_manufacturers"/></not>
+        </preConditions>
+        <createTable tableName="vac_manufacturers">
+            <column name="manufacturer_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+        </createTable>
+        <sql>
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('African Cotton Industries Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Alpha Medical Manufacturers Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Beta Healthcare International Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Biodeal Laboratories Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Bulk Medicals Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Cosmos Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Dawa Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Elys Chemicals Industries Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Gesto Pharmaceuticals Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('GlaxoSmithKline Kenya Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('KAM Pharmacy Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Laboratory & Allied Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Manhar Brothers (K) Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Medivet Products Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Novelty Manufacturing Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Pharm Access Africa Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Pharmaceutical Manufacturing Co (K) Limited');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Regal Pharmaceuticals');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Revital Healthcare (EPZ) K');
+
+            INSERT INTO `openmrs`.`vac_manufacturers` (`name`)
+            VALUES('Universal Corporation Limited');
+        </sql>
+    </changeSet>
 </databaseChangeLog>

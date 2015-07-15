@@ -1,7 +1,7 @@
 package org.openmrs.module.vaccinations.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.openmrs.module.vaccinations.util.DosingUnitsSerializer;
+import org.openmrs.module.vaccinations.util.Serializers.DosingUnitsSerializer;
 
 /**
  * Created by Serghei Luchianov on 2015-06-25.

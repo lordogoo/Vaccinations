@@ -25,6 +25,7 @@ import org.hibernate.stat.Statistics;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.AdverseReactionsService;
+import org.openmrs.module.vaccinations.api.UtilsService;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
 import org.openmrs.module.vaccinations.enums.BodySites;
@@ -94,10 +95,12 @@ public class VaccinationsResourceController {// extends MainResourceController {
     public List<Object> getVaccinationsAndEnums(@PathVariable int patientId) {
         List<Object> objects = new ArrayList<Object>();
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+        List<Manufacturer> manufacturers = Context.getService(UtilsService.class).getAllManufacturers(false);
         objects.add(simpleVaccinations);
         objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal, Routes.Intradermal});
         objects.add(new DosingUnits[] {DosingUnits.International, DosingUnits.Ampule, DosingUnits.Drop, DosingUnits.Ounce, DosingUnits.Gram, DosingUnits.Milligram, DosingUnits.Milliequivalent, DosingUnits.Microgram, DosingUnits.Milliliter, DosingUnits.Tablet, DosingUnits.Unit, DosingUnits.Vial});
         objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.NA});
+        objects.add(manufacturers);
         //Context.clearSession();
         return objects;
     }

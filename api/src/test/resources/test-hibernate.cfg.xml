@@ -27,5 +27,6 @@
 		<mapping resource="Vaccine.hbm.xml" />
 		<mapping resource="Vaccination.hbm.xml" />
 		<mapping resource="AdverseReaction.hbm.xml" />
+        <mapping resource="Manufacturer.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
