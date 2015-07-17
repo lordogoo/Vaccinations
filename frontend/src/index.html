@@ -222,7 +222,7 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <select ng-disabled="!isUnadministerable()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.id as c.name for c in getManufacturers()">
+                        <select ng-disabled="!isUnadministerable()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()">
                         <option value=""></option>
                         </select>
                     </div>
@@ -398,7 +398,7 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.id as c.name for c in getManufacturers()">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()">
                         <option value=""></option>
                         </select>
                     </div>
@@ -526,7 +526,7 @@
 
                      <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacturer</label>
-                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering" ng-options="c.id as c.name for c in getManufacturers()">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering" ng-options="c.name as c.name for c in getManufacturers()">
                         <option value=""></option>
                         </select>
                     </div>
@@ -540,7 +540,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required ng-options="c.id as c.name for c in getManufacturers()">
+                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
