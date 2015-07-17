@@ -54,7 +54,7 @@
             <div class="staged-wrapper" ng-if="stagedVaccinations.length > 0">
 
                 <!-- STAGED VACCINATIONS -->
-                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites"></vaccination>
+                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers"></vaccination>
                 <!-- /STAGED VACCINATION -->
 
             </div>
@@ -69,7 +69,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
                 <div ng-if="$index === 0" class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
                 <div class="vaccination-group-header"><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
@@ -77,7 +77,7 @@
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" ><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
         </div>
@@ -139,7 +139,7 @@
                 <span ng-if="enteredEditFormData.adverse_reaction_observed" class="label label-danger adverse-label">Adverse Reaction</span>
 
                 <span ng-if="enteredEditFormData.dose_number">
-                    <span class="dose-number-label">Dose Number: </span>
+                    <span class="dose-number-label">Course Number: </span>
                     <span class="dose-number">{{ ::enteredEditFormData.dose_number }}</span>
                 </span>
 
@@ -222,7 +222,9 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <input ng-disabled="!isUnadministerable()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required>
+                        <select ng-disabled="!isUnadministerable()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.id as c.name for c in getManufacturers()">
+                        <option value=""></option>
+                        </select>
                     </div>
                     <feedback warn="form.manufacturer.$error.required" warning="Enter a valid manufacturer. For example Pfizer, Procter and Gamble..."></feedback>
 
@@ -319,7 +321,7 @@
                 <span class="label label-danger due-label" ng-class="{'hidden': !due}">Due</span>
 
                 <span ng-if="enteredAdminFormData.dose_number" class="header-info">
-                    <span class="dose-number-label">Dose Number: </span>
+                    <span class="dose-number-label">Course Number: </span>
                     <span class="dose-number">{{ ::enteredAdminFormData.dose_number }}</span>
                 </span>
 
@@ -396,7 +398,9 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <input name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required>
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.id as c.name for c in getManufacturers()">
+                        <option value=""></option>
+                        </select>
                     </div>
                     <feedback warn="form.manufacturer.$error.required" warning="Enter a valid manufacturer. For example Pfizer, Procter and Gamble..."></feedback>
 
@@ -463,7 +467,7 @@
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
-                     <div ng-if="enteredAdminFormData.custom" class="form-group">
+                    <div ng-if="enteredAdminFormData.custom" class="form-group">
                         <label>Vaccine Name</label>
                         <input name="name" class="form-control" type="text" ng-model="enteredAdminFormData.name" placeholder="Vaccine Name" ng-required="enteredAdminFormData.custom">
                     </div>
@@ -474,6 +478,11 @@
                         <input name="scheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required>
                     </div>
                     <feedback warn="form.scheduled_date.$error.date" warning="Enter a valid scheduled date."></feedback>
+
+                    <div class="form-group" ng-if="enteredAdminFormData.dose_number">
+                        <label>Course Number</label>
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course">
+                    </div>
 
                     <div class="form-group">
                         <label>Dose</label>
@@ -517,7 +526,9 @@
 
                      <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacturer</label>
-                        <input name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering" ng-options="c.id as c.name for c in getManufacturers()">
+                        <option value=""></option>
+                        </select>
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacturer.$error.required" warning="Enter a valid manufacturer. For example Pfizer, Procter and Gamble..."></feedback>
 
@@ -529,7 +540,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required ng-options="c.id as c.name for c in getManufacturers()">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 

@@ -108,6 +108,7 @@ angular.module('vaccinations')
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
+                debugger;
                 $http.post(
                     appConstants.URL +
                     appConstants.PATH +
