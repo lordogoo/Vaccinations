@@ -143,6 +143,11 @@
                     <span class="dose-number">{{ ::enteredEditFormData.dose_number }}</span>
                 </span>
 
+                <span ng-if="enteredEditFormData.indication_name" class="header-info">
+                    <span class="indication-label">Indication: </span>
+                    <span class="indication-date">{{ ::enteredEditFormData.indication_name | date: 'mediumDate' }}</span>
+                </span>
+
                 <span class="administered-label">Administered: </span><span class="administered-date">{{ ::enteredEditFormData.administration_date | date: 'mediumDate' }}</span>
 
                 <div class="btn-group pull-right">
