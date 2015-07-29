@@ -2296,6 +2296,7 @@
         </sql>
 
     </changeSet>
+
 	<changeSet id="vaccinations-20150529-1" author="Serghei Luchianov">
 		<addColumn tableName="vac_vaccinations">
 			<column name="patient_id" type="int"/>
@@ -2435,4 +2436,13 @@
             <column name="new_value" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
         </createTable>
     </changeSet>
+
+    <!-- An excuse is a drop-down list containing an ENum, while reason is a free text box -->
+    <changeSet id="vaccinations-20150623-1" author="Serghei Luchianov">
+        <addColumn tableName="vac_audit_lod">
+            <column name="excuse" type="varchar(255)"/>
+            <column name="reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
