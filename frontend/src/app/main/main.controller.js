@@ -19,6 +19,7 @@ angular.module('vaccinations')
         $scope.dropDownData.dosingUnits = data[2];
         $scope.dropDownData.bodySites = data[3];
         $scope.dropDownData.manufacturers = data[4];
+        $scope.dropDownData.changeReasons = data[5];
     });
 
 
