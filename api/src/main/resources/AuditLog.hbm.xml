@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.vaccinations">
+    <class name="AuditLog" table="vac_audit_log">
+        <id name="id" type="int" column="audit_log_id" unsaved-value="0">
+            <generator class="native" />
+        </id>
+
+        <property name="vaccination_id" type="int" column="vaccination_id" />
+        <property name="location" type="java.lang.String" column="location" not-null="true" length="255" />
+
+        <!-- An excuse is a drop-down list containing an ENum, while reason is a free text box -->
+        <property name="excuse" type="java.lang.String" column="excuse" not-null="true" length="255" />
+        <property name="reason" type="java.lang.String" column="reason" not-null="true" length="255" />
+
+        <property name="changed_by" type="java.lang.String" column="changed_by" not-null="true" length="255" />
+        <property name="dateChanged" type="java.util.Date" column="date_changed" length="19" />
+
+    </class>
+    <class name="AuditLogLineItem" table="vac_audit_log_line_item">
+        <id name="id" type="int" column="audit_log_line_item_id" unsaved-value="0">
+            <generator class="native" />
+        </id>
+
+        <property name="audit_log_id" type="int" column="audit_log_id" />
+
+        <property name="field" type="java.lang.String" column="field" not-null="true" length="255" />
+        <property name="original_value" type="java.lang.String" column="original_value" not-null="true" length="255" />
+        <property name="new_value" type="java.lang.String" column="new_value" length="255" />
+
+    </class>
+</hibernate-mapping>

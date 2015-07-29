@@ -19,8 +19,10 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.module.vaccinations.AuditLog;
 import org.openmrs.module.vaccinations.api.db.UtilsDAO;
 import org.openmrs.module.vaccinations.Manufacturer;
+import org.openmrs.module.vaccinations.AuditLogLineItem;
 
 import java.util.List;
 
@@ -53,5 +55,19 @@ public class HibernateUtilsDAO implements UtilsDAO {
             crit.add(Restrictions.eq("retired", false));
         }*/
         return (List<Manufacturer>)crit.list();
+    }
+
+    @Override
+    public List<AuditLog> getAuditLogByVaccinationId(int vaccinationId) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AuditLog.class);
+        criteria.add(Restrictions.eq("vaccination_id", vaccinationId));
+        return (List<AuditLog>)criteria.list();
+    }
+
+    @Override
+    public List<AuditLogLineItem> getAuditLogLineItems(int auditLogId) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AuditLogLineItem.class);
+        criteria.add(Restrictions.eq("audit_log_id", auditLogId));
+        return (List<AuditLogLineItem>)criteria.list();
     }
 }

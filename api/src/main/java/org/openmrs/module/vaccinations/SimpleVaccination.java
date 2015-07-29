@@ -15,10 +15,10 @@ package org.openmrs.module.vaccinations;
 
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.User;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
@@ -56,6 +56,8 @@ public class SimpleVaccination implements Serializable {
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 
+            this.auditLogList = vaccination.getAuditLogList();
+
 			if (vaccination.getCreator() != null) {
                 if (vaccination.getCreator().getGivenName() != null)
                     gName = vaccination.getCreator().getGivenName();
@@ -90,6 +92,7 @@ public class SimpleVaccination implements Serializable {
 
     private SimpleVaccine simpleVaccine;
     private SimpleAdverseReaction simpleAdverse_reaction;
+    private List<AuditLog> auditLogList;
 
 	private boolean administered;
 	private Date administration_date;
@@ -107,6 +110,14 @@ public class SimpleVaccination implements Serializable {
 
 	private int patient_id;
 	private String uuid;
+
+    public List<AuditLog> getAuditLogList() {
+        return auditLogList;
+    }
+
+    public void setAuditLogList(List<AuditLog> auditLogList) {
+        this.auditLogList = auditLogList;
+    }
 
     public boolean getSide_administered_left() {
         return side_administered_left;

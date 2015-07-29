@@ -5,9 +5,11 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.vaccinations.AuditLog;
 import org.openmrs.module.vaccinations.api.db.UtilsDAO;
 import org.openmrs.module.vaccinations.Manufacturer;
 import org.openmrs.module.vaccinations.api.UtilsService;
+import org.openmrs.module.vaccinations.AuditLogLineItem;
 
 import java.util.List;
 
@@ -37,5 +39,15 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
     @Override
     public List<Manufacturer> getAllManufacturers(Boolean includeRetired) throws APIException {
         return dao.getAllManufacturers(includeRetired);
+    }
+
+    @Override
+    public List<AuditLog> getAuditLogByVaccinationId(int vaccinationId) throws APIException {
+        return dao.getAuditLogByVaccinationId(vaccinationId);
+    }
+
+    @Override
+    public List<AuditLogLineItem> getAuditLogLineItems(int auditLogId) throws APIException {
+        return dao.getAuditLogLineItems(auditLogId);
     }
 }
