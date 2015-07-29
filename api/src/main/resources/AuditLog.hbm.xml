@@ -14,7 +14,7 @@
 
         <!-- An excuse is a drop-down list containing an ENum, while reason is a free text box -->
         <property name="excuse" type="java.lang.String" column="excuse" not-null="true" length="255" />
-        <property name="reason" type="java.lang.String" column="reason" not-null="true" length="255" />
+        <property name="reason" type="java.lang.String" column="reason" length="255" />
 
         <property name="changed_by" type="java.lang.String" column="changed_by" not-null="true" length="255" />
         <property name="dateChanged" type="java.util.Date" column="date_changed" length="19" />

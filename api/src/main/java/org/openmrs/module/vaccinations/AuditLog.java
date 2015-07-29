@@ -17,10 +17,30 @@ public class AuditLog implements Serializable {
     private String changed_by;
     private String location;
     private Date dateChanged;
+
+    private String excuse;
+    private String reason;
+
     private List<AuditLogLineItem> auditLogLineItemList;
 
     public AuditLog(){
-       this.auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
+       auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(String excuse) {
+        this.excuse = excuse;
     }
 
     public String getLocation() {
