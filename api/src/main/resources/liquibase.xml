@@ -2407,4 +2407,32 @@
             VALUES('Universal Corporation Limited');
         </sql>
     </changeSet>
+
+    <!-- This changeset creates audit_log and audit_log_line_items tables -->
+    <changeSet id="vaccinations-20150721" author="Serghei Luchianov">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <not><tableExists tableName="vac_audit_log"/></not>
+                <not><tableExists tableName="vac_audit_log_line_item"/></not>
+            </and>
+        </preConditions>
+        <createTable tableName="vac_audit_log">
+            <column name="audit_log_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="vaccination_id" type="int"><constraints nullable="false"/></column>
+            <column name="location" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="changed_by" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="date_changed" type="DATETIME"/>
+        </createTable>
+        <createTable tableName="vac_audit_log_line_item">
+            <column name="audit_log_line_item_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="audit_log_id" type="int"><constraints nullable="false"/></column>
+            <column name="field" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="original_value" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="new_value" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
