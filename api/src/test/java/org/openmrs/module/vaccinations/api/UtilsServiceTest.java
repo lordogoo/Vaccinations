@@ -16,7 +16,6 @@ package org.openmrs.module.vaccinations.api;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.vaccinations.AuditLog;
 import org.openmrs.module.vaccinations.Manufacturer;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -49,13 +48,5 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         logger.debug("Getting all manufacturers");
         List<Manufacturer> manufacturers = utilsService.getAllManufacturers(true);
         assertEquals(2, manufacturers.size());
-    }
-
-    @Test
-    public void shouldReturnAuditLog(){
-        logger.debug("Getting all audit logs");
-        List<AuditLog> auditLogList = utilsService.getAuditLogByVaccinationId(1);
-        assertEquals(1, auditLogList.size());
-        assertEquals(3, auditLogList.get(0).getAuditLogLineItemList().size());
     }
 }

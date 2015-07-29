@@ -94,7 +94,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         SimpleVaccination simpleVaccination = new SimpleVaccination(vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11"));
         assertNotNull(simpleVaccination);
         assertEquals(new Integer(2), simpleVaccination.getId());
-        assertEquals(new String("AMREF"), simpleVaccination.getClinic_location());
+        assertEquals(new String("Test Location"), simpleVaccination.getClinic_location());
         assertEquals(new String("Hank Williams"), simpleVaccination.getAdministered_by());
         assertTrue(simpleVaccination.getSide_administered_left());
 
@@ -111,7 +111,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         Vaccination vaccination1 = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
         assertEquals(new Double(500.00), vaccination1.getDose());
         assertNotNull(vaccination.getClinic_location());
-        assertEquals(new String("AMREF"), vaccination1.getClinic_location().getName());
+        assertEquals(new String("Test Location"), vaccination1.getClinic_location().getName());
         assertFalse(simpleVaccination.getSide_administered_left());
     }
 

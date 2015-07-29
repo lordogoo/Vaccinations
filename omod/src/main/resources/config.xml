@@ -50,7 +50,6 @@
         Vaccine.hbm.xml
         AdverseReaction.hbm.xml
         Manufacturer.hbm.xml
-        AuditLog.hbm.xml
 	</mappingFiles>
 
 	<!-- Internationalization -->

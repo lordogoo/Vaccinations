@@ -16,9 +16,7 @@ package org.openmrs.module.vaccinations.api;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.vaccinations.AuditLog;
 import org.openmrs.module.vaccinations.Manufacturer;
-import org.openmrs.module.vaccinations.AuditLogLineItem;
 import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,11 +39,4 @@ public interface UtilsService extends OpenmrsService {
 	@Authorized( {PrivilegeConstants.VIEW_VACCINES} )
 	public List<Manufacturer> getAllManufacturers(Boolean includeRetired) throws APIException;
 
-    @Transactional(readOnly =  true)
-    @Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-    public List<AuditLog> getAuditLogByVaccinationId(int vaccinationId) throws APIException;
-
-    @Transactional(readOnly =  true)
-    @Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
-    public List<AuditLogLineItem> getAuditLogLineItems(int auditLogId) throws APIException;
 }
