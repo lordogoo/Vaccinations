@@ -2438,7 +2438,7 @@
     </changeSet>
 
     <!-- An excuse is a drop-down list containing an ENum, while reason is a free text box -->
-    <changeSet id="vaccinations-20150623-1" author="Serghei Luchianov">
+    <changeSet id="vaccinations-20150729" author="Serghei Luchianov">
         <addColumn tableName="vac_audit_lod">
             <column name="excuse" type="varchar(255)"/>
             <column name="reason" type="varchar(255)"/>
