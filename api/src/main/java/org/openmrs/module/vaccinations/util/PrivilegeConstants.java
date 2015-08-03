@@ -21,9 +21,9 @@ public class PrivilegeConstants {
 	public static final String VIEW_VACCINATIONS = "View Vaccinations";
 	public static final String PURGE_VACCINATIONS = "Purge Vaccinations";
 
-	public static final String MANAGE_ADVERSE_REACTIONS = "Manage Adverse Reactions";
-	public static final String VIEW_ADVERSE_REACTIONS = "View Adverse Reactions";
-	public static final String PURGE_ADVERSE_REACTIONS = "Purge Adverse Reactions";
+	public static final String MANAGE_ADVERSE_REACTIONS = "Manage AdverseReactions";
+	public static final String VIEW_ADVERSE_REACTIONS = "View AdverseReactions";
+	public static final String PURGE_ADVERSE_REACTIONS = "Purge AdverseReactions";
 
 
 	public static final String[] PRIVILEGE_NAMES = new String[] {
