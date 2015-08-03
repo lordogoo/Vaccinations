@@ -77,7 +77,8 @@ angular.module('vaccinations')
                     // Remove the old version and add the new version
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
-                    that.addVaccination(data); })
+                    that.addVaccination(data);
+                })
 
                 .error( function (data) {
                     $rootScope.$broadcast('failure');
@@ -204,6 +205,7 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
+                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
