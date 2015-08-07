@@ -57,6 +57,9 @@ public class SimpleVaccination implements Serializable {
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 
             this.auditLogList = vaccination.getAuditLogList();
+            for (int i = 0; i <= auditLogList.size() - 1; i++){
+                auditLogList.get(i).getAuditLogLineItemList();
+            }
 
 			if (vaccination.getCreator() != null) {
                 if (vaccination.getCreator().getGivenName() != null)

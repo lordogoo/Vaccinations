@@ -152,7 +152,12 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private int patient_id;
 
     public List<AuditLog> getAuditLogList() {
-        return auditLogList;
+        if (auditLogList != null) {
+            return auditLogList;
+        }else{
+            auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
+            return auditLogList;
+        }
     }
 
     public void setAuditLogList(List<AuditLog> auditLogList) {

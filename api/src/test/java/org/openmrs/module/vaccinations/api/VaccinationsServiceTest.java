@@ -71,6 +71,22 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertTrue(vaccinationList.contains(vaccination));
     }
 
+    //This test check that audit logs are retrieved as w+ell
+    @Test
+    public void shouldReturnListPatientVaccinationsAndAuditLogs(){
+        logger.debug("Looking for Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        Vaccination vaccination = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
+        assertNotNull(vaccination);
+        assertEquals(new Integer(2), vaccination.getId());
+
+        List<Vaccination> vaccinationList = vaccinationsService.listVaccinationsByPatientId(3);
+        assertTrue(vaccinationList.contains(vaccination));
+
+        assertEquals(1, vaccinationList.get(0).getAuditLogList().size());
+    }
+
     //This test will not fail if more than one unscheduled vaccination is added to the test data file
     @Test
     public void shouldReturnListOfSimplePatientVaccinations(){

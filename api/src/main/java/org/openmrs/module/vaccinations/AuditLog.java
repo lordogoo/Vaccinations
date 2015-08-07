@@ -24,7 +24,7 @@ public class AuditLog implements Serializable {
     private List<AuditLogLineItem> auditLogLineItemList;
 
     public AuditLog(){
-       auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
+       //auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
     }
 
     public String getReason() {
@@ -52,7 +52,12 @@ public class AuditLog implements Serializable {
     }
 
     public List<AuditLogLineItem> getAuditLogLineItemList() {
-        return auditLogLineItemList;
+        if (auditLogLineItemList != null ) {
+            return auditLogLineItemList;
+        }else{
+            auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
+            return auditLogLineItemList;
+        }
     }
 
     public void setAuditLogLineItemList(List<AuditLogLineItem> auditLogLineItemList) {
