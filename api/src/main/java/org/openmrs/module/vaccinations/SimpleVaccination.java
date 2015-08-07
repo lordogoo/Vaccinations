@@ -15,7 +15,6 @@ package org.openmrs.module.vaccinations;
 
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.module.vaccinations.enums.Excuses;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -72,10 +71,6 @@ public class SimpleVaccination implements Serializable {
 
             if (vaccination.getClinic_location() != null)
                 this.clinic_location = vaccination.getClinic_location().getName();
-
-            this.excuse = vaccination.getExcuse();
-            this.reason = vaccination.getReason();
-
 			this.patient_id = vaccination.getPatient_id();
 			this.uuid = vaccination.getUuid();
 		}
@@ -115,27 +110,9 @@ public class SimpleVaccination implements Serializable {
 
     private String administered_by;
     private String clinic_location;
-    private Excuses excuse;
-    private String reason;
 
 	private int patient_id;
 	private String uuid;
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public Excuses getExcuse() {
-        return excuse;
-    }
-
-    public void setExcuse(Excuses excuse) {
-        this.excuse = excuse;
-    }
 
     public List<AuditLog> getAuditLogList() {
         return auditLogList;

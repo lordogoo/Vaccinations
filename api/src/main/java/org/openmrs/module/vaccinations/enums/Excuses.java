@@ -12,8 +12,7 @@ public enum Excuses {
     WrongVaccine("Wrong vaccine administered"),
     OutOfStock("Vaccine is out of stock"),
     Expired("Vaccine is expired"),
-    NoExcuse("Other"),
-    NoError("Placeholder"); //Placeholder is not being used at the moment
+    NoExcuse("Other");
 
     private final String name;
 
