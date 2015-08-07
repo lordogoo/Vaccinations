@@ -156,9 +156,23 @@
                     <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed">Add Reaction</button>
 
                     <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed">Reaction Details</button>
+
+                    <button type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()">History</button>
                 </div>
             </div>
             <!-- /HEADER -->
+
+            <!-- AUDIT LOG -->
+            <div ng-if="state.auditLogOpen" class="form-wrapper">
+                <div ng-repeat="for change in enteredEditFormData.audit_log">
+                    <span>Change by</span><span>change.user</span>
+                    <span>Date</span><span>change.date</span>
+                    <span>Field</span><span>change.field</span>
+                    <span>From</span><span>change.old_value</span>
+                    <span>To</span><span>change.new_value</span>
+                </div>
+            </div>
+            <!-- /AUDIT LOG -->
 
             <!-- EDIT FORM -->
             <div ng-if="state.editFormOpen" class="form-wrapper">

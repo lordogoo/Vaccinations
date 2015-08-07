@@ -12,14 +12,11 @@ angular.module('vaccinations')
     $scope.state = {};
     $scope.state.editFormOpen = false;
     $scope.state.adverseFormOpen = false;
+    $scope.state.auditLogOpen = false;
     $scope.state.minsDiff;
 
     $scope.lessThan5Mins = function(minsDiff) {
-        if ($scope.state.minsDiff < 5 && $scope.state.minsDiff >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $scope.state.minsDiff < 5 && $scope.state.minsDiff >= 0;
     };
 
     $scope.isUnadministerable = function () {
@@ -43,6 +40,10 @@ angular.module('vaccinations')
         $scope.state.minsDiff = undefined;
         $scope.state.adverseFormOpen = false;
         $scope.state.editFormOpen = !$scope.state.editFormOpen;
+    };
+
+    $scope.toggleAuditLog = function() {
+        $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
     };
 
     $scope.resetFormDataToDefaults = function () {
