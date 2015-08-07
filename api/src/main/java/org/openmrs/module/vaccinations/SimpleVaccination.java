@@ -18,6 +18,7 @@ import org.openmrs.BaseOpenmrsObject;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
