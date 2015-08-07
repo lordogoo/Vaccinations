@@ -28,5 +28,6 @@
 		<mapping resource="Vaccination.hbm.xml" />
 		<mapping resource="AdverseReaction.hbm.xml" />
         <mapping resource="Manufacturer.hbm.xml" />
+        <mapping resource="AuditLog.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
