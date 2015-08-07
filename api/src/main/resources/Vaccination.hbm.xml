@@ -39,9 +39,7 @@
 		<property name="patient_id" type="int" column="patient_id"/>
 
         <many-to-one name="clinic_location" class="org.openmrs.Location" column="location_id" />
-        <property name="excuse" type="org.openmrs.module.vaccinations.enums.Excuses" column="excuse" not-null="false"/>
-        <property name="reason" type="java.lang.String" column="reason" length="255" />
-
+			
 		<!-- bi-directional many-to-one association to User -->
 		<many-to-one name="creator" class="org.openmrs.User" not-null="true" column="creator" />
 		<property name="dateCreated" type="java.util.Date" column="date_created" not-null="true" length="19" />
