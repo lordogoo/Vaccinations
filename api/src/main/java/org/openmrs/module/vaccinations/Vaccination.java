@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.openmrs.module.vaccinations.api.UtilsService;
+import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.module.vaccinations.util.Constants;
 
 /**
@@ -73,6 +74,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.setUuid(simpleVaccination.getUuid());
             this.creator = Context.getAuthenticatedUser();
             this.clinic_location = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
+            this.excuse = simpleVaccination.getExcuse();
+            this.reason = simpleVaccination.getReason();
             this.dateCreated = new Date();
 		}
 	}
@@ -106,6 +109,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(vaccination.getId());
 
             this.clinic_location = vaccination.getClinic_location();
+            this.excuse = vaccination.getExcuse();
+            this.reason = vaccination.getReason();
 
             this.setUuid(vaccination.getUuid());
             this.creator = vaccination.getCreator();
@@ -139,6 +144,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private boolean adverse_reaction_observed;
 
     private Location clinic_location;
+    private Excuses excuse;
+    private String reason;
 
 	private User creator;
 	private Date dateCreated;
@@ -158,6 +165,22 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
             return auditLogList;
         }
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public Excuses getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(Excuses excuse) {
+        this.excuse = excuse;
     }
 
     public void setAuditLogList(List<AuditLog> auditLogList) {
