@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.*;
+import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 
@@ -71,6 +72,22 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertTrue(vaccinationList.contains(vaccination));
     }
 
+    //This test check that audit logs are retrieved as w+ell
+    @Test
+    public void shouldReturnListPatientVaccinationsAndAuditLogs(){
+        logger.debug("Looking for Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        Vaccination vaccination = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
+        assertNotNull(vaccination);
+        assertEquals(new Integer(2), vaccination.getId());
+
+        List<Vaccination> vaccinationList = vaccinationsService.listVaccinationsByPatientId(3);
+        assertTrue(vaccinationList.contains(vaccination));
+
+        assertEquals(1, vaccinationList.get(0).getAuditLogList().size());
+    }
+
     //This test will not fail if more than one unscheduled vaccination is added to the test data file
     @Test
     public void shouldReturnListOfSimplePatientVaccinations(){
@@ -94,12 +111,14 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         SimpleVaccination simpleVaccination = new SimpleVaccination(vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11"));
         assertNotNull(simpleVaccination);
         assertEquals(new Integer(2), simpleVaccination.getId());
-        assertEquals(new String("Test Location"), simpleVaccination.getClinic_location());
+        assertEquals(new String("AMREF"), simpleVaccination.getClinic_location());
         assertEquals(new String("Hank Williams"), simpleVaccination.getAdministered_by());
         assertTrue(simpleVaccination.getSide_administered_left());
 
         simpleVaccination.setDose(500.00);
         simpleVaccination.setSide_administered_left(false);
+        simpleVaccination.setExcuse(Excuses.NoExcuse);
+        simpleVaccination.setReason("Entering real values");
 
         Vaccination vaccination = new Vaccination(simpleVaccination);
         assertEquals(new String("6304a894-7806-44ad-97c6-0d1e04c18c11"), vaccination.getUuid());
@@ -111,7 +130,9 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         Vaccination vaccination1 = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
         assertEquals(new Double(500.00), vaccination1.getDose());
         assertNotNull(vaccination.getClinic_location());
-        assertEquals(new String("Test Location"), vaccination1.getClinic_location().getName());
+        assertEquals(new String("AMREF"), vaccination1.getClinic_location().getName());
+        assertEquals(Excuses.NoExcuse, vaccination1.getExcuse());
+        assertEquals("Entering real values", vaccination1.getReason());
         assertFalse(simpleVaccination.getSide_administered_left());
     }
 

@@ -15,7 +15,7 @@ package org.openmrs.module.vaccinations;
 
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.BaseOpenmrsObject;
-import org.openmrs.User;
+import org.openmrs.module.vaccinations.enums.Excuses;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -56,6 +56,11 @@ public class SimpleVaccination implements Serializable {
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 
+            this.auditLogList = vaccination.getAuditLogList();
+            for (int i = 0; i <= auditLogList.size() - 1; i++){
+                auditLogList.get(i).getAuditLogLineItemList();
+            }
+
 			if (vaccination.getCreator() != null) {
                 if (vaccination.getCreator().getGivenName() != null)
                     gName = vaccination.getCreator().getGivenName();
@@ -66,6 +71,10 @@ public class SimpleVaccination implements Serializable {
 
             if (vaccination.getClinic_location() != null)
                 this.clinic_location = vaccination.getClinic_location().getName();
+
+            this.excuse = vaccination.getExcuse();
+            this.reason = vaccination.getReason();
+
 			this.patient_id = vaccination.getPatient_id();
 			this.uuid = vaccination.getUuid();
 		}
@@ -90,6 +99,7 @@ public class SimpleVaccination implements Serializable {
 
     private SimpleVaccine simpleVaccine;
     private SimpleAdverseReaction simpleAdverse_reaction;
+    private List<AuditLog> auditLogList;
 
 	private boolean administered;
 	private Date administration_date;
@@ -104,9 +114,35 @@ public class SimpleVaccination implements Serializable {
 
     private String administered_by;
     private String clinic_location;
+    private Excuses excuse;
+    private String reason;
 
 	private int patient_id;
 	private String uuid;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public Excuses getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(Excuses excuse) {
+        this.excuse = excuse;
+    }
+
+    public List<AuditLog> getAuditLogList() {
+        return auditLogList;
+    }
+
+    public void setAuditLogList(List<AuditLog> auditLogList) {
+        this.auditLogList = auditLogList;
+    }
 
     public boolean getSide_administered_left() {
         return side_administered_left;

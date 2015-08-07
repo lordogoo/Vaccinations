@@ -6,16 +6,25 @@
     <vac_vaccinations vaccination_id="1" vaccine_id="36" scheduled="0" name="Bacillus Calmette-Guerin (BSG)" indication_name="birth to 1yo" dose="0.1" dosing_unit="ml" route="intra-dermal left forearm" administered="true" administration_date="2015-06-03 20:06:07" body_site_administered="b" dose_number="1" lot_number="b" manufacturer="b" manufacture_date="2015-06-03 20:06:07" expiry_date="2015-06-03 20:06:07" adverse_reaction="false" adverse_reaction_id="1" patient_id="3" creator="5507" date_created="2015-06-08 15:38:50" retired="false" uuid="6304a894-7806-44ad-97c6-0d1e04c28c22" location_id="1" side_administered_left="0"/>
     <vac_vaccinations vaccination_id="2" vaccine_id="34" scheduled="1" name="Bacillus Calmette-Guerin (BSG)" indication_name="birth to 1yo" dose="0.05" dosing_unit="ml" route="intra-dermal left forearm" administered="true" administration_date="2015-06-03 20:06:07" body_site_administered="a" dose_number="1" lot_number="a" manufacturer="a" manufacture_date="2015-06-03 20:06:07" expiry_date="2015-06-03 20:06:07" adverse_reaction="true" adverse_reaction_id="1" patient_id="3" creator="5507" date_created="2015-06-08 15:38:50" retired="false" uuid="6304a894-7806-44ad-97c6-0d1e04c18c11" location_id="1" side_administered_left="1"/>
 
-    <vac_adverse_reactions adverse_reaction_id="1" vaccination_id="34" adverse_event="MEH" grade="1" creator="1" date_created="2015-06-08 15:38:50" retired="false" uuid="6304a894-7806-44ad-97c6-0d1e04c18c66"/>
+    <vac_adverse_reactions adverse_reaction_id="1" adverse_event="MEH" creator="1" date_created="2015-06-08 15:38:50" retired="false" uuid="6304a894-7806-44ad-97c6-0d1e04c18c66"/>
 
     <vac_manufacturers manufacturer_id="1" name="African Cotton Industries Limited"/>
     <vac_manufacturers manufacturer_id="2" name="Alpha Medical Manufacturers Limited"/>
+
+    <vac_audit_log audit_log_id="1" vaccination_id="1" location="AMREF" excuse="NoExcuse" reason="I panicked" changed_by="Dr. Joe" date_changed="2015-07-08 15:38:50" />
+    <vac_audit_log audit_log_id="2" vaccination_id="2" location="AMREF" excuse="WrongVaccine" changed_by="Dr. Dan" date_changed="2015-07-08 15:38:50" />
+    <vac_audit_log_line_item audit_log_line_item_id="1" audit_log_id="1" field="dose" original_value="0.01" new_value="1"/>
+    <vac_audit_log_line_item audit_log_line_item_id="2" audit_log_id="1" field="dosing_unit" original_value="mg" new_value="L"/>
+    <vac_audit_log_line_item audit_log_line_item_id="3" audit_log_id="1" field="dose" original_value="1" new_value="0.1"/>
+    <vac_audit_log_line_item audit_log_line_item_id="4" audit_log_id="2" field="dosing_unit" original_value="mg" new_value="ml"/>
+
+
     <!--
     <user_property user_id="1" property="defaultLocation" property_value="1"/>
     <location location_id="1" name="Test Parent Location" parent_location="[NULL]" description="test description" creator="1" date_created="2005-01-01 00:00:00.0" retired="false" uuid="f08ba64b-ea57-4a41-b33c-9dfc59b0c60a"/>
     -->
 
-    <location location_id="1" name="Test Location" creator="1" date_created="2005-01-01 00:00:00.0" retired="false" uuid="fccbe8f3-597e-4c10-981a-35c541c20541"/>
+    <location location_id="1" name="AMREF" creator="1" date_created="2005-01-01 00:00:00.0" retired="false" uuid="fccbe8f3-597e-4c10-981a-35c541c20541"/>
     <patient patient_id="2" creator="1" date_created="2005-01-01 00:00:00.0" voided="false"/>
     <patient_identifier patient_identifier_id="1" patient_id="2" identifier="1234" identifier_type="1" preferred="1" location_id="1" creator="1" date_created="2005-01-01 00:00:00.0" voided="false" uuid="7eabecbb-9698-46e0-9abf-362a86d2dccd"/>
     <patient_identifier_type patient_identifier_type_id="1" name="Test Identifier Type" description="Test description" check_digit="false" creator="1" date_created="2005-01-01 00:00:00.0" required="false" retired="false" uuid="9872ce12-59c1-47bd-b7ec-f5786e12830a"/>
