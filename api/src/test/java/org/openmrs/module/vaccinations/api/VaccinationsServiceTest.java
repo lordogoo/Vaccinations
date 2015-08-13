@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.*;
+import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 
@@ -71,7 +72,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertTrue(vaccinationList.contains(vaccination));
     }
 
-    //This test check that audit logs are retrieved as w+ell
+    //This test check that audit logs are retrieved as well
     @Test
     public void shouldReturnListPatientVaccinationsAndAuditLogs(){
         logger.debug("Looking for Patient Vaccinations");
@@ -84,7 +85,22 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         List<Vaccination> vaccinationList = vaccinationsService.listVaccinationsByPatientId(3);
         assertTrue(vaccinationList.contains(vaccination));
 
-        assertEquals(1, vaccinationList.get(0).getAuditLogList().size());
+        assertEquals(2, vaccinationList.get(0).getAuditLogList().size());
+    }
+
+    //This test check that empty audit logs are retrieved as well
+    @Test
+    public void shouldReturnSimplePatientVaccinationAndEmptyAuditLog(){
+        logger.debug("Looking for Patient Vaccinations");
+
+        //Acquiring an unscheduled vaccination
+        Vaccination vaccination = vaccinationsService.getVaccinationByUuid("6304a894-7806-44ad-97c6-0d1e04c18c11");
+        assertNotNull(vaccination);
+        assertEquals(new Integer(2), vaccination.getId());
+        assertEquals(0, vaccination.getAuditLogList().size());
+
+        SimpleVaccination simpleVaccination = new SimpleVaccination(vaccination);
+        assertEquals(0, simpleVaccination.getAuditLogList().size());
     }
 
     //This test will not fail if more than one unscheduled vaccination is added to the test data file

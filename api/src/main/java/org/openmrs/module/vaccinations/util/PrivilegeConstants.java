@@ -25,12 +25,14 @@ public class PrivilegeConstants {
 	public static final String VIEW_ADVERSE_REACTIONS = "View AdverseReactions";
 	public static final String PURGE_ADVERSE_REACTIONS = "Purge AdverseReactions";
 
+    public static final String VIEW_AUDIT_LOG = "View Audit Log";
+
 
 	public static final String[] PRIVILEGE_NAMES = new String[] {
 			MANAGE_VACCINES, VIEW_VACCINES, PURGE_VACCINES,
 			MANAGE_VACCINATIONS, VIEW_VACCINATIONS, PURGE_VACCINATIONS,
 			MANAGE_ADVERSE_REACTIONS, VIEW_ADVERSE_REACTIONS,
-			PURGE_ADVERSE_REACTIONS
+			PURGE_ADVERSE_REACTIONS, VIEW_AUDIT_LOG
 	};
 
 	protected PrivilegeConstants() { }

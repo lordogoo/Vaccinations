@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.openmrs.Location;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.api.UtilsService;
+import org.openmrs.module.vaccinations.util.Constants;
 
 /**
  * Created by Serghei Luchianov on 14/Jul/2015.
@@ -24,7 +26,7 @@ public class AuditLog implements Serializable {
     private List<AuditLogLineItem> auditLogLineItemList;
 
     public AuditLog(){
-       //auditLogLineItemList = Context.getService(UtilsService.class).getAuditLogLineItems(this.id);
+
     }
 
     public String getReason() {

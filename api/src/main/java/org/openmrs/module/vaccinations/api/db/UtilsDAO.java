@@ -19,4 +19,6 @@ public interface UtilsDAO {
     public List<Manufacturer> getAllManufacturers(Boolean includeRetired);
     public List<AuditLog> getAuditLogByVaccinationId(int vaccinationId);
     public List<AuditLogLineItem> getAuditLogLineItems(int auditLogId);
+    public AuditLog saveOrUpdateAuditLog(AuditLog auditLog);
+    public AuditLogLineItem saveOrUpdateAuditLogLineItem(AuditLogLineItem auditLogLineItem);
 }

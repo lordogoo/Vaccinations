@@ -17,6 +17,7 @@ import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.BaseOpenmrsObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,11 @@ public class SimpleVaccination implements Serializable {
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
 
-            this.auditLogList = vaccination.getAuditLogList();
+            if (vaccination.getAuditLogList() != null) {
+                this.auditLogList = vaccination.getAuditLogList();
+            }else
+                this.auditLogList = new ArrayList<AuditLog>();
+
             for (int i = 0; i <= auditLogList.size() - 1; i++){
                 auditLogList.get(i).getAuditLogLineItemList();
             }

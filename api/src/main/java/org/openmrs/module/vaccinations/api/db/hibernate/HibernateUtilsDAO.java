@@ -70,4 +70,20 @@ public class HibernateUtilsDAO implements UtilsDAO {
         criteria.add(Restrictions.eq("audit_log_id", auditLogId));
         return (List<AuditLogLineItem>)criteria.list();
     }
+
+    @Override
+    public AuditLog saveOrUpdateAuditLog(AuditLog auditLog) {
+        AuditLog auditLog1 = (AuditLog)sessionFactory.getCurrentSession().merge(auditLog);
+        sessionFactory.getCurrentSession().saveOrUpdate(auditLog1);
+        sessionFactory.getCurrentSession().flush();
+        return auditLog1;
+    }
+
+    @Override
+    public AuditLogLineItem saveOrUpdateAuditLogLineItem(AuditLogLineItem auditLogLineItem) {
+        AuditLogLineItem auditLogLineItem1 = (AuditLogLineItem)sessionFactory.getCurrentSession().merge(auditLogLineItem);
+        sessionFactory.getCurrentSession().saveOrUpdate(auditLogLineItem1);
+        sessionFactory.getCurrentSession().flush();
+        return auditLogLineItem1;
+    }
 }

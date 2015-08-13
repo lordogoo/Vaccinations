@@ -12,7 +12,7 @@
     <vac_manufacturers manufacturer_id="2" name="Alpha Medical Manufacturers Limited"/>
 
     <vac_audit_log audit_log_id="1" vaccination_id="1" location="AMREF" excuse="NoExcuse" reason="I panicked" changed_by="Dr. Joe" date_changed="2015-07-08 15:38:50" />
-    <vac_audit_log audit_log_id="2" vaccination_id="2" location="AMREF" excuse="WrongVaccine" changed_by="Dr. Dan" date_changed="2015-07-08 15:38:50" />
+    <vac_audit_log audit_log_id="2" vaccination_id="1" location="AMREF" excuse="WrongVaccine" changed_by="Dr. Dan" date_changed="2015-07-08 15:38:50" />
     <vac_audit_log_line_item audit_log_line_item_id="1" audit_log_id="1" field="dose" original_value="0.01" new_value="1"/>
     <vac_audit_log_line_item audit_log_line_item_id="2" audit_log_id="1" field="dosing_unit" original_value="mg" new_value="L"/>
     <vac_audit_log_line_item audit_log_line_item_id="3" audit_log_id="1" field="dose" original_value="1" new_value="0.1"/>

@@ -16,9 +16,8 @@ package org.openmrs.module.vaccinations.api;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.APIException;
 import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.vaccinations.AuditLog;
-import org.openmrs.module.vaccinations.Manufacturer;
-import org.openmrs.module.vaccinations.AuditLogLineItem;
+import org.openmrs.module.vaccinations.*;
+import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.module.vaccinations.util.PrivilegeConstants;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,10 +41,19 @@ public interface UtilsService extends OpenmrsService {
 	public List<Manufacturer> getAllManufacturers(Boolean includeRetired) throws APIException;
 
     @Transactional(readOnly =  true)
-    @Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+    @Authorized( {PrivilegeConstants.VIEW_AUDIT_LOG} )
     public List<AuditLog> getAuditLogByVaccinationId(int vaccinationId) throws APIException;
 
     @Transactional(readOnly =  true)
-    @Authorized( {PrivilegeConstants.VIEW_VACCINATIONS} )
+    @Authorized( {PrivilegeConstants.VIEW_AUDIT_LOG} )
     public List<AuditLogLineItem> getAuditLogLineItems(int auditLogId) throws APIException;
+
+    @Transactional(readOnly =  true)
+    public AuditLog saveOrUpdateAuditLog(AuditLog auditLog) throws APIException;
+
+    @Transactional(readOnly =  true)
+    public AuditLogLineItem saveOrUpdateAuditLogLineItem(AuditLogLineItem auditLogLineItem) throws APIException;
+
+    @Transactional(readOnly =  true)
+    public AuditLog createAuditLogRecord(Vaccination oldVaccination, Vaccination simpleVaccination, Excuses excuse, String reason) throws APIException;
 }

@@ -106,5 +106,9 @@
         <name>Purge AdverseReactions</name>
         <description>Allows user to purge patient Adverse Reactions.</description>
     </privilege>
+    <privilege>
+        <name>View Audit Log</name>
+        <description>Allows user to view Audit Log.</description>
+    </privilege>
 </module>
 

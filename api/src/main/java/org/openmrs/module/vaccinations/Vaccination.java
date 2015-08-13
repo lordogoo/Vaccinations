@@ -22,6 +22,7 @@ import org.openmrs.User;
 import org.openmrs.api.context.Context;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,8 +45,12 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
     //UUID is automatically generated
 	public Vaccination(SimpleVaccination simpleVaccination){
 		if (simpleVaccination != null) {
+
+            Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
+
 			this.id = simpleVaccination.getId();
-			this.scheduled_date = simpleVaccination.getScheduled_date();
+
+            this.scheduled_date = simpleVaccination.getScheduled_date();
 			this.name = simpleVaccination.getName();
 			this.indication_name = simpleVaccination.getIndication_name();
 			this.dose = simpleVaccination.getDose();
@@ -68,17 +73,21 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 			this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
 			this.patient_id = simpleVaccination.getPatient_id();
 
-            this.auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(simpleVaccination.getId());
+            if (simpleVaccination.getId() != null) {
+                this.auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(simpleVaccination.getId());
+            }
 
             this.setUuid(simpleVaccination.getUuid());
             this.creator = Context.getAuthenticatedUser();
-            this.clinic_location = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
+            this.clinic_location = userLocus;
             this.dateCreated = new Date();
 		}
 	}
 
     public void setVaccination(Vaccination vaccination){
         if (vaccination != null) {
+
+
             this.id = vaccination.getId();
             this.scheduled_date = vaccination.getScheduled_date();
             this.name = vaccination.getName();
@@ -155,8 +164,16 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
         if (auditLogList != null) {
             return auditLogList;
         }else{
-            auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
-            return auditLogList;
+            if (id != null){
+                if (Context.getService(UtilsService.class).getAuditLogByVaccinationId(id) != null){
+                    auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
+                    return auditLogList;
+                }else {
+                    return new ArrayList<AuditLog>();
+                }
+            }else {
+                return new ArrayList<AuditLog>();
+            }
         }
     }
 
