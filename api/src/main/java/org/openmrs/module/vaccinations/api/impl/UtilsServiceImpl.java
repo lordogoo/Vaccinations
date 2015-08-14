@@ -78,7 +78,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
     @Override
     public AuditLog createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason, boolean unadminister) throws APIException {
 
-        log.warn("Inside createAuditLogRecord method");
+        log.info("Inside createAuditLogRecord method");
 
         AuditLog auditLog = new AuditLog();
         Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
@@ -292,36 +292,39 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
-        log.warn("Comparing Adverse Reactions");
+        log.info("Comparing Adverse Reactions");
+        if (oldVac.getAdverse_reaction() != null && newVac.getAdverse_reaction() != null) {
 
-        if (oldVac.getAdverse_reaction().getDate() != newVac.getAdverse_reaction().getDate()) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Adverse Reaction Date");
-            auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getDate().toString());
-            auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getDate().toString());
+            if (oldVac.getAdverse_reaction().getDate() != newVac.getAdverse_reaction().getDate()) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Adverse Reaction Date");
+                auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getDate().toString());
+                auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getDate().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
-        }
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
 
-        if (oldVac.getAdverse_reaction().getAdverse_event() != newVac.getAdverse_reaction().getAdverse_event()) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Adverse Event");
-            auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getAdverse_event().toString());
-            auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getAdverse_event().toString());
+            if (oldVac.getAdverse_reaction().getAdverse_event() != newVac.getAdverse_reaction().getAdverse_event()) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Adverse Event");
+                auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getAdverse_event().toString());
+                auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getAdverse_event().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
-        }
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
 
-        if (oldVac.getAdverse_reaction().getGrade() != newVac.getAdverse_reaction().getGrade()) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Grade");
-            auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getGrade().toString());
-            auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getGrade().toString());
+            if (oldVac.getAdverse_reaction().getGrade() != newVac.getAdverse_reaction().getGrade()) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Grade");
+                auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getGrade().toString());
+                auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getGrade().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
+
         }
 
         return auditLog;
