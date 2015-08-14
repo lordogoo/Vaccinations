@@ -125,7 +125,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setDateCreated(c.getTime());
         Vaccination vaccination1 = vaccinationsService.saveOrUpdateVaccination(new Vaccination(newVac));
 
-        utilsService.createAuditLogRecord(vaccination, vaccination1, Excuses.NoExcuse, "No reason provided");
+        utilsService.createAuditLogRecord(vaccination, vaccination1, Excuses.NoExcuse.getName(), "No reason provided");
 
         assertTrue(vaccination1.getAuditLogList().size() > 0);
         assertEquals(Excuses.NoExcuse.getName(), vaccination1.getAuditLogList().get(0).getExcuse());

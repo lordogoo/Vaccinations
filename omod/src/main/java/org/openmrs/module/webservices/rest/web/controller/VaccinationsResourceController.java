@@ -32,6 +32,7 @@ import org.openmrs.module.vaccinations.enums.BodySites;
 import org.openmrs.module.vaccinations.enums.DosingUnits;
 import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.module.vaccinations.enums.Routes;
+import org.openmrs.module.vaccinations.util.Constants;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 
 import org.springframework.http.HttpStatus;
@@ -121,13 +122,18 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateVaccination(
-			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) throws Exception {
+			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId, @PathVariable String excuse, @PathVariable String reason) throws Exception {
 		try
 		{
 			simpleVaccination.setPatient_id(patientId);
 
 			//If an object already exists in the session, save using that object
 			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
+
+			Vaccination oldLogVaccination = oldVaccination;
+			Vaccination newLogVaccination = new Vaccination(simpleVaccination);
+			Context.getService(UtilsService.class).createAuditLogRecord(oldVaccination, newLogVaccination, excuse, reason);
+
             if (oldVaccination != null) {
 				oldVaccination = new Vaccination(simpleVaccination);
 				return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(oldVaccination));
@@ -144,7 +150,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
     */
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId) {
+	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId, @PathVariable boolean unadminister, @PathVariable String excuse, @PathVariable String reason) {
 
 		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
 		vaccination1.setRetired(true);
@@ -183,14 +189,14 @@ public class VaccinationsResourceController {// extends MainResourceController {
     @RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateAdverseReaction(
-			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId) {
+			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable String excuse, @PathVariable String reason) {
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
         return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
 	}
 
 	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public SimpleVaccination deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId) {
+	public SimpleVaccination deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable boolean unadminister, @PathVariable String excuse, @PathVariable String reason) {
 		//Lookup adverse reaction
 		AdverseReaction adverseReaction = Context.getService(AdverseReactionsService.class).getAdverseReactionByAdverseReactionId(adverseReactionId);
 
