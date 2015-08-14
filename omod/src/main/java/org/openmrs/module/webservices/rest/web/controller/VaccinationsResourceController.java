@@ -132,7 +132,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 			Vaccination oldLogVaccination = oldVaccination;
 			Vaccination newLogVaccination = new Vaccination(simpleVaccination);
-			Context.getService(UtilsService.class).createAuditLogRecord(oldVaccination, newLogVaccination, excuse, reason);
+			Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason);
 
             if (oldVaccination != null) {
 				oldVaccination = new Vaccination(simpleVaccination);
@@ -153,19 +153,23 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId, @PathVariable boolean unadminister, @PathVariable String excuse, @PathVariable String reason) {
 
 		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
+		Vaccination oldLogVaccination = vaccination1;
 		vaccination1.setRetired(true);
 		vaccination1.setRetiredBy(Context.getAuthenticatedUser());
 		vaccination1.setDateRetired(new Date());
 		vaccination1.setRetireReason("Deleted");
 		SimpleVaccination simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1));
 
+		Vaccination newLogVaccination = new Vaccination(simpleVaccination2);
+		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason, unadminister); //All this should be is an logUnadminister method call
+
 		//check if vaccination is based on a scheduled vaccine
 		if (vaccination1.getScheduled()){
 
 			//returns a new vaccination template
-			simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).vaccineToVaccination(vaccination1.getVaccine(), Context.getService(VaccinationsService.class).calculateScheduledDate(patientId,vaccination1.getVaccine())));
-            simpleVaccination2.setId(vaccinationId);
-            simpleVaccination2.setUuid(vaccination1.getUuid());
+			//simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).vaccineToVaccination(vaccination1.getVaccine(), Context.getService(VaccinationsService.class).calculateScheduledDate(patientId,vaccination1.getVaccine())));
+            //simpleVaccination2.setId(vaccinationId);
+            //simpleVaccination2.setUuid(vaccination1.getUuid());
 
 		}else{
 			//returns a retired vaccination body
@@ -190,8 +194,14 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@ResponseBody
 	public SimpleVaccination updateAdverseReaction(
 			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable String excuse, @PathVariable String reason) {
+
+		Vaccination oldLogVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id());
+
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
-        return new SimpleVaccination(Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id()));
+		Vaccination newLogVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id());
+		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason);
+
+        return new SimpleVaccination(newLogVaccination);
 	}
 
 	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
@@ -202,6 +212,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 		//Lookup vaccination by id from adverse reaction
 		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(adverseReaction.getVaccination_id());
+		Vaccination oldLogVaccination = vaccination1;
 
 		//set adverse reaction retired to true and retirer to authenticated user
 		adverseReaction.setRetired(true);
@@ -213,8 +224,10 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
         vaccination1.setAdverse_reaction_observed(false);
 		//save or update vaccination
+		Vaccination newLogVaccination = Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
+		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason, unadminister);
 
-		return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1));
+		return new SimpleVaccination(newLogVaccination);
 	}
 }
 
