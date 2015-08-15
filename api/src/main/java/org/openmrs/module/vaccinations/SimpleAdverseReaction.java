@@ -43,6 +43,7 @@ public class SimpleAdverseReaction implements Serializable {
 
     private String excuse;
     private String reason;
+    private String unadminister;
 
     private Integer id;
     private Date date;
@@ -50,6 +51,14 @@ public class SimpleAdverseReaction implements Serializable {
     private String grade;
     private Integer vaccination_id;
     private String uuid;
+
+    public String getUnadminister() {
+        return unadminister;
+    }
+
+    public void setUnadminister(String unadminister) {
+        this.unadminister = unadminister;
+    }
 
     public String getReason() {
         return reason;

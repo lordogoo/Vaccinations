@@ -118,9 +118,18 @@ public class SimpleVaccination implements Serializable {
 
     private String excuse;
     private String reason;
+    private boolean unadminister;
 
 	private int patient_id;
 	private String uuid;
+
+    public boolean isUnadminister() {
+        return unadminister;
+    }
+
+    public void setUnadminister(boolean unadminister) {
+        this.unadminister = unadminister;
+    }
 
     public String getExcuse() {
         return excuse;
