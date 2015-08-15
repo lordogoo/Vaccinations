@@ -81,7 +81,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         AuditLog auditLog1 = new AuditLog();
         Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
-        String userName = Context.getAuthenticatedUser().getName();
+        String userName = Context.getAuthenticatedUser().getGivenName() + " " + Context.getAuthenticatedUser().getFamilyName();
 
         auditLog1.setVaccination_id(newVac.getId());
         auditLog1.setLocation(userLocus.toString());

@@ -15,6 +15,7 @@ package org.openmrs.module.vaccinations.api;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openmrs.PersonName;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.enums.Excuses;
@@ -42,7 +43,12 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         utilsService = Context.getService(UtilsService.class);
         vaccinationsService = Context.getService(VaccinationsService.class);
         Context.getUserService().setUserProperty(Context.getAuthenticatedUser(), "defaultLocation", "1");
-        Context.getUserService().getUser(1).setName("Jonny");
+        PersonName personName = new PersonName();
+        personName.setFamilyName("Johnson");
+        personName.setGivenName("Jonny");
+        personName.setDateCreated(new Date());
+        personName.setCreator(Context.getUserService().getUser(1));
+        Context.getUserService().getUser(1).addName(personName);
     }
 
 	@Test
