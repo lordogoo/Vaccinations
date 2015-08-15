@@ -10,7 +10,6 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.db.UtilsDAO;
 import org.openmrs.module.vaccinations.api.UtilsService;
-import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.module.vaccinations.util.Constants;
 
 import java.util.List;
@@ -68,29 +67,29 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
         This method should always be run after the changes have been saved. That way there will always be a proper id for the newly created Vaccination
      */
     @Override
-    public AuditLog createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason) throws APIException {
-        return createAuditLogRecord(oldVac, newVac, excuse, reason, false);
+    public void createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason) throws APIException {
+        createAuditLogRecord(oldVac, newVac, excuse, reason, false);
     }
 
     /*
        This method should always be run after the changes have been saved. That way there will always be a proper id for the newly created Vaccination
     */
     @Override
-    public AuditLog createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason, boolean unadminister) throws APIException {
+    public void createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason, boolean unadminister) throws APIException {
 
         log.info("Inside createAuditLogRecord method");
 
-        AuditLog auditLog = new AuditLog();
+        AuditLog auditLog1 = new AuditLog();
         Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
         String userName = Context.getAuthenticatedUser().getName();
 
-        auditLog.setVaccination_id(newVac.getId());
-        auditLog.setLocation(userLocus.toString());
-        auditLog.setChanged_by(userName);
-        auditLog.setExcuse(excuse);
-        auditLog.setReason(reason);
+        auditLog1.setVaccination_id(newVac.getId());
+        auditLog1.setLocation(userLocus.toString());
+        auditLog1.setChanged_by(userName);
+        auditLog1.setExcuse(excuse);
+        auditLog1.setReason(reason);
 
-        auditLog = saveOrUpdateAuditLog(auditLog);
+        AuditLog auditLog = saveOrUpdateAuditLog(auditLog1);
 
         if (unadminister == true){
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
@@ -99,7 +98,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(((Boolean)unadminister).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getScheduled_date() != newVac.getScheduled_date()) {
@@ -109,7 +108,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getScheduled_date().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getName() != newVac.getName()) {
@@ -119,7 +118,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getName().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getIndication_name() != newVac.getIndication_name()) {
@@ -129,7 +128,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getIndication_name().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getDose() != newVac.getDose()) {
@@ -139,7 +138,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getDose().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getDosing_unit() != newVac.getDosing_unit()) {
@@ -149,7 +148,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getDosing_unit().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getRoute() != newVac.getRoute()) {
@@ -159,27 +158,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getRoute().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
-        }
-
-        if (oldVac.getScheduled() != newVac.getScheduled()) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Scheduled Flag");
-            auditLogLineItem.setOriginal_value(((Boolean)oldVac.getScheduled()).toString());
-            auditLogLineItem.setNew_value(((Boolean)newVac.getScheduled()).toString());
-
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
-        }
-
-        if (oldVac.getAdverse_reaction() != newVac.getAdverse_reaction()) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Adverse Reaction");
-            auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().toString());
-            auditLogLineItem.setNew_value(newVac.getAdverse_reaction().toString());
-
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getScheduled() != newVac.getScheduled()) {
@@ -189,7 +168,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(((Boolean)newVac.getScheduled()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getAdministered() != newVac.getAdministered()){
@@ -199,7 +178,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(((Boolean)oldVac.getAdministered()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getAdministration_date() != newVac.getAdministration_date()) {
@@ -209,7 +188,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getAdministration_date().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getBody_site_administered() != newVac.getBody_site_administered()) {
@@ -219,7 +198,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getBody_site_administered().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getSide_administered_left() != newVac.getSide_administered_left()){
@@ -229,7 +208,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(((Boolean)oldVac.getSide_administered_left()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getDose_number() != newVac.getDose_number()) {
@@ -239,7 +218,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getDose_number().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getLot_number() != newVac.getLot_number()) {
@@ -249,7 +228,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getLot_number().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getManufacturer() != newVac.getManufacturer()) {
@@ -259,7 +238,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getManufacturer().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getManufacture_date() != newVac.getManufacture_date()) {
@@ -269,7 +248,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getManufacture_date().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getExpiry_date() != newVac.getExpiry_date()) {
@@ -279,7 +258,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(newVac.getExpiry_date().toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         if (oldVac.getAdverse_reaction_observed() != newVac.getAdverse_reaction_observed()){
@@ -289,7 +268,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setNew_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
-            Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
         log.info("Comparing Adverse Reactions");
@@ -302,7 +281,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getDate().toString());
 
                 auditLogLineItem.setAudit_log_id(auditLog.getId());
-                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
             }
 
             if (oldVac.getAdverse_reaction().getAdverse_event() != newVac.getAdverse_reaction().getAdverse_event()) {
@@ -312,7 +291,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getAdverse_event().toString());
 
                 auditLogLineItem.setAudit_log_id(auditLog.getId());
-                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
             }
 
             if (oldVac.getAdverse_reaction().getGrade() != newVac.getAdverse_reaction().getGrade()) {
@@ -322,11 +301,9 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getGrade().toString());
 
                 auditLogLineItem.setAudit_log_id(auditLog.getId());
-                Context.getService(UtilsService.class).saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
             }
 
         }
-
-        return auditLog;
     }
 }

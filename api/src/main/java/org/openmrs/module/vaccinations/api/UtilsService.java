@@ -55,8 +55,8 @@ public interface UtilsService extends OpenmrsService {
     public AuditLogLineItem saveOrUpdateAuditLogLineItem(AuditLogLineItem auditLogLineItem) throws APIException;
 
     @Transactional(readOnly =  true)
-    public AuditLog createAuditLogRecord(Vaccination oldVaccination, Vaccination simpleVaccination, String excuse, String reason) throws APIException;
+    public void createAuditLogRecord(Vaccination oldVaccination, Vaccination simpleVaccination, String excuse, String reason) throws APIException;
 
     @Transactional(readOnly =  true)
-    public AuditLog createAuditLogRecord(Vaccination oldVaccination, Vaccination simpleVaccination, String excuse, String reason, boolean unadminister) throws APIException;
+    public void createAuditLogRecord(Vaccination oldVaccination, Vaccination simpleVaccination, String excuse, String reason, boolean unadminister) throws APIException;
 }
