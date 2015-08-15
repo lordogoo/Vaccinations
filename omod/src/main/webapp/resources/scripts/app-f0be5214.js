@@ -149,17 +149,22 @@ angular.module('vaccinations')
     $scope.state = {};
     $scope.state.editFormOpen = false;
     $scope.state.adverseFormOpen = false;
+    $scope.state.auditLogOpen = false;
+    $scope.state.minsDiff;
+
+    $scope.lessThan5Mins = function(minsDiff) {
+        return $scope.state.minsDiff < 5 && $scope.state.minsDiff >= 0;
+    };
 
     $scope.isUnadministerable = function () {
-        var administeredTime = angular.copy(new Date($scope.getVaccination().administration_date));
-        var currentTime = new Date();
-        var msDiff = currentTime - administeredTime;
-        var minsDiff = Math.round(((msDiff % 86400000) % 3600000) / 60000);
-
-        if (minsDiff < 5 && minsDiff >= 0) {
-          return true;
+        if ($scope.state.minsDiff) {
+            return $scope.lessThan5Mins($scope.state.minsDiff);
         } else {
-          return false;
+            var administeredTime = angular.copy(new Date($scope.getVaccination().administration_date));
+            var currentTime = new Date();
+            $scope.state.minsDiff = ((currentTime - administeredTime) / 1000)/60;
+            console.log($scope.state.minsDiff);
+            return $scope.lessThan5Mins($scope.state.minsDiff);
         }
     };
 
@@ -169,8 +174,13 @@ angular.module('vaccinations')
     };
 
     $scope.toggleEditForm = function(){
+        $scope.state.minsDiff = undefined;
         $scope.state.adverseFormOpen = false;
         $scope.state.editFormOpen = !$scope.state.editFormOpen;
+    };
+
+    $scope.toggleAuditLog = function() {
+        $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
     };
 
     $scope.resetFormDataToDefaults = function () {
@@ -208,18 +218,25 @@ angular.module('vaccinations')
     };
 
     $scope.unadministerVaccination = function (vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
+        // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
+        // vaccination. In the latter case, unadministering means removing any data
+        if (vaccination.scheduled) {
+            vaccinationsManager.deleteVaccination(vaccination);
+        } else {
+            // Remove all information pertaining to administration.
+            vaccination.clinic_location = null;
+            vaccination.administered_by = null;
+            vaccination.administered = false;
+            vaccination.adverse_reaction_observed = null;
+            vaccination.reaction_details = null;
+            vaccination.administration_date = null;
+            vaccination.lot_number = null;
+            vaccination.manufacture_date = null;
+            vaccination.expiry_date = null;
+            vaccination.manufacturer = null;
+            vaccinationsManager.submitVaccination(vaccination);
+        }
 
-        // Remove all information pertaining to administration.
-        // vaccination.administered = false;
-        // vaccination.adverse_reaction_observed = null;
-        // vaccination.reaction_details = null;
-        // vaccination.administration_date = null;
-        // vaccination.lot_number = null;
-        // vaccination.manufacture_date = null;
-        // vaccination.expiry_date = null;
-        // vaccination.manufacturer = null;
-        // vaccinationsManager.submitVaccination(vaccination);
     };
 
     $scope.resetFormDataToDefaults();
@@ -339,7 +356,8 @@ angular.module('vaccinations')
                     // Remove the old version and add the new version
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
-                    that.addVaccination(data); })
+                    that.addVaccination(data);
+                })
 
                 .error( function (data) {
                     $rootScope.$broadcast('failure');
@@ -466,6 +484,7 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
+                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
@@ -581,7 +600,8 @@ angular.module('vaccinations')
             getRoutes: '&',
             getDosingUnits: '&',
             getBodySites: '&',
-            getManufacturers: '&'
+            getManufacturers: '&',
+            getChangeReasons: '&'
         }
     };
  }]);
@@ -607,6 +627,7 @@ angular.module('vaccinations')
         $scope.dropDownData.dosingUnits = data[2];
         $scope.dropDownData.bodySites = data[3];
         $scope.dropDownData.manufacturers = data[4];
+        $scope.dropDownData.changeReasons = data[5];
     });
 
 
@@ -746,22 +767,6 @@ angular.module('vaccinations')
     return ddo;
 });
 
-'use strict';
-
-angular.module('vaccinations')
-.directive('feedback', [ function () {
-    var ddo = {
-        replace: true,
-        templateUrl: '/app/feedback/feedback.template.html',
-        scope: {
-            // Boolean indicating whether to show or hide.
-            warn: '&',
-            warning: '@'
-        }
-    };
-
-    return ddo;
-}]);
 'use strict';
 
 angular.module('mockData', [])
@@ -1215,3 +1220,20 @@ angular.module('mockData', [])
 // angular.element(document).ready(function () {
 //     angular.bootstrap(document, ['mockBackend']);
 // });
+
+'use strict';
+
+angular.module('vaccinations')
+.directive('feedback', [ function () {
+    var ddo = {
+        replace: true,
+        templateUrl: '/app/feedback/feedback.template.html',
+        scope: {
+            // Boolean indicating whether to show or hide.
+            warn: '&',
+            warning: '@'
+        }
+    };
+
+    return ddo;
+}]);

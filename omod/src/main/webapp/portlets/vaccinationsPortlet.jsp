@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-59dc7307.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-2f8e93b1.css">
   </head>
   <body>
 
@@ -61,7 +61,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
                 <div ng-if="$index === 0" class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
                 <div class="vaccination-group-header"><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
@@ -69,7 +69,7 @@
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" ><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
         </div>
@@ -148,9 +148,23 @@
                     <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed">Add Reaction</button>
 
                     <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed">Reaction Details</button>
+
+                    <button type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()">History</button>
                 </div>
             </div>
             <!-- /HEADER -->
+
+            <!-- AUDIT LOG -->
+            <div ng-if="state.auditLogOpen" class="form-wrapper">
+                <div ng-repeat="for change in enteredEditFormData.audit_log">
+                    <span>Change by</span><span>change.user</span>
+                    <span>Date</span><span>change.date</span>
+                    <span>Field</span><span>change.field</span>
+                    <span>From</span><span>change.old_value</span>
+                    <span>To</span><span>change.new_value</span>
+                </div>
+            </div>
+            <!-- /AUDIT LOG -->
 
             <!-- EDIT FORM -->
             <div ng-if="state.editFormOpen" class="form-wrapper">
@@ -248,26 +262,19 @@
 
                     <div class="form-group" ng-if="isUnadministerable()">
                         <label>Reason For Change</label>
-                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.reason_for_change" required>
+                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.reason_for_change"
+                        ng-options="r.name as r.name for r in getChangeReasons()" required>
                             <option value=""></option>
-                            <option value="1">Other</option>
-                            <option value="2">Something else wrong</option>
                         </select>
                     </div>
                     <feedback warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
 
 
-                    <div class="form-group" ng-if="enteredEditFormData.reason_for_change == '1'">
+                    <div class="form-group" ng-if="enteredEditFormData.reason_for_change == 'Other'">
                         <label>Description</label>
                         <input  type="text" name="change_description" class="form-control" ng-model="enteredEditFormData.change_description" required/>
                     </div>
                     <feedback ng-if='enteredEditFormData.reason_for_change == 1' warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
-
-
-
-
-
-
 
 
                     <div class="clearfix form-button-wrapper">
@@ -275,9 +282,9 @@
 
                         <button ng-if="isUnadministerable()" type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()">Reset</button>
 
-                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
+                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && isUnadministerable()" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
-                         <button ng-if="form.$valid && enteredEditFormData.scheduled && isUnadministerable()" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
+                         <button ng-if="form.$valid && isUnadministerable()" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
                         <button ng-if="form.$valid && isUnadministerable()" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)">Update</button>
                     </div>
@@ -596,7 +603,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-b2355b11.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-f0be5214.js"></script>
 
   </body>
 </html>
