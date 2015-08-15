@@ -164,7 +164,7 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div ng-repeat="for change in enteredEditFormData.audit_log">
+                <div ng-repeat="change in enteredEditFormData.audit_log">
                     <span>Change by</span><span>change.user</span>
                     <span>Date</span><span>change.date</span>
                     <span>Field</span><span>change.field</span>
@@ -270,19 +270,19 @@
 
                     <div class="form-group" ng-if="isUnadministerable()">
                         <label>Reason For Change</label>
-                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.excuse"
+                        <select  name="excuse" class="form-control" ng-model="enteredEditFormData.excuse"
                         ng-options="r.name as r.name for r in getChangeReasons()" required>
                             <option value=""></option>
                         </select>
                     </div>
-                    <feedback warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
+                    <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
 
 
-                    <div class="form-group" ng-if="enteredEditFormData.reason_for_change == 'Other'">
+                    <div class="form-group" ng-if="enteredEditFormData.excuse == 'Other'">
                         <label>Description</label>
-                        <input  type="text" name="change_description" class="form-control" ng-model="enteredEditFormData.reason" required/>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredEditFormData.reason" required/>
                     </div>
-                    <feedback ng-if='enteredEditFormData.reason_for_change == 1' warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
+                    <feedback ng-if="enteredEditFormData.reason == 1" warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
 
 
                     <div class="clearfix form-button-wrapper">

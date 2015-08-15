@@ -83,23 +83,18 @@ angular.module('vaccinations')
     $scope.unadministerVaccination = function (vaccination) {
         // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
         // vaccination. In the latter case, unadministering means removing any data
-        if (vaccination.scheduled) {
-            vaccinationsManager.deleteVaccination(vaccination);
-        } else {
-            // Remove all information pertaining to administration.
-            vaccination.clinic_location = null;
-            vaccination.administered_by = null;
-            vaccination.administered = false;
-            vaccination.adverse_reaction_observed = null;
-            vaccination.reaction_details = null;
-            vaccination.administration_date = null;
-            vaccination.lot_number = null;
-            vaccination.manufacture_date = null;
-            vaccination.expiry_date = null;
-            vaccination.manufacturer = null;
-            vaccinationsManager.submitVaccination(vaccination);
-        }
-
+        // Remove all information pertaining to administration.
+        vaccination.clinic_location = null;
+        vaccination.administered_by = null;
+        vaccination.administered = false;
+        vaccination.adverse_reaction_observed = null;
+        vaccination.reaction_details = null;
+        vaccination.administration_date = null;
+        vaccination.lot_number = null;
+        vaccination.manufacture_date = null;
+        vaccination.expiry_date = null;
+        vaccination.manufacturer = null;
+        vaccinationsManager.submitVaccination(vaccination);
     };
 
     $scope.resetFormDataToDefaults();

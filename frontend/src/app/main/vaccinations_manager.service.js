@@ -49,6 +49,7 @@ angular.module('vaccinations')
         // exists on the server and needs to be modified.
 
         submitVaccination: function(vaccination) {
+            debugger;
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -65,6 +66,7 @@ angular.module('vaccinations')
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
+                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
