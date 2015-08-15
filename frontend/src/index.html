@@ -270,7 +270,7 @@
 
                     <div class="form-group" ng-if="isUnadministerable()">
                         <label>Reason For Change</label>
-                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.reason_for_change"
+                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.excuse"
                         ng-options="r.name as r.name for r in getChangeReasons()" required>
                             <option value=""></option>
                         </select>
@@ -280,7 +280,7 @@
 
                     <div class="form-group" ng-if="enteredEditFormData.reason_for_change == 'Other'">
                         <label>Description</label>
-                        <input  type="text" name="change_description" class="form-control" ng-model="enteredEditFormData.change_description" required/>
+                        <input  type="text" name="change_description" class="form-control" ng-model="enteredEditFormData.reason" required/>
                     </div>
                     <feedback ng-if='enteredEditFormData.reason_for_change == 1' warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
 
