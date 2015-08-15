@@ -116,8 +116,27 @@ public class SimpleVaccination implements Serializable {
     private String administered_by;
     private String clinic_location;
 
+    private String excuse;
+    private String reason;
+
 	private int patient_id;
 	private String uuid;
+
+    public String getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(String excuse) {
+        this.excuse = excuse;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public List<AuditLog> getAuditLogList() {
         return auditLogList;

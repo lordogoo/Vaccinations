@@ -122,7 +122,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateVaccination(
-			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId, @PathVariable String excuse, @PathVariable String reason) throws Exception {
+			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) throws Exception {
 		try
 		{
 			simpleVaccination.setPatient_id(patientId);
@@ -130,9 +130,9 @@ public class VaccinationsResourceController {// extends MainResourceController {
 			//If an object already exists in the session, save using that object
 			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
 
-			Vaccination oldLogVaccination = oldVaccination;
+			Vaccination oldLogVaccination = new Vaccination(new SimpleVaccination(oldVaccination));
 			Vaccination newLogVaccination = new Vaccination(simpleVaccination);
-			Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason);
+			Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleVaccination.getExcuse(), simpleVaccination.getReason());
 
             if (oldVaccination != null) {
 				oldVaccination = new Vaccination(simpleVaccination);
@@ -150,7 +150,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
     */
 	@RequestMapping(value = "/vaccinations/{vaccinationId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId, @PathVariable boolean unadminister, @PathVariable String excuse, @PathVariable String reason) {
+	public SimpleVaccination deleteVaccination(@PathVariable int vaccinationId, @PathVariable int patientId) {
 
 		Vaccination vaccination1 = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
 		Vaccination oldLogVaccination = vaccination1;
@@ -161,7 +161,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		SimpleVaccination simpleVaccination2 = new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1));
 
 		Vaccination newLogVaccination = new Vaccination(simpleVaccination2);
-		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason, unadminister); //All this should be is an logUnadminister method call
+		//Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination); //All this should be is an logUnadminister method call
 
 		//check if vaccination is based on a scheduled vaccine
 		if (vaccination1.getScheduled()){
@@ -193,20 +193,21 @@ public class VaccinationsResourceController {// extends MainResourceController {
     @RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public SimpleVaccination updateAdverseReaction(
-			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable String excuse, @PathVariable String reason) {
+			@RequestBody SimpleAdverseReaction simpleAdverseReaction, @PathVariable int adverseReactionId, @PathVariable int patientId) {
 
 		Vaccination oldLogVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id());
+        //Vaccination oldLogVaccination = new Vaccination(new SimpleVaccination(oldVaccination));
 
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
 		Vaccination newLogVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id());
-		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason);
+		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleAdverseReaction.getExcuse(), simpleAdverseReaction.getReason());
 
         return new SimpleVaccination(newLogVaccination);
 	}
 
 	@RequestMapping(value = "/adversereactions/{adverseReactionId}/patient/{patientId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public SimpleVaccination deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable boolean unadminister, @PathVariable String excuse, @PathVariable String reason) {
+	public SimpleVaccination deleteAdverseReaction(@PathVariable int adverseReactionId, @PathVariable int patientId, @PathVariable boolean unadminister) {
 		//Lookup adverse reaction
 		AdverseReaction adverseReaction = Context.getService(AdverseReactionsService.class).getAdverseReactionByAdverseReactionId(adverseReactionId);
 
@@ -225,7 +226,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         vaccination1.setAdverse_reaction_observed(false);
 		//save or update vaccination
 		Vaccination newLogVaccination = Context.getService(VaccinationsService.class).saveOrUpdateVaccination(vaccination1);
-		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason, unadminister);
+		//Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason, unadminister);
 
 		return new SimpleVaccination(newLogVaccination);
 	}

@@ -40,12 +40,32 @@ public class SimpleAdverseReaction implements Serializable {
         }
     }
 
+
+    private String excuse;
+    private String reason;
+
     private Integer id;
     private Date date;
     private String adverse_event;
     private String grade;
     private Integer vaccination_id;
     private String uuid;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getExcuse() {
+        return excuse;
+    }
+
+    public void setExcuse(String excuse) {
+        this.excuse = excuse;
+    }
 
     public String getUuid() {
         return uuid;
