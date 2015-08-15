@@ -200,7 +200,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 		simpleAdverseReaction = new SimpleAdverseReaction(Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(new AdverseReaction(simpleAdverseReaction)));
 		Vaccination newLogVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(simpleAdverseReaction.getVaccination_id());
-		Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleAdverseReaction.getExcuse(), simpleAdverseReaction.getReason());
+		//Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, excuse, reason);
 
         return new SimpleVaccination(newLogVaccination);
 	}
