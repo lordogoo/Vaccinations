@@ -322,19 +322,35 @@
                     </div>
                     <feedback warn="form.grade.$error.required" warning="Select a reaction grade."></feedback>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Adverse Event Description</label>
                         <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required></textarea>
                     </div>
                     <feedback warn="form.adverse_event.$error.required" warning="Enter a valid adverse event description."></feedback>
 
+                    <div class="form-group" ng-if="enteredEditFormData.adverse_reaction_observed">
+                        <label>Reason For Change</label>
+                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse"
+                        ng-options="r.name as r.name for r in getChangeReasons()" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
+
+
+                    <div class="form-group" ng-if="enteredAdverseFormData.excuse == 'Other'">
+                        <label>Description</label>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredAdverseFormData.reason" required/>
+                    </div>
+                    <feedback warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
+
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
-                        <button class="btn btn-danger" ng-if="enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
+                        <button class="btn btn-danger" ng-if="form.$valid" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
 
                         <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Save Adverse Reaction</button>
 
-                        <button ng-if="enteredEditFormData.adverse_reaction_observed" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
+                        <button ng-if="form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
                     </div>
                 </form>
             </div>
