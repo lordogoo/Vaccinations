@@ -49,7 +49,6 @@ angular.module('vaccinations')
         // exists on the server and needs to be modified.
 
         submitVaccination: function(vaccination) {
-            debugger;
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -57,10 +56,17 @@ angular.module('vaccinations')
             var vaccination = angular.copy(vaccination);
             delete vaccination.reaction_details;
 
+            if (!vaccination.reason){
+                vaccination.reason = "";
+            }
+            if (!vaccination.excuse){
+                vaccination.excuse = "";
+            }
+
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
             if (vaccination.id !== null) {
-                // Vaccination exists, modify on server.
+                                // Vaccination exists, modify on server.
                 if (vaccination.administration_date !== null) {
                     vaccination.administered = true;
                 } else if (vaccination.administration_date === null) {
