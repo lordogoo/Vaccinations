@@ -214,29 +214,16 @@ angular.module('vaccinations')
     };
 
     $scope.updateVaccination = function (vaccination) {
+        vaccination.unadminister = false;
         vaccinationsManager.submitVaccination(vaccination);
     };
 
     $scope.unadministerVaccination = function (vaccination) {
         // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
         // vaccination. In the latter case, unadministering means removing any data
-        if (vaccination.scheduled) {
-            vaccinationsManager.deleteVaccination(vaccination);
-        } else {
-            // Remove all information pertaining to administration.
-            vaccination.clinic_location = null;
-            vaccination.administered_by = null;
-            vaccination.administered = false;
-            vaccination.adverse_reaction_observed = null;
-            vaccination.reaction_details = null;
-            vaccination.administration_date = null;
-            vaccination.lot_number = null;
-            vaccination.manufacture_date = null;
-            vaccination.expiry_date = null;
-            vaccination.manufacturer = null;
-            vaccinationsManager.submitVaccination(vaccination);
-        }
-
+        // Remove all information pertaining to administration.
+        vaccination.unadminister = true;
+        vaccinationsManager.submitVaccination(vaccination);
     };
 
     $scope.resetFormDataToDefaults();
@@ -335,15 +322,23 @@ angular.module('vaccinations')
             var vaccination = angular.copy(vaccination);
             delete vaccination.reaction_details;
 
+            if (!vaccination.reason){
+                vaccination.reason = "";
+            }
+            if (!vaccination.excuse){
+                vaccination.excuse = "";
+            }
+
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
             if (vaccination.id !== null) {
-                // Vaccination exists, modify on server.
+                                // Vaccination exists, modify on server.
                 if (vaccination.administration_date !== null) {
                     vaccination.administered = true;
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
+                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
@@ -767,6 +762,22 @@ angular.module('vaccinations')
     return ddo;
 });
 
+'use strict';
+
+angular.module('vaccinations')
+.directive('feedback', [ function () {
+    var ddo = {
+        replace: true,
+        templateUrl: '/app/feedback/feedback.template.html',
+        scope: {
+            // Boolean indicating whether to show or hide.
+            warn: '&',
+            warning: '@'
+        }
+    };
+
+    return ddo;
+}]);
 'use strict';
 
 angular.module('mockData', [])
@@ -1220,20 +1231,3 @@ angular.module('mockData', [])
 // angular.element(document).ready(function () {
 //     angular.bootstrap(document, ['mockBackend']);
 // });
-
-'use strict';
-
-angular.module('vaccinations')
-.directive('feedback', [ function () {
-    var ddo = {
-        replace: true,
-        templateUrl: '/app/feedback/feedback.template.html',
-        scope: {
-            // Boolean indicating whether to show or hide.
-            warn: '&',
-            warning: '@'
-        }
-    };
-
-    return ddo;
-}]);

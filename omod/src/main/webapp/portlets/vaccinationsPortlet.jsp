@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-95725012.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-2f8e93b1.css">
   </head>
@@ -156,7 +156,7 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div ng-repeat="for change in enteredEditFormData.audit_log">
+                <div ng-repeat="change in enteredEditFormData.audit_log">
                     <span>Change by</span><span>change.user</span>
                     <span>Date</span><span>change.date</span>
                     <span>Field</span><span>change.field</span>
@@ -262,19 +262,19 @@
 
                     <div class="form-group" ng-if="isUnadministerable()">
                         <label>Reason For Change</label>
-                        <select  name="reason_for_change" class="form-control" ng-model="enteredEditFormData.reason_for_change"
+                        <select  name="excuse" class="form-control" ng-model="enteredEditFormData.excuse"
                         ng-options="r.name as r.name for r in getChangeReasons()" required>
                             <option value=""></option>
                         </select>
                     </div>
-                    <feedback warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
+                    <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
 
 
-                    <div class="form-group" ng-if="enteredEditFormData.reason_for_change == 'Other'">
+                    <div class="form-group" ng-if="enteredEditFormData.excuse == 'Other'">
                         <label>Description</label>
-                        <input  type="text" name="change_description" class="form-control" ng-model="enteredEditFormData.change_description" required/>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredEditFormData.reason" required/>
                     </div>
-                    <feedback ng-if='enteredEditFormData.reason_for_change == 1' warn="form.reason_for_change.$error.required" warning="Select a valid reason for change"></feedback>
+                    <feedback ng-if="enteredEditFormData.reason == 1" warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
 
 
                     <div class="clearfix form-button-wrapper">
@@ -601,9 +601,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-91d30bd1.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-f0be5214.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-7ca90298.js"></script>
 
   </body>
 </html>
