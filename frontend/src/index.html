@@ -201,9 +201,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input ng-disabled="!isUnadministerable()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose"required>
+                        <input ng-disabled="!isUnadministerable()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose" min="0" required>
                     </div>
-                    <feedback warn="form.dose.$error.number || form.dose.$error.required" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="form.dose.$error.number || form.dose.$error.required || !form.dose.$valid" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
@@ -413,9 +413,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" required>
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" min="0" required>
                     </div>
-                    <feedback warn="form.dose.$error.required || form.dose.$error.number" warning="Enter a valid dose. Dose must be a number"></feedback>
+                    <feedback warn="form.dose.$error.required || form.dose.$error.number || !form.dose.$valid" warning="Enter a valid dose. Dose must be a number"></feedback>
 
                     <div class="form-group">
                         <label>Units</label>
@@ -541,9 +541,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering">
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering" min="0">
                     </div>
-                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
