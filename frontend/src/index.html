@@ -164,7 +164,7 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div ng-repeat="change in enteredEditFormData.audit_log">
+                <div ng-repeat="change in enteredEditFormData.auditLogList">
                     <span>Change by</span><span>change.user</span>
                     <span>Date</span><span>change.date</span>
                     <span>Field</span><span>change.field</span>
@@ -190,7 +190,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable()" administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
+                        <input ng-disabled="!isUnadministerable()" name="administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -257,13 +257,13 @@
                         <label>Manufacture Date</label>
                         <input  ng-disabled="!isUnadministerable()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date">
                     </div>
-                   <feedback warn="form.manufactur_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
+                   <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
                         <input ng-disabled="!isUnadministerable()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date">
                     </div>
-                    <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
+                    <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
 
 
@@ -290,7 +290,7 @@
 
                         <button ng-if="isUnadministerable()" type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()">Reset</button>
 
-                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && isUnadministerable()" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
+                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && form.$valid && isUnadministerable()" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
                          <button ng-if="form.$valid && isUnadministerable()" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
