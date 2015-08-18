@@ -54,7 +54,7 @@
             <div class="staged-wrapper" ng-if="stagedVaccinations.length > 0">
 
                 <!-- STAGED VACCINATIONS -->
-                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers"></vaccination>
+                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-body-site-mapping="dropDownData.routeMaps"></vaccination>
                 <!-- /STAGED VACCINATION -->
 
             </div>
@@ -69,7 +69,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
                 <div ng-if="$index === 0" class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
                 <div class="vaccination-group-header"><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
@@ -77,7 +77,7 @@
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" ><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
         </div>
@@ -242,7 +242,7 @@
 
                   <div class="form-group">
                     <label>Body Site Administered</label>
-                    <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                    <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
                     </select>
 
                   </div>
@@ -454,7 +454,7 @@
 
                     <div class="form-group">
                         <label>Body Site Administered</label>
-                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
 
                     </div>
@@ -580,7 +580,7 @@
 
                   <div class="form-group">
                     <label>Body Site Administered</label>
-                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
 
                   </div>
