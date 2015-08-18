@@ -367,6 +367,7 @@ div#appcontainer.appcontainer {
 #appcontainer * {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
+
 // Fontello font sizes controls size of vaccine check/uncheck icons
 .icon-circle-empty:before { font-size: 20px; } /* '' */
 .icon-ok-circled2:before { font-size: 20px;} /* '' */
@@ -378,6 +379,18 @@ div#appcontainer.appcontainer {
   margin-bottom: 100px;
   //width: 300px;
   margin: 0 auto;
+}
+
+
+.changeset-label {
+    margin-left: 5px;
+    font-size: 14px;
+    color: grey;
+    font-style: bold;
+}
+
+.changeset-info {
+    font-style: bold;
 }
 // injector
 // endinjector

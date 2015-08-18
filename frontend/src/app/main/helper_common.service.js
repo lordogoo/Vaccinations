@@ -12,15 +12,6 @@ angular.module('vaccinations')
             if (typeof vaccine.dose_number !== 'undefined' && vaccine.dose_number !== null) {
                 formattedVaccineName += 'Course Number: ' + vaccine.dose_number + ' ';
             }
-            if (typeof vaccine.dose !== 'undefined' && vaccine.dose !== null) {
-                formattedVaccineName += 'Dose: ' + vaccine.dose + ' ';
-            }
-            if (typeof vaccine.dosing_unit !== 'undefined' && vaccine.dosing_unit !== null) {
-                formattedVaccineName += 'Unit: ' + vaccine.dosing_unit + ' ';
-            }
-            if (typeof vaccine.route !== 'undefined' && vaccine.route !== null) {
-                formattedVaccineName += 'Route: ' + vaccine.route + ' ';
-            }
             return formattedVaccineName;
         },
 

@@ -157,19 +157,38 @@
 
                     <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed">Reaction Details</button>
 
-                    <button type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()">History</button>
+                    <button ng-show="enteredEditFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
             </div>
             <!-- /HEADER -->
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div ng-repeat="change in enteredEditFormData.auditLogList">
-                    <span>Change by</span><span>change.user</span>
-                    <span>Date</span><span>change.date</span>
-                    <span>Field</span><span>change.field</span>
-                    <span>From</span><span>change.old_value</span>
-                    <span>To</span><span>change.new_value</span>
+                <div class="changeset-wrapper" ng-repeat="changeset in enteredEditFormData.auditLogList">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th>Excuse: {{ changeset.excuse }}</th>
+                                <th>Reason: {{ changeset.reason }}</th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr>
+                                <th>Field Name</th>
+                                <th>Old Value</th>
+                                <th>New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="change in enteredEditFormData.auditLogList[0].auditLogLineItemList">
+                                <td>{{ change.field }}</td>
+                                <td>{{ change.original_value }}</td>
+                                <td>{{ change.new_value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /AUDIT LOG -->
@@ -441,12 +460,10 @@
                     </div>
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
-                    <div class="form-group">
+                    <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
                     <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]">
                        <option value=""></option>
-                       <option value=true>Left</option>
-                       <option value=false>Right</option>
                     </select>
                     </div>
                     <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
