@@ -75,6 +75,9 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private boolean scheduled;
 	private Integer numeric_indication;
 
+    private Integer min_age;
+    private Integer max_age;
+
     private String body_site_administered;
     private Boolean side_administered_left;
 
@@ -86,6 +89,22 @@ public class Vaccine extends BaseOpenmrsObject implements Serializable {
 	private Date dateRetired;
 	private User retiredBy;
 	private String retireReason;
+
+    public Integer getMin_age() {
+        return min_age;
+    }
+
+    public void setMin_age(Integer min_age) {
+        this.min_age = min_age;
+    }
+
+    public Integer getMax_age() {
+        return max_age;
+    }
+
+    public void setMax_age(Integer max_age) {
+        this.max_age = max_age;
+    }
 
     public String getBody_site_administered() {
         return body_site_administered;

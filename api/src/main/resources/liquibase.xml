@@ -287,6 +287,15 @@
         </addColumn>
     </changeSet>
 
+    <!-- Incorporating minimum and maximum ages for the vaccines -->
+    <changeSet id="vaccinations-20150818-1" author="Serghei Luchianov">
+        <addColumn tableName="vac_vaccines">
+            <column name="min_age" type="int"><constraints nullable="false"/></column>
+            <column name="max_age" type="int"><constraints nullable="false"/></column>
+        </addColumn>
+    </changeSet>
+
+
     <changeSet id="vaccinations-20150729-2" author="Jon Cairo">
         <preConditions>
             <tableExists tableName="vac_vaccines"/>
