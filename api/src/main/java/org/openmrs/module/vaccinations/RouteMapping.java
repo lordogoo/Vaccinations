@@ -1,8 +1,5 @@
 package org.openmrs.module.vaccinations;
 
-import org.openmrs.module.vaccinations.enums.BodySites;
-import org.openmrs.module.vaccinations.enums.Routes;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,40 +9,24 @@ import java.util.List;
  */
 public class RouteMapping  implements Serializable {
 
-    private String name;
-    private Routes route;
-    private ArrayList<BodySites> bodySitesList;
+    private String conceptId;
+    private ArrayList<String> bodySitesList;
 
     private void RouteMapping(){}
 
-    private void RouteMapping(Routes route, ArrayList<BodySites> bodySitesList){
-        this.route = route;
-        this.name = route.getName();
-        this.bodySitesList = bodySitesList;
+    public String getConceptId() {
+        return conceptId;
     }
 
-    public String getName() {
-        return name;
+    public void setConceptId(String conceptId) {
+        this.conceptId = conceptId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Routes getRoute() {
-        return route;
-    }
-
-    public void setRoute(Routes route) {
-        this.route = route;
-        this.name = route.getName();
-    }
-
-    public ArrayList<BodySites> getBodySitesList() {
+    public ArrayList<String> getBodySitesList() {
         return bodySitesList;
     }
 
-    public void setBodySitesList(ArrayList<BodySites> bodySitesList) {
+    public void setBodySitesList(ArrayList<String> bodySitesList) {
         this.bodySitesList = bodySitesList;
     }
 }

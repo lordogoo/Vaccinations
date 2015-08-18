@@ -101,12 +101,13 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
         List<RouteMapping> routeMappingList = new ArrayList<RouteMapping>();
 
-        ArrayList<BodySites> bodySitesArrayList = new ArrayList<BodySites>();
-        bodySitesArrayList.add(BodySites.Thigh);
-        bodySitesArrayList.add(BodySites.Buttock);
-        bodySitesArrayList.add(BodySites.Deltoid);
+        ArrayList<String> bodySitesArrayList = new ArrayList<String>();
+        bodySitesArrayList.add(BodySites.Thigh.getName());
+        bodySitesArrayList.add(BodySites.Buttock.getName());
+        bodySitesArrayList.add(BodySites.Deltoid.getName());
+
         RouteMapping routeMapping = new RouteMapping();
-        routeMapping.setRoute(Routes.Intramuscular);
+        routeMapping.setConceptId(Routes.Intramuscular.getConceptId());
         routeMapping.setBodySitesList(bodySitesArrayList);
 
         routeMappingList.add(routeMapping);
