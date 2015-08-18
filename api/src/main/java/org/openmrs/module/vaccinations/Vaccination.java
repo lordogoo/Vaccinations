@@ -160,20 +160,17 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 
 	private int patient_id;
 
+    //Caching cannot be implemented
     public List<AuditLog> getAuditLogList() {
-        if (auditLogList != null) {
-            return auditLogList;
-        }else{
-            if (id != null){
-                if (Context.getService(UtilsService.class).getAuditLogByVaccinationId(id) != null){
-                    auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
-                    return auditLogList;
-                }else {
-                    return new ArrayList<AuditLog>();
-                }
-            }else {
+        if (id != null) {
+            if (Context.getService(UtilsService.class).getAuditLogByVaccinationId(id) != null) {
+                auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(id);
+                return auditLogList;
+            } else {
                 return new ArrayList<AuditLog>();
             }
+        }else {
+                return new ArrayList<AuditLog>();
         }
     }
 

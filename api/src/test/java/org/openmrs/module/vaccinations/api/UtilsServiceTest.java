@@ -159,10 +159,103 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Double(600), vaccination1.getDose());
         assertEquals(new Double(500), oldVaccination.getDose());
 
-        assertEquals(0, vaccination1.getAuditLogList().size());
+        assertEquals(1, oldVaccination.getAuditLogList().size());
         //assertTrue(vaccination1.getAuditLogList().size() > 0);
         //assertEquals(Excuses.NoExcuse.getName(), vaccination1.getAuditLogList().get(0).getExcuse());
         //assertEquals(4, vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().size());
+
+        /*
+        assertEquals("Scheduled Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getField());
+        assertEquals("Fri Aug 14 18:34:45 MDT 2015", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getOriginal_value());
+        assertEquals("Fri Aug 14 18:34:45 MDT 2015", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getNew_value());
+
+        assertEquals("Administration Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(1).getField());
+        assertEquals("Manufacture Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(2).getField());
+        assertEquals("Expiry Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(3).getField());
+        */
+    }
+
+    @Test
+    public void shouldNotCreateNewAuditLogRecordAndLineItems(){
+        //Acquiring an unscheduled vaccination
+        Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, new Date());
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+
+        vaccination.setPatient_id(3);
+        vaccination.setDose(500.00);
+        vaccination.setAdministered(true);
+        vaccination.setScheduled_date(c.getTime());
+        vaccination.setScheduled(true);
+        vaccination.setAdministration_date(c.getTime());
+        vaccination.setBody_site_administered("Nah");
+        vaccination.setSide_administered_left(true);
+        vaccination.setAdverse_reaction_observed(false);
+        vaccination.setDosing_unit("bla");
+        vaccination.setExpiry_date(c.getTime());
+        vaccination.setLot_number("meh");
+        vaccination.setManufacture_date(c.getTime());
+        vaccination.setManufacturer("Vaccines Inc");
+        vaccination.setDose_number(1);
+        vaccination.setCreator(vaccine.getCreator());
+        vaccination.setDateCreated(c.getTime());
+
+
+        SimpleVaccination newVac = new SimpleVaccination(vaccination);
+        vaccination = vaccinationsService.saveOrUpdateVaccination(vaccination);
+        assertFalse(vaccination.getAuditLogList().size() > 0);
+
+        //Setting up adverse reaction
+        AdverseReaction adverseReaction = new AdverseReaction();
+        adverseReaction.setVaccination_id(vaccination.getId());
+        adverseReaction.setGrade("OMG");
+        adverseReaction.setAdverse_event("Blood Clots");
+        adverseReaction.setDate(c.getTime());
+        adverseReaction.setCreator(vaccine.getCreator());
+        adverseReaction.setDateCreated(c.getTime());
+
+        AdverseReaction adverseReaction1 = Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(adverseReaction);
+        assertNotNull(adverseReaction1);
+        assertEquals(new Integer(4), adverseReaction1.getId());
+        assertNull(vaccination.getAdverse_reaction());
+        //vaccination.setAdverse_reaction(adverseReaction1);
+        Vaccination oldVaccination = new Vaccination();
+        vaccination = vaccinationsService.saveOrUpdateVaccination(vaccination);
+        oldVaccination.setVaccination(vaccination);
+
+
+        /*c.add(Calendar.DATE, 1);
+
+        vaccination.setScheduled_date(c.getTime());
+        vaccination.setDose(600.00);
+        vaccination.setAdministered(false);
+        vaccination.setScheduled(false);
+        vaccination.setAdministration_date(c.getTime());
+        vaccination.setBody_site_administered("Blah");
+        vaccination.setSide_administered_left(false);
+        vaccination.setAdverse_reaction_observed(true);
+        vaccination.setDosing_unit("mg");
+        vaccination.setExpiry_date(c.getTime());
+        vaccination.setLot_number("another");
+        vaccination.setManufacture_date(c.getTime());
+        vaccination.setManufacturer("Vaccinations Inc");
+        vaccination.setDose_number(2);
+
+        adverseReaction1.setGrade("GMO");
+        Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(adverseReaction1);*/
+        //vaccination1.setAdverse_reaction(adverseReaction1);
+        Vaccination vaccination1 = vaccinationsService.saveOrUpdateVaccination(vaccination);
+
+        utilsService.createAuditLogRecord(oldVaccination, vaccination1, Excuses.NoExcuse.getName(), "No reason provided");
+
+        //assertEquals(new Double(600), vaccination1.getDose());
+        //assertEquals(new Double(500), oldVaccination.getDose());
+
+        assertEquals(1, oldVaccination.getAuditLogList().size());
+        //assertTrue(vaccination1.getAuditLogList().size() > 0);
+        //assertEquals(Excuses.NoExcuse.getName(), vaccination1.getAuditLogList().get(0).getExcuse());
+        assertEquals(0, vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().size());
 
         /*
         assertEquals("Scheduled Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getField());
