@@ -28,11 +28,9 @@ import org.openmrs.module.vaccinations.api.AdverseReactionsService;
 import org.openmrs.module.vaccinations.api.UtilsService;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
 import org.openmrs.module.vaccinations.api.VaccinesService;
-import org.openmrs.module.vaccinations.enums.BodySites;
-import org.openmrs.module.vaccinations.enums.DosingUnits;
-import org.openmrs.module.vaccinations.enums.Excuses;
-import org.openmrs.module.vaccinations.enums.Routes;
+import org.openmrs.module.vaccinations.enums.*;
 import org.openmrs.module.vaccinations.util.Constants;
+import org.openmrs.module.vaccinations.util.Serializers.RouteMapEnumSerializer;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 
 import org.springframework.http.HttpStatus;
@@ -99,17 +97,18 @@ public class VaccinationsResourceController {// extends MainResourceController {
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
         List<Manufacturer> manufacturers = Context.getService(UtilsService.class).getAllManufacturers(false);
 
-        List<RouteMapping> routeMappingList = new ArrayList<RouteMapping>();
-
-        ArrayList<BodySites> bodySitesArrayList = new ArrayList<BodySites>();
-        bodySitesArrayList.add(BodySites.Thigh);
-        bodySitesArrayList.add(BodySites.Buttock);
-        bodySitesArrayList.add(BodySites.Deltoid);
-        RouteMapping routeMapping = new RouteMapping();
-        routeMapping.setRoute(Routes.Intramuscular);
-        routeMapping.setBodySitesList(bodySitesArrayList);
-
-        routeMappingList.add(routeMapping);
+//        List<RouteMapping> routeMappingList = new ArrayList<RouteMapping>();
+//
+//        ArrayList<String> bodySitesArrayList = new ArrayList<String>();
+//        bodySitesArrayList.add(BodySites.Thigh.getName());
+//        bodySitesArrayList.add(BodySites.Buttock.getName());
+//        bodySitesArrayList.add(BodySites.Deltoid.getName());
+//
+//        RouteMapping routeMapping = new RouteMapping();
+//        routeMapping.setConceptId(Routes.Intramuscular.getConceptId());
+//        routeMapping.setBodySitesList(bodySitesArrayList);
+//
+//        routeMappingList.add(routeMapping);
 
         objects.add(simpleVaccinations);
         objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal, Routes.Intradermal});
@@ -117,7 +116,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.NA});
         objects.add(manufacturers);
         objects.add(new Excuses[] {Excuses.Expired, Excuses.OutOfStock, Excuses.WrongVaccine, Excuses.NoExcuse});
-        objects.add(routeMappingList);
+        objects.add(new RouteMapEnum[] {RouteMapEnum.Intradermal, RouteMapEnum.Intramuscular, RouteMapEnum.Oral, RouteMapEnum.Intranasal, RouteMapEnum.Subcutaneous, RouteMapEnum.Transdermal});
         //Context.clearSession();
         return objects;
     }
