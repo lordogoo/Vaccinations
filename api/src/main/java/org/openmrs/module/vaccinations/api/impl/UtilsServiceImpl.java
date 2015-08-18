@@ -110,7 +110,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         c1.setTime(oldVac.getScheduled_date());
         c2.setTime(newVac.getScheduled_date());
-        if (!c1.equals(c2)) {
+        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Scheduled Date");
             auditLogLineItem.setOriginal_value(c1.getTime().toString());
@@ -195,7 +195,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         c1.setTime(oldVac.getAdministration_date());
         c2.setTime(newVac.getAdministration_date());
-        if (!c1.equals(c2)) {
+        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Administration Date");
             auditLogLineItem.setOriginal_value(c1.getTime().toString());
@@ -257,7 +257,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         c1.setTime(oldVac.getManufacture_date());
         c2.setTime(newVac.getManufacture_date());
-        if (!c1.equals(c2)) {
+        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Manufacture Date");
             auditLogLineItem.setOriginal_value(c1.getTime().toString());
@@ -269,7 +269,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         c1.setTime(oldVac.getExpiry_date());
         c2.setTime(newVac.getExpiry_date());
-        if (!c1.equals(c2)) {
+        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Expiry Date");
             auditLogLineItem.setOriginal_value(c1.getTime().toString());
@@ -294,7 +294,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
             c1.setTime(oldVac.getAdverse_reaction().getDate());
             c2.setTime(newVac.getAdverse_reaction().getDate());
-            if (!c1.equals(c2)) {
+            if (!c1.getTime().toString().equals(c2.getTime().toString())) {
                 AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
                 auditLogLineItem.setField("Adverse Reaction Date");
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
