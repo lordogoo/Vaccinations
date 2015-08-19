@@ -10,11 +10,10 @@ import org.openmrs.module.vaccinations.util.Serializers.BodySitesSerializer;
 public enum BodySites {
     Thigh("Upper outer thigh"),
     Buttock("Buttock"),
-    Deltoid("Upper arm (deltoid)"),
-    Tricep("Upper arm (tricep)"),
+    UpperArmDeltoid("Upper arm (deltoid)"),
+    UpperArmTricep("Upper arm (tricep)"),
     OuterForearm("Forearm (Outer/Posterior)"),
     InnerForearm("Forearm (Inner/Anterior)"),
-    UpperArm("Upper arm"),
     Mouth("Mouth"),
     Nostril("Nostril"),
     LowerLeg("Lower leg"),
