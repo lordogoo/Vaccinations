@@ -232,7 +232,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group">
+                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
                     <label>Body Site Administered</label>
                     <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
                     </select>
@@ -240,12 +240,10 @@
                   </div>
                   <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
-                  <div class="form-group">
+                  <div class="form-group" ng-if="enteredEditFormData.route !== '160240'">
                     <label>Side Administered</label>
                     <select ng-disabled="!isUnadministerable()" name="side_administered_left" class="form-control" ng-model="enteredEditFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'left', value: true}, {name:'right', value: false}]">
                       <option value=""></option>
-                      <option value="true" >Left</option>
-                      <option value="false" >Right</option>
                     </select>
                   </div>
                   <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
@@ -357,11 +355,11 @@
 
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
-                        <button class="btn btn-danger" ng-if="form.$valid" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
+                        <button class="btn btn-danger" ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
 
                         <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Save Adverse Reaction</button>
 
-                        <button ng-if="form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
+                        <button ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
                     </div>
                 </form>
             </div>
@@ -444,7 +442,7 @@
                     </div>
                     <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                    <div class="form-group">
+                    <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
                         <label>Body Site Administered</label>
                         <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
@@ -570,7 +568,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group">
+                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
@@ -578,12 +576,10 @@
                   </div>
                   <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
-                  <div class="form-group">
+                  <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
                     <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]">
                       <option value=""></option>
-                      <option value=true >Left</option>
-                      <option value=false >Right</option>
                     </select>
                   </div>
                   <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
@@ -636,7 +632,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-aa741392.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-5af9f3f6.js"></script>
 
   </body>
 </html>
