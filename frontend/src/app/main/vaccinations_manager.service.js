@@ -63,6 +63,14 @@ angular.module('vaccinations')
                 vaccination.excuse = "";
             }
 
+            //Set the proper body site if oral or intranasal
+            if (vaccination.route == '160240') {
+                vaccination.body_site_administered = 'Mouth';
+            }
+            if (vaccination.route == '161253') {
+                vaccination.body_site_administered = 'Nostril';
+            }
+
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
             if (vaccination.id !== null) {

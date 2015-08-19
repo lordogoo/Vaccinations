@@ -26,53 +26,6 @@
 }]);
 'use strict';
 
-// Manages a vaccination instance on each vaccination
-// directive.
-angular.module('vaccinations')
-.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
-    function($scope, vaccinationsManager){
-
-    // Form states and methods.
-    $scope.state = {};
-    $scope.state.administerFormOpen = false;
-
-    $scope.resetFormDataToDefaults = function(){
-
-        var vaccination = angular.copy($scope.getVaccination());
-        vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
-        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
-        $scope.enteredAdminFormData = vaccination;
-        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
-            $scope.due = true;
-        }
-    };
-
-    $scope.toggleAdministerForm = function(){
-        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
-    };
-
-    // Called when vaccination data from form has been validated
-    // and ready to create a new vaccination event.
-    $scope.submitVaccination = function(vaccination) {
-        var vaccsOrigCopy = angular.copy($scope.getVaccination());
-        var vaccination = angular.copy(vaccination);
-        vaccination.administered = true;
-        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
-    };
-
-    // Only available if the vaccination is of type unscheduled.
-    $scope.deleteVaccination = function(vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
-    };
-
-    // Form data inits.
-    $scope.resetFormDataToDefaults();
-}]);
-
-'use strict';
-
 angular.module('vaccinations')
 .controller('StagedVaccinationController', ['$scope', '$filter', 'vaccinationsManager',
     function ($scope, $filter, vaccinationsManager) {
@@ -132,6 +85,53 @@ angular.module('vaccinations')
         vaccinationsManager.submitVaccination(vaccination);
     };
 
+    $scope.resetFormDataToDefaults();
+}]);
+
+'use strict';
+
+// Manages a vaccination instance on each vaccination
+// directive.
+angular.module('vaccinations')
+.controller('UnAdminVaccinationController', ['$scope', 'vaccinationsManager',
+    function($scope, vaccinationsManager){
+
+    // Form states and methods.
+    $scope.state = {};
+    $scope.state.administerFormOpen = false;
+
+    $scope.resetFormDataToDefaults = function(){
+
+        var vaccination = angular.copy($scope.getVaccination());
+        vaccination.administration_date = new Date();
+        vaccination.manufacture_date = new Date();
+        vaccination.expiry_date = new Date();
+        vaccination.scheduled_date = new Date(vaccination.scheduled_date);
+        $scope.enteredAdminFormData = vaccination;
+        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
+            $scope.due = true;
+        }
+    };
+
+    $scope.toggleAdministerForm = function(){
+        $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
+    };
+
+    // Called when vaccination data from form has been validated
+    // and ready to create a new vaccination event.
+    $scope.submitVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+    // Only available if the vaccination is of type unscheduled.
+    $scope.deleteVaccination = function(vaccination) {
+        vaccinationsManager.deleteVaccination(vaccination);
+    };
+
+    // Form data inits.
     $scope.resetFormDataToDefaults();
 }]);
 
@@ -596,7 +596,8 @@ angular.module('vaccinations')
             getDosingUnits: '&',
             getBodySites: '&',
             getManufacturers: '&',
-            getChangeReasons: '&'
+            getChangeReasons: '&',
+            getBodySiteMapping: '&'
         }
     };
  }]);
@@ -623,8 +624,29 @@ angular.module('vaccinations')
         $scope.dropDownData.bodySites = data[3];
         $scope.dropDownData.manufacturers = data[4];
         $scope.dropDownData.changeReasons = data[5];
+        $scope.dropDownData.routeMaps = $scope.assembleBodySiteMaps(data[6]);
     });
 
+    $scope.assembleBodySiteMaps = function(fragmentedMap) {
+        debugger;
+        var assembledMap = {};
+        for (var i = 0; i < fragmentedMap.length; i++) {
+            for (var key in fragmentedMap[i]) {
+                assembledMap[key] =  fragmentedMap[i][key];
+            }
+        }
+        return assembledMap;
+    };
+
+    //Returns a list of body sites based on route
+    // $scope.getBodySiteMapping = function(route) {
+    //     debugger;
+    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
+    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
+    //             return $scope.dropDownData.routeMaps[i][route];
+    //         }
+    //     }
+    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();
@@ -664,15 +686,6 @@ angular.module('vaccinations')
             }
             if (typeof vaccine.dose_number !== 'undefined' && vaccine.dose_number !== null) {
                 formattedVaccineName += 'Course Number: ' + vaccine.dose_number + ' ';
-            }
-            if (typeof vaccine.dose !== 'undefined' && vaccine.dose !== null) {
-                formattedVaccineName += 'Dose: ' + vaccine.dose + ' ';
-            }
-            if (typeof vaccine.dosing_unit !== 'undefined' && vaccine.dosing_unit !== null) {
-                formattedVaccineName += 'Unit: ' + vaccine.dosing_unit + ' ';
-            }
-            if (typeof vaccine.route !== 'undefined' && vaccine.route !== null) {
-                formattedVaccineName += 'Route: ' + vaccine.route + ' ';
             }
             return formattedVaccineName;
         },

@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-2f8e93b1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-baf3613d.css">
   </head>
   <body>
 
@@ -46,7 +46,7 @@
             <div class="staged-wrapper" ng-if="stagedVaccinations.length > 0">
 
                 <!-- STAGED VACCINATIONS -->
-                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers"></vaccination>
+                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-body-site-mapping="dropDownData.routeMaps"></vaccination>
                 <!-- /STAGED VACCINATION -->
 
             </div>
@@ -61,7 +61,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
                 <div ng-if="$index === 0" class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
                 <div class="vaccination-group-header"><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
@@ -69,7 +69,7 @@
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" ><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
         </div>
@@ -149,19 +149,38 @@
 
                     <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed">Reaction Details</button>
 
-                    <button type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()">History</button>
+                    <button ng-show="enteredEditFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
             </div>
             <!-- /HEADER -->
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div ng-repeat="change in enteredEditFormData.audit_log">
-                    <span>Change by</span><span>change.user</span>
-                    <span>Date</span><span>change.date</span>
-                    <span>Field</span><span>change.field</span>
-                    <span>From</span><span>change.old_value</span>
-                    <span>To</span><span>change.new_value</span>
+                <div class="changeset-wrapper" ng-repeat="changeset in enteredEditFormData.auditLogList">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th>Excuse: {{ changeset.excuse }}</th>
+                                <th>Reason: {{ changeset.reason }}</th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr>
+                                <th>Field Name</th>
+                                <th>Old Value</th>
+                                <th>New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="change in enteredEditFormData.auditLogList[0].auditLogLineItemList">
+                                <td>{{ change.field }}</td>
+                                <td>{{ change.original_value }}</td>
+                                <td>{{ change.new_value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /AUDIT LOG -->
@@ -182,7 +201,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable()" administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
+                        <input ng-disabled="!isUnadministerable()" name="administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -193,9 +212,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input ng-disabled="!isUnadministerable()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose"required>
+                        <input ng-disabled="!isUnadministerable()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose" min="0" required>
                     </div>
-                    <feedback warn="form.dose.$error.number || form.dose.$error.required" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="form.dose.$error.number || form.dose.$error.required || !form.dose.$valid" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
@@ -215,7 +234,7 @@
 
                   <div class="form-group">
                     <label>Body Site Administered</label>
-                    <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                    <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
                     </select>
 
                   </div>
@@ -249,13 +268,13 @@
                         <label>Manufacture Date</label>
                         <input  ng-disabled="!isUnadministerable()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date">
                     </div>
-                   <feedback warn="form.manufactur_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
+                   <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
                         <input ng-disabled="!isUnadministerable()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date">
                     </div>
-                    <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
+                    <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
 
 
@@ -282,7 +301,7 @@
 
                         <button ng-if="isUnadministerable()" type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()">Reset</button>
 
-                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && isUnadministerable()" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
+                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && form.$valid && isUnadministerable()" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
 
                          <button ng-if="form.$valid && isUnadministerable()" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
 
@@ -314,19 +333,35 @@
                     </div>
                     <feedback warn="form.grade.$error.required" warning="Select a reaction grade."></feedback>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label>Adverse Event Description</label>
                         <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required></textarea>
                     </div>
                     <feedback warn="form.adverse_event.$error.required" warning="Enter a valid adverse event description."></feedback>
 
+                    <div class="form-group" ng-if="enteredEditFormData.adverse_reaction_observed">
+                        <label>Reason For Change</label>
+                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse"
+                        ng-options="r.name as r.name for r in getChangeReasons()" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
+
+
+                    <div class="form-group" ng-if="enteredAdverseFormData.excuse == 'Other'">
+                        <label>Description</label>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredAdverseFormData.reason" required/>
+                    </div>
+                    <feedback warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
+
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
-                        <button class="btn btn-danger" ng-if="enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
+                        <button class="btn btn-danger" ng-if="form.$valid" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
 
                         <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Save Adverse Reaction</button>
 
-                        <button ng-if="enteredEditFormData.adverse_reaction_observed" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
+                        <button ng-if="form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
                     </div>
                 </form>
             </div>
@@ -389,9 +424,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" required>
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" min="0" required>
                     </div>
-                    <feedback warn="form.dose.$error.required || form.dose.$error.number" warning="Enter a valid dose. Dose must be a number"></feedback>
+                    <feedback warn="form.dose.$error.required || form.dose.$error.number || !form.dose.$valid" warning="Enter a valid dose. Dose must be a number"></feedback>
 
                     <div class="form-group">
                         <label>Units</label>
@@ -411,18 +446,16 @@
 
                     <div class="form-group">
                         <label>Body Site Administered</label>
-                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
 
                     </div>
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
-                    <div class="form-group">
+                    <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
                     <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]">
                        <option value=""></option>
-                       <option value=true>Left</option>
-                       <option value=false>Right</option>
                     </select>
                     </div>
                     <feedback warn="form.side_administered_left.$error.required" warning="Select a side."></feedback>
@@ -517,9 +550,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering">
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering" min="0">
                     </div>
-                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
@@ -539,7 +572,7 @@
 
                   <div class="form-group">
                     <label>Body Site Administered</label>
-                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs.name as bs.name for bs in getBodySites()" required>
+                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
 
                   </div>
@@ -603,7 +636,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-7ca90298.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-aa741392.js"></script>
 
   </body>
 </html>
