@@ -123,7 +123,7 @@ public class SimpleVaccination implements Serializable {
 	private int patient_id;
 	private String uuid;
 
-    public boolean isUnadminister() {
+    public boolean getUnadminister() {
         return unadminister;
     }
 

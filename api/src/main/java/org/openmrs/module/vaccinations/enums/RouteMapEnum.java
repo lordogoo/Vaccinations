@@ -9,10 +9,10 @@ import org.openmrs.module.vaccinations.util.Serializers.RouteMapEnumSerializer;
  */
 @JsonSerialize(using = RouteMapEnumSerializer.class)
 public enum RouteMapEnum {
-    Intramuscular ("160243", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
-    Intradermal ("123456", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
-    Subcutaneous ("160245", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName()}),
-    Transdermal ("162391", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName(), BodySites.Chest.getName(), BodySites.Back.getName()}),
+    Intramuscular ("160243", new String[] {BodySites.AnteriorForearm.getName(), BodySites.PosteriorForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
+    Intradermal ("123456", new String[] {BodySites.AnteriorForearm.getName(), BodySites.PosteriorForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
+    Subcutaneous ("160245", new String[] {BodySites.AnteriorForearm.getName(), BodySites.PosteriorForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName()}),
+    Transdermal ("162391", new String[] {BodySites.AnteriorForearm.getName(), BodySites.PosteriorForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName(), BodySites.Chest.getName(), BodySites.UpperBack.getName(), BodySites.LowerBack.getName()}),
     Oral ("160240", new String[] {BodySites.Mouth.getName()}),
     Intranasal ("161253", new String[] {BodySites.Nostril.getName()});
 

@@ -13,6 +13,7 @@ import org.openmrs.module.vaccinations.api.UtilsService;
 import org.openmrs.module.vaccinations.util.Constants;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -89,24 +90,12 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         auditLog1.setVaccination_id(newVac.getId());
         auditLog1.setLocation(userLocus.toString());
+        auditLog1.setDateChanged(new Date());
         auditLog1.setChanged_by(userName);
         auditLog1.setExcuse(excuse);
         auditLog1.setReason(reason);
 
         AuditLog auditLog = saveOrUpdateAuditLog(auditLog1);
-
-
-
-
-        if (unadminister == true){
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Unadministered");
-            auditLogLineItem.setOriginal_value(((Boolean)false).toString());
-            auditLogLineItem.setNew_value(((Boolean)unadminister).toString());
-
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
-        }
 
         if (oldVac.getScheduled_date() != null && newVac.getScheduled_date() != null) {
             c1.setTime(oldVac.getScheduled_date());
@@ -192,12 +181,22 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         if (!oldVac.getAdministered() == newVac.getAdministered()){
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Administered");
+            auditLogLineItem.setField("Administered Vaccine");
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdministered()).toString());
-            auditLogLineItem.setNew_value(((Boolean)oldVac.getAdministered()).toString());
+            auditLogLineItem.setNew_value(((Boolean)newVac.getAdministered()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
+
+//            if (unadminister == true && newVac.getAdministered() == false){
+//                AuditLogLineItem auditLogLineItem1 = new AuditLogLineItem();
+//                auditLogLineItem1.setField("Unadministered Vaccination");
+//                auditLogLineItem1.setOriginal_value(("").toString());
+//                auditLogLineItem1.setNew_value(("").toString());
+//
+//                auditLogLineItem1.setAudit_log_id(auditLog.getId());
+//                saveOrUpdateAuditLogLineItem(auditLogLineItem1);
+//            }
         }
 
 
@@ -309,6 +308,16 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
+
+            if (unadminister == true && newVac.getAdverse_reaction_observed() == false){
+                AuditLogLineItem auditLogLineItem1 = new AuditLogLineItem();
+                auditLogLineItem1.setField("Removed Adverse Reaction");
+                auditLogLineItem1.setOriginal_value(("").toString());
+                auditLogLineItem1.setNew_value(("").toString());
+
+                auditLogLineItem1.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem1);
+            }
         }
 
         log.info("Comparing Adverse Reactions");

@@ -12,14 +12,15 @@ public enum BodySites {
     Buttock("Buttock"),
     UpperArmDeltoid("Upper arm (deltoid)"),
     UpperArmTricep("Upper arm (tricep)"),
-    OuterForearm("Forearm (Outer/Posterior)"),
-    InnerForearm("Forearm (Inner/Anterior)"),
+    PosteriorForearm("Forearm (Outer/Posterior)"),
+    AnteriorForearm("Forearm (Inner/Anterior)"),
     Mouth("Mouth"),
     Nostril("Nostril"),
     LowerLeg("Lower leg"),
     Abdomen("Abdomen"),
     Chest("Chest"),
-    Back("Back");
+    UpperBack("Upper back"),
+    LowerBack("Lower back");
 
     private final String name;
 
