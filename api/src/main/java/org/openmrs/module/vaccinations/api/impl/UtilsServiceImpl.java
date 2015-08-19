@@ -122,14 +122,16 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             }
         }
 
-        if (!oldVac.getName().equals(newVac.getName())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Name");
-            auditLogLineItem.setOriginal_value(oldVac.getName().toString());
-            auditLogLineItem.setNew_value(newVac.getName().toString());
+        if (oldVac.getName() != null && newVac.getName() != null) {
+            if (!oldVac.getName().equals(newVac.getName())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Name");
+                auditLogLineItem.setOriginal_value(oldVac.getName().toString());
+                auditLogLineItem.setNew_value(newVac.getName().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
         if (oldVac.getIndication_name() != null && newVac.getIndication_name() != null &&
@@ -143,24 +145,28 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
-        if (!oldVac.getDose().equals(newVac.getDose())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Dose");
-            auditLogLineItem.setOriginal_value(oldVac.getDose().toString());
-            auditLogLineItem.setNew_value(newVac.getDose().toString());
+        if (oldVac.getDose() != null && newVac.getDose() != null) {
+            if (!oldVac.getDose().equals(newVac.getDose())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Dose");
+                auditLogLineItem.setOriginal_value(oldVac.getDose().toString());
+                auditLogLineItem.setNew_value(newVac.getDose().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        if (!oldVac.getDosing_unit().toString().equals(newVac.getDosing_unit())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Dosing Unit");
-            auditLogLineItem.setOriginal_value(oldVac.getDosing_unit().toString());
-            auditLogLineItem.setNew_value(newVac.getDosing_unit().toString());
+        if (oldVac.getDosing_unit() != null && newVac.getDosing_unit() != null) {
+            if (!oldVac.getDosing_unit().toString().equals(newVac.getDosing_unit())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Dosing Unit");
+                auditLogLineItem.setOriginal_value(oldVac.getDosing_unit().toString());
+                auditLogLineItem.setNew_value(newVac.getDosing_unit().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
         if (oldVac.getRoute() != null && newVac.getRoute() != null &&
@@ -195,26 +201,30 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
         }
 
 
-        c1.setTime(oldVac.getAdministration_date());
-        c2.setTime(newVac.getAdministration_date());
-        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Administration Date");
-            auditLogLineItem.setOriginal_value(c1.getTime().toString());
-            auditLogLineItem.setNew_value(c2.getTime().toString());
+        if (oldVac.getAdministration_date() != null && newVac.getAdministration_date() != null) {
+            c1.setTime(oldVac.getAdministration_date());
+            c2.setTime(newVac.getAdministration_date());
+            if (!c1.getTime().toString().equals(c2.getTime().toString())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Administration Date");
+                auditLogLineItem.setOriginal_value(c1.getTime().toString());
+                auditLogLineItem.setNew_value(c2.getTime().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        if (!oldVac.getBody_site_administered().equals(newVac.getBody_site_administered())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Body Site Administered");
-            auditLogLineItem.setOriginal_value(oldVac.getBody_site_administered().toString());
-            auditLogLineItem.setNew_value(newVac.getBody_site_administered().toString());
+        if (oldVac.getBody_site_administered() != null && newVac.getBody_site_administered() != null) {
+            if (!oldVac.getBody_site_administered().equals(newVac.getBody_site_administered())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Body Site Administered");
+                auditLogLineItem.setOriginal_value(oldVac.getBody_site_administered().toString());
+                auditLogLineItem.setNew_value(newVac.getBody_site_administered().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
         if (!oldVac.getSide_administered_left() == newVac.getSide_administered_left()){
@@ -227,58 +237,68 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
-        if (!oldVac.getDose_number().equals(newVac.getDose_number())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Dose Number");
-            auditLogLineItem.setOriginal_value(oldVac.getDose_number().toString());
-            auditLogLineItem.setNew_value(newVac.getDose_number().toString());
+        if (oldVac.getDose_number() != null && newVac.getDose_number() != null) {
+            if (!oldVac.getDose_number().equals(newVac.getDose_number())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Dose Number");
+                auditLogLineItem.setOriginal_value(oldVac.getDose_number().toString());
+                auditLogLineItem.setNew_value(newVac.getDose_number().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        if (!oldVac.getLot_number().equals(newVac.getLot_number())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Lot Number");
-            auditLogLineItem.setOriginal_value(oldVac.getLot_number().toString());
-            auditLogLineItem.setNew_value(newVac.getLot_number().toString());
+        if (oldVac.getLot_number() != null && newVac.getLot_number() != null) {
+            if (!oldVac.getLot_number().equals(newVac.getLot_number())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Lot Number");
+                auditLogLineItem.setOriginal_value(oldVac.getLot_number().toString());
+                auditLogLineItem.setNew_value(newVac.getLot_number().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        if (!oldVac.getManufacturer().equals(newVac.getManufacturer())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Manufacturer");
-            auditLogLineItem.setOriginal_value(oldVac.getManufacturer().toString());
-            auditLogLineItem.setNew_value(newVac.getManufacturer().toString());
+        if (oldVac.getManufacturer() != null && newVac.getManufacturer() != null) {
+            if (!oldVac.getManufacturer().equals(newVac.getManufacturer())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Manufacturer");
+                auditLogLineItem.setOriginal_value(oldVac.getManufacturer().toString());
+                auditLogLineItem.setNew_value(newVac.getManufacturer().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        c1.setTime(oldVac.getManufacture_date());
-        c2.setTime(newVac.getManufacture_date());
-        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Manufacture Date");
-            auditLogLineItem.setOriginal_value(c1.getTime().toString());
-            auditLogLineItem.setNew_value(c2.getTime().toString());
+        if (oldVac.getManufacture_date() != null && newVac.getManufacture_date() != null) {
+            c1.setTime(oldVac.getManufacture_date());
+            c2.setTime(newVac.getManufacture_date());
+            if (!c1.getTime().toString().equals(c2.getTime().toString())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Manufacture Date");
+                auditLogLineItem.setOriginal_value(c1.getTime().toString());
+                auditLogLineItem.setNew_value(c2.getTime().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
-        c1.setTime(oldVac.getExpiry_date());
-        c2.setTime(newVac.getExpiry_date());
-        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Expiry Date");
-            auditLogLineItem.setOriginal_value(c1.getTime().toString());
-            auditLogLineItem.setNew_value(c2.getTime().toString());
+        if (oldVac.getExpiry_date() != null && newVac.getExpiry_date() != null) {
+            c1.setTime(oldVac.getExpiry_date());
+            c2.setTime(newVac.getExpiry_date());
+            if (!c1.getTime().toString().equals(c2.getTime().toString())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Expiry Date");
+                auditLogLineItem.setOriginal_value(c1.getTime().toString());
+                auditLogLineItem.setNew_value(c2.getTime().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
         if (!oldVac.getAdverse_reaction_observed() == newVac.getAdverse_reaction_observed()){
