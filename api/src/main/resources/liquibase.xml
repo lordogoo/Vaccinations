@@ -321,7 +321,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age`
             )
             VALUES (
             1,
@@ -342,7 +344,9 @@
             uuid(),
             365,
             1,
-            'Forearm (Outer/Posterior)'
+            'Forearm (Outer/Posterior)',
+            0,
+            1000
             );
 
 
@@ -366,7 +370,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -387,7 +393,9 @@
             uuid(),
             730,
             1,
-            'Forearm (Outer/Posterior)'
+            'Forearm (Outer/Posterior)',
+            0,
+            1000
             );
 
 
@@ -411,7 +419,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -432,7 +442,9 @@
             uuid(),
             null,
             null,
-            'Forearm (Outer/Posterior)'
+            'Forearm (Outer/Posterior)',
+            0,
+            1000
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -454,7 +466,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -475,7 +489,9 @@
             uuid(),
             14,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -497,7 +513,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -518,7 +536,9 @@
             uuid(),
             42,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -540,7 +560,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -561,7 +583,9 @@
             uuid(),
             70,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -585,7 +609,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -606,7 +632,9 @@
             uuid(),
             98,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -629,7 +657,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -650,7 +680,9 @@
             uuid(),
             42,
             1,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
 
@@ -673,7 +705,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -694,7 +728,9 @@
             uuid(),
             70,
             1,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
 
@@ -718,7 +754,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -739,7 +777,9 @@
             uuid(),
             98,
             1,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
 
@@ -763,7 +803,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -784,7 +826,9 @@
             uuid(),
             42,
             0,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -806,7 +850,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -827,7 +873,9 @@
             uuid(),
             70,
             0,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
 
@@ -850,7 +898,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -871,7 +921,9 @@
             uuid(),
             98,
             0,
-            'Upper outer thigh'
+            'Upper outer thigh',
+            0,
+            1000
             );
 
 
@@ -895,7 +947,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -916,7 +970,9 @@
             uuid(),
             270,
             0,
-            'Upper arm (deltoid)'
+            'Upper arm (deltoid)',
+            0,
+            1000
             );
 
 
@@ -940,7 +996,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             1,
@@ -961,7 +1019,9 @@
             uuid(),
             270,
             1,
-            'Upper arm (deltoid)'
+            'Upper arm (deltoid)',
+            0,
+            1000
             );
 
 
@@ -985,7 +1045,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1006,7 +1068,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1030,7 +1094,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1051,7 +1117,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1075,7 +1143,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1096,7 +1166,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1120,7 +1192,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1141,7 +1215,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1165,7 +1241,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1186,7 +1264,9 @@
             uuid(),
             null,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1210,7 +1290,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1231,7 +1313,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1255,7 +1339,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1276,7 +1362,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1300,7 +1388,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1321,7 +1411,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1345,7 +1437,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1366,7 +1460,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1390,7 +1486,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
 
             )
             VALUES (
@@ -1412,7 +1510,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1436,7 +1536,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1457,7 +1559,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1481,7 +1585,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1502,7 +1608,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1526,7 +1634,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1547,7 +1657,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
 
@@ -1571,7 +1683,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1592,7 +1706,9 @@
             uuid(),
             null,
             1,
-            'Upper arm (deltoid)'
+            'Upper arm (deltoid)',
+            0,
+            1000
             );
 
 
@@ -1616,7 +1732,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1637,7 +1755,9 @@
             uuid(),
             180,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1661,7 +1781,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1682,7 +1804,9 @@
             uuid(),
             365,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1706,7 +1830,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1727,7 +1853,9 @@
             uuid(),
             548,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1751,7 +1879,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1772,7 +1902,9 @@
             uuid(),
             730,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1796,7 +1928,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1817,7 +1951,9 @@
             uuid(),
             913,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1841,7 +1977,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1862,7 +2000,9 @@
             uuid(),
             1095,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1886,7 +2026,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1907,7 +2049,9 @@
             uuid(),
             1278,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1931,7 +2075,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1952,7 +2098,9 @@
             uuid(),
             1460,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -1976,7 +2124,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -1997,7 +2147,9 @@
             uuid(),
             1643,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2021,7 +2173,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
 
             )
             VALUES (
@@ -2043,7 +2197,9 @@
             uuid(),
             1825,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2067,7 +2223,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2088,7 +2246,9 @@
             uuid(),
             365,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2112,7 +2272,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2133,7 +2295,9 @@
             uuid(),
             548,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2157,7 +2321,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2178,7 +2344,9 @@
             uuid(),
             730,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2202,7 +2370,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2223,7 +2393,9 @@
             uuid(),
             913,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2247,7 +2419,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2268,7 +2442,9 @@
             uuid(),
             1095,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2292,7 +2468,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`, 
+            `min_age`,
+			`max_age
             )
             VALUES (
             0,
@@ -2313,7 +2491,9 @@
             uuid(),
             1278,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2337,7 +2517,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2358,7 +2540,9 @@
             uuid(),
             1460,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
 
@@ -2382,7 +2566,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2403,7 +2589,9 @@
             uuid(),
             1643,
             null,
-            'N/A (Oral, Nasal)'
+            'N/A (Oral, Nasal)',
+            0,
+            1000
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -2425,7 +2613,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`
+            `body_site_administered`,
+            `min_age`,
+            `max_age
             )
             VALUES (
             0,
@@ -2446,7 +2636,9 @@
             uuid(),
             null,
             null,
-            null
+            null,
+            0,
+            1000
             );
 
         </sql>
