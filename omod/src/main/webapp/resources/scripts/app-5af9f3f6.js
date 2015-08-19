@@ -329,6 +329,14 @@ angular.module('vaccinations')
                 vaccination.excuse = "";
             }
 
+            //Set the proper body site if oral or intranasal
+            if (vaccination.route == '160240') {
+                vaccination.body_site_administered = 'Mouth';
+            }
+            if (vaccination.route == '161253') {
+                vaccination.body_site_administered = 'Nostril';
+            }
+
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
             if (vaccination.id !== null) {
@@ -596,7 +604,8 @@ angular.module('vaccinations')
             getDosingUnits: '&',
             getBodySites: '&',
             getManufacturers: '&',
-            getChangeReasons: '&'
+            getChangeReasons: '&',
+            getBodySiteMapping: '&'
         }
     };
  }]);
@@ -623,8 +632,29 @@ angular.module('vaccinations')
         $scope.dropDownData.bodySites = data[3];
         $scope.dropDownData.manufacturers = data[4];
         $scope.dropDownData.changeReasons = data[5];
+        $scope.dropDownData.routeMaps = $scope.assembleBodySiteMaps(data[6]);
     });
 
+    $scope.assembleBodySiteMaps = function(fragmentedMap) {
+        debugger;
+        var assembledMap = {};
+        for (var i = 0; i < fragmentedMap.length; i++) {
+            for (var key in fragmentedMap[i]) {
+                assembledMap[key] =  fragmentedMap[i][key];
+            }
+        }
+        return assembledMap;
+    };
+
+    //Returns a list of body sites based on route
+    // $scope.getBodySiteMapping = function(route) {
+    //     debugger;
+    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
+    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
+    //             return $scope.dropDownData.routeMaps[i][route];
+    //         }
+    //     }
+    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();
@@ -664,15 +694,6 @@ angular.module('vaccinations')
             }
             if (typeof vaccine.dose_number !== 'undefined' && vaccine.dose_number !== null) {
                 formattedVaccineName += 'Course Number: ' + vaccine.dose_number + ' ';
-            }
-            if (typeof vaccine.dose !== 'undefined' && vaccine.dose !== null) {
-                formattedVaccineName += 'Dose: ' + vaccine.dose + ' ';
-            }
-            if (typeof vaccine.dosing_unit !== 'undefined' && vaccine.dosing_unit !== null) {
-                formattedVaccineName += 'Unit: ' + vaccine.dosing_unit + ' ';
-            }
-            if (typeof vaccine.route !== 'undefined' && vaccine.route !== null) {
-                formattedVaccineName += 'Route: ' + vaccine.route + ' ';
             }
             return formattedVaccineName;
         },

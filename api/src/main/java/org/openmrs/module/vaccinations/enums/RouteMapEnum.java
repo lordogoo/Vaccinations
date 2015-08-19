@@ -9,12 +9,12 @@ import org.openmrs.module.vaccinations.util.Serializers.RouteMapEnumSerializer;
  */
 @JsonSerialize(using = RouteMapEnumSerializer.class)
 public enum RouteMapEnum {
-    Oral ("160240", new String[] {"Oral"}),
-    Intramuscular ("160243", new String[] {BodySites.Thigh.getName(), BodySites.Tricep.getName(), BodySites.Deltoid.getName(), BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName()}),
-    Subcutaneous ("160245", new String[] {BodySites.Buttock.getName(), BodySites.Buttock.getName(), BodySites.Deltoid.getName()}),
-    Intranasal ("161253", new String[] {"Nasal"}),
-    Transdermal ("162391", new String[] {BodySites.Buttock.getName(), BodySites.Buttock.getName(), BodySites.Deltoid.getName()}),
-    Intradermal ("123456", new String[] {BodySites.Buttock.getName(), BodySites.Buttock.getName(), BodySites.Deltoid.getName()});
+    Intramuscular ("160243", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
+    Intradermal ("123456", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName()}),
+    Subcutaneous ("160245", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName()}),
+    Transdermal ("162391", new String[] {BodySites.InnerForearm.getName(), BodySites.OuterForearm.getName(), BodySites.UpperArmTricep.getName(), BodySites.UpperArmDeltoid.getName(), BodySites.Thigh.getName(), BodySites.LowerLeg.getName(), BodySites.Buttock.getName(), BodySites.Abdomen.getName(), BodySites.Chest.getName(), BodySites.Back.getName()}),
+    Oral ("160240", new String[] {BodySites.Mouth.getName()}),
+    Intranasal ("161253", new String[] {BodySites.Nostril.getName()});
 
     private final String conceptId;
     private final String[] sites;
