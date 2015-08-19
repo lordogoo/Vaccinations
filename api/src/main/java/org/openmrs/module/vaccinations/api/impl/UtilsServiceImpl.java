@@ -108,16 +108,18 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
         }
 
-        c1.setTime(oldVac.getScheduled_date());
-        c2.setTime(newVac.getScheduled_date());
-        if (!c1.getTime().toString().equals(c2.getTime().toString())) {
-            AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Scheduled Date");
-            auditLogLineItem.setOriginal_value(c1.getTime().toString());
-            auditLogLineItem.setNew_value(c2.getTime().toString());
+        if (oldVac.getScheduled_date() != null && newVac.getScheduled_date() != null) {
+            c1.setTime(oldVac.getScheduled_date());
+            c2.setTime(newVac.getScheduled_date());
+            if (!c1.getTime().toString().equals(c2.getTime().toString())) {
+                AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
+                auditLogLineItem.setField("Scheduled Date");
+                auditLogLineItem.setOriginal_value(c1.getTime().toString());
+                auditLogLineItem.setNew_value(c2.getTime().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItem.setAudit_log_id(auditLog.getId());
+                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            }
         }
 
         if (!oldVac.getName().equals(newVac.getName())) {

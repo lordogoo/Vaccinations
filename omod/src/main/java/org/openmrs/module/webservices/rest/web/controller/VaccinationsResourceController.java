@@ -145,7 +145,9 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
 			Vaccination oldLogVaccination = new Vaccination(new SimpleVaccination(oldVaccination));
 			Vaccination newLogVaccination = new Vaccination(simpleVaccination);
-			Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleVaccination.getExcuse(), simpleVaccination.getReason());
+            if (simpleVaccination.getExcuse() != null) {
+                Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleVaccination.getExcuse(), simpleVaccination.getReason());
+            }
 
             if (oldVaccination != null) {
 				oldVaccination = new Vaccination(simpleVaccination);
