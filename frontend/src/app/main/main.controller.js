@@ -20,9 +20,29 @@ angular.module('vaccinations')
         $scope.dropDownData.bodySites = data[3];
         $scope.dropDownData.manufacturers = data[4];
         $scope.dropDownData.changeReasons = data[5];
-        $scope.dropDownData.routeMaps = data[6];
+        $scope.dropDownData.routeMaps = $scope.assembleBodySiteMaps(data[6]);
     });
 
+    $scope.assembleBodySiteMaps = function(fragmentedMap) {
+        debugger;
+        var assembledMap = {};
+        for (var i = 0; i < fragmentedMap.length; i++) {
+            for (var key in fragmentedMap[i]) {
+                assembledMap[key] =  fragmentedMap[i][key];
+            }
+        }
+        return assembledMap;
+    };
+
+    //Returns a list of body sites based on route
+    // $scope.getBodySiteMapping = function(route) {
+    //     debugger;
+    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
+    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
+    //             return $scope.dropDownData.routeMaps[i][route];
+    //         }
+    //     }
+    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();

@@ -40,7 +40,8 @@ angular.module('vaccinations')
             getDosingUnits: '&',
             getBodySites: '&',
             getManufacturers: '&',
-            getChangeReasons: '&'
+            getChangeReasons: '&',
+            getBodySiteMapping: '&'
         }
     };
  }]);
