@@ -14,7 +14,13 @@ public enum BodySites {
     Tricep("Upper arm (tricep)"),
     OuterForearm("Forearm (Outer/Posterior)"),
     InnerForearm("Forearm (Inner/Anterior)"),
-    NA("N/A (Oral, Nasal)");
+    UpperArm("Upper arm"),
+    Mouth("Mouth"),
+    Nostril("Nostril"),
+    LowerLeg("Lower leg"),
+    Abdomen("Abdomen"),
+    Chest("Chest"),
+    Back("Back");
 
     private final String name;
 

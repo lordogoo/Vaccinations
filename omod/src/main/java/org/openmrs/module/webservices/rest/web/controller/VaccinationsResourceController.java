@@ -113,7 +113,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         objects.add(simpleVaccinations);
         objects.add(new Routes[] {Routes.Oral, Routes.Intramuscular, Routes.Subcutaneous, Routes.Intranasal, Routes.Transdermal, Routes.Intradermal});
         objects.add(new DosingUnits[] {DosingUnits.International, DosingUnits.Ampule, DosingUnits.Drop, DosingUnits.Ounce, DosingUnits.Gram, DosingUnits.Milligram, DosingUnits.Milliequivalent, DosingUnits.Microgram, DosingUnits.Milliliter, DosingUnits.Tablet, DosingUnits.Unit, DosingUnits.Vial});
-        objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.NA});
+        objects.add(new BodySites[] {BodySites.Thigh, BodySites.Buttock, BodySites.Deltoid, BodySites.Tricep, BodySites.OuterForearm, BodySites.InnerForearm, BodySites.UpperArm, BodySites.Mouth, BodySites.Nostril, BodySites.LowerLeg, BodySites.Abdomen, BodySites.Chest, BodySites.Back});
         objects.add(manufacturers);
         objects.add(new Excuses[] {Excuses.Expired, Excuses.OutOfStock, Excuses.WrongVaccine, Excuses.NoExcuse});
         objects.add(new RouteMapEnum[] {RouteMapEnum.Intradermal, RouteMapEnum.Intramuscular, RouteMapEnum.Oral, RouteMapEnum.Intranasal, RouteMapEnum.Subcutaneous, RouteMapEnum.Transdermal});
