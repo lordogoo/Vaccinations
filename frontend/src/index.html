@@ -240,7 +240,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredEditFormData.route == '160240') && !(enteredEditFormData.route =='161253')">
                     <label>Body Site Administered</label>
                     <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
                     </select>
@@ -450,7 +450,7 @@
                     </div>
                     <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                    <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                    <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                         <label>Body Site Administered</label>
                         <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
@@ -576,7 +576,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>

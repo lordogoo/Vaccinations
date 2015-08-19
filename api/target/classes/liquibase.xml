@@ -466,7 +466,7 @@
             uuid(),
             14,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -509,7 +509,7 @@
             uuid(),
             42,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
@@ -552,7 +552,7 @@
             uuid(),
             70,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -597,7 +597,7 @@
             uuid(),
             98,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1177,7 +1177,7 @@
             uuid(),
             null,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1628,7 +1628,7 @@
             uuid(),
             180,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1673,7 +1673,7 @@
             uuid(),
             365,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1718,7 +1718,7 @@
             uuid(),
             548,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1763,7 +1763,7 @@
             uuid(),
             730,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1808,7 +1808,7 @@
             uuid(),
             913,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1853,7 +1853,7 @@
             uuid(),
             1095,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1898,7 +1898,7 @@
             uuid(),
             1278,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1943,7 +1943,7 @@
             uuid(),
             1460,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -1988,7 +1988,7 @@
             uuid(),
             1643,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2034,7 +2034,7 @@
             uuid(),
             1825,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2079,7 +2079,7 @@
             uuid(),
             365,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2124,7 +2124,7 @@
             uuid(),
             548,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2169,7 +2169,7 @@
             uuid(),
             730,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2214,7 +2214,7 @@
             uuid(),
             913,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2259,7 +2259,7 @@
             uuid(),
             1095,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2304,7 +2304,7 @@
             uuid(),
             1278,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2349,7 +2349,7 @@
             uuid(),
             1460,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
 
@@ -2394,7 +2394,7 @@
             uuid(),
             1643,
             null,
-            'N/A (Oral, Nasal)'
+            'Mouth'
             );
 
             INSERT INTO `openmrs`.`vac_vaccines` (
