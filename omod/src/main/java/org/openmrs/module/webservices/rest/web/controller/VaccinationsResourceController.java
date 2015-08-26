@@ -139,7 +139,11 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		try
 		{
 			simpleVaccination.setPatient_id(patientId);
-            simpleVaccination.setAdministered(!simpleVaccination.getUnadminister());
+
+            
+            if (simpleVaccination.getUnadminister()) {
+                simpleVaccination.setAdministered(false);
+            }
 
 			//If an object already exists in the session, save using that object
 			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
