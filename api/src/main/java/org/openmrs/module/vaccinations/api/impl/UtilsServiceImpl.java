@@ -187,16 +187,6 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
-
-//            if (unadminister == true && newVac.getAdministered() == false){
-//                AuditLogLineItem auditLogLineItem1 = new AuditLogLineItem();
-//                auditLogLineItem1.setField("Unadministered Vaccination");
-//                auditLogLineItem1.setOriginal_value(("").toString());
-//                auditLogLineItem1.setNew_value(("").toString());
-//
-//                auditLogLineItem1.setAudit_log_id(auditLog.getId());
-//                saveOrUpdateAuditLogLineItem(auditLogLineItem1);
-//            }
         }
 
 
@@ -230,7 +220,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Left Side Administered");
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getSide_administered_left()).toString());
-            auditLogLineItem.setNew_value(((Boolean)oldVac.getSide_administered_left()).toString());
+            auditLogLineItem.setNew_value(((Boolean)newVac.getSide_administered_left()).toString());
 
             auditLogLineItem.setAudit_log_id(auditLog.getId());
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
@@ -301,6 +291,8 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
         }
 
         if (!oldVac.getAdverse_reaction_observed() == newVac.getAdverse_reaction_observed()){
+            log.info("Inside Adverse_reaction_observed comparison");
+
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Adverse Reaction Observed");
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
@@ -309,7 +301,9 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setAudit_log_id(auditLog.getId());
             saveOrUpdateAuditLogLineItem(auditLogLineItem);
 
-            if (unadminister == true && newVac.getAdverse_reaction_observed() == false){
+            if (newVac.getAdverse_reaction_observed() == false){
+                log.info("Inside Adverse_reaction_observed and new valu is set to false");
+
                 AuditLogLineItem auditLogLineItem1 = new AuditLogLineItem();
                 auditLogLineItem1.setField("Removed Adverse Reaction");
                 auditLogLineItem1.setOriginal_value(("").toString());
