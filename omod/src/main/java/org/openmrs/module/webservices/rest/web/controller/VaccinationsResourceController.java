@@ -140,7 +140,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		{
 			simpleVaccination.setPatient_id(patientId);
 
-            
+
             if (simpleVaccination.getUnadminister()) {
                 simpleVaccination.setAdministered(false);
             }
@@ -154,12 +154,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
                 Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleVaccination.getExcuse(), simpleVaccination.getReason());
             }
 
-            if (oldVaccination != null) {
-				oldVaccination = new Vaccination(simpleVaccination);
-				return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(oldVaccination));
-            } else {
-                return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
-			}
+            return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
 		}catch (Exception ex){
 			throw ex;
 		}
