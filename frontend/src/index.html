@@ -164,28 +164,28 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div class="changeset-wrapper" ng-repeat="changeset in enteredEditFormData.auditLogList">
-                    <table class="table table-striped">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredEditFormData.auditLogList">
                         <thead>
                             <tr class="info">
-                                <th>Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
-                                <th>Excuse: {{ changeset.excuse }}</th>
-                                <th>Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
                             </tr>
                         </thead>
 
                         <thead>
                             <tr>
-                                <th>Field Name</th>
-                                <th>Old Value</th>
-                                <th>New Value</th>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="change in enteredEditFormData.auditLogList[0].auditLogLineItemList">
-                                <td>{{ change.field }}</td>
-                                <td>{{ change.original_value }}</td>
-                                <td>{{ change.new_value }}</td>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -576,7 +576,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
+                  <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
