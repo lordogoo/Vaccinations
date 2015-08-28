@@ -66,6 +66,8 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
     //WILL ONLY RETURN UNADMINISTERED VACCINATIONS
     @Override
     public List<Vaccination> combineVaccinesAndVaccinationsByPatientId(Integer patientId) throws APIException {
+
+
         //Retrieving all scheduled vaccines
         VaccinesService vaccinesService = Context.getService(VaccinesService.class);
         List<Vaccine> vaccines = vaccinesService.getScheduledVaccines(false);
@@ -111,6 +113,26 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         }else{
             throw new APIException("The vaccines list is empty!");
         }
+    }
+
+    private int getPatientAgeInDays(int patientId){
+        //Retrieving and calculating patient age in days
+        Date age;
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        if (Context.getPersonService().getPerson(patientId).getBirthdate() != null)
+        {
+            age = Context.getPersonService().getPerson(patientId).getBirthdate();
+        }else
+        {
+            age = new Date();
+        }
+        c1.setTime(age);
+        c2.setTime(new Date());
+        long diff = (c1.getTimeInMillis() - c2.getTimeInMillis()) / 1000 / 60 / 60 / 24;
+
+        int patientAgeInDays = (int)diff;
+        return patientAgeInDays;
     }
 
     @Override
