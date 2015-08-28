@@ -142,12 +142,17 @@ public class VaccinationsResourceController {// extends MainResourceController {
             Vaccination newVaccination = new Vaccination(simpleVaccination);
 
             if (simpleVaccination.getUnadminister()) {
+                //Tagging vaccination as not administered
                 simpleVaccination.setAdministered(false);
-                newVaccination = new Vaccination(new SimpleVaccination(
-                        Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
-                        Context.getService(VaccinationsService.class).calculateScheduledDate(newVaccination.getPatient_id(),
-                        newVaccination.getVaccine()))
-                ));
+
+                //If a vaccination is a scheduled one, then revert to the template, otherwise do nothing
+                if (simpleVaccination.getScheduled() == true) {
+                    newVaccination = new Vaccination(new SimpleVaccination(
+                            Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
+                                    Context.getService(VaccinationsService.class).calculateScheduledDate(newVaccination.getPatient_id(),
+                                            newVaccination.getVaccine()))
+                    ));
+                }
             }
 
 			//If an object already exists in the session, save using that object
