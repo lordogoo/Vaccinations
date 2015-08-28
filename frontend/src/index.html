@@ -408,9 +408,43 @@
                 </span>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()">Administer</button>
+
+                    <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
+
             </div>
             <!-- /HEADER -->
+
+            <!-- AUDIT LOG -->
+            <div ng-if="state.auditLogOpen" class="form-wrapper">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredAdminFormData.auditLogList">
+                        <thead>
+                            <tr class="info">
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /AUDIT LOG -->
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
@@ -445,7 +479,6 @@
                     <div class="form-group">
                         <label>Route</label>
                         <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
-                          <option value=""></option>
                         </select>
                     </div>
                     <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>

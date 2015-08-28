@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-baf3613d.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-7d4bb5a7.css">
   </head>
   <body>
 
@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-button-wrapper new-vaccine-wrapper">
-                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vaccination</strong></button>
+                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
 
                 <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
             </div>
@@ -156,28 +156,28 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div class="changeset-wrapper" ng-repeat="changeset in enteredEditFormData.auditLogList">
-                    <table class="table table-striped">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredEditFormData.auditLogList">
                         <thead>
                             <tr class="info">
-                                <th>Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
-                                <th>Excuse: {{ changeset.excuse }}</th>
-                                <th>Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
                             </tr>
                         </thead>
 
                         <thead>
                             <tr>
-                                <th>Field Name</th>
-                                <th>Old Value</th>
-                                <th>New Value</th>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="change in enteredEditFormData.auditLogList[0].auditLogLineItemList">
-                                <td>{{ change.field }}</td>
-                                <td>{{ change.original_value }}</td>
-                                <td>{{ change.new_value }}</td>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -232,7 +232,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredEditFormData.route == '160240') && !(enteredEditFormData.route =='161253')">
                     <label>Body Site Administered</label>
                     <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
                     </select>
@@ -400,9 +400,43 @@
                 </span>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()">Administer</button>
+
+                    <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
+
             </div>
             <!-- /HEADER -->
+
+            <!-- AUDIT LOG -->
+            <div ng-if="state.auditLogOpen" class="form-wrapper">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredAdminFormData.auditLogList">
+                        <thead>
+                            <tr class="info">
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /AUDIT LOG -->
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
@@ -437,12 +471,11 @@
                     <div class="form-group">
                         <label>Route</label>
                         <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
-                          <option value=""></option>
                         </select>
                     </div>
                     <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                    <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                    <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                         <label>Body Site Administered</label>
                         <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
@@ -568,7 +601,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
