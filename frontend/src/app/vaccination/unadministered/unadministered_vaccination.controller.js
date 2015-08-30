@@ -24,6 +24,7 @@ angular.module('vaccinations')
     };
 
     $scope.toggleAdministerForm = function(){
+        $scope.resetFormDataToDefaults();
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
