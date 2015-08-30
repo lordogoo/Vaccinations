@@ -50,6 +50,7 @@ angular.module('vaccinations')
     };
 
     $scope.toggleAdministerForm = function(){
+        $scope.resetFormDataToDefaults();
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
@@ -176,6 +177,7 @@ angular.module('vaccinations')
     $scope.toggleEditForm = function(){
         $scope.state.minsDiff = undefined;
         $scope.state.adverseFormOpen = false;
+        $scope.resetFormDataToDefaults();
         $scope.state.editFormOpen = !$scope.state.editFormOpen;
     };
 
