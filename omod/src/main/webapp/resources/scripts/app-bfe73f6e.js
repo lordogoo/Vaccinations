@@ -40,8 +40,8 @@ angular.module('vaccinations')
 
         var vaccination = angular.copy($scope.getVaccination());
         vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
+        // vaccination.manufacture_date = new Date();
+        // vaccination.expiry_date = new Date();
         vaccination.scheduled_date = new Date(vaccination.scheduled_date);
         $scope.enteredAdminFormData = vaccination;
         if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
@@ -90,8 +90,6 @@ angular.module('vaccinations')
             vaccination.name = '';
         }
         vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
         vaccination.scheduled_date = new Date();
         $scope.enteredAdminFormData = vaccination;
     };

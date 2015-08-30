@@ -514,17 +514,18 @@
                     </div>
                     <feedback warn="form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
+
                     <div class="form-group">
                         <label>Manufacture Date</label>
                         <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
-                    <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
+                    <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
                         <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required>
                     </div>
-                    <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
+                    <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
                     <div class="form-button-wrapper">
                         <!-- cannot delete scheduled vaccines only modify. -->

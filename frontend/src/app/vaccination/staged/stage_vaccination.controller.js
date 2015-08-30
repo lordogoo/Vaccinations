@@ -16,8 +16,6 @@ angular.module('vaccinations')
             vaccination.name = '';
         }
         vaccination.administration_date = new Date();
-        vaccination.manufacture_date = new Date();
-        vaccination.expiry_date = new Date();
         vaccination.scheduled_date = new Date();
         $scope.enteredAdminFormData = vaccination;
     };
