@@ -168,6 +168,7 @@ angular.module('vaccinations')
     };
 
     $scope.toggleReactionForm = function() {
+        $scope.resetFormDataToDefaults();
         $scope.state.editFormOpen = false;
         $scope.state.adverseFormOpen = !$scope.state.adverseFormOpen;
     };

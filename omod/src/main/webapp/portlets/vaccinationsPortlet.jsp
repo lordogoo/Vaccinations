@@ -143,7 +143,7 @@
                 <span class="administered-label">Administered: </span><span class="administered-date">{{ ::enteredEditFormData.administration_date | date: 'mediumDate' }}</span>
 
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()">Details</button>
+                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()">Vaccination Details</button>
 
                     <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed">Add Reaction</button>
 
@@ -340,9 +340,9 @@
 
                     <div class="form-group" ng-if="enteredEditFormData.adverse_reaction_observed">
                         <label>Reason For Change</label>
-                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse"
-                        ng-options="r.name as r.name for r in getChangeReasons()" required>
-                            <option value=""></option>
+                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse" required>
+                            <option value="Incorrect Entry">Incorrect Entry</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
@@ -667,7 +667,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bfe73f6e.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-3b2fa54e.js"></script>
 
   </body>
 </html>
