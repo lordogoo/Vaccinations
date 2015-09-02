@@ -240,10 +240,10 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setLot_number("another");
         vaccination.setManufacture_date(c.getTime());
         vaccination.setManufacturer("Vaccinations Inc");
-        vaccination.setDose_number(2);
+        vaccination.setDose_number(2);*/
 
         adverseReaction1.setGrade("GMO");
-        Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(adverseReaction1);*/
+        Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(adverseReaction1);
         //vaccination1.setAdverse_reaction(adverseReaction1);
         Vaccination vaccination1 = vaccinationsService.saveOrUpdateVaccination(vaccination);
 

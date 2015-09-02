@@ -126,8 +126,13 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         }
 
         //Calculate scheduled date from birthday and numeric indication.
+        int numericIndication = 0;
+        if (vaccine.getNumeric_indication() != null)
+        {
+            numericIndication = vaccine.getNumeric_indication();
+        }
         cal.setTime(patientBDay);
-        cal.add(Calendar.DATE, vaccine.getNumeric_indication());
+        cal.add(Calendar.DATE, numericIndication);
         Date calculatedScheduledDate = cal.getTime();
         return calculatedScheduledDate;
     }

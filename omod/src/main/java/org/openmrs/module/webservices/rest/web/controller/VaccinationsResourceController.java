@@ -146,7 +146,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
                 simpleVaccination.setAdministered(false);
 
                 //If a vaccination is a scheduled one, then revert to the template, otherwise do nothing
-                if (simpleVaccination.getScheduled() == true) {
+                if (simpleVaccination.getScheduled() == true && simpleVaccination.getSimpleVaccine().getNumeric_indication() != null) {
                     newVaccination = new Vaccination(new SimpleVaccination(
                             Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
                                     Context.getService(VaccinationsService.class).calculateScheduledDate(newVaccination.getPatient_id(),
