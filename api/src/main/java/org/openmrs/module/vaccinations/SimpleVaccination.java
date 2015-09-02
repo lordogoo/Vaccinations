@@ -81,9 +81,25 @@ public class SimpleVaccination implements Serializable {
 		}
 	}
 
-	public SimpleVaccine getSimpleVaccine() {
-		return simpleVaccine;
+    public void updateFromSimpleVaccine(SimpleVaccine simpleVaccine){
+        name = simpleVaccine.getName();
+        indication_name = simpleVaccine.getIndication_name();
+        dose = simpleVaccine.getDose();
+        dose_number = simpleVaccine.getDose_number();
+        dosing_unit = simpleVaccine.getDosing_unit();
+        route = simpleVaccine.getRoute();
+        scheduled = simpleVaccine.getScheduled();
+        body_site_administered = simpleVaccine.getBody_site_administered();
+        side_administered_left = simpleVaccine.getSide_administered_left();
+    }
+
+    public void updateFromOwnSimpleVaccine(){
+        updateFromSimpleVaccine(this.simpleVaccine);
 	}
+
+    public SimpleVaccine getSimpleVaccine() {
+        return simpleVaccine;
+    }
 
 	public void setSimpleVaccine(SimpleVaccine simpleVaccine) {
 		this.simpleVaccine = simpleVaccine;

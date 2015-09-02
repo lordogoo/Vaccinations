@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-baf3613d.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-7d4bb5a7.css">
   </head>
   <body>
 
@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-button-wrapper new-vaccine-wrapper">
-                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vaccination</strong></button>
+                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
 
                 <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
             </div>
@@ -143,7 +143,7 @@
                 <span class="administered-label">Administered: </span><span class="administered-date">{{ ::enteredEditFormData.administration_date | date: 'mediumDate' }}</span>
 
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()">Details</button>
+                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()">Vaccination Details</button>
 
                     <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed">Add Reaction</button>
 
@@ -156,28 +156,28 @@
 
             <!-- AUDIT LOG -->
             <div ng-if="state.auditLogOpen" class="form-wrapper">
-                <div class="changeset-wrapper" ng-repeat="changeset in enteredEditFormData.auditLogList">
-                    <table class="table table-striped">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredEditFormData.auditLogList">
                         <thead>
                             <tr class="info">
-                                <th>Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
-                                <th>Excuse: {{ changeset.excuse }}</th>
-                                <th>Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
                             </tr>
                         </thead>
 
                         <thead>
                             <tr>
-                                <th>Field Name</th>
-                                <th>Old Value</th>
-                                <th>New Value</th>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="change in enteredEditFormData.auditLogList[0].auditLogLineItemList">
-                                <td>{{ change.field }}</td>
-                                <td>{{ change.original_value }}</td>
-                                <td>{{ change.new_value }}</td>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -232,9 +232,10 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredEditFormData.route == '160240') && !(enteredEditFormData.route =='161253')">
                     <label>Body Site Administered</label>
                     <select ng-disabled="!isUnadministerable()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
+                        <option value=""></option>
                     </select>
 
                   </div>
@@ -339,9 +340,9 @@
 
                     <div class="form-group" ng-if="enteredEditFormData.adverse_reaction_observed">
                         <label>Reason For Change</label>
-                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse"
-                        ng-options="r.name as r.name for r in getChangeReasons()" required>
-                            <option value=""></option>
+                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse" required>
+                            <option value="Incorrect Entry">Incorrect Entry</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <feedback warn="form.excuse.$error.required" warning="Select a valid reason for change"></feedback>
@@ -400,9 +401,43 @@
                 </span>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()">Administer</button>
+
+                    <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
+
             </div>
             <!-- /HEADER -->
+
+            <!-- AUDIT LOG -->
+            <div ng-if="state.auditLogOpen" class="form-wrapper">
+                <div class="changeset-wrapper" >
+                    <table class="table table-striped" ng-repeat="changeset in enteredAdminFormData.auditLogList">
+                        <thead>
+                            <tr class="info">
+                                <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
+                                <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">Field Name</th>
+                                <th class="col-md-4">Old Value</th>
+                                <th class="col-md-4">New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="change in changeset.auditLogLineItemList">
+                                <td class="col-md-4">{{ change.field }}</td>
+                                <td class="col-md-4">{{ change.original_value }}</td>
+                                <td class="col-md-4">{{ change.new_value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /AUDIT LOG -->
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
@@ -437,16 +472,15 @@
                     <div class="form-group">
                         <label>Route</label>
                         <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
-                          <option value=""></option>
+                            <option value=""></option>
                         </select>
                     </div>
                     <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                    <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                    <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                         <label>Body Site Administered</label>
                         <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                         </select>
-
                     </div>
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
@@ -472,17 +506,18 @@
                     </div>
                     <feedback warn="form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
+
                     <div class="form-group">
                         <label>Manufacture Date</label>
                         <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
-                    <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
+                    <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
                         <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required>
                     </div>
-                    <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
+                    <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
                     <div class="form-button-wrapper">
                         <!-- cannot delete scheduled vaccines only modify. -->
@@ -568,7 +603,7 @@
                   </div>
                   <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
 
-                  <div class="form-group" ng-if="!enteredEditFormData.route == '160240' && !enteredEditFormData.route =='161253'">
+                  <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
                     </select>
@@ -632,7 +667,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-5af9f3f6.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-3b2fa54e.js"></script>
 
   </body>
 </html>

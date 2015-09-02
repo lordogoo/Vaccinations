@@ -139,22 +139,32 @@ public class VaccinationsResourceController {// extends MainResourceController {
 		try
 		{
 			simpleVaccination.setPatient_id(patientId);
-
+            Vaccination newVaccination = new Vaccination(simpleVaccination);
 
             if (simpleVaccination.getUnadminister()) {
+                //Tagging vaccination as not administered
                 simpleVaccination.setAdministered(false);
+
+                //If a vaccination is a scheduled one, then revert to the template, otherwise do nothing
+                if (simpleVaccination.getScheduled() == true && simpleVaccination.getSimpleVaccine().getNumeric_indication() != null) {
+                    newVaccination = new Vaccination(new SimpleVaccination(
+                            Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
+                                    Context.getService(VaccinationsService.class).calculateScheduledDate(newVaccination.getPatient_id(),
+                                            newVaccination.getVaccine()))
+                    ));
+                }
             }
 
 			//If an object already exists in the session, save using that object
 			Vaccination oldVaccination = Context.getService(VaccinationsService.class).getVaccinationByVaccinationId(vaccinationId);
 
+            Vaccination newLogVaccination = new Vaccination(simpleVaccination);
 			Vaccination oldLogVaccination = new Vaccination(new SimpleVaccination(oldVaccination));
-			Vaccination newLogVaccination = new Vaccination(simpleVaccination);
             if (simpleVaccination.getExcuse() != null) {
                 Context.getService(UtilsService.class).createAuditLogRecord(oldLogVaccination, newLogVaccination, simpleVaccination.getExcuse(), simpleVaccination.getReason());
             }
 
-            return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(new Vaccination(simpleVaccination)));
+            return new SimpleVaccination(Context.getService(VaccinationsService.class).saveOrUpdateVaccination(newVaccination));
 		}catch (Exception ex){
 			throw ex;
 		}

@@ -32,6 +32,7 @@ angular.module('vaccinations')
     };
 
     $scope.toggleReactionForm = function() {
+        $scope.resetFormDataToDefaults();
         $scope.state.editFormOpen = false;
         $scope.state.adverseFormOpen = !$scope.state.adverseFormOpen;
     };
@@ -39,6 +40,7 @@ angular.module('vaccinations')
     $scope.toggleEditForm = function(){
         $scope.state.minsDiff = undefined;
         $scope.state.adverseFormOpen = false;
+        $scope.resetFormDataToDefaults();
         $scope.state.editFormOpen = !$scope.state.editFormOpen;
     };
 

@@ -122,6 +122,22 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
         }
     }
 
+    public void updateFromVaccine(Vaccine vaccine){
+        name = vaccine.getName();
+        indication_name = vaccine.getIndication_name();
+        dose = vaccine.getDose();
+        dose_number = vaccine.getDose_number();
+        dosing_unit = vaccine.getDosing_unit();
+        route = vaccine.getRoute();
+        scheduled = vaccine.getScheduled();
+        body_site_administered = vaccine.getBody_site_administered();
+        side_administered_left = vaccine.getSide_administered_left();
+    }
+
+    public void updateFromOwnVaccine(){
+        updateFromVaccine(this.vaccine);
+    }
+
 	private Integer id;
     private Date scheduled_date;
 	private String name;

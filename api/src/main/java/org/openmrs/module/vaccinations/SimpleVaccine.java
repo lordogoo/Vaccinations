@@ -66,7 +66,7 @@ public class SimpleVaccine implements Serializable {
 	private String dosing_unit;
 	private String route;
 	private boolean scheduled;
-	private Integer numeric_indication;
+    private Integer numeric_indication;
     private String body_site_administered;
     private boolean side_administered_left;
 	private String uuid;
