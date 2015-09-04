@@ -149,7 +149,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
                 if (simpleVaccination.getScheduled() == true && simpleVaccination.getSimpleVaccine().getNumeric_indication() != null) {
                     newVaccination = new Vaccination(new SimpleVaccination(
                             Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
-                                    Context.getService(VaccinationsService.class).calculateScheduledDate(newVaccination.getPatient_id(),
+                                    Context.getService(VaccinationsService.class).calculateScheduledDate(Context.getService(VaccinationsService.class).getPtBDay(newVaccination.getPatient_id()),
                                             newVaccination.getVaccine()))
                     ));
                 }
