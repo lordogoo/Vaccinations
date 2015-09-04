@@ -56,6 +56,7 @@ public class SimpleVaccination implements Serializable {
 			this.manufacture_date = vaccination.getManufacture_date();
 			this.expiry_date = vaccination.getExpiry_date();
 			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+            this.overdue = vaccination.getOverdue();
 
             if (vaccination.getAuditLogList() != null) {
                 this.auditLogList = vaccination.getAuditLogList();
@@ -128,6 +129,7 @@ public class SimpleVaccination implements Serializable {
 	private Date manufacture_date;
 	private Date expiry_date;
 	private boolean adverse_reaction_observed;
+    private boolean overdue;
 
     private String administered_by;
     private String clinic_location;
@@ -138,6 +140,14 @@ public class SimpleVaccination implements Serializable {
 
 	private int patient_id;
 	private String uuid;
+
+    public boolean getOverdue() {
+        return overdue;
+    }
+
+    public void setOverdue(boolean overdue) {
+        this.overdue = overdue;
+    }
 
     public boolean getUnadminister() {
         return unadminister;

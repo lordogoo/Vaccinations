@@ -38,7 +38,6 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	protected final Log log = LogFactory.getLog(this.getClass());
 
 	public Vaccination() {
-
 	}
 
     //Converts new SimpleVaccination into a new Vaccination
@@ -71,6 +70,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 			this.manufacture_date = simpleVaccination.getManufacture_date();
 			this.expiry_date = simpleVaccination.getExpiry_date();
 			this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
+            this.overdue = simpleVaccination.getOverdue();
+
 			this.patient_id = simpleVaccination.getPatient_id();
 
             if (simpleVaccination.getId() != null) {
@@ -110,6 +111,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.manufacture_date = vaccination.getManufacture_date();
             this.expiry_date = vaccination.getExpiry_date();
             this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+            this.overdue = vaccination.getOverdue();
+
             this.patient_id = vaccination.getPatient_id();
 
             this.auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(vaccination.getId());
@@ -162,6 +165,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	private Date manufacture_date;
 	private Date expiry_date;
 	private boolean adverse_reaction_observed;
+    private boolean overdue;
 
     private Location clinic_location;
 
@@ -188,6 +192,14 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
         }else {
                 return new ArrayList<AuditLog>();
         }
+    }
+
+    public boolean getOverdue() {
+        return overdue;
+    }
+
+    public void setOverdue(boolean overdue) {
+        this.overdue = overdue;
     }
 
     public void setAuditLogList(List<AuditLog> auditLogList) {
