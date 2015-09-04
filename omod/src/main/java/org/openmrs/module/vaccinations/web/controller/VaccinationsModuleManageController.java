@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +55,8 @@ public class  VaccinationsModuleManageController {
     }
 
     @RequestMapping(value = "/module/vaccinations/vaccinationsPage", method = RequestMethod.GET)
-    public void vaccinationsPageController(ModelMap model) {
+    public void vaccinationsPageController(@RequestParam(required = true, value = "patientId") String patientId, ModelMap model) {
+        model.addAttribute("patientId", patientId);
         model.addAttribute("user", Context.getAuthenticatedUser());
         model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
     }
