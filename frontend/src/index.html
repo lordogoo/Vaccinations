@@ -170,7 +170,7 @@
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
-                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason || "No reason given" }}</th>
                             </tr>
                         </thead>
 
@@ -424,7 +424,7 @@
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
-                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason || "No reason given"}}</th>
                             </tr>
                         </thead>
 

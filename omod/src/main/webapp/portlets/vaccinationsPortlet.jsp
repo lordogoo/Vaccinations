@@ -162,7 +162,7 @@
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
-                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason || "No reason given" }}</th>
                             </tr>
                         </thead>
 
@@ -416,7 +416,7 @@
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
-                                <th class="col-md-4">Reason: {{ changeset.reason }}</th>
+                                <th class="col-md-4">Reason: {{ changeset.reason || "No reason given"}}</th>
                             </tr>
                         </thead>
 
@@ -667,7 +667,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-3b2fa54e.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-3ecc6b7b.js"></script>
 
   </body>
 </html>

@@ -54,6 +54,10 @@ angular.module('vaccinations')
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
+    $scope.toggleAuditLog = function() {
+        $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
+    };
+
     // Called when vaccination data from form has been validated
     // and ready to create a new vaccination event.
     $scope.submitVaccination = function(vaccination) {
