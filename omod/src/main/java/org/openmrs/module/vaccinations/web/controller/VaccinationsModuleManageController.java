@@ -55,7 +55,8 @@ public class  VaccinationsModuleManageController {
     }
 
     @RequestMapping(value = "/module/vaccinations/vaccinationsPage", method = RequestMethod.GET)
-    public void vaccinationsPageController(@RequestParam(required = true, value = "patientId") String patientId, ModelMap model) {
+    public void vaccinationsPageController(@RequestParam(required = true, value = "patientId") String patientId,
+                                           @RequestParam(required = false, value = "retroactive") String retroactive, ModelMap model) {
         model.addAttribute("patientId", patientId);
         model.addAttribute("user", Context.getAuthenticatedUser());
         model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
