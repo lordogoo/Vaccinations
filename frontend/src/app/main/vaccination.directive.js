@@ -41,7 +41,8 @@ angular.module('vaccinations')
             getBodySites: '&',
             getManufacturers: '&',
             getChangeReasons: '&',
-            getBodySiteMapping: '&'
+            getBodySiteMapping: '&',
+            getAdminStatus: '&'
         }
     };
  }]);

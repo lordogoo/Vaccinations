@@ -80,7 +80,6 @@ angular.module('vaccinations')
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
-                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
@@ -125,7 +124,6 @@ angular.module('vaccinations')
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
-                debugger;
                 $http.post(
                     appConstants.URL +
                     appConstants.PATH +
@@ -221,7 +219,6 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);

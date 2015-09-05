@@ -8,9 +8,12 @@
  * Controller of the vaccinations
  */
 angular.module('vaccinations')
-.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions',
-    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions){
+.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
+    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
 
+    // Get administation status.
+    debugger;
+    $scope.adminStatus = appConstants.getAdminStatus();
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
         $scope.vaccinations = data[0];
@@ -24,7 +27,6 @@ angular.module('vaccinations')
     });
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
-        debugger;
         var assembledMap = {};
         for (var i = 0; i < fragmentedMap.length; i++) {
             for (var key in fragmentedMap[i]) {
