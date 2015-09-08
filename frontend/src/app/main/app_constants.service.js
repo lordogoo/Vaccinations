@@ -28,8 +28,7 @@ angular.module('vaccinations')
        },
 
        getAdminStatus: function () {
-            debugger;
-            return Boolean($location.search().retroactive);
+            return ('True' === $location.search().retroactive || 'true' === $location.search().retroactive);
        }
     };
 

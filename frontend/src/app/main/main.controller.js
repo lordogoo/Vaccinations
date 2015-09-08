@@ -12,8 +12,8 @@ angular.module('vaccinations')
     function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
 
     // Get administation status.
-    debugger;
     $scope.adminStatus = appConstants.getAdminStatus();
+
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
         $scope.vaccinations = data[0];
@@ -35,16 +35,6 @@ angular.module('vaccinations')
         }
         return assembledMap;
     };
-
-    //Returns a list of body sites based on route
-    // $scope.getBodySiteMapping = function(route) {
-    //     debugger;
-    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
-    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
-    //             return $scope.dropDownData.routeMaps[i][route];
-    //         }
-    //     }
-    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();

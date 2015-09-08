@@ -7,6 +7,11 @@ angular.module('vaccinations')
     function($http, $filter, $rootScope, appConstants, helperFunctions){
     var self = this;
     self.stagedVaccinations = [];
+    self.constants = {};
+
+    // Concept ID constants
+    self.constants.mouth = '160240';
+    self.constants.nostril = '161253';
 
     var setVaccinations = function (vaccinations) {
         if (self.vaccinations){
@@ -64,10 +69,10 @@ angular.module('vaccinations')
             }
 
             //Set the proper body site if oral or intranasal
-            if (vaccination.route == '160240') {
+            if (vaccination.route == self.constants.mouth) {
                 vaccination.body_site_administered = 'Mouth';
             }
-            if (vaccination.route == '161253') {
+            if (vaccination.route == self.constants.nostril) {
                 vaccination.body_site_administered = 'Nostril';
             }
 
