@@ -18,6 +18,9 @@
 		<property name="scheduled" type="boolean" column="scheduled" length="1" not-null="true"/>
 		<property name="numeric_indication" type="int" column="numeric_indication" length="255" />
 
+		<property name="min_age" type="int" column="min_age" length="255" />
+		<property name="max_age" type="int" column="max_age" length="255" />
+
         <property name="body_site_administered" type="java.lang.String" column="body_site_administered" not-null="true" length="255" />
         <property name="side_administered_left" type="boolean" column="side_administered_left" length="1"/>
 
