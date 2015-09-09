@@ -25,6 +25,10 @@ angular.module('vaccinations')
             } else {
                 return patientId;
             }
+       },
+
+       getAdminStatus: function () {
+            return ('True' === $location.search().retroactive || 'true' === $location.search().retroactive);
        }
     };
 
