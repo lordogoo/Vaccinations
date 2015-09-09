@@ -10,6 +10,7 @@
 	<c:otherwise>
 		<a href="../vaccinations/vaccinationsPage.form?patientId=${patientId}&retroactive=false">Non-retroactive data entry</a>
 	</c:otherwise>
+</c:choose>
 <openmrs:portlet id="Vaccinations" moduleId="vaccinations" url="vaccinationsPortlet" />
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>
