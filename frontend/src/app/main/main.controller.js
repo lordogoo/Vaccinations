@@ -8,8 +8,11 @@
  * Controller of the vaccinations
  */
 angular.module('vaccinations')
-.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions',
-    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions){
+.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
+    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+
+    // Get administation status.
+    $scope.adminStatus = appConstants.getAdminStatus();
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
@@ -24,7 +27,6 @@ angular.module('vaccinations')
     });
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
-        debugger;
         var assembledMap = {};
         for (var i = 0; i < fragmentedMap.length; i++) {
             for (var key in fragmentedMap[i]) {
@@ -33,16 +35,6 @@ angular.module('vaccinations')
         }
         return assembledMap;
     };
-
-    //Returns a list of body sites based on route
-    // $scope.getBodySiteMapping = function(route) {
-    //     debugger;
-    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
-    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
-    //             return $scope.dropDownData.routeMaps[i][route];
-    //         }
-    //     }
-    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();

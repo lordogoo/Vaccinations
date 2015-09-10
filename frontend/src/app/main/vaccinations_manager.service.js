@@ -7,6 +7,11 @@ angular.module('vaccinations')
     function($http, $filter, $rootScope, appConstants, helperFunctions){
     var self = this;
     self.stagedVaccinations = [];
+    self.constants = {};
+
+    // Concept ID constants
+    self.constants.mouth = '160240';
+    self.constants.nostril = '161253';
 
     var setVaccinations = function (vaccinations) {
         if (self.vaccinations){
@@ -64,10 +69,10 @@ angular.module('vaccinations')
             }
 
             //Set the proper body site if oral or intranasal
-            if (vaccination.route == '160240') {
+            if (vaccination.route == self.constants.mouth) {
                 vaccination.body_site_administered = 'Mouth';
             }
-            if (vaccination.route == '161253') {
+            if (vaccination.route == self.constants.nostril) {
                 vaccination.body_site_administered = 'Nostril';
             }
 
@@ -80,7 +85,6 @@ angular.module('vaccinations')
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
-                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
@@ -125,7 +129,6 @@ angular.module('vaccinations')
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
-                debugger;
                 $http.post(
                     appConstants.URL +
                     appConstants.PATH +
@@ -221,7 +224,6 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
