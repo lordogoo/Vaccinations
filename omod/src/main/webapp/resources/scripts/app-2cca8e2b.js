@@ -278,6 +278,11 @@ angular.module('vaccinations')
     function($http, $filter, $rootScope, appConstants, helperFunctions){
     var self = this;
     self.stagedVaccinations = [];
+    self.constants = {};
+
+    // Concept ID constants
+    self.constants.mouth = '160240';
+    self.constants.nostril = '161253';
 
     var setVaccinations = function (vaccinations) {
         if (self.vaccinations){
@@ -335,10 +340,10 @@ angular.module('vaccinations')
             }
 
             //Set the proper body site if oral or intranasal
-            if (vaccination.route == '160240') {
+            if (vaccination.route == self.constants.mouth) {
                 vaccination.body_site_administered = 'Mouth';
             }
-            if (vaccination.route == '161253') {
+            if (vaccination.route == self.constants.nostril) {
                 vaccination.body_site_administered = 'Nostril';
             }
 
@@ -351,7 +356,6 @@ angular.module('vaccinations')
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
-                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
@@ -396,7 +400,6 @@ angular.module('vaccinations')
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
-                debugger;
                 $http.post(
                     appConstants.URL +
                     appConstants.PATH +
@@ -492,7 +495,6 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
@@ -610,7 +612,8 @@ angular.module('vaccinations')
             getBodySites: '&',
             getManufacturers: '&',
             getChangeReasons: '&',
-            getBodySiteMapping: '&'
+            getBodySiteMapping: '&',
+            getAdminStatus: '&'
         }
     };
  }]);
@@ -625,8 +628,11 @@ angular.module('vaccinations')
  * Controller of the vaccinations
  */
 angular.module('vaccinations')
-.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions',
-    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions){
+.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
+    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+
+    // Get administation status.
+    $scope.adminStatus = appConstants.getAdminStatus();
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
@@ -641,7 +647,6 @@ angular.module('vaccinations')
     });
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
-        debugger;
         var assembledMap = {};
         for (var i = 0; i < fragmentedMap.length; i++) {
             for (var key in fragmentedMap[i]) {
@@ -650,16 +655,6 @@ angular.module('vaccinations')
         }
         return assembledMap;
     };
-
-    //Returns a list of body sites based on route
-    // $scope.getBodySiteMapping = function(route) {
-    //     debugger;
-    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
-    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
-    //             return $scope.dropDownData.routeMaps[i][route];
-    //         }
-    //     }
-    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();
@@ -751,6 +746,10 @@ angular.module('vaccinations')
             } else {
                 return patientId;
             }
+       },
+
+       getAdminStatus: function () {
+            return ('True' === $location.search().retroactive || 'true' === $location.search().retroactive);
        }
     };
 
