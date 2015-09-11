@@ -35,6 +35,7 @@ angular.module('vaccinations')
     // Form states and methods.
     $scope.state = {};
     $scope.state.administerFormOpen = false;
+    $scope.state.rescheduleFormOpen = false;
 
     $scope.resetFormDataToDefaults = function(){
 
@@ -54,6 +55,11 @@ angular.module('vaccinations')
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
+     $scope.toggleRescheduleForm = function(){
+        $scope.resetFormDataToDefaults();
+        $scope.state.rescheduleFormOpen = !$scope.state.rescheduleFormOpen;
+    };
+
     $scope.toggleAuditLog = function() {
         $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
     };
@@ -64,6 +70,15 @@ angular.module('vaccinations')
         var vaccsOrigCopy = angular.copy($scope.getVaccination());
         var vaccination = angular.copy(vaccination);
         vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+
+    $scope.rescheduleVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = false;
+        vaccination.administration_date = null;
         vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
     };
 
@@ -325,6 +340,7 @@ angular.module('vaccinations')
         // exists on the server and needs to be modified.
 
         submitVaccination: function(vaccination) {
+            debugger;
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -349,8 +365,9 @@ angular.module('vaccinations')
 
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
+
             if (vaccination.id !== null) {
-                                // Vaccination exists, modify on server.
+            // Vaccination exists, modify on server.
                 if (vaccination.administration_date !== null) {
                     vaccination.administered = true;
                 } else if (vaccination.administration_date === null) {
@@ -733,9 +750,17 @@ angular.module('vaccinations')
 // Constants for this instance of the app
 angular.module('vaccinations')
 .service('appConstants', ["$http", "$location", function ($http, $location) {
+    var tempURL;
+    if (document.getElementsByTagName("title")[0].innerHTML !== "KMRI") {
+        tempURL = 'http://208.77.196.178:64000';
+    } else {
+        tempURL = '';
+    }
+
     var exports = {
         // Set url for testing
-        URL: '',
+        // URL: 'http://208.77.196.178:64000',
+        URL: tempURL,
         PATH:'/openmrs/ws/rest/v2/vaccinationsmodule/vaccinations',
 
         // Retrive patient ID from window.location;

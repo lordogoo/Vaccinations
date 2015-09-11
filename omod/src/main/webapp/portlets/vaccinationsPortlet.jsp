@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-7d4bb5a7.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-e3730eb7.css">
   </head>
   <body>
 
@@ -398,7 +398,7 @@
                 </span>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()">Administer</button>
-
+                    <button type="button" class="btn btn-reschedule" ng-click="toggleRescheduleForm()">Reschedule</button>
                     <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
                 </div>
 
@@ -435,6 +435,25 @@
                 </div>
             </div>
             <!-- /AUDIT LOG -->
+
+
+            <!-- RESCHEDULE FORM -->
+            <div ng-if="state.rescheduleFormOpen"  class="form-wrapper css-form">
+                <form name="rescheduleForm" novalidate>
+
+                    <div class="form-group">
+                        <label>Rescheduled Date</label>
+                        <input name="rescheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required>
+                    </div>
+                    <feedback warn="rescheduleForm.rescheduled_date.$error.date" warning="Enter a valid rescheduled date."></feedback>
+
+                    <div class="form-button-wrapper">
+                        <button ng-show="rescheduleForm.$valid" type="submit" class="btn btn-primary" ng-click="rescheduleVaccination(enteredAdminFormData)">Reschedule</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /RESCHEDULE FORM -->
+
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
@@ -664,7 +683,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-1ddbb5d5.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-2cca8e2b.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bd04553e.js"></script>
 
   </body>
 </html>

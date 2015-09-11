@@ -9,6 +9,7 @@ angular.module('vaccinations')
     // Form states and methods.
     $scope.state = {};
     $scope.state.administerFormOpen = false;
+    $scope.state.rescheduleFormOpen = false;
 
     $scope.resetFormDataToDefaults = function(){
 
@@ -28,6 +29,11 @@ angular.module('vaccinations')
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
+     $scope.toggleRescheduleForm = function(){
+        $scope.resetFormDataToDefaults();
+        $scope.state.rescheduleFormOpen = !$scope.state.rescheduleFormOpen;
+    };
+
     $scope.toggleAuditLog = function() {
         $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
     };
@@ -38,6 +44,15 @@ angular.module('vaccinations')
         var vaccsOrigCopy = angular.copy($scope.getVaccination());
         var vaccination = angular.copy(vaccination);
         vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+
+    $scope.rescheduleVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = false;
+        vaccination.administration_date = null;
         vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
     };
 
