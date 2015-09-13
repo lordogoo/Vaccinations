@@ -12,9 +12,17 @@
 // Constants for this instance of the app
 angular.module('vaccinations')
 .service('appConstants', function ($http, $location) {
+    var tempURL;
+    if (document.getElementsByTagName("title")[0].innerHTML !== "KMRI") {
+        tempURL = 'http://208.77.196.178:64000';
+    } else {
+        tempURL = '';
+    }
+
     var exports = {
         // Set url for testing
-        URL: 'http://208.77.196.178:64000',
+        // URL: 'http://208.77.196.178:64000',
+        URL: tempURL,
         PATH:'/openmrs/ws/rest/v2/vaccinationsmodule/vaccinations',
 
         // Retrive patient ID from window.location;

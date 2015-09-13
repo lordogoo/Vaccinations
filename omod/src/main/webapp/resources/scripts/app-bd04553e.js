@@ -35,6 +35,7 @@ angular.module('vaccinations')
     // Form states and methods.
     $scope.state = {};
     $scope.state.administerFormOpen = false;
+    $scope.state.rescheduleFormOpen = false;
 
     $scope.resetFormDataToDefaults = function(){
 
@@ -54,6 +55,11 @@ angular.module('vaccinations')
         $scope.state.administerFormOpen = !$scope.state.administerFormOpen;
     };
 
+     $scope.toggleRescheduleForm = function(){
+        $scope.resetFormDataToDefaults();
+        $scope.state.rescheduleFormOpen = !$scope.state.rescheduleFormOpen;
+    };
+
     $scope.toggleAuditLog = function() {
         $scope.state.auditLogOpen = !$scope.state.auditLogOpen;
     };
@@ -64,6 +70,15 @@ angular.module('vaccinations')
         var vaccsOrigCopy = angular.copy($scope.getVaccination());
         var vaccination = angular.copy(vaccination);
         vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+    };
+
+
+    $scope.rescheduleVaccination = function(vaccination) {
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = false;
+        vaccination.administration_date = null;
         vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
     };
 
@@ -278,6 +293,11 @@ angular.module('vaccinations')
     function($http, $filter, $rootScope, appConstants, helperFunctions){
     var self = this;
     self.stagedVaccinations = [];
+    self.constants = {};
+
+    // Concept ID constants
+    self.constants.mouth = '160240';
+    self.constants.nostril = '161253';
 
     var setVaccinations = function (vaccinations) {
         if (self.vaccinations){
@@ -320,6 +340,7 @@ angular.module('vaccinations')
         // exists on the server and needs to be modified.
 
         submitVaccination: function(vaccination) {
+            debugger;
             var that = this;
             $rootScope.$broadcast('waiting');
             // Prevent unintentional sending of reaction details
@@ -335,23 +356,23 @@ angular.module('vaccinations')
             }
 
             //Set the proper body site if oral or intranasal
-            if (vaccination.route == '160240') {
+            if (vaccination.route == self.constants.mouth) {
                 vaccination.body_site_administered = 'Mouth';
             }
-            if (vaccination.route == '161253') {
+            if (vaccination.route == self.constants.nostril) {
                 vaccination.body_site_administered = 'Nostril';
             }
 
             // Check whether we are updating an existing vaccination
             // or adding new vaccination.
+
             if (vaccination.id !== null) {
-                                // Vaccination exists, modify on server.
+            // Vaccination exists, modify on server.
                 if (vaccination.administration_date !== null) {
                     vaccination.administered = true;
                 } else if (vaccination.administration_date === null) {
                     vaccination.administered = false;
                 }
-                debugger;
                 $http.put(
                     appConstants.URL +
                     appConstants.PATH + '/' +
@@ -396,7 +417,6 @@ angular.module('vaccinations')
                 delete vaccination._administering;
                 delete vaccination._scheduling;
 
-                debugger;
                 $http.post(
                     appConstants.URL +
                     appConstants.PATH +
@@ -492,7 +512,6 @@ angular.module('vaccinations')
                     reaction)
 
                 .success( function (data) {
-                    debugger;
                     $rootScope.$broadcast('success');
                     that.removeVaccination(vaccination.id, 'id');
                     that.addVaccination(data);
@@ -610,7 +629,8 @@ angular.module('vaccinations')
             getBodySites: '&',
             getManufacturers: '&',
             getChangeReasons: '&',
-            getBodySiteMapping: '&'
+            getBodySiteMapping: '&',
+            getAdminStatus: '&'
         }
     };
  }]);
@@ -625,8 +645,11 @@ angular.module('vaccinations')
  * Controller of the vaccinations
  */
 angular.module('vaccinations')
-.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions',
-    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions){
+.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
+    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+
+    // Get administation status.
+    $scope.adminStatus = appConstants.getAdminStatus();
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
@@ -641,7 +664,6 @@ angular.module('vaccinations')
     });
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
-        debugger;
         var assembledMap = {};
         for (var i = 0; i < fragmentedMap.length; i++) {
             for (var key in fragmentedMap[i]) {
@@ -650,16 +672,6 @@ angular.module('vaccinations')
         }
         return assembledMap;
     };
-
-    //Returns a list of body sites based on route
-    // $scope.getBodySiteMapping = function(route) {
-    //     debugger;
-    //     for (var i = 0; i < $scope.dropDownData.routeMaps.length; i++) {
-    //         if ($scope.dropDownData.routeMaps[i].hasOwnProperty(route)) {
-    //             return $scope.dropDownData.routeMaps[i][route];
-    //         }
-    //     }
-    // };
 
     // Get list of staged vaccinations.
     $scope.stagedVaccinations = vaccinationsManager.getStagedVaccinations();
@@ -738,9 +750,17 @@ angular.module('vaccinations')
 // Constants for this instance of the app
 angular.module('vaccinations')
 .service('appConstants', ["$http", "$location", function ($http, $location) {
+    var tempURL;
+    if (document.getElementsByTagName("title")[0].innerHTML !== "KMRI") {
+        tempURL = 'http://208.77.196.178:64000';
+    } else {
+        tempURL = '';
+    }
+
     var exports = {
         // Set url for testing
-        URL: 'http://208.77.196.178:64000',
+        // URL: 'http://208.77.196.178:64000',
+        URL: tempURL,
         PATH:'/openmrs/ws/rest/v2/vaccinationsmodule/vaccinations',
 
         // Retrive patient ID from window.location;
@@ -751,6 +771,10 @@ angular.module('vaccinations')
             } else {
                 return patientId;
             }
+       },
+
+       getAdminStatus: function () {
+            return ('True' === $location.search().retroactive || 'true' === $location.search().retroactive);
        }
     };
 

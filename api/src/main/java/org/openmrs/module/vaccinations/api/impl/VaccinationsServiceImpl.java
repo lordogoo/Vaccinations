@@ -73,19 +73,11 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 			//Retrieving all vaccinations by patientId
 			List<Vaccination> vaccinations = listVaccinationsByPatientId(patientId);
 
-			Date calculatedScheduledDate = new Date();
-            Date patientBDay = getPtBDay(patientId);
-            Date today = new Date();
-            Calendar cal1 = Calendar.getInstance();
-            Calendar cal2 = Calendar.getInstance();
 
 			List<Vaccination> completeVaccinations = new ArrayList<Vaccination>();
 			if (vaccinations != null && !vaccinations.isEmpty()) {
 				//Combining scheduled vaccines and performed vaccinations
 				for (Vaccine vaccine : vaccines) {
-                    //Reset calendars to patient birthday
-                    cal1.setTime(patientBDay);
-                    cal2.setTime(patientBDay);
 
 					//Check if a scheduled vaccine has already been administered
 					Boolean found = false;
@@ -96,45 +88,21 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 						}
 					}
 
+                    //If there are no matching Vaccinations, create Vaccination Template
 					if (!found) {
-                        //Here we need to check if the vaccine template is relevant to the current patient age
-                        cal1.add(Calendar.DATE, vaccine.getMin_age());
-                        cal2.add(Calendar.DATE, vaccine.getMax_age());
-
-                        if (today.before(cal1.getTime()))
-                        {
-                            //Do nothing as vaccine template is not relevant yet
-
-                            //If vaccine template is overdue
-                        }
-                        else if (today.after(cal2.getTime()))
-                        {
-                            calculatedScheduledDate = calculateScheduledDate(patientBDay, vaccine);
-                            //Vaccine to Vaccination
-                            Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedScheduledDate);
-                            vaccinationTemplate.setOverdue(true);
-                            completeVaccinations.add(vaccinationTemplate);
-                        }else {
-                            calculatedScheduledDate = calculateScheduledDate(patientBDay, vaccine);
-                            //Vaccine to Vaccination
-                            Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedScheduledDate);
-                            vaccinationTemplate.setOverdue(false);
-                            completeVaccinations.add(vaccinationTemplate);
-                        }
+                        completeVaccinations.add(createVaccinationTemplate(vaccine, patientId));
 					}
 				}
 				completeVaccinations.addAll(vaccinations);
 
 			} else {
+                //If there are no vaccinations at all, simply generate vaccine templates
 				try {
 					for (Vaccine vaccine : vaccines) {
-						calculatedScheduledDate = calculateScheduledDate(patientBDay, vaccine);
-						//Vaccine to Vaccination
-						Vaccination newVaccination = vaccineToVaccination(vaccine, calculatedScheduledDate);
-						completeVaccinations.add(newVaccination);
+						completeVaccinations.add(createVaccinationTemplate(vaccine, patientId));
 					}
 				}catch (Exception ex){
-					log.error(ex.getMessage() + " STACKTRACE: " + ex.getStackTrace() + " BDAY: " + calculatedScheduledDate.toString() + " VaccinationName: " + completeVaccinations.get(completeVaccinations.size()-1).getName());
+					log.error(ex.getMessage() + " STACKTRACE: " + ex.getStackTrace() + " VaccinationName: " + completeVaccinations.get(completeVaccinations.size()-1).getName());
 					return null;
 				}
 			}
@@ -143,6 +111,42 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 			throw new APIException("The vaccines list is empty!");
 		}
 	}
+
+    private Vaccination createVaccinationTemplate(Vaccine vaccine, int patientId){
+        Date today = new Date();
+        Date calculatedScheduledDate = new Date();
+        Date patientBDay = getPtBDay(patientId);
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+
+        //Reset calendars to patient birthday
+        cal1.setTime(patientBDay);
+        cal2.setTime(patientBDay);
+
+        //Here we need to check if the vaccine template is relevant to the current patient age
+        cal1.add(Calendar.DATE, vaccine.getMin_age());
+        cal2.add(Calendar.DATE, vaccine.getMax_age());
+
+        //Vaccine to Vaccination
+        calculatedScheduledDate = calculateScheduledDate(patientBDay, vaccine);
+        Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedScheduledDate);
+
+        if (today.before(cal1.getTime()))
+        {
+            //Adding future vaccines here
+            vaccinationTemplate.setOverdue(false);
+        }
+        else if (today.after(cal2.getTime()))
+        {
+            //If vaccine template is overdue add with OverDue flag
+            vaccinationTemplate.setOverdue(true);
+        }else {
+            //Adding current/relevant vaccines here
+            vaccinationTemplate.setOverdue(false);
+        }
+
+        return vaccinationTemplate;
+    }
 
     @Override
 	public Date getPtBDay(Integer patientId) throws APIException{
