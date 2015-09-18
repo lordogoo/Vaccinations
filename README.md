@@ -3,7 +3,7 @@ An OpenMRS module that allows management of patient vaccinations.
 This module supports scheduled and unscheduled vaccinations, processing new vaccinations as well as backdating vaccinations.
 
 ###Installation 
-Be absolutely sure you have node & npm installed.  
+Be absolutely sure you have node version 2.11.3 & npm installed.  
 If your scratching your head type ```$ npm -v``` and ```$ node -v``` to check.  
 1. Clone the project  
 2. ```$ cd frontend```  
