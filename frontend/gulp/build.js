@@ -53,7 +53,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 
     .pipe(jsFilter)
     // Annotate angular components which aren't array prefixed.
-    .pipe($.ngAnnotate())
+    // .pipe($.ngAnnotate())
     //.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
 
