@@ -143,15 +143,13 @@ public class VaccinationsResourceController {// extends MainResourceController {
 
             if (simpleVaccination.getUnadminister()) {
                 //Tagging vaccination as not administered
+                newVaccination.setAdministered(false);
                 simpleVaccination.setAdministered(false);
 
                 //If a vaccination is a scheduled one, then revert to the template, otherwise do nothing
                 if (simpleVaccination.getScheduled() == true && simpleVaccination.getSimpleVaccine().getNumeric_indication() != null) {
-                    newVaccination = new Vaccination(new SimpleVaccination(
-                            Context.getService(VaccinationsService.class).vaccineToVaccination(newVaccination.getVaccine(),
-                                    Context.getService(VaccinationsService.class).calculateScheduledDate(Context.getService(VaccinationsService.class).getPtBDay(newVaccination.getPatient_id()),
-                                            newVaccination.getVaccine()))
-                    ));
+                    newVaccination.updateFromOwnVaccine();
+                    simpleVaccination.updateFromOwnSimpleVaccine();
                 }
             }
 
