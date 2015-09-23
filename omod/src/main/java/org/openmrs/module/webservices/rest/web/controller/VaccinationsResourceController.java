@@ -138,18 +138,21 @@ public class VaccinationsResourceController {// extends MainResourceController {
 			@RequestBody SimpleVaccination simpleVaccination, @PathVariable int vaccinationId, @PathVariable int patientId) throws Exception {
 		try
 		{
-			simpleVaccination.setPatient_id(patientId);
+			//simpleVaccination.setPatient_id(patientId);
             Vaccination newVaccination = new Vaccination(simpleVaccination);
 
             if (simpleVaccination.getUnadminister()) {
                 //Tagging vaccination as not administered
                 newVaccination.setAdministered(false);
+				//simpleVaccination changes are strictly for the purpose of the audit log record, hence only recording unadministering
                 simpleVaccination.setAdministered(false);
 
                 //If a vaccination is a scheduled one, then revert to the template, otherwise do nothing
                 if (simpleVaccination.getScheduled() == true && simpleVaccination.getSimpleVaccine().getNumeric_indication() != null) {
                     newVaccination.updateFromOwnVaccine();
-                    simpleVaccination.updateFromOwnSimpleVaccine();
+					newVaccination.setManufacturer(null);
+					newVaccination.setLot_number(null);
+					newVaccination.setScheduled(true);
                 }
             }
 
