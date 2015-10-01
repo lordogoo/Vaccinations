@@ -60,5 +60,6 @@ public class  VaccinationsModuleManageController {
         model.addAttribute("patientId", patientId);
         model.addAttribute("user", Context.getAuthenticatedUser());
         model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
+        model.addAttribute("retroactive", retroactive);
     }
 }

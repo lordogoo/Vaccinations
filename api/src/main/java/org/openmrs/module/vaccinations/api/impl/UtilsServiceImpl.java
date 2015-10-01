@@ -12,9 +12,7 @@ import org.openmrs.module.vaccinations.api.db.UtilsDAO;
 import org.openmrs.module.vaccinations.api.UtilsService;
 import org.openmrs.module.vaccinations.util.Constants;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -95,7 +93,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
         auditLog1.setExcuse(excuse);
         auditLog1.setReason(reason);
 
-        AuditLog auditLog = saveOrUpdateAuditLog(auditLog1);
+        List<AuditLogLineItem> auditLogLineItems = new ArrayList<AuditLogLineItem>();
 
         if (oldVac.getScheduled_date() != null && newVac.getScheduled_date() != null) {
             c1.setTime(oldVac.getScheduled_date());
@@ -106,8 +104,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
                 auditLogLineItem.setNew_value(c2.getTime().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -118,8 +115,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getName().toString());
                 auditLogLineItem.setNew_value(newVac.getName().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -130,8 +126,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(oldVac.getIndication_name().toString());
             auditLogLineItem.setNew_value(newVac.getIndication_name().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
         }
 
         if (oldVac.getDose() != null && newVac.getDose() != null) {
@@ -141,8 +136,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getDose().toString());
                 auditLogLineItem.setNew_value(newVac.getDose().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -153,8 +147,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getDosing_unit().toString());
                 auditLogLineItem.setNew_value(newVac.getDosing_unit().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -165,8 +158,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(oldVac.getRoute().toString());
             auditLogLineItem.setNew_value(newVac.getRoute().toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
         }
 
         if (!oldVac.getScheduled() == newVac.getScheduled()) {
@@ -175,8 +167,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getScheduled()).toString());
             auditLogLineItem.setNew_value(((Boolean)newVac.getScheduled()).toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
         }
 
         if (!oldVac.getAdministered() == newVac.getAdministered()){
@@ -185,8 +176,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdministered()).toString());
             auditLogLineItem.setNew_value(((Boolean)newVac.getAdministered()).toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
         }
 
 
@@ -199,8 +189,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
                 auditLogLineItem.setNew_value(c2.getTime().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -211,8 +200,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getBody_site_administered().toString());
                 auditLogLineItem.setNew_value(newVac.getBody_site_administered().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -222,8 +210,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getSide_administered_left()).toString());
             auditLogLineItem.setNew_value(((Boolean)newVac.getSide_administered_left()).toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
         }
 
         if (oldVac.getDose_number() != null && newVac.getDose_number() != null) {
@@ -233,8 +220,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getDose_number().toString());
                 auditLogLineItem.setNew_value(newVac.getDose_number().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -245,8 +231,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getLot_number().toString());
                 auditLogLineItem.setNew_value(newVac.getLot_number().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -257,8 +242,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getManufacturer().toString());
                 auditLogLineItem.setNew_value(newVac.getManufacturer().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -271,8 +255,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
                 auditLogLineItem.setNew_value(c2.getTime().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -285,8 +268,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
                 auditLogLineItem.setNew_value(c2.getTime().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -298,8 +280,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
             auditLogLineItem.setNew_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
 
-            auditLogLineItem.setAudit_log_id(auditLog.getId());
-            saveOrUpdateAuditLogLineItem(auditLogLineItem);
+            auditLogLineItems.add(auditLogLineItem);
 
             if (newVac.getAdverse_reaction_observed() == false){
                 log.info("Inside Adverse_reaction_observed and new valu is set to false");
@@ -309,8 +290,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem1.setOriginal_value(("").toString());
                 auditLogLineItem1.setNew_value(("").toString());
 
-                auditLogLineItem1.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem1);
+                auditLogLineItems.add(auditLogLineItem);
             }
         }
 
@@ -325,8 +305,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(c1.getTime().toString());
                 auditLogLineItem.setNew_value(c2.getTime().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
 
             if (!oldVac.getAdverse_reaction().getAdverse_event().equals(newVac.getAdverse_reaction().getAdverse_event())) {
@@ -335,8 +314,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getAdverse_event().toString());
                 auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getAdverse_event().toString());
 
-                auditLogLineItem.setAudit_log_id(auditLog.getId());
-                saveOrUpdateAuditLogLineItem(auditLogLineItem);
+                auditLogLineItems.add(auditLogLineItem);
             }
 
             if (!oldVac.getAdverse_reaction().getGrade().equals(newVac.getAdverse_reaction().getGrade())) {
@@ -345,10 +323,17 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setOriginal_value(oldVac.getAdverse_reaction().getGrade().toString());
                 auditLogLineItem.setNew_value(newVac.getAdverse_reaction().getGrade().toString());
 
+                auditLogLineItems.add(auditLogLineItem);
+            }
+
+        }
+
+        if (auditLogLineItems.size() > 0){
+            AuditLog auditLog = saveOrUpdateAuditLog(auditLog1);
+            for (AuditLogLineItem auditLogLineItem : auditLogLineItems) {
                 auditLogLineItem.setAudit_log_id(auditLog.getId());
                 saveOrUpdateAuditLogLineItem(auditLogLineItem);
             }
-
         }
     }
 }
