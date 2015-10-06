@@ -15,6 +15,7 @@ package org.openmrs.module.vaccinations.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.PersonName;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
@@ -58,6 +59,15 @@ public class  VaccinationsModuleManageController {
     public void vaccinationsPageController(@RequestParam(required = true, value = "patientId") String patientId,
                                            @RequestParam(required = false, value = "retroactive") String retroactive, ModelMap model) {
         model.addAttribute("patientId", patientId);
+        PersonName personName = Context.getPatientService().getPatient(Integer.parseInt(patientId)).getPersonName();
+        String patientName = "";
+        if (personName.getGivenName() != null)
+            patientName += personName.getGivenName();
+        if (personName.getMiddleName() != null)
+            patientName += " " + personName.getMiddleName();
+        if (personName.getFamilyName() != null)
+            patientName += " " + personName.getFamilyName();
+        model.addAttribute("patientName", patientName);
         model.addAttribute("user", Context.getAuthenticatedUser());
         model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
         model.addAttribute("retroactive", retroactive);
