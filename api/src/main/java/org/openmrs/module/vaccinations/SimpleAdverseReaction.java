@@ -26,6 +26,18 @@ public class SimpleAdverseReaction implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
+    private String excuse;
+    private String reason;
+    private boolean unadminister;
+
+    private Integer id;
+    private Date date;
+    private String adverse_event;
+    private String grade;
+    private Integer vaccination_id;
+    private String uuid;
+
+
     public SimpleAdverseReaction() {
     }
 
@@ -40,17 +52,6 @@ public class SimpleAdverseReaction implements Serializable {
         }
     }
 
-
-    private String excuse;
-    private String reason;
-    private boolean unadminister;
-
-    private Integer id;
-    private Date date;
-    private String adverse_event;
-    private String grade;
-    private Integer vaccination_id;
-    private String uuid;
 
     public boolean getUnadminister() {
         return unadminister;
