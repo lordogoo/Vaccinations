@@ -10,6 +10,8 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.vaccinations.*;
 import org.openmrs.module.vaccinations.api.db.UtilsDAO;
 import org.openmrs.module.vaccinations.api.UtilsService;
+import org.openmrs.module.vaccinations.enums.DosingUnits;
+import org.openmrs.module.vaccinations.enums.Routes;
 import org.openmrs.module.vaccinations.util.Constants;
 
 import java.util.*;
@@ -69,6 +71,54 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
     @Override
     public void createAuditLogRecord(Vaccination oldVac, Vaccination newVac, String excuse, String reason) throws APIException {
         createAuditLogRecord(oldVac, newVac, excuse, reason, false);
+    }
+
+    /*
+        This function matches an appropriate RouteEnum to a given conceptId String
+     */
+    private Routes getRouteEnumNameFromConceptId(String conceptId){
+        if (Routes.Intranasal.getConceptId() == conceptId)
+            return Routes.Intranasal;
+        else if (Routes.Intradermal.getConceptId() == conceptId)
+            return Routes.Intradermal;
+        else if (Routes.Intramuscular.getConceptId() == conceptId)
+            return Routes.Intramuscular;
+        else if (Routes.Oral.getConceptId() == conceptId)
+            return Routes.Oral;
+        else if (Routes.Subcutaneous.getConceptId() == conceptId)
+            return Routes.Subcutaneous;
+        else
+            return Routes.Transdermal;
+    }
+
+    /*
+        This function matches an appropriate DosingUnitEnum to a given conceptId String
+     */
+    private DosingUnits getDosingUnitEnumNameFromConceptId(String conceptId) {
+        if (DosingUnits.Ampule.getConceptId() == conceptId)
+            return DosingUnits.Ampule;
+        else if (DosingUnits.Drop.getConceptId() == conceptId)
+            return DosingUnits.Drop;
+        else if (DosingUnits.Gram.getConceptId() == conceptId)
+            return DosingUnits.Gram;
+        else if (DosingUnits.International.getConceptId() == conceptId)
+            return DosingUnits.International;
+        else if (DosingUnits.Microgram.getConceptId() == conceptId)
+            return DosingUnits.Microgram;
+        else if (DosingUnits.Milliequivalent.getConceptId() == conceptId)
+            return DosingUnits.Milliequivalent;
+        else if (DosingUnits.Milligram.getConceptId() == conceptId)
+            return DosingUnits.Milligram;
+        else if (DosingUnits.Ounce.getConceptId() == conceptId)
+            return DosingUnits.Ounce;
+        else if (DosingUnits.Tablet.getConceptId() == conceptId)
+            return DosingUnits.Tablet;
+        else if (DosingUnits.Milliliter.getConceptId() == conceptId)
+            return DosingUnits.Milliliter;
+        else if (DosingUnits.Unit.getConceptId() == conceptId)
+            return DosingUnits.Unit;
+        else
+            return DosingUnits.Vial;
     }
 
     /*
@@ -144,8 +194,8 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             if (!oldVac.getDosing_unit().toString().equals(newVac.getDosing_unit())) {
                 AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
                 auditLogLineItem.setField("Dosing Unit");
-                auditLogLineItem.setOriginal_value(oldVac.getDosing_unit().toString());
-                auditLogLineItem.setNew_value(newVac.getDosing_unit().toString());
+                auditLogLineItem.setOriginal_value(getDosingUnitEnumNameFromConceptId(oldVac.getDosing_unit().toString()).getName());
+                auditLogLineItem.setNew_value(getDosingUnitEnumNameFromConceptId(newVac.getDosing_unit().toString()).getName());
 
                 auditLogLineItems.add(auditLogLineItem);
             }
@@ -155,8 +205,9 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 !oldVac.getRoute().equals(newVac.getRoute())) {
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Route");
-            auditLogLineItem.setOriginal_value(oldVac.getRoute().toString());
-            auditLogLineItem.setNew_value(newVac.getRoute().toString());
+
+            auditLogLineItem.setOriginal_value(getRouteEnumNameFromConceptId(oldVac.getRoute().toString()).getName());//oldVac.getRoute().toString());
+            auditLogLineItem.setNew_value(getRouteEnumNameFromConceptId(newVac.getRoute().toString()).getName());
 
             auditLogLineItems.add(auditLogLineItem);
         }
@@ -172,11 +223,16 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         if (!oldVac.getAdministered() == newVac.getAdministered()){
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Administered Vaccine");
-            auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdministered()).toString());
-            auditLogLineItem.setNew_value(((Boolean)newVac.getAdministered()).toString());
+            if (newVac.getAdministered() == true)
+                auditLogLineItem.setField("Administered Vaccine");
+            else
+                auditLogLineItem.setField("Unadministered Vaccine");
+            auditLogLineItem.setOriginal_value("");
+            auditLogLineItem.setNew_value("");
+            //auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdministered()).toString());
+            //auditLogLineItem.setNew_value(((Boolean)newVac.getAdministered()).toString());
 
-            auditLogLineItems.add(auditLogLineItem);
+                    auditLogLineItems.add(auditLogLineItem);
         }
 
 
@@ -206,9 +262,11 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
         if (!oldVac.getSide_administered_left() == newVac.getSide_administered_left()){
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
-            auditLogLineItem.setField("Left Side Administered");
-            auditLogLineItem.setOriginal_value(((Boolean)oldVac.getSide_administered_left()).toString());
-            auditLogLineItem.setNew_value(((Boolean)newVac.getSide_administered_left()).toString());
+            auditLogLineItem.setField("Side Administered");
+            if (newVac.getSide_administered_left() == true)
+                auditLogLineItem.setOriginal_value("Left");
+            else
+                auditLogLineItem.setOriginal_value("Right");
 
             auditLogLineItems.add(auditLogLineItem);
         }
