@@ -31,6 +31,7 @@
         <div class="add-vaccination-wrapper">
             <!--LEGEND-->
             <div class="legend-wrapper">
+                <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>
                 <div><i class="demo-icon icon-circle-empty unadmin-x"></i><span>Unadministered Vaccination</span></div>
                 <div><i class="demo-icon icon-ok-circled2 admin-check"></i><span>Administered Vaccination</span></div>
                 <div><i class="demo-icon icon-cancel-circled2 admin-check-reaction"></i><span>Adverse Reaction</span></div>
@@ -166,6 +167,13 @@
             <div ng-if="state.auditLogOpen" class="form-wrapper">
                 <div class="changeset-wrapper" >
                     <table class="table table-striped" ng-repeat="changeset in enteredEditFormData.auditLogList">
+                        <thead>
+                            <tr class="info">
+                                <th class="col-md-4">Changed on: {{ changeset.dateChanged }}</th>
+                                <th class="col-md-4"></th>
+                                <th class="col-md-4"></th>
+                            </tr>
+                        </thead>
                         <thead>
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
@@ -419,12 +427,19 @@
                     <table class="table table-striped" ng-repeat="changeset in enteredAdminFormData.auditLogList">
                         <thead>
                             <tr class="info">
+                                <th class="col-md-4">Changed on: {{ changeset.dateChanged }}</th>
+                                <th class="col-md-4"></th>
+                                <th class="col-md-4"></th>
+                            </tr>
+                        </thead>
+
+                        <thead>
+                            <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
                                 <th class="col-md-4">Reason: {{ changeset.reason || "No reason given"}}</th>
                             </tr>
                         </thead>
-
                         <thead>
                             <tr>
                                 <th class="col-md-4">Field Name</th>

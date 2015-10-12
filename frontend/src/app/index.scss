@@ -383,7 +383,12 @@ div#appcontainer.appcontainer {
 .big-check.icon-ok-circled2:before { font-size: 80px;} /* '' */
 
 .legend-wrapper {
+  @include border-radius(4px);
+  padding-right: 17px;
+  display: inline-block;
+  border: 1px solid #ddd;
   padding-top: 25px;
+  padding-bottom: 25px;
   margin-bottom: 100px;
   //width: 300px;
   margin: 0 auto;
