@@ -35,6 +35,7 @@ angular.module('vaccinations')
 
         template: '<div ng-include="getContentUrl()"></div>',
         scope: {
+            getDateFromTimeStamp: '&',
             getMaxDate: '&',
             getVaccination: '&',
             getRoutes: '&',
