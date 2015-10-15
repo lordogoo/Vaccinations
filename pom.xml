@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>vaccinations</artifactId>
-	<version>1.01</version>
+	<version>1.02</version>
 	<packaging>pom</packaging>
 	<name>Vaccinations Module</name>
 	<description>Used to manage patient vaccinations information.</description>
