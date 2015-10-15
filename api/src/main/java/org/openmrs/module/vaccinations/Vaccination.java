@@ -37,42 +37,81 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 	//private static final long serialVersionUID = 1L;
 	protected final Log log = LogFactory.getLog(this.getClass());
 
-	public Vaccination() {
-	}
+	private Integer id;
+    private Date scheduled_date;
+	private String name;
+	private String indication_name;
+	private Double dose;
+	private String dosing_unit;
+	private String route;
+    private boolean scheduled;
+
+    private Vaccine vaccine;
+    private AdverseReaction adverse_reaction;
+
+    private List<AuditLog> auditLogList;
+
+	private boolean administered;
+	private Date administration_date;
+	private String body_site_administered;
+    private boolean side_administered_left;
+    private Integer dose_number;
+	private String lot_number;
+	private String manufacturer;
+	private Date manufacture_date;
+	private Date expiry_date;
+	private boolean adverse_reaction_observed;
+    private boolean overdue;
+
+    private Location clinic_location;
+
+	private User creator;
+	private Date dateCreated;
+	private User changedBy;
+	private Date dateChanged;
+	private boolean retired;
+	private Date dateRetired;
+	private User retiredBy;
+	private String retireReason;
+
+	private int patient_id;
+
+    public Vaccination() {
+    }
 
     //Converts new SimpleVaccination into a new Vaccination
     //UUID is automatically generated
-	public Vaccination(SimpleVaccination simpleVaccination){
-		if (simpleVaccination != null) {
+    public Vaccination(SimpleVaccination simpleVaccination){
+        if (simpleVaccination != null) {
 
             Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
 
-			this.id = simpleVaccination.getId();
+            this.id = simpleVaccination.getId();
 
             this.scheduled_date = simpleVaccination.getScheduled_date();
-			this.name = simpleVaccination.getName();
-			this.indication_name = simpleVaccination.getIndication_name();
-			this.dose = simpleVaccination.getDose();
-			this.dosing_unit = simpleVaccination.getDosing_unit();
-			this.route = simpleVaccination.getRoute();
-			this.scheduled = simpleVaccination.getScheduled();
-			this.scheduled_date = simpleVaccination.getScheduled_date();
-			this.vaccine = new Vaccine(simpleVaccination.getSimpleVaccine());
+            this.name = simpleVaccination.getName();
+            this.indication_name = simpleVaccination.getIndication_name();
+            this.dose = simpleVaccination.getDose();
+            this.dosing_unit = simpleVaccination.getDosing_unit();
+            this.route = simpleVaccination.getRoute();
+            this.scheduled = simpleVaccination.getScheduled();
+            this.scheduled_date = simpleVaccination.getScheduled_date();
+            this.vaccine = new Vaccine(simpleVaccination.getSimpleVaccine());
             if (simpleVaccination.getAdverse_reaction_observed())
                 this.adverse_reaction = new AdverseReaction(simpleVaccination.getSimpleAdverse_reaction());
-			this.administered = simpleVaccination.getAdministered();
-			this.administration_date = simpleVaccination.getAdministration_date();
-			this.body_site_administered = simpleVaccination.getBody_site_administered();
+            this.administered = simpleVaccination.getAdministered();
+            this.administration_date = simpleVaccination.getAdministration_date();
+            this.body_site_administered = simpleVaccination.getBody_site_administered();
             this.side_administered_left = simpleVaccination.getSide_administered_left();
-			this.dose_number = simpleVaccination.getDose_number();
-			this.lot_number = simpleVaccination.getLot_number();
-			this.manufacturer = simpleVaccination.getManufacturer();
-			this.manufacture_date = simpleVaccination.getManufacture_date();
-			this.expiry_date = simpleVaccination.getExpiry_date();
-			this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
+            this.dose_number = simpleVaccination.getDose_number();
+            this.lot_number = simpleVaccination.getLot_number();
+            this.manufacturer = simpleVaccination.getManufacturer();
+            this.manufacture_date = simpleVaccination.getManufacture_date();
+            this.expiry_date = simpleVaccination.getExpiry_date();
+            this.adverse_reaction_observed = simpleVaccination.getAdverse_reaction_observed();
             this.overdue = simpleVaccination.getOverdue();
 
-			this.patient_id = simpleVaccination.getPatient_id();
+            this.patient_id = simpleVaccination.getPatient_id();
 
             if (simpleVaccination.getId() != null) {
                 this.auditLogList = Context.getService(UtilsService.class).getAuditLogByVaccinationId(simpleVaccination.getId());
@@ -82,8 +121,8 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.creator = Context.getAuthenticatedUser();
             this.clinic_location = userLocus;
             this.dateCreated = new Date();
-		}
-	}
+        }
+    }
 
     public void setVaccination(Vaccination vaccination){
         if (vaccination != null) {
@@ -126,67 +165,28 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
     }
 
     public void updateFromVaccine(Vaccine vaccine){
-		if (vaccine.getName() != null)
-        	name = vaccine.getName();
-		if (vaccine.getIndication_name() != null)
-        	indication_name = vaccine.getIndication_name();
-		if (vaccine.getDose() != null)
-        	dose = vaccine.getDose();
-		if (vaccine.getDose_number() != null)
-        	dose_number = vaccine.getDose_number();
-		if (vaccine.getDosing_unit() != null)
-        	dosing_unit = vaccine.getDosing_unit();
-		if (vaccine.getRoute() != null)
-        	route = vaccine.getRoute();
+        if (vaccine.getName() != null)
+            name = vaccine.getName();
+        if (vaccine.getIndication_name() != null)
+            indication_name = vaccine.getIndication_name();
+        if (vaccine.getDose() != null)
+            dose = vaccine.getDose();
+        if (vaccine.getDose_number() != null)
+            dose_number = vaccine.getDose_number();
+        if (vaccine.getDosing_unit() != null)
+            dosing_unit = vaccine.getDosing_unit();
+        if (vaccine.getRoute() != null)
+            route = vaccine.getRoute();
         scheduled = vaccine.getScheduled();
-		if (vaccine.getBody_site_administered() != null)
-        	body_site_administered = vaccine.getBody_site_administered();
-		if (vaccine.getSide_administered_left() != null)
-        	side_administered_left = vaccine.getSide_administered_left();
+        if (vaccine.getBody_site_administered() != null)
+            body_site_administered = vaccine.getBody_site_administered();
+        if (vaccine.getSide_administered_left() != null)
+            side_administered_left = vaccine.getSide_administered_left();
     }
 
     public void updateFromOwnVaccine(){
         updateFromVaccine(this.vaccine);
     }
-
-	private Integer id;
-    private Date scheduled_date;
-	private String name;
-	private String indication_name;
-	private Double dose;
-	private String dosing_unit;
-	private String route;
-    private boolean scheduled;
-
-    private Vaccine vaccine;
-    private AdverseReaction adverse_reaction;
-
-    private List<AuditLog> auditLogList;
-
-	private boolean administered;
-	private Date administration_date;
-	private String body_site_administered;
-    private boolean side_administered_left;
-    private Integer dose_number;
-	private String lot_number;
-	private String manufacturer;
-	private Date manufacture_date;
-	private Date expiry_date;
-	private boolean adverse_reaction_observed;
-    private boolean overdue;
-
-    private Location clinic_location;
-
-	private User creator;
-	private Date dateCreated;
-	private User changedBy;
-	private Date dateChanged;
-	private boolean retired;
-	private Date dateRetired;
-	private User retiredBy;
-	private String retireReason;
-
-	private int patient_id;
 
     //Caching cannot be implemented
     public List<AuditLog> getAuditLogList() {

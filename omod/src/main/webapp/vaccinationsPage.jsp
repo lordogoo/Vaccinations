@@ -11,6 +11,8 @@
 		<a href="../vaccinations/vaccinationsPage.form?patientId=${patientId}&retroactive=false">Disable retroactive data entry</a>
 	</c:otherwise>
 </c:choose>
+<br/>
+<h1 align="center">${patientName}</h1>
 <openmrs:portlet id="Vaccinations" moduleId="vaccinations" url="vaccinationsPortlet" />
 
 <%@ include file="/WEB-INF/template/footer.jsp"%>

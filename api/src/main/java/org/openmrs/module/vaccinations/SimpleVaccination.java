@@ -31,81 +31,6 @@ public class SimpleVaccination implements Serializable {
     private String gName = "";
     private String lName = "";
 
-    public SimpleVaccination() {
-    }
-
-	public SimpleVaccination(Vaccination vaccination){
-		if (!(null == vaccination)) {
-			this.id = vaccination.getId();
-			this.scheduled_date = vaccination.getScheduled_date();
-			this.name = vaccination.getName();
-			this.indication_name = vaccination.getIndication_name();
-			this.dose = vaccination.getDose();
-			this.dosing_unit = vaccination.getDosing_unit();
-			this.route = vaccination.getRoute();
-			this.scheduled = vaccination.getScheduled();
-			this.simpleVaccine = new SimpleVaccine(vaccination.getVaccine());
-			this.simpleAdverse_reaction = new SimpleAdverseReaction(vaccination.getAdverse_reaction());
-			this.administered = vaccination.getAdministered();
-			this.administration_date = vaccination.getAdministration_date();
-			this.body_site_administered = vaccination.getBody_site_administered();
-            this.side_administered_left = vaccination.getSide_administered_left();
-			this.dose_number = vaccination.getDose_number();
-			this.lot_number = vaccination.getLot_number();
-			this.manufacturer = vaccination.getManufacturer();
-			this.manufacture_date = vaccination.getManufacture_date();
-			this.expiry_date = vaccination.getExpiry_date();
-			this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
-            this.overdue = vaccination.getOverdue();
-
-            if (vaccination.getAuditLogList() != null) {
-                this.auditLogList = vaccination.getAuditLogList();
-            }else
-                this.auditLogList = new ArrayList<AuditLog>();
-
-            for (int i = 0; i <= auditLogList.size() - 1; i++){
-                auditLogList.get(i).getAuditLogLineItemList();
-            }
-
-			if (vaccination.getCreator() != null) {
-                if (vaccination.getCreator().getGivenName() != null)
-                    gName = vaccination.getCreator().getGivenName();
-                if (vaccination.getCreator().getFamilyName() != null)
-                    lName = vaccination.getCreator().getFamilyName();
-            }
-            this.administered_by = gName + " " + lName;
-
-            if (vaccination.getClinic_location() != null)
-                this.clinic_location = vaccination.getClinic_location().getName();
-			this.patient_id = vaccination.getPatient_id();
-			this.uuid = vaccination.getUuid();
-		}
-	}
-
-    public void updateFromSimpleVaccine(SimpleVaccine simpleVaccine){
-        name = simpleVaccine.getName();
-        indication_name = simpleVaccine.getIndication_name();
-        dose = simpleVaccine.getDose();
-        dose_number = simpleVaccine.getDose_number();
-        dosing_unit = simpleVaccine.getDosing_unit();
-        route = simpleVaccine.getRoute();
-        scheduled = simpleVaccine.getScheduled();
-        body_site_administered = simpleVaccine.getBody_site_administered();
-        side_administered_left = simpleVaccine.getSide_administered_left();
-    }
-
-    public void updateFromOwnSimpleVaccine(){
-        updateFromSimpleVaccine(this.simpleVaccine);
-	}
-
-    public SimpleVaccine getSimpleVaccine() {
-        return simpleVaccine;
-    }
-
-	public void setSimpleVaccine(SimpleVaccine simpleVaccine) {
-		this.simpleVaccine = simpleVaccine;
-	}
-
 	private Integer id;
     private Date scheduled_date;
 	private String name;
@@ -140,6 +65,81 @@ public class SimpleVaccination implements Serializable {
 
 	private int patient_id;
 	private String uuid;
+
+    public SimpleVaccination() {
+    }
+
+    public SimpleVaccination(Vaccination vaccination){
+        if (!(null == vaccination)) {
+            this.id = vaccination.getId();
+            this.scheduled_date = vaccination.getScheduled_date();
+            this.name = vaccination.getName();
+            this.indication_name = vaccination.getIndication_name();
+            this.dose = vaccination.getDose();
+            this.dosing_unit = vaccination.getDosing_unit();
+            this.route = vaccination.getRoute();
+            this.scheduled = vaccination.getScheduled();
+            this.simpleVaccine = new SimpleVaccine(vaccination.getVaccine());
+            this.simpleAdverse_reaction = new SimpleAdverseReaction(vaccination.getAdverse_reaction());
+            this.administered = vaccination.getAdministered();
+            this.administration_date = vaccination.getAdministration_date();
+            this.body_site_administered = vaccination.getBody_site_administered();
+            this.side_administered_left = vaccination.getSide_administered_left();
+            this.dose_number = vaccination.getDose_number();
+            this.lot_number = vaccination.getLot_number();
+            this.manufacturer = vaccination.getManufacturer();
+            this.manufacture_date = vaccination.getManufacture_date();
+            this.expiry_date = vaccination.getExpiry_date();
+            this.adverse_reaction_observed = vaccination.getAdverse_reaction_observed();
+            this.overdue = vaccination.getOverdue();
+
+            if (vaccination.getAuditLogList() != null) {
+                this.auditLogList = vaccination.getAuditLogList();
+            }else
+                this.auditLogList = new ArrayList<AuditLog>();
+
+            for (int i = 0; i <= auditLogList.size() - 1; i++){
+                auditLogList.get(i).getAuditLogLineItemList();
+            }
+
+            if (vaccination.getCreator() != null) {
+                if (vaccination.getCreator().getGivenName() != null)
+                    gName = vaccination.getCreator().getGivenName();
+                if (vaccination.getCreator().getFamilyName() != null)
+                    lName = vaccination.getCreator().getFamilyName();
+            }
+            this.administered_by = gName + " " + lName;
+
+            if (vaccination.getClinic_location() != null)
+                this.clinic_location = vaccination.getClinic_location().getName();
+            this.patient_id = vaccination.getPatient_id();
+            this.uuid = vaccination.getUuid();
+        }
+    }
+
+    public void updateFromSimpleVaccine(SimpleVaccine simpleVaccine){
+        name = simpleVaccine.getName();
+        indication_name = simpleVaccine.getIndication_name();
+        dose = simpleVaccine.getDose();
+        dose_number = simpleVaccine.getDose_number();
+        dosing_unit = simpleVaccine.getDosing_unit();
+        route = simpleVaccine.getRoute();
+        scheduled = simpleVaccine.getScheduled();
+        body_site_administered = simpleVaccine.getBody_site_administered();
+        side_administered_left = simpleVaccine.getSide_administered_left();
+    }
+
+    public void updateFromOwnSimpleVaccine(){
+        updateFromSimpleVaccine(this.simpleVaccine);
+    }
+
+    public SimpleVaccine getSimpleVaccine() {
+        return simpleVaccine;
+    }
+
+    public void setSimpleVaccine(SimpleVaccine simpleVaccine) {
+        this.simpleVaccine = simpleVaccine;
+    }
 
     public boolean getOverdue() {
         return overdue;

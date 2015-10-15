@@ -29,6 +29,12 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
 
 	//private static final long serialVersionUID = 1L;
 
+    private Integer id;
+    private Date date;
+    private String adverse_event;
+    private String grade;
+    private Integer vaccination_id;
+
     public AdverseReaction() {
     }
 
@@ -57,13 +63,6 @@ public class AdverseReaction extends BaseOpenmrsObject implements Serializable {
             }
         }
     }
-
-    private Integer id;
-    private Date date;
-    private String adverse_event;
-    private String grade;
-    private Integer vaccination_id;
-
 
     public User getCreator() {
         return creator;

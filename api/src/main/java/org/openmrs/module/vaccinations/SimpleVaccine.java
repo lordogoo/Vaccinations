@@ -32,32 +32,6 @@ public class SimpleVaccine implements Serializable {
 	//For debugging purposes
 	//protected final Log log = LogFactory.getLog(this.getClass());
 
-	public SimpleVaccine() {
-	}
-
-	public SimpleVaccine(Vaccine vaccine){
-		if (vaccine != null) {
-			this.id = vaccine.getId();
-			this.name = vaccine.getName();
-			this.indication_name = vaccine.getIndication_name();
-			this.dose = vaccine.getDose();
-			this.dose_number = vaccine.getDose_number();
-			this.dosing_unit = vaccine.getDosing_unit();
-			this.route = vaccine.getRoute();
-			this.scheduled = vaccine.getScheduled();
-			this.numeric_indication = vaccine.getNumeric_indication();
-            this.body_site_administered = vaccine.getBody_site_administered();
-            if (vaccine.getSide_administered_left() != null)
-                this.side_administered_left = vaccine.getSide_administered_left();
-            this.uuid = vaccine.getUuid();
-			/*log.warn("OLD UUID: " + vaccine.getUuid());
-			log.warn("NEW UUID: " + this.getUuid());*/
-		}else{
-
-		}
-
-	}
-
 	private Integer id;
 	private String name;
 	private String indication_name;
@@ -70,6 +44,32 @@ public class SimpleVaccine implements Serializable {
     private String body_site_administered;
     private boolean side_administered_left;
 	private String uuid;
+
+    public SimpleVaccine() {
+    }
+
+    public SimpleVaccine(Vaccine vaccine){
+        if (vaccine != null) {
+            this.id = vaccine.getId();
+            this.name = vaccine.getName();
+            this.indication_name = vaccine.getIndication_name();
+            this.dose = vaccine.getDose();
+            this.dose_number = vaccine.getDose_number();
+            this.dosing_unit = vaccine.getDosing_unit();
+            this.route = vaccine.getRoute();
+            this.scheduled = vaccine.getScheduled();
+            this.numeric_indication = vaccine.getNumeric_indication();
+            this.body_site_administered = vaccine.getBody_site_administered();
+            if (vaccine.getSide_administered_left() != null)
+                this.side_administered_left = vaccine.getSide_administered_left();
+            this.uuid = vaccine.getUuid();
+			/*log.warn("OLD UUID: " + vaccine.getUuid());
+			log.warn("NEW UUID: " + this.getUuid());*/
+        }else{
+
+        }
+
+    }
 
     public String getBody_site_administered() {
         return body_site_administered;

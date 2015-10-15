@@ -10,6 +10,11 @@
 angular.module('vaccinations')
 .controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
     function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+    // Gets a human readable date from a timestamp
+    $scope.getDateFromTimeStamp = function(timestamp) {
+        var date = new Date(timestamp);
+        return String(date).slice(0, 25);
+    }
 
     // Get administation status.
     $scope.adminStatus = appConstants.getAdminStatus();
@@ -24,7 +29,20 @@ angular.module('vaccinations')
         $scope.dropDownData.manufacturers = data[4];
         $scope.dropDownData.changeReasons = data[5];
         $scope.dropDownData.routeMaps = $scope.assembleBodySiteMaps(data[6]);
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth();
+        if (String(month).length < 2) {
+            month = '0' + month;
+        }
+        var day = today.getDate();
+        if (String(day).length < 2) {
+            day = '0' + day;
+        }
+        $scope.dropDownData.today = year + '-' + month + '-' + day;
+        console.log($scope.dropDownData.today);
     });
+    
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
         var assembledMap = {};
