@@ -4,7 +4,7 @@ This module supports scheduled and unscheduled vaccinations, processing new vacc
 
 ###Installation 
  
-Install node
+Install node  
 1. Clone the project  
 2. ```$ cd frontend```  
 3. ```$ npm install``` If you have problems try  ```$ sudo npm install```  
