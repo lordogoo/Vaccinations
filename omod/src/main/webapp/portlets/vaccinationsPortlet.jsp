@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-0fc7e85f.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-73aae98b.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-2903033f.css">
   </head>
   <body>
 
@@ -23,7 +23,6 @@
         <div class="add-vaccination-wrapper">
             <!--LEGEND-->
             <div class="legend-wrapper">
-                <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>
                 <div><i class="demo-icon icon-circle-empty unadmin-x"></i><span>Unadministered Vaccination</span></div>
                 <div><i class="demo-icon icon-ok-circled2 admin-check"></i><span>Administered Vaccination</span></div>
                 <div><i class="demo-icon icon-cancel-circled2 admin-check-reaction"></i><span>Adverse Reaction</span></div>
@@ -47,7 +46,7 @@
             <div class="staged-wrapper" ng-if="stagedVaccinations.length > 0">
 
                 <!-- STAGED VACCINATIONS -->
-                <vaccination ng-if="stagedVaccinations" get-max-date="dropDownData.today" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-body-site-mapping="dropDownData.routeMaps"></vaccination>
+                <vaccination ng-if="stagedVaccinations" get-vaccination="stagedVaccinations[0]" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-body-site-mapping="dropDownData.routeMaps"></vaccination>
                 <!-- /STAGED VACCINATION -->
 
             </div>
@@ -62,7 +61,7 @@
             <div ng-repeat="(name, vaccinationsGroup) in vaccinations | filter: {scheduled: 'true'} | groupBy: 'name'">
                 <div ng-if="$index === 0" class="scheduled-header"><span class="label label-default section-label">Scheduled</span></div>
                 <div class="vaccination-group-header"><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-date-from-time-stamp="getDateFromTimeStamp(timestamp)" get-max-date="dropDownData.today" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" get-admin-status="adminStatus" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" get-admin-status="adminStatus" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['dose_number']"></vaccination>
             </div>
 
             <!-- UNSCHEDULED VACCINATIONS -->
@@ -70,7 +69,7 @@
                 <!-- Show the unscheduled header only if unscheduled vaccs present -->
                 <div ng-if="$index === 0" class="not-scheduled-header"><span class="label label-default section-label">Unscheduled</span></div>
                 <div class="vaccination-group-header" ><span class="label label-default header-label" ng-bind="::name">Loading...</span></div>
-                <vaccination get-vaccination="vaccination" get-date-from-time-stamp="getDateFromTimeStamp(timestamp)" get-max-date="dropDownData.today" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" get-admin-status="adminStatus" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
+                <vaccination get-vaccination="vaccination" get-routes="dropDownData.routes" get-dosing-units="dropDownData.dosingUnits" get-body-sites="dropDownData.bodySites" get-manufacturers="dropDownData.manufacturers" get-change-reasons="dropDownData.changeReasons" get-body-site-mapping="dropDownData.routeMaps" get-admin-status="adminStatus" ng-repeat="vaccination in vaccinationsGroup | orderBy: ['scheduled_date']"></vaccination>
             </div>
 
         </div>
@@ -159,13 +158,6 @@
             <div ng-if="state.auditLogOpen" class="form-wrapper">
                 <div class="changeset-wrapper" >
                     <table class="table table-striped" ng-repeat="changeset in enteredEditFormData.auditLogList">
-                        <thead>
-                            <tr class="info">
-                                <th class="col-md-4">Changed on: {{getDateFromTimeStamp({timestamp:changeset.dateChanged})}}</th>
-                                <th class="col-md-4"></th>
-                                <th class="col-md-4"></th>
-                            </tr>
-                        </thead>
                         <thead>
                             <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
@@ -419,19 +411,12 @@
                     <table class="table table-striped" ng-repeat="changeset in enteredAdminFormData.auditLogList">
                         <thead>
                             <tr class="info">
-                                <th class="col-md-4">Changed on: {{getDateFromTimeStamp({timestamp:changeset.dateChanged})}}</th>
-                                <th class="col-md-4"></th>
-                                <th class="col-md-4"></th>
-                            </tr>
-                        </thead>
-
-                        <thead>
-                            <tr class="info">
                                 <th class="col-md-4">Changed By: {{ changeset.changed_by }} at {{ changeset.location }}</th>
                                 <th class="col-md-4" >Excuse: {{ changeset.excuse }}</th>
                                 <th class="col-md-4">Reason: {{ changeset.reason || "No reason given"}}</th>
                             </tr>
                         </thead>
+
                         <thead>
                             <tr>
                                 <th class="col-md-4">Field Name</th>
@@ -472,12 +457,12 @@
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
-                
+
                 <form name="form" novalidate>
 
                     <div class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
+                        <input name="administration_date" class="form-control" type="date" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -591,7 +576,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
+                        <input name="administration_date" class="form-control" type="date" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
@@ -696,9 +681,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7fc2f627.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1571865.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-2f423392.js"></script>
 
   </body>
 </html>
