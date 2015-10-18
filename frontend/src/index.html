@@ -217,7 +217,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -480,12 +480,12 @@
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
-
+                
                 <form name="form" novalidate>
 
                     <div class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -599,7 +599,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
