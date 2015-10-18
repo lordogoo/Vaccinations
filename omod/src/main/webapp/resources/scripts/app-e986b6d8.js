@@ -253,6 +253,38 @@ angular.module('vaccinations')
 'use strict';
 
 angular.module('vaccinations')
+.directive('loader', function () {
+    var ddo = {
+        replace: true,
+        templateUrl: '/app/loader/loader.template.html',
+        controller: function ($scope, $timeout) {
+            $scope.state = {};
+            $scope.state.loading = false;
+            $scope.state.success = false;
+
+            $scope.$on('waiting', function () {
+                $scope.state.loading = true;
+            });
+
+            $scope.$on('success', function () {
+                $scope.state.loading = false;
+                $scope.state.success = true;
+                $timeout( function () { $scope.state.success = false; }, 1050);
+            });
+
+            $scope.$on('failure', function () {
+                $scope.state.loading = false;
+                $scope.state.success = false;
+            });
+        }
+    };
+
+    return ddo;
+});
+
+'use strict';
+
+angular.module('vaccinations')
 .service('vaccinesManager', ['$http', 'appConstants', function($http, appConstants) {
     var self = this;
     var promise = $http.get(
@@ -623,6 +655,8 @@ angular.module('vaccinations')
 
         template: '<div ng-include="getContentUrl()"></div>',
         scope: {
+            getDateFromTimeStamp: '&',
+            getMaxDate: '&',
             getVaccination: '&',
             getRoutes: '&',
             getDosingUnits: '&',
@@ -647,6 +681,11 @@ angular.module('vaccinations')
 angular.module('vaccinations')
 .controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
     function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+    // Gets a human readable date from a timestamp
+    $scope.getDateFromTimeStamp = function(timestamp) {
+        var date = new Date(timestamp);
+        return String(date).slice(0, 25);
+    }
 
     // Get administation status.
     $scope.adminStatus = appConstants.getAdminStatus();
@@ -661,7 +700,10 @@ angular.module('vaccinations')
         $scope.dropDownData.manufacturers = data[4];
         $scope.dropDownData.changeReasons = data[5];
         $scope.dropDownData.routeMaps = $scope.assembleBodySiteMaps(data[6]);
+        $scope.dropDownData.today = new Date();
+        $scope.dropDownData.today.setDate($scope.dropDownData.today.getDate() + 1);
     });
+    
 
     $scope.assembleBodySiteMaps = function(fragmentedMap) {
         var assembledMap = {};
@@ -780,38 +822,6 @@ angular.module('vaccinations')
 
     return exports;
 });
-'use strict';
-
-angular.module('vaccinations')
-.directive('loader', function () {
-    var ddo = {
-        replace: true,
-        templateUrl: '/app/loader/loader.template.html',
-        controller: function ($scope, $timeout) {
-            $scope.state = {};
-            $scope.state.loading = false;
-            $scope.state.success = false;
-
-            $scope.$on('waiting', function () {
-                $scope.state.loading = true;
-            });
-
-            $scope.$on('success', function () {
-                $scope.state.loading = false;
-                $scope.state.success = true;
-                $timeout( function () { $scope.state.success = false; }, 1050);
-            });
-
-            $scope.$on('failure', function () {
-                $scope.state.loading = false;
-                $scope.state.success = false;
-            });
-        }
-    };
-
-    return ddo;
-});
-
 'use strict';
 
 angular.module('vaccinations')

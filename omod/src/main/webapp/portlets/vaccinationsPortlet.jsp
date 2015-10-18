@@ -9,7 +9,11 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-73aae98b.css">
+=======
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-d90baff6.css">
+>>>>>>> refs/remotes/origin/code-review-serj
   </head>
   <body>
 
@@ -209,7 +213,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -477,7 +481,11 @@
 
                     <div class="form-group">
                         <label>Administration Date</label>
+<<<<<<< HEAD
                         <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
+=======
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
+>>>>>>> refs/remotes/origin/code-review-serj
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -591,7 +599,11 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
+<<<<<<< HEAD
                         <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
+=======
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
+>>>>>>> refs/remotes/origin/code-review-serj
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
@@ -698,7 +710,11 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
+<<<<<<< HEAD
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1571865.js"></script>
+=======
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e986b6d8.js"></script>
+>>>>>>> refs/remotes/origin/code-review-serj
 
   </body>
 </html>
