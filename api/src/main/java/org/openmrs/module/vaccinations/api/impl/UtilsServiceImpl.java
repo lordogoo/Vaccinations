@@ -76,49 +76,21 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
     /*
         This function matches an appropriate RouteEnum to a given conceptId String
      */
-    private Routes getRouteEnumNameFromConceptId(String conceptId){
-        if (Routes.Intranasal.getConceptId() == conceptId)
-            return Routes.Intranasal;
-        else if (Routes.Intradermal.getConceptId() == conceptId)
-            return Routes.Intradermal;
-        else if (Routes.Intramuscular.getConceptId() == conceptId)
-            return Routes.Intramuscular;
-        else if (Routes.Oral.getConceptId() == conceptId)
-            return Routes.Oral;
-        else if (Routes.Subcutaneous.getConceptId() == conceptId)
-            return Routes.Subcutaneous;
-        else
-            return Routes.Transdermal;
+    public static Routes getRouteEnumNameFromConceptId(String conceptId) {
+        for(Routes e : Routes.values()) {
+            if(e.getConceptId().toString().equals(conceptId)) return e;
+        }
+        return null;
     }
 
     /*
         This function matches an appropriate DosingUnitEnum to a given conceptId String
      */
-    private DosingUnits getDosingUnitEnumNameFromConceptId(String conceptId) {
-        if (DosingUnits.Ampule.getConceptId() == conceptId)
-            return DosingUnits.Ampule;
-        else if (DosingUnits.Drop.getConceptId() == conceptId)
-            return DosingUnits.Drop;
-        else if (DosingUnits.Gram.getConceptId() == conceptId)
-            return DosingUnits.Gram;
-        else if (DosingUnits.International.getConceptId() == conceptId)
-            return DosingUnits.International;
-        else if (DosingUnits.Microgram.getConceptId() == conceptId)
-            return DosingUnits.Microgram;
-        else if (DosingUnits.Milliequivalent.getConceptId() == conceptId)
-            return DosingUnits.Milliequivalent;
-        else if (DosingUnits.Milligram.getConceptId() == conceptId)
-            return DosingUnits.Milligram;
-        else if (DosingUnits.Ounce.getConceptId() == conceptId)
-            return DosingUnits.Ounce;
-        else if (DosingUnits.Tablet.getConceptId() == conceptId)
-            return DosingUnits.Tablet;
-        else if (DosingUnits.Milliliter.getConceptId() == conceptId)
-            return DosingUnits.Milliliter;
-        else if (DosingUnits.Unit.getConceptId() == conceptId)
-            return DosingUnits.Unit;
-        else
-            return DosingUnits.Vial;
+    public static DosingUnits getDosingUnitEnumNameFromConceptId(String conceptId) {
+        for(DosingUnits e : DosingUnits.values()) {
+            if(e.getConceptId().toString().equals(conceptId)) return e;
+        }
+        return null;
     }
 
     /*

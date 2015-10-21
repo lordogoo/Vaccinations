@@ -99,7 +99,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Nah");
         vaccination.setSide_administered_left(true);
         vaccination.setAdverse_reaction_observed(false);
-        vaccination.setDosing_unit("bla");
+        vaccination.setDosing_unit("162366");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("meh");
         vaccination.setManufacture_date(c.getTime());
@@ -142,7 +142,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Blah");
         vaccination.setSide_administered_left(false);
         vaccination.setAdverse_reaction_observed(true);
-        vaccination.setDosing_unit("mg");
+        vaccination.setDosing_unit("162366");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("another");
         vaccination.setManufacture_date(c.getTime());
@@ -192,7 +192,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Nah");
         vaccination.setSide_administered_left(true);
         vaccination.setAdverse_reaction_observed(false);
-        vaccination.setDosing_unit("bla");
+        vaccination.setDosing_unit("162366");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("meh");
         vaccination.setManufacture_date(c.getTime());
