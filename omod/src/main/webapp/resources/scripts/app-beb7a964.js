@@ -253,38 +253,6 @@ angular.module('vaccinations')
 'use strict';
 
 angular.module('vaccinations')
-.directive('loader', function () {
-    var ddo = {
-        replace: true,
-        templateUrl: '/app/loader/loader.template.html',
-        controller: function ($scope, $timeout) {
-            $scope.state = {};
-            $scope.state.loading = false;
-            $scope.state.success = false;
-
-            $scope.$on('waiting', function () {
-                $scope.state.loading = true;
-            });
-
-            $scope.$on('success', function () {
-                $scope.state.loading = false;
-                $scope.state.success = true;
-                $timeout( function () { $scope.state.success = false; }, 1050);
-            });
-
-            $scope.$on('failure', function () {
-                $scope.state.loading = false;
-                $scope.state.success = false;
-            });
-        }
-    };
-
-    return ddo;
-});
-
-'use strict';
-
-angular.module('vaccinations')
 .service('vaccinesManager', ['$http', 'appConstants', function($http, appConstants) {
     var self = this;
     var promise = $http.get(
@@ -794,7 +762,7 @@ angular.module('vaccinations')
 .service('appConstants', function ($http, $location) {
     var tempURL;
     if (document.getElementsByTagName("title")[0].innerHTML !== "KMRI") {
-        tempURL = 'http://208.77.196.178:64000';
+        tempURL = '';
     } else {
         tempURL = '';
     }
@@ -822,6 +790,38 @@ angular.module('vaccinations')
 
     return exports;
 });
+'use strict';
+
+angular.module('vaccinations')
+.directive('loader', function () {
+    var ddo = {
+        replace: true,
+        templateUrl: '/app/loader/loader.template.html',
+        controller: function ($scope, $timeout) {
+            $scope.state = {};
+            $scope.state.loading = false;
+            $scope.state.success = false;
+
+            $scope.$on('waiting', function () {
+                $scope.state.loading = true;
+            });
+
+            $scope.$on('success', function () {
+                $scope.state.loading = false;
+                $scope.state.success = true;
+                $timeout( function () { $scope.state.success = false; }, 1050);
+            });
+
+            $scope.$on('failure', function () {
+                $scope.state.loading = false;
+                $scope.state.success = false;
+            });
+        }
+    };
+
+    return ddo;
+});
+
 'use strict';
 
 angular.module('vaccinations')
