@@ -12,10 +12,10 @@ pom.xml.versionsBackup
 #############
 
 ### Angular specific ###
-#app-*.js
-#app-*.css
-#vendor-*.js
-#vendor-*.css
+app-*.js
+app-*.css
+vendor-*.js
+vendor-*.css
 
 ### Eclipse ###
 *.pydevproject
