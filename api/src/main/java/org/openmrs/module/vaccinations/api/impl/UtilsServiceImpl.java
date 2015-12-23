@@ -235,10 +235,14 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
         if (!oldVac.getSide_administered_left() == newVac.getSide_administered_left()){
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Side Administered");
-            if (newVac.getSide_administered_left() == true)
+            if (oldVac.getSide_administered_left() == true)
                 auditLogLineItem.setOriginal_value("Left");
             else
                 auditLogLineItem.setOriginal_value("Right");
+            if (newVac.getSide_administered_left() == true)
+                auditLogLineItem.setNew_value("Left");
+            else
+                auditLogLineItem.setNew_value("Right");
 
             auditLogLineItems.add(auditLogLineItem);
         }
