@@ -199,8 +199,8 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
                 auditLogLineItem.setField("Administered Vaccine");
             else
                 auditLogLineItem.setField("Unadministered Vaccine");
-            auditLogLineItem.setOriginal_value("");
-            auditLogLineItem.setNew_value("");
+            auditLogLineItem.setOriginal_value(".");
+            auditLogLineItem.setNew_value("..");
             //auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdministered()).toString());
             //auditLogLineItem.setNew_value(((Boolean)newVac.getAdministered()).toString());
 
@@ -308,7 +308,7 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
             AuditLogLineItem auditLogLineItem = new AuditLogLineItem();
             auditLogLineItem.setField("Adverse Reaction Observed");
             auditLogLineItem.setOriginal_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
-            auditLogLineItem.setNew_value(((Boolean)oldVac.getAdverse_reaction_observed()).toString());
+            auditLogLineItem.setNew_value(((Boolean)newVac.getAdverse_reaction_observed()).toString());
 
             auditLogLineItems.add(auditLogLineItem);
 
@@ -317,8 +317,8 @@ public class UtilsServiceImpl extends BaseOpenmrsService implements UtilsService
 
                 AuditLogLineItem auditLogLineItem1 = new AuditLogLineItem();
                 auditLogLineItem1.setField("Removed Adverse Reaction");
-                auditLogLineItem1.setOriginal_value(("").toString());
-                auditLogLineItem1.setNew_value(("").toString());
+                auditLogLineItem1.setOriginal_value((".").toString());
+                auditLogLineItem1.setNew_value(("..").toString());
 
                 auditLogLineItems.add(auditLogLineItem);
             }
