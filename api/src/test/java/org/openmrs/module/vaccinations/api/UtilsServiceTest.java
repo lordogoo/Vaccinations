@@ -99,7 +99,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Nah");
         vaccination.setSide_administered_left(true);
         vaccination.setAdverse_reaction_observed(false);
-        vaccination.setDosing_unit("bla");
+        vaccination.setDosing_unit("162366");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("meh");
         vaccination.setManufacture_date(c.getTime());
@@ -107,6 +107,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setDose_number(1);
         vaccination.setCreator(vaccine.getCreator());
         vaccination.setDateCreated(c.getTime());
+        vaccination.setRoute("160240");
 
 
         SimpleVaccination newVac = new SimpleVaccination(vaccination);
@@ -142,12 +143,13 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Blah");
         vaccination.setSide_administered_left(false);
         vaccination.setAdverse_reaction_observed(true);
-        vaccination.setDosing_unit("mg");
+        vaccination.setDosing_unit("162382");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("another");
         vaccination.setManufacture_date(c.getTime());
         vaccination.setManufacturer("Vaccinations Inc");
         vaccination.setDose_number(2);
+        vaccination.setRoute("160243");
 
         adverseReaction1.setGrade("GMO");
         Context.getService(AdverseReactionsService.class).saveOrUpdateAdverseReaction(adverseReaction1);
@@ -159,20 +161,14 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Double(600), vaccination1.getDose());
         assertEquals(new Double(500), oldVaccination.getDose());
 
+        //Ensuring that the Audit Log was properly created
         assertEquals(1, oldVaccination.getAuditLogList().size());
-        //assertTrue(vaccination1.getAuditLogList().size() > 0);
-        //assertEquals(Excuses.NoExcuse.getName(), vaccination1.getAuditLogList().get(0).getExcuse());
-        //assertEquals(4, vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().size());
-
-        /*
-        assertEquals("Scheduled Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getField());
-        assertEquals("Fri Aug 14 18:34:45 MDT 2015", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getOriginal_value());
-        assertEquals("Fri Aug 14 18:34:45 MDT 2015", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(0).getNew_value());
-
-        assertEquals("Administration Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(1).getField());
-        assertEquals("Manufacture Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(2).getField());
-        assertEquals("Expiry Date", vaccination1.getAuditLogList().get(0).getAuditLogLineItemList().get(3).getField());
-        */
+        assertTrue(oldVaccination.getAuditLogList().get(0).getAuditLogLineItemList().size() > 0);
+        //Ensuring that all the
+        for (AuditLogLineItem auditLogLineItem : oldVaccination.getAuditLogList().get(0).getAuditLogLineItemList()){
+            logger.error("Comparing field " + auditLogLineItem.getField() + ":" + auditLogLineItem.getOriginal_value() + " and " + auditLogLineItem.getNew_value());
+            assertTrue(!auditLogLineItem.getOriginal_value().equals(auditLogLineItem.getNew_value()));
+        }
     }
 
     @Test
@@ -192,7 +188,7 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
         vaccination.setBody_site_administered("Nah");
         vaccination.setSide_administered_left(true);
         vaccination.setAdverse_reaction_observed(false);
-        vaccination.setDosing_unit("bla");
+        vaccination.setDosing_unit("162366");
         vaccination.setExpiry_date(c.getTime());
         vaccination.setLot_number("meh");
         vaccination.setManufacture_date(c.getTime());
