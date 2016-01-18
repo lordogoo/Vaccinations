@@ -540,7 +540,7 @@
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
                     <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
@@ -666,7 +666,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
