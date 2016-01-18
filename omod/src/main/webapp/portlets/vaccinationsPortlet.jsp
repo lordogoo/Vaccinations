@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-66424c82.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-d90baff6.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3a515fa3.css">
   </head>
   <body>
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-button-wrapper new-vaccine-wrapper">
-                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
+                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vaccine</strong></button>
 
                 <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
             </div>
@@ -666,7 +666,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
@@ -698,7 +698,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e986b6d8.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-9a99ec24.js"></script>
 
   </body>
 </html>
