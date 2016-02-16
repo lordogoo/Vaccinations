@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-0fc7e85f.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-a39f081b.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3a515fa3.css">
   </head>
   <body>
 
@@ -33,13 +33,13 @@
             <h5 class="add-vaccination-header">Add New Vaccination</h5>
 
             <div class="add-vaccination-select-wrapper">
-                <select class="form-control add-vaccination" ng-model="newVaccine" ng-options="vaccines as formatVaccine(vaccines) for vaccines in vaccines"></select>
+                <select class="form-control add-vaccination" ng-model="newVaccine" ng-options="vaccines as formatVaccine(vaccines) for vaccines in vaccines" on-keyup keys="[13]"></select>
             </div>
 
             <div class="form-button-wrapper new-vaccine-wrapper">
-                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)"><strong>Administer a new vacciantion</strong></button>
+                <button ng-if="newVaccine"  class="btn btn-info" ng-click="stageVaccination(newVaccine, false)" on-keyup keys="[13]"><strong>Administer a new vaccine</strong></button>
 
-                <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)"><strong>Book a new vaccination</strong></button>
+                <button ng-if="newVaccine" class="btn btn-primary" ng-click="stageVaccination(newVaccine, true)" on-keyup keys="[13]"><strong>Book a new vaccination</strong></button>
             </div>
 
 
@@ -144,13 +144,13 @@
                 <span class="administered-label">Administered: </span><span class="administered-date">{{ ::enteredEditFormData.administration_date | date: 'mediumDate' }}</span>
 
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()">Vaccination Details</button>
+                    <button type="button" class="btn btn-primary" ng-class="{'active': state.editFormOpen}" ng-click="toggleEditForm()" on-keyup keys="[13]">Vaccination Details</button>
 
-                    <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed">Add Reaction</button>
+                    <button type="button" class="btn btn-danger" ng-class="{'active': state.adverseFormOpen}" ng-click="toggleReactionForm()" ng-if="!enteredEditFormData.adverse_reaction_observed" on-keyup keys="[13]">Add Reaction</button>
 
-                    <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed">Reaction Details</button>
+                    <button class="btn btn-danger" ng-class="{ 'active': state.adverseFormOpen }" ng-click="toggleReactionForm()" ng-if="enteredEditFormData.adverse_reaction_observed" on-keyup keys="[13]">Reaction Details</button>
 
-                    <button ng-show="enteredEditFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
+                    <button ng-show="enteredEditFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" on-keyup keys="[13]">History</button>
                 </div>
             </div>
             <!-- /HEADER -->
@@ -199,34 +199,34 @@
 
                     <div class="form-group">
                         <label>Administered By</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.administered_by" placeholder="Administered By">
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.administered_by" placeholder="Administered By" on-keyup keys="[13]">
                     </div>
 
                     <div class="form-group">
                         <label>Clinic Location</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.clinic_location" placeholder="Clinic Location">
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.clinic_location" placeholder="Clinic Location" on-keyup keys="[13]">
                     </div>
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required>
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
                     <div class="form-group" ng-if="enteredEditFormData.dose_number">
                         <label>Course Number</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.dose_number" placeholder="Dose In Course">
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredEditFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
                     </div>
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose" min="0" required>
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose" min="0" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.dose.$error.number || form.dose.$error.required || !form.dose.$valid" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
-                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dosing_unit" class="form-control" ng-model="enteredEditFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required>
+                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dosing_unit" class="form-control" ng-model="enteredEditFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -234,7 +234,7 @@
 
                   <div class="form-group">
                     <label>Route</label>
-                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="route" class="form-control" ng-model="enteredEditFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
+                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="route" class="form-control" ng-model="enteredEditFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -242,7 +242,7 @@
 
                   <div class="form-group" ng-if="!(enteredEditFormData.route == '160240') && !(enteredEditFormData.route =='161253')">
                     <label>Body Site Administered</label>
-                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required>
+                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="body_site_administered" class="form-control" ng-model="enteredEditFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredEditFormData.route]" required on-keyup keys="[13]">
                         <option value=""></option>
                     </select>
 
@@ -251,7 +251,7 @@
 
                   <div class="form-group" ng-if="enteredEditFormData.route !== '160240'">
                     <label>Side Administered</label>
-                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="side_administered_left" class="form-control" ng-model="enteredEditFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'left', value: true}, {name:'right', value: false}]">
+                    <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="side_administered_left" class="form-control" ng-model="enteredEditFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'left', value: true}, {name:'right', value: false}]" on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -259,7 +259,7 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()">
+                        <select ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacturer" class="form-control" type="text" ng-model="enteredEditFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()" on-keyup keys="[13]">
                         <option value=""></option>
                         </select>
                     </div>
@@ -267,26 +267,26 @@
 
                     <div class="form-group">
                         <label>Lot Number</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="lot_number" class="form-control" type="text" ng-model="enteredEditFormData.lot_number" placeholder="Lot Number" required>
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="lot_number" class="form-control" type="text" ng-model="enteredEditFormData.lot_number" placeholder="Lot Number" required on-keyup keys="[13]">
                     </div>
                    <feedback warn="form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date">
+                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date" on-keyup keys="[13]">
                     </div>
                    <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date" on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
                     <div class="form-group" ng-if="isUnadministerable() || getAdminStatus()">
                         <label>Reason For Change</label>
                         <select  name="excuse" class="form-control" ng-model="enteredEditFormData.excuse"
-                        ng-options="r.name as r.name for r in getChangeReasons()" required>
+                        ng-options="r.name as r.name for r in getChangeReasons()" required on-keyup keys="[13]">
                             <option value=""></option>
                         </select>
                     </div>
@@ -295,7 +295,7 @@
 
                     <div class="form-group" ng-if="enteredEditFormData.excuse == 'Other'">
                         <label>Description</label>
-                        <input  type="text" name="reason" class="form-control" ng-model="enteredEditFormData.reason" required/>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredEditFormData.reason" required on-keyup keys="[13]"/>
                     </div>
                     <feedback ng-if="enteredEditFormData.reason == 1" warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
 
@@ -303,13 +303,13 @@
                     <div class="clearfix form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
 
-                        <button ng-if="isUnadministerable() || getAdminStatus()" type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()">Reset</button>
+                        <button ng-if="isUnadministerable() || getAdminStatus()" type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()" on-keyup keys="[13]">Reset</button>
 
-                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && form.$valid && (isUnadministerable() || getAdminStatus())" ng-click="deleteVaccination(enteredEditFormData)">Delete</button>
+                        <button type="button" class="btn btn-danger" ng-if="!enteredEditFormData.scheduled && form.$valid && (isUnadministerable() || getAdminStatus())" ng-click="deleteVaccination(enteredEditFormData)" on-keyup keys="[13]">Delete</button>
 
-                         <button ng-if="form.$valid && (isUnadministerable() || getAdminStatus())" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)">Unadminister</button>
+                         <button ng-if="form.$valid && (isUnadministerable() || getAdminStatus())" type="submit" class="btn btn-warning" ng-click="unadministerVaccination(enteredEditFormData)" on-keyup keys="[13]">Unadminister</button>
 
-                        <button ng-if="form.$valid && (isUnadministerable() || getAdminStatus())" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)">Update</button>
+                        <button ng-if="form.$valid && (isUnadministerable() || getAdminStatus())" type="submit" class="btn btn-primary" ng-click="updateVaccination(enteredEditFormData)" on-keyup keys="[13]">Update</button>
                     </div>
             </form>
             </div>
@@ -321,13 +321,13 @@
 
                     <div class="form-group">
                         <label>Date</label>
-                        <input name="date" class="form-control" type="date" ng-model="enteredAdverseFormData.date" placeholder="Date" required>
+                        <input name="date" class="form-control" type="date" ng-model="enteredAdverseFormData.date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.date.$error.date" warning="Enter a valid reaction date."></feedback>
 
                     <div class="form-group">
                         <label>Grade</label>
-                        <select name="grade" class="form-control" ng-model="enteredAdverseFormData.grade" required>
+                        <select name="grade" class="form-control" ng-model="enteredAdverseFormData.grade" required on-keyup keys="[13]">
                             <option selected="selected" value="160754">Adverse Reaction Grade 1</option>
                             <option value="160755">Adverse Reaction Grade 2</option>
                             <option value="160756">Adverse Reaction Grade 3</option>
@@ -339,13 +339,13 @@
 
                     <div class="form-group" >
                         <label>Adverse Event Description</label>
-                        <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required></textarea>
+                        <textarea name="adverse_event" class="form-control" type="text" rows="4" ng-model="enteredAdverseFormData.adverse_event" placeholder="Description" required on-keyup keys="[13]"></textarea>
                     </div>
                     <feedback warn="form.adverse_event.$error.required" warning="Enter a valid adverse event description."></feedback>
 
                     <div class="form-group" ng-if="enteredEditFormData.adverse_reaction_observed">
                         <label>Reason For Change</label>
-                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse" required>
+                        <select  name="excuse" class="form-control" ng-model="enteredAdverseFormData.excuse" required on-keyup keys="[13]">
                             <option value="Incorrect Entry">Incorrect Entry</option>
                             <option value="Other">Other</option>
                         </select>
@@ -355,17 +355,17 @@
 
                     <div class="form-group" ng-if="enteredAdverseFormData.excuse == 'Other'">
                         <label>Description</label>
-                        <input  type="text" name="reason" class="form-control" ng-model="enteredAdverseFormData.reason" required/>
+                        <input  type="text" name="reason" class="form-control" ng-model="enteredAdverseFormData.reason" required on-keyup keys="[13]"/>
                     </div>
                     <feedback warn="form.reason.$error.required" warning="Select a valid reason for change"></feedback>
 
                     <div class="form-button-wrapper">
                     <!-- cannot delete scheduled vaccines. -->
-                        <button class="btn btn-danger" ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)">Delete</button>
+                        <button class="btn btn-danger" ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" ng-click="removeReaction(enteredAdverseFormData, enteredEditFormData)" on-keyup keys="[13]">Delete</button>
 
-                        <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Save Adverse Reaction</button>
+                        <button ng-if="!enteredEditFormData.adverse_reaction_observed && form.$valid" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)" on-keyup keys="[13]">Save Adverse Reaction</button>
 
-                        <button ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)">Update</button>
+                        <button ng-if="form.$valid && enteredEditFormData.adverse_reaction_observed" class="btn btn-warning" ng-click="addReaction(enteredAdverseFormData, enteredEditFormData)" on-keyup keys="[13]">Update</button>
                     </div>
                 </form>
             </div>
@@ -405,9 +405,9 @@
                     <span class="scheduled-date">{{ ::enteredAdminFormData.scheduled_date | date: 'mediumDate' }}</span>
                 </span>
                 <div class="btn-group pull-right" role="group" aria-label="...">
-                    <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()">Administer</button>
-                    <button type="button" class="btn btn-reschedule" ng-click="toggleRescheduleForm()">Reschedule</button>
-                    <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" >History</button>
+                    <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()" on-keyup keys="[13]">Administer</button>
+                    <button type="button" class="btn btn-reschedule" ng-click="toggleRescheduleForm()" on-keyup keys="[13]">Reschedule</button>
+                    <button ng-show="enteredAdminFormData.auditLogList.length > 0" type="button" class="btn btn-history" ng-class="{'active': state.auditLogOpen}" ng-click="toggleAuditLog()" on-keyup keys="[13]">History</button>
                 </div>
 
             </div>
@@ -458,12 +458,12 @@
 
                     <div class="form-group">
                         <label>Rescheduled Date</label>
-                        <input name="rescheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required>
+                        <input name="rescheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required on-keyup keys="[13]">
                     </div>
                     <feedback warn="rescheduleForm.rescheduled_date.$error.date" warning="Enter a valid rescheduled date."></feedback>
 
                     <div class="form-button-wrapper">
-                        <button ng-show="rescheduleForm.$valid" type="submit" class="btn btn-primary" ng-click="rescheduleVaccination(enteredAdminFormData)">Reschedule</button>
+                        <button ng-show="rescheduleForm.$valid" type="submit" class="btn btn-primary" ng-click="rescheduleVaccination(enteredAdminFormData)" on-keyup keys="[13]">Reschedule</button>
                     </div>
                 </form>
             </div>
@@ -477,24 +477,24 @@
 
                     <div class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required>
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
                     <div class="form-group" ng-if="enteredAdminFormData.dose_number">
                         <label>Course Number</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose in Course">
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose in Course" on-keyup keys="[13]">
                     </div>
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" min="0" required>
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" min="0" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.dose.$error.required || form.dose.$error.number || !form.dose.$valid" warning="Enter a valid dose. Dose must be a number"></feedback>
 
                     <div class="form-group">
                         <label>Units</label>
-                        <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required>
+                        <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
                           <option value=""></option>
                         </select>
                     </div>
@@ -502,7 +502,7 @@
 
                     <div class="form-group">
                         <label>Route</label>
-                        <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
+                        <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
                             <option value=""></option>
                         </select>
                     </div>
@@ -510,14 +510,14 @@
 
                     <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                         <label>Body Site Administered</label>
-                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
+                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required on-keyup keys="[13]">
                         </select>
                     </div>
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
                     <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
-                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]">
+                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
                        <option value=""></option>
                     </select>
                     </div>
@@ -525,7 +525,7 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()" on-keyup keys="[13]">
                         <option value=""></option>
                         </select>
                     </div>
@@ -533,28 +533,28 @@
 
                     <div class="form-group">
                         <label>Lot Number</label>
-                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" placeholder="Lot Number" required>
+                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" placeholder="Lot Number" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required>
+                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
                     <div class="form-button-wrapper">
                         <!-- cannot delete scheduled vaccines only modify. -->
-                        <button type="button" class="btn btn-danger" ng-if="!enteredAdminFormData.scheduled" ng-click="deleteVaccination(enteredAdminFormData)">Delete</button>
-                        <button type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()">Reset</button>
-                        <button ng-show="form.$valid" type="submit" class="btn btn-primary" ng-click="submitVaccination(enteredAdminFormData)">Administer</button>
+                        <button type="button" class="btn btn-danger" ng-if="!enteredAdminFormData.scheduled" ng-click="deleteVaccination(enteredAdminFormData)" on-keyup keys="[13]">Delete</button>
+                        <button type="button" class="btn btn-default" ng-click="resetFormDataToDefaults()" on-keyup keys="[13]">Reset</button>
+                        <button ng-show="form.$valid" type="submit" class="btn btn-primary" ng-click="submitVaccination(enteredAdminFormData)" on-keyup keys="[13]">Administer</button>
                     </div>
                 </form>
             </div>
@@ -591,36 +591,36 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required>
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
                     <div ng-if="enteredAdminFormData.custom" class="form-group">
                         <label>Vaccine Name</label>
-                        <input name="name" class="form-control" type="text" ng-model="enteredAdminFormData.name" placeholder="Vaccine Name" ng-required="enteredAdminFormData.custom">
+                        <input name="name" class="form-control" type="text" ng-model="enteredAdminFormData.name" placeholder="Vaccine Name" ng-required="enteredAdminFormData.custom" on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.name.$error.required" warning="Enter a vaccine name."></feedback>
 
                     <div ng-if="enteredAdminFormData._scheduling" class="form-group">
                         <label>Scheduled Date</label>
-                        <input name="scheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required>
+                        <input name="scheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.scheduled_date.$error.date" warning="Enter a valid scheduled date."></feedback>
 
                     <div class="form-group" ng-if="enteredAdminFormData.dose_number">
                         <label>Course Number</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course">
+                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
                     </div>
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering" min="0">
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
                     </div>
                     <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
-                    <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required>
+                    <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -628,7 +628,7 @@
 
                   <div class="form-group">
                     <label>Route</label>
-                    <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required>
+                    <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -636,7 +636,7 @@
 
                   <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
                     <label>Body Site Administered</label>
-                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required>
+                    <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required on-keyup keys="[13]">
                     </select>
 
                   </div>
@@ -644,7 +644,7 @@
 
                   <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
-                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]">
+                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
@@ -652,7 +652,7 @@
 
                      <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacturer</label>
-                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering" ng-options="c.name as c.name for c in getManufacturers()">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required="enteredAdminFormData._administering" ng-options="c.name as c.name for c in getManufacturers()" on-keyup keys="[13]">
                         <option value=""></option>
                         </select>
                     </div>
@@ -660,19 +660,19 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Lot Number</label>
-                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" placeholder="Lot Number" required="enteredAdminFormData._administering">
+                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" placeholder="Lot Number" required="enteredAdminFormData._administering" on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required>
+                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required>
+                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -680,11 +680,11 @@
                     <!-- cannot delete scheduled vaccines. -->
                         <button type="button" class="btn btn-danger" ng-click="removeStagedVaccination()">Cancel</button>
 
-                        <button ng-if="enteredAdminFormData._administering" type="button" class="btn btn-primary" ng-click="resetFormDataToDefaults()">Reset</button>
+                        <button ng-if="enteredAdminFormData._administering" type="button" class="btn btn-primary" ng-click="resetFormDataToDefaults()" on-keyup keys="[13]">Reset</button>
 
-                        <button ng-if="enteredAdminFormData._administering && form.$valid" type="submit" class="btn btn-warning" ng-click="saveVaccination(enteredAdminFormData)">Administer</button>
+                        <button ng-if="enteredAdminFormData._administering && form.$valid" type="submit" class="btn btn-warning" ng-click="saveVaccination(enteredAdminFormData)" on-keyup keys="[13]">Administer</button>
 
-                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)">Book</button>
+                        <button ng-if="enteredAdminFormData._scheduling && form.$valid" type="submit" class="btn btn-warning" ng-click="scheduleVaccination(enteredAdminFormData)" on-keyup keys="[13]">Book</button>
                     </div>
                 </div>
             </form>
@@ -696,9 +696,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7fc2f627.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-beb7a964.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-97f84057.js"></script>
 
   </body>
 </html>
