@@ -14,7 +14,7 @@ angular.module('vaccinations')
 .service('appConstants', function ($http, $location) {
     var tempURL;
     if (document.getElementsByTagName("title")[0].innerHTML !== "KMRI") {
-        tempURL = 'http://208.77.196.178:64000';
+        tempURL = '';
     } else {
         tempURL = '';
     }
