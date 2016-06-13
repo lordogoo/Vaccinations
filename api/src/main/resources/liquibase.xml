@@ -377,7 +377,7 @@
             VALUES (
             1,
             'Bacillus Calmette-Guerin (BCG)',
-            'older than 1yo',
+            '52 weeks',
             2,
             .1,
             '162263',
