@@ -487,7 +487,7 @@
 
             <!-- ADMINISTRATION FORM -->
             <div ng-if="state.administerFormOpen" class="form-wrapper css-form">
-                
+
                 <form name="form" novalidate>
 
                     <div class="form-group">
