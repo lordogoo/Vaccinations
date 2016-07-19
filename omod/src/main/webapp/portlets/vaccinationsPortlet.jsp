@@ -16,7 +16,7 @@
 <div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
-    <div class="container" ng-controller="MainController">
+    <div class="container" ng-controller="MainController" style="width: 900px;">
 
         <loader></loader>
         <!-- ADD SECTION -->
@@ -209,7 +209,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -263,6 +263,7 @@
                         <option value=""></option>
                         </select>
                     </div>
+
                     <feedback warn="form.manufacturer.$error.required" warning="Enter a valid manufacturer. For example Pfizer, GlaxoSmithKline..."></feedback>
 
                     <div class="form-group">
@@ -273,13 +274,13 @@
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date" on-keyup keys="[13]">
+                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date" on-keyup keys="[13]">
                     </div>
                    <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date" on-keyup keys="[13]">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date" on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -321,7 +322,7 @@
 
                     <div class="form-group">
                         <label>Date</label>
-                        <input name="date" class="form-control" type="date" ng-model="enteredAdverseFormData.date" placeholder="Date" required on-keyup keys="[13]">
+                        <input name="date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdverseFormData.date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.date.$error.date" warning="Enter a valid reaction date."></feedback>
 
@@ -400,10 +401,24 @@
                     <span class="indication-date">{{ ::enteredAdminFormData.indication_name | date: 'mediumDate' }}</span>
                 </span>
 
-                <span class="header-info">
-                    <span class="scheduled-label">To be administered on: </span>
-                    <span class="scheduled-date">{{ ::enteredAdminFormData.scheduled_date | date: 'mediumDate' }}</span>
+                <span class="header-info"> <!-- / if not rescheduled then display calculated range else display scheduled date -->
+
+                    <span ng-if="enteredAdminFormData.scheduled_date.getMilliseconds() == 0 && enteredAdminFormData.calculatedDateRange[1] > enteredAdminFormData.calculatedDateRange[0]" >
+                        <span class="scheduled-label">administer between: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.calculatedDateRange[0] | date: 'longDate' }} and {{ enteredAdminFormData.calculatedDateRange[1] | date: 'longDate' }} </span>
+                    </span>
+                    <span ng-if="enteredAdminFormData.scheduled_date.getMilliseconds() == 0 && enteredAdminFormData.calculatedDateRange[1] <= enteredAdminFormData.calculatedDateRange[0]" >
+                        <span class="scheduled-label">administer after: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.calculatedDateRange[0] | date: 'longDate' }} </span>
+                    </span>
+
+                    <!-- / if not rescheduled then display calculated range else display scheduled date -->
+                    <span ng-if="enteredAdminFormData.scheduled_date.getTime()" >
+                        <span class="scheduled-label">To be administered on: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.scheduled_date | date: 'longDate'}} </span>
+                    </span>
                 </span>
+
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()" on-keyup keys="[13]">Administer</button>
                     <button type="button" class="btn btn-reschedule" ng-click="toggleRescheduleForm()" on-keyup keys="[13]">Reschedule</button>
@@ -458,7 +473,7 @@
 
                     <div class="form-group">
                         <label>Rescheduled Date</label>
-                        <input name="rescheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required on-keyup keys="[13]">
+                        <input name="rescheduled_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required on-keyup keys="[13]">
                     </div>
                     <feedback warn="rescheduleForm.rescheduled_date.$error.date" warning="Enter a valid rescheduled date."></feedback>
 
@@ -477,7 +492,7 @@
 
                     <div class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required on-keyup keys="[13]">
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -540,13 +555,13 @@
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
+                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
+                        <input name="expiry_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -591,7 +606,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
@@ -603,7 +618,7 @@
 
                     <div ng-if="enteredAdminFormData._scheduling" class="form-group">
                         <label>Scheduled Date</label>
-                        <input name="scheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required on-keyup keys="[13]">
+                        <input name="scheduled_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.scheduled_date.$error.date" warning="Enter a valid scheduled date."></feedback>
 
@@ -666,13 +681,13 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
+                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
+                        <input name="expiry_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -698,7 +713,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-97f84057.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-05d4164c.js"></script>
 
   </body>
 </html>

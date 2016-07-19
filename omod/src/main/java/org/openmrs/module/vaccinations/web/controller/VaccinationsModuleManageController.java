@@ -15,7 +15,9 @@ package org.openmrs.module.vaccinations.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Patient;
 import org.openmrs.PersonName;
+import org.openmrs.activelist.Allergy;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.vaccinations.Vaccine;
 import org.openmrs.module.vaccinations.api.VaccinationsService;
@@ -26,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The main controller.
@@ -53,13 +55,22 @@ public class  VaccinationsModuleManageController {
     @RequestMapping(value = "/module/vaccinations/portlets/vaccinationsPortlet", method = RequestMethod.GET)
     public void vaccinationsPortletController(ModelMap model) {
         model.addAttribute("user", Context.getAuthenticatedUser());
+
+
     }
 
     @RequestMapping(value = "/module/vaccinations/vaccinationsPage", method = RequestMethod.GET)
     public void vaccinationsPageController(@RequestParam(required = true, value = "patientId") String patientId,
                                            @RequestParam(required = false, value = "retroactive") String retroactive, ModelMap model) {
         model.addAttribute("patientId", patientId);
-        PersonName personName = Context.getPatientService().getPatient(Integer.parseInt(patientId)).getPersonName();
+        model.addAttribute("user", Context.getAuthenticatedUser());
+        model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
+        model.addAttribute("retroactive", retroactive);
+        model.addAttribute("patientId", patientId);
+
+        //get patient information
+        Patient person = Context.getPatientService().getPatient(Integer.parseInt(patientId));
+        PersonName personName = person.getPersonName();
         String patientName = "";
         if (personName.getGivenName() != null)
             patientName += personName.getGivenName();
@@ -68,8 +79,57 @@ public class  VaccinationsModuleManageController {
         if (personName.getFamilyName() != null)
             patientName += " " + personName.getFamilyName();
         model.addAttribute("patientName", patientName);
+        model.addAttribute("patientGender",person.getGender());
+        //format patient birthdate
+
+        Date birthdate = person.getBirthdate();
+        Date now = new Date();
+        String pattern = "dd MMM, yyyy";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+
+        createBirthdateString(model,now,birthdate);
+
+        String birthdayout = format.format(person.getBirthdate());
+        model.addAttribute("patientBirthDate",birthdayout);
+
         model.addAttribute("user", Context.getAuthenticatedUser());
-        model.addAttribute("DO_NOT_INCLUDE_JQUERY", true);
-        model.addAttribute("retroactive", retroactive);
     }
+
+    public void createBirthdateString(ModelMap model,Date now,Date birthdate){
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.setTime(birthdate);
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(now);
+        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+        int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        int diffWeek = daysBetween(now,birthdate)/7;
+        if(diffYear > 0){
+            //deal with years
+            if(diffYear == 1) {
+                model.addAttribute("patientAge",diffYear+" Year");
+            }else{
+                model.addAttribute("patientAge",diffYear+" Years");
+            }
+        }else if(diffWeek <= 14){
+            //deal with weeks
+            int weektotal = diffWeek;
+            if(diffWeek == 1){
+                model.addAttribute("patientAge",weektotal+" Week");
+            }else{
+                model.addAttribute("patientAge",weektotal+" Weeks");
+            }
+        }else{
+            //deal with months
+            if(diffMonth == 1) {
+                model.addAttribute("patientAge", diffMonth + " Month");
+            }else{
+                model.addAttribute("patientAge", diffMonth + " Months");
+            }
+        }
+    }
+
+    public int daysBetween(Date d1,Date d2){
+        return (int)((d2.getTime()-d1.getTime())/(1000*60*60*24));
+    }
+
 }
