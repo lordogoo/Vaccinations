@@ -8,7 +8,6 @@ angular.module('vaccinations')
     $scope.enteredEditFormData = {};
     $scope.enteredAdverseFormData = {};
 
-
     // Form states and methods.
     $scope.state = {};
     $scope.state.editFormOpen = false;
@@ -51,7 +50,6 @@ angular.module('vaccinations')
 
     $scope.resetFormDataToDefaults = function () {
         var vaccination = angular.copy($scope.getVaccination());
-
         vaccination.administration_date = new Date(vaccination.administration_date);
         vaccination.manufacture_date = new Date(vaccination.manufacture_date);
         vaccination.expiry_date = new Date(vaccination.expiry_date);
@@ -91,17 +89,7 @@ angular.module('vaccinations')
         // Remove all information pertaining to administration.
         vaccination.unadminister = true;
         vaccinationsManager.submitVaccination(vaccination);
-        //$scope.setVaccinationDefault();
     };
-
-    $scope.resetVaccinationDefaults = function(){
-        //set form to default
-        $scope.enteredEditFormData.dose = $scope.enteredEditFormData.simpleVaccine.dose;
-        $scope.enteredEditFormData.dosing_unit = $scope.enteredEditFormData.simpleVaccine.dosing_unit;
-        $scope.enteredEditFormData.route = $scope.enteredEditFormData.simpleVaccine.route;
-        $scope.enteredEditFormData.body_site_administered = $scope.enteredEditFormData.simpleVaccine.body_site_administered;
-        $scope.enteredEditFormData.side_administered_left = $scope.enteredEditFormData.simpleVaccine.side_administered_left;
-    }
 
     $scope.resetFormDataToDefaults();
 
