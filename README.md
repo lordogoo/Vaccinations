@@ -22,5 +22,7 @@ Install node
 If problems occur with node and npm versioning try using node version 0.10.36 & npm version 3.3.8. These are the versions the module was built with.
 
 ###Important
-When serving locally, find and uncomment line ```URL: 'http://208.77.196.178:65010',``` (found in /frontend/src/app/main/app_constants.service.js)
+When serving locally, find and uncomment line ```URL: 'http://208.77.196.178:65010/openmrs',``` (found in /frontend/src/app/main/app_constants.service.js)
+Then also comment out the line below it '''URL: tempURL,'''  
+
 When committing, the line will need to be commented out again
