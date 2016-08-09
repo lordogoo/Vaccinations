@@ -24,7 +24,7 @@
 <div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
-    <div class="container" ng-controller="MainController" style="width: 900px;">
+    <div class="container" ng-controller="MainController" >
 
         <loader></loader>
         <!-- ADD SECTION -->
@@ -228,9 +228,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" placeholder="Dose" min="0" required on-keyup keys="[13]">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="dose" class="form-control" type="number" ng-model="enteredEditFormData.dose" min="0" required on-keyup keys="[13]">
                     </div>
-                    <feedback warn="form.dose.$error.number || form.dose.$error.required || !form.dose.$valid" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="form.dose.$error.number || form.dose.$error.required || !form.dose.$valid" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
@@ -511,13 +511,13 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" min="0" required on-keyup keys="[13]">
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-init="enteredAdminFormData.dose=''" min="0" required on-keyup keys="[13]">
                     </div>
-                    <feedback warn="form.dose.$error.required || form.dose.$error.number || !form.dose.$valid" warning="Enter a valid dose. Dose must be a number"></feedback>
+                    <feedback warn="form.dose.$error.required || form.dose.$error.number || !form.dose.$valid" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
 
                     <div class="form-group">
                         <label>Units</label>
-                        <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
+                        <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-init="enteredAdminFormData.dosing_unit=''" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
                           <option value=""></option>
                         </select>
                     </div>
@@ -525,7 +525,7 @@
 
                     <div class="form-group">
                         <label>Route</label>
-                        <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
+                        <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-init="enteredAdminFormData.route=''" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
                             <option value=""></option>
                         </select>
                     </div>
@@ -533,14 +533,14 @@
 
                     <div class="form-group" ng-if="!(enteredAdminFormData.route == '160240') && !(enteredAdminFormData.route =='161253')">
                         <label>Body Site Administered</label>
-                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required on-keyup keys="[13]">
+                        <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-init="enteredAdminFormData.body_site_administered=''" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required on-keyup keys="[13]">
                         </select>
                     </div>
                     <feedback warn="form.body_site_administered.$error.required" warning="Enter a valid body site."></feedback>
 
                     <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
-                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
+                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" ng-init="enteredAdminFormData.side_administered_left=''" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
                        <option value=""></option>
                     </select>
                     </div>
@@ -548,7 +548,7 @@
 
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()" on-keyup keys="[13]">
+                        <select name="manufacturer" class="form-control" type="text" ng-model="enteredAdminFormData.manufacturer" ng-init="enteredAdminFormData.manufacturer=''" placeholder="Manufacturer" required ng-options="c.name as c.name for c in getManufacturers()" on-keyup keys="[13]">
                         <option value=""></option>
                         </select>
                     </div>
@@ -556,7 +556,7 @@
 
                     <div class="form-group">
                         <label>Lot Number</label>
-                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" placeholder="Lot Number" required on-keyup keys="[13]">
+                        <input name="lot_number" class="form-control" type="text" ng-model="enteredAdminFormData.lot_number" ng-init="enteredAdminFormData.lot_number=''" placeholder="Lot Number" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.lot_number.$error.required" warning="Enter a valid vaccine lot number."></feedback>
 
@@ -637,9 +637,9 @@
 
                     <div class="form-group">
                         <label>Dose</label>
-                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" placeholder="Dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
+                        <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-init="enteredAdminFormData.dose=''" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
                     </div>
-                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose size. For ex .5, 2..."></feedback>
+                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
 
                   <div class="form-group">
                     <label>Units</label>
@@ -667,7 +667,7 @@
 
                   <div class="form-group" ng-if="enteredAdminFormData.route !== '160240'">
                     <label>Side Administered</label>
-                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
+                    <select name="side_administered_left" class="form-control" ng-model="enteredAdminFormData.side_administered_left" ng-init="enteredAdminFormData.side_administered_left=''" required ng-options="b.value as b.name for b in [{name:'Left', value: true}, {name:'Right', value: false}]" on-keyup keys="[13]">
                       <option value=""></option>
                     </select>
                   </div>
